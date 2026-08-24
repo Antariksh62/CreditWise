@@ -1,0 +1,307 @@
+[
+  {
+    "id": 1,
+    "slug": "hdfc-millennia-cashback",
+    "name": "Millennia Cashback",
+    "bank": "HDFC Bank",
+    "image": "/cards/hdfc-millennia.png",
+    "category": "cashback",
+    "annualFee": 1000,
+    "joiningFee": 1000,
+    "cashbackRate": 5,
+    "rewardRate": 1,
+    "loungeAccess": 4,
+    "fuelBenefits": "1% fuel surcharge waiver on transactions between ₹400 and ₹5,000",
+    "diningBenefits": "Up to 20% off at partner restaurants via the dining programme",
+    "onlineShoppingBenefits": "5% cashback on Amazon, Flipkart, Myntra, Swiggy and Zomato",
+    "eligibility": "Salaried or self-employed, age 21-60, credit score 750+",
+    "incomeRequirement": "₹35,000 per month",
+    "benefits": [
+      "5% cashback on 10 popular online merchants",
+      "1% cashback on all other spends",
+      "4 domestic lounge visits per year",
+      "₹1,000 fee waived on annual spends above ₹1,00,000"
+    ],
+    "tags": [
+      "cashback",
+      "shopping",
+      "online"
+    ],
+    "description": "An everyday cashback card built for people who do most of their spending online. The flat 5% rate on major marketplaces and food delivery apps makes it one of the simplest cards to extract value from without tracking reward point conversions."
+  },
+  {
+    "id": 2,
+    "slug": "sbi-cashback",
+    "name": "SBI Cashback Card",
+    "bank": "SBI Card",
+    "image": "/cards/sbi-cashback.png",
+    "category": "cashback",
+    "annualFee": 999,
+    "joiningFee": 999,
+    "cashbackRate": 5,
+    "rewardRate": 0,
+    "loungeAccess": 0,
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹100 per statement cycle",
+    "diningBenefits": "No dedicated dining programme",
+    "onlineShoppingBenefits": "Flat 5% cashback on all online spends with no merchant restrictions",
+    "eligibility": "Salaried or self-employed, age 21-65",
+    "incomeRequirement": "₹30,000 per month",
+    "benefits": [
+      "Flat 5% cashback on every online merchant",
+      "1% cashback on offline spends",
+      "Automatic cashback credit to the statement",
+      "Annual fee reversed on spends above ₹2,00,000"
+    ],
+    "tags": [
+      "cashback",
+      "online",
+      "simple"
+    ],
+    "description": "The most straightforward cashback proposition in the demo set. There is no merchant list to memorise: every online transaction earns 5%, capped monthly. Best suited to heavy online spenders who dislike reward point redemption."
+  },
+  {
+    "id": 3,
+    "slug": "axis-atlas",
+    "name": "Atlas",
+    "bank": "Axis Bank",
+    "image": "/cards/axis-atlas.png",
+    "category": "travel",
+    "annualFee": 5000,
+    "joiningFee": 5000,
+    "cashbackRate": 0,
+    "rewardRate": 10,
+    "loungeAccess": 12,
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹400 per cycle",
+    "diningBenefits": "Up to 25% off through the Axis dining delights programme",
+    "onlineShoppingBenefits": "2 EDGE Miles per ₹100 on general online spends",
+    "eligibility": "Salaried or self-employed, age 18-70, strong credit history",
+    "incomeRequirement": "₹1,00,000 per month",
+    "benefits": [
+      "10 EDGE Miles per ₹100 on airline and hotel bookings",
+      "12 international lounge visits per year",
+      "Transfer miles to 20+ airline and hotel partners",
+      "Milestone bonus of 5,000 miles on ₹7,50,000 annual spend"
+    ],
+    "tags": [
+      "travel",
+      "rewards",
+      "lounge",
+      "premium"
+    ],
+    "description": "A travel-first card for people who fly regularly enough to make transferable miles worth the annual fee. The accrual on direct travel bookings is the strongest in this set, and the lounge allowance covers international terminals."
+  },
+  {
+    "id": 4,
+    "slug": "hdfc-regalia-gold",
+    "name": "Regalia Gold",
+    "bank": "HDFC Bank",
+    "image": "/cards/hdfc-regalia.png",
+    "category": "travel",
+    "annualFee": 2500,
+    "joiningFee": 2500,
+    "cashbackRate": 0,
+    "rewardRate": 4,
+    "loungeAccess": 12,
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹500 per cycle",
+    "diningBenefits": "Complimentary Swiggy One and membership dining discounts",
+    "onlineShoppingBenefits": "5X reward points on Nykaa, Myntra, Marks & Spencer and Reliance Digital",
+    "eligibility": "Salaried age 21-60 or self-employed age 21-65",
+    "incomeRequirement": "₹1,00,000 per month",
+    "benefits": [
+      "4 reward points per ₹150 spent",
+      "12 domestic and 6 international lounge visits",
+      "₹1,500 voucher on quarterly spends of ₹1,50,000",
+      "Complimentary Club Vistara Silver tier"
+    ],
+    "tags": [
+      "travel",
+      "rewards",
+      "lounge",
+      "dining"
+    ],
+    "description": "A balanced premium card that spreads its value across travel, dining and shopping rather than concentrating it in one category. A reasonable first premium card for someone who travels a few times a year but is not a frequent flyer."
+  },
+  {
+    "id": 5,
+    "slug": "amex-membership-rewards",
+    "name": "Membership Rewards",
+    "bank": "American Express",
+    "image": "/cards/amex-mrcc.png",
+    "category": "rewards",
+    "annualFee": 4500,
+    "joiningFee": 1000,
+    "cashbackRate": 0,
+    "rewardRate": 1,
+    "loungeAccess": 0,
+    "fuelBenefits": "No fuel surcharge waiver",
+    "diningBenefits": "Amex dining offers at selected premium restaurants",
+    "onlineShoppingBenefits": "1,000 bonus points on 4 transactions of ₹1,500 each every month",
+    "eligibility": "Age 18+, Indian resident, credit score 750+, no payment defaults",
+    "incomeRequirement": "₹6,00,000 per year",
+    "benefits": [
+      "1 Membership Reward point per ₹50 spent",
+      "Monthly milestone of 1,000 bonus points",
+      "18-24% effective value on Taj and Flipkart vouchers",
+      "Points never expire"
+    ],
+    "tags": [
+      "rewards",
+      "points",
+      "milestone"
+    ],
+    "description": "A points-accumulation card where the value comes from disciplined milestone hitting rather than headline rates. Redemption into hotel and voucher partners gives the strongest returns; cash redemption is deliberately weak."
+  },
+  {
+    "id": 6,
+    "slug": "icici-amazon-pay",
+    "name": "Amazon Pay Card",
+    "bank": "ICICI Bank",
+    "image": "/cards/icici-amazonpay.png",
+    "category": "cashback",
+    "annualFee": 0,
+    "joiningFee": 0,
+    "cashbackRate": 5,
+    "rewardRate": 0,
+    "loungeAccess": 0,
+    "fuelBenefits": "1% fuel surcharge waiver at all fuel stations",
+    "diningBenefits": "Up to 15% off through the ICICI culinary treats programme",
+    "onlineShoppingBenefits": "5% back for Prime members and 3% for non-Prime on Amazon",
+    "eligibility": "Age 18+, existing or new ICICI customer",
+    "incomeRequirement": "No formal minimum stated",
+    "benefits": [
+      "Lifetime free with no annual or joining fee",
+      "5% back on Amazon for Prime members",
+      "2% back on 100+ partner merchants",
+      "1% back on all other spends"
+    ],
+    "tags": [
+      "cashback",
+      "lifetime-free",
+      "shopping",
+      "online"
+    ],
+    "description": "The best zero-cost entry point in the set. Because there is no annual fee there is no spend threshold to justify, which makes it a sensible first card or a permanent secondary card for Amazon-heavy households."
+  },
+  {
+    "id": 7,
+    "slug": "idfc-first-select",
+    "name": "FIRST Select",
+    "bank": "IDFC FIRST Bank",
+    "image": "/cards/idfc-select.png",
+    "category": "lifetime-free",
+    "annualFee": 0,
+    "joiningFee": 0,
+    "cashbackRate": 0,
+    "rewardRate": 10,
+    "loungeAccess": 8,
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹300 per cycle",
+    "diningBenefits": "20% discount at over 1,500 partner restaurants",
+    "onlineShoppingBenefits": "10X reward points on incremental spends above ₹20,000 per month",
+    "eligibility": "Salaried or self-employed, age 21-60",
+    "incomeRequirement": "₹40,000 per month",
+    "benefits": [
+      "Lifetime free with no annual fee",
+      "10X points on monthly spends above ₹20,000",
+      "4 domestic lounge visits per quarter",
+      "Complimentary personal accident cover"
+    ],
+    "tags": [
+      "lifetime-free",
+      "rewards",
+      "lounge",
+      "dining"
+    ],
+    "description": "Unusual in offering lounge access and a 10X accelerator without charging an annual fee. The accelerator only applies to incremental spend above a monthly threshold, so the real return depends on consistent monthly volume."
+  },
+  {
+    "id": 8,
+    "slug": "bpcl-sbi-octane",
+    "name": "BPCL Octane",
+    "bank": "SBI Card",
+    "image": "/cards/sbi-octane.png",
+    "category": "fuel",
+    "annualFee": 1499,
+    "joiningFee": 1499,
+    "cashbackRate": 0,
+    "rewardRate": 25,
+    "loungeAccess": 4,
+    "fuelBenefits": "7.25% value back on BPCL fuel spends including surcharge waiver",
+    "diningBenefits": "10X reward points on dining and departmental store spends",
+    "onlineShoppingBenefits": "10X reward points on selected online categories",
+    "eligibility": "Salaried or self-employed, age 21-60",
+    "incomeRequirement": "₹35,000 per month",
+    "benefits": [
+      "25 reward points per ₹100 at BPCL outlets",
+      "7.25% total value back on fuel",
+      "4 domestic lounge visits per year",
+      "6,000 bonus points as welcome benefit"
+    ],
+    "tags": [
+      "fuel",
+      "rewards",
+      "commute"
+    ],
+    "description": "A single-purpose card that makes sense only for people with a substantial monthly fuel bill. At roughly 7% value back on fuel it repays its annual fee quickly for daily commuters, and is poor value for anyone else."
+  },
+  {
+    "id": 9,
+    "slug": "hsbc-live-plus",
+    "name": "Live+ Card",
+    "bank": "HSBC",
+    "image": "/cards/hsbc-liveplus.png",
+    "category": "cashback",
+    "annualFee": 999,
+    "joiningFee": 0,
+    "cashbackRate": 10,
+    "rewardRate": 0,
+    "loungeAccess": 4,
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per cycle",
+    "diningBenefits": "10% accelerated cashback on all dining and food delivery",
+    "onlineShoppingBenefits": "10% cashback on grocery and supermarket spends",
+    "eligibility": "Salaried, age 18-65, resident in a serviceable city",
+    "incomeRequirement": "₹4,00,000 per year",
+    "benefits": [
+      "10% cashback on dining, food delivery and groceries",
+      "1.5% cashback on all other spends",
+      "4 domestic lounge visits per year",
+      "Annual fee waived on spends above ₹2,00,000"
+    ],
+    "tags": [
+      "cashback",
+      "dining",
+      "groceries"
+    ],
+    "description": "Targets the everyday-household category that most cashback cards ignore. Groceries and food delivery at 10% is a high rate, but a monthly cap on accelerated cashback keeps the realistic return closer to the base rate for big spenders."
+  },
+  {
+    "id": 10,
+    "slug": "axis-ace",
+    "name": "ACE",
+    "bank": "Axis Bank",
+    "image": "/cards/axis-ace.png",
+    "category": "cashback",
+    "annualFee": 499,
+    "joiningFee": 499,
+    "cashbackRate": 5,
+    "rewardRate": 0,
+    "loungeAccess": 4,
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹500 per cycle",
+    "diningBenefits": "Up to 20% off at partner restaurants",
+    "onlineShoppingBenefits": "4% cashback on Swiggy, Zomato and Ola",
+    "eligibility": "Salaried or self-employed, age 18-70",
+    "incomeRequirement": "₹25,000 per month",
+    "benefits": [
+      "5% cashback on bill payments through Google Pay",
+      "4% cashback on Swiggy, Zomato and Ola",
+      "2% cashback on all other spends",
+      "Annual fee waived on spends above ₹2,00,000"
+    ],
+    "tags": [
+      "cashback",
+      "bills",
+      "low-fee",
+      "utilities"
+    ],
+    "description": "A low-fee card whose distinctive feature is 5% back on utility and bill payments, a category almost every household has and most cards exclude. The 2% base rate is also above average for this fee bracket."
+  }
+]
