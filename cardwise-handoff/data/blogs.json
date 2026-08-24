@@ -1,0 +1,87 @@
+[
+  {
+    "id": 1,
+    "slug": "credit-score",
+    "title": "What is a credit score?",
+    "category": "Basics",
+    "readTime": "6 min read",
+    "image": "/blog/credit-score.png",
+    "summary": "The three-digit number lenders use to decide whether to approve you, and the five things that actually move it.",
+    "video": "https://www.youtube.com/embed/f7Ln2VLB0Sw",
+    "body": [
+      "A credit score is a three-digit number, usually between 300 and 900 in India, that summarises how reliably you have repaid borrowed money in the past. Lenders use it as a shorthand for risk: a higher score suggests you are likely to repay on time, which is why it directly affects both whether you are approved for a card and what limit you are offered.",
+      "Four bureaus issue scores in India, with CIBIL being the most widely referenced. Most card issuers treat 750 as the informal threshold for a clean approval, though this varies by product. Premium cards frequently expect 780 or above alongside an income check.",
+      "Five factors carry most of the weight. Payment history is the largest: a single payment more than 30 days late can cost a meaningful number of points and stays on your report for years. Credit utilisation, meaning the proportion of your available limit you actually use, comes second. Age of credit history, credit mix across secured and unsecured borrowing, and the number of recent hard enquiries make up the rest.",
+      "The most common mistake is closing an old card that is no longer used. Doing so shortens your average account age and removes its limit from your total available credit, which raises your utilisation ratio on paper even though your spending has not changed. Keeping a lifetime-free card open costs nothing and quietly supports both factors.",
+      "Checking your own score is a soft enquiry and never damages it. Applying for a card is a hard enquiry and does, slightly. Space applications several months apart rather than submitting several at once when you are shopping around."
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "cashback-vs-rewards",
+    "title": "Cashback vs reward points",
+    "category": "Comparison",
+    "readTime": "5 min read",
+    "image": "/blog/cashback-vs-rewards.png",
+    "summary": "Points can be worth more than cashback, but only if you redeem them well. Here is how to compare the two honestly.",
+    "video": null,
+    "body": [
+      "Cashback is money. A 5% cashback card returns ₹50 on a ₹1,000 spend, credited to your statement, and there is nothing further to decide. Reward points are a currency the issuer controls, and their value depends entirely on how you convert them.",
+      "To compare fairly, work out the rupee value per point. If a card gives 4 points per ₹150 spent and each point redeems for ₹0.25 against a voucher, you are earning ₹1 per ₹150, or about 0.67%. Presented as 'four points per one hundred and fifty rupees' that sounds generous; converted to a percentage it is modest.",
+      "Point values are not fixed. The same point might be worth ₹0.20 as a statement credit, ₹0.25 as a shopping voucher and ₹0.70 when transferred to an airline partner at the right time. This spread is why travel cards can beat cashback cards, and also why they frequently do not for people who never make the transfer.",
+      "The honest framing is that cashback has a guaranteed floor and no ceiling above it, while points have a lower floor and a higher ceiling that requires effort to reach. If you will not spend time on redemption research, cashback will out-earn points for you regardless of what the headline rates suggest.",
+      "One practical test before you apply: look up the actual redemption catalogue, not the marketing page. If the best available redemption is a statement credit at a poor rate, treat the card as a low-rate cashback card and compare it accordingly."
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "understanding-annual-fees",
+    "title": "Understanding annual fees",
+    "category": "Fees",
+    "readTime": "5 min read",
+    "image": "/blog/annual-fees.png",
+    "summary": "An annual fee is not automatically bad. Work out your break-even spend before deciding.",
+    "video": null,
+    "body": [
+      "An annual fee is a fixed cost, and the correct way to evaluate it is to calculate the spend at which the card's benefits exceed it. That figure is your break-even point, and it is specific to your spending, not to the card.",
+      "Take a card charging ₹2,500 a year that returns an effective 1.5% on your typical spending pattern. You need about ₹1,66,667 of annual spend on that card before it earns back its own fee. Below that number, a lifetime-free card returning 1% leaves you better off despite the lower rate.",
+      "Many cards waive the fee once you cross a spending threshold. Read this carefully: the threshold usually applies to the previous card anniversary year, often excludes certain categories such as fuel, rent and wallet loads, and is not prorated for a partial first year.",
+      "Also account for benefits you would have paid for anyway. Lounge access has a real cash value if you actually use it, and a value of zero if you do not. The same is true of bundled subscriptions. Only count what you would genuinely have bought.",
+      "Joining fees and annual fees are separate charges and are often confused. A card can be free to join and charge from the second year, or charge upfront and then waive on spend. Check which structure applies before you assume the first year is free."
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "credit-utilisation",
+    "title": "Credit utilisation explained",
+    "category": "Basics",
+    "readTime": "4 min read",
+    "image": "/blog/utilisation.png",
+    "summary": "Why spending 80% of your limit can hurt your score even when you pay the bill in full every month.",
+    "video": null,
+    "body": [
+      "Credit utilisation is the proportion of your available credit limit that you are using. If you hold two cards with a combined limit of ₹2,00,000 and your statements total ₹60,000, your utilisation is 30%.",
+      "The number that reaches the bureau is usually your statement balance, not your balance after payment. This surprises people who pay in full each month: you can be carrying no debt at all and still report high utilisation, because the snapshot was taken on your statement date.",
+      "Conventional guidance is to stay under 30%, and under 10% if you are about to apply for a large loan. This is a guideline rather than a cliff edge, but the effect is real and it is one of the few score factors you can change within a single billing cycle.",
+      "Two practical levers. First, make a partial payment before your statement date so a smaller balance is reported. Second, request a limit increase on an existing card, which lowers utilisation without changing your behaviour at all, provided you do not spend into the new headroom.",
+      "Utilisation is calculated both overall and per card. Concentrating all spending on one card while leaving others unused can show a high per-card ratio even when your overall figure looks healthy."
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "choosing-your-first-card",
+    "title": "How to choose your first credit card",
+    "category": "Guides",
+    "readTime": "7 min read",
+    "image": "/blog/first-card.png",
+    "summary": "A practical sequence for picking a first card: start with your spending, not with the rewards table.",
+    "video": null,
+    "body": [
+      "The usual mistake with a first card is starting from the rewards. Start instead from a month of your own bank statement. Group your spending into online shopping, groceries, dining and delivery, fuel, travel and bills. The two largest categories should determine which card you shortlist.",
+      "For most first-time applicants a lifetime-free card is the right answer. It removes the break-even calculation entirely, so the card cannot cost you money in a low-spending month, and it can stay open indefinitely to build your credit age even after you upgrade.",
+      "Approval matters more than optimisation at this stage. A first application is usually easier through a bank where you already hold a salary account, because the bank can see your income directly. A rejection is a hard enquiry with nothing to show for it, so apply where you are most likely to be approved rather than where the rewards are best.",
+      "Set up automatic payment of the full statement balance on the day you activate the card. Interest on revolving credit card balances in India commonly runs at 36 to 45% annually, which will exceed any rewards you earn many times over. A card only makes money for you if it is paid in full every cycle.",
+      "Give the card six to twelve months of consistent use and on-time payment before applying for anything else. That history is what makes the second application, for the card you actually wanted, straightforward."
+    ]
+  }
+]

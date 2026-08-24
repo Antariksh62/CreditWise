@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "fullName": "Aarav Sharma",
+    "username": "aarav",
+    "email": "aarav@example.com",
+    "age": 22,
+    "savedCards": [
+      "sbi-cashback"
+    ]
+  },
+  {
+    "id": 2,
+    "fullName": "Diya Nair",
+    "username": "diya_n",
+    "email": "diya@example.com",
+    "age": 25,
+    "savedCards": []
+  },
+  {
+    "id": 3,
+    "fullName": "Rohan Mehta",
+    "username": "rohanm",
+    "email": "rohan@example.com",
+    "age": 29,
+    "savedCards": [
+      "axis-atlas",
+      "hdfc-regalia-gold"
+    ]
+  },
+  {
+    "id": 4,
+    "fullName": "Ishita Rao",
+    "username": "ishita",
+    "email": "ishita@example.com",
+    "age": 24,
+    "savedCards": []
+  },
+  {
+    "id": 5,
+    "fullName": "Kabir Singh",
+    "username": "kabir99",
+    "email": "kabir@example.com",
+    "age": 31,
+    "savedCards": [
+      "icici-amazon-pay"
+    ]
+  },
+  {
+    "id": 6,
+    "fullName": "Ananya Iyer",
+    "username": "ananya",
+    "email": "ananya@example.com",
+    "age": 27,
+    "savedCards": []
+  }
+]

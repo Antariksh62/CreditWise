@@ -1,0 +1,285 @@
+/* ============================================================
+   CardWise — EXTERNAL CSS  (Assignment 1: external stylesheet)
+   ------------------------------------------------------------
+   This is the single global stylesheet for the whole application.
+   It defines the design tokens, base element styling, reusable
+   component classes and the motion system.
+
+   Design direction: Stripe discipline (~75%) + Ramp fintech
+   character (~25%), with an original CardWise identity.
+   ============================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------
+   1. DESIGN TOKENS
+   HSL triplets so Tailwind can apply opacity modifiers.
+   ------------------------------------------------------------ */
+@layer base {
+  :root {
+    --background: 40 20% 98%; /* #FBFAF8 warm white   */
+    --surface: 0 0% 100%; /* #FFFFFF pure white  */
+    --subtle: 40 12% 95%; /* #F4F3F0 section tint*/
+    --foreground: 120 2% 7%; /* #111211 near-black  */
+    --muted: 140 3% 43%; /* #6B6F6C grey text   */
+    --accent: 163 70% 20%; /* #0F5741 deep emerald*/
+    --accent-foreground: 0 0% 100%;
+    --accent-soft: 163 30% 94%; /* badge wash          */
+    --border: 40 10% 89%; /* #E5E3DE hairline    */
+
+    /* Credit-card visual tints */
+    --card-emerald: 163 45% 18%;
+    --card-graphite: 210 6% 22%;
+    --card-sand: 36 22% 78%;
+    --card-ink: 220 15% 12%;
+  }
+}
+
+/* ------------------------------------------------------------
+   2. BASE ELEMENTS
+   ------------------------------------------------------------ */
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Visible focus ring everywhere (Assignment: accessibility). */
+  :focus-visible {
+    outline: 2px solid hsl(var(--accent));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.15);
+  }
+}
+
+/* ------------------------------------------------------------
+   3. LAYOUT PRIMITIVES
+   1200px rail with hairline edges — the Stripe grid cue.
+   ------------------------------------------------------------ */
+@layer components {
+  .cw-container {
+    @apply mx-auto w-full max-w-[1200px] px-6 lg:px-8;
+  }
+
+  /* Vertical hairline rails framing the content column on wide screens. */
+  .cw-rail {
+    position: relative;
+  }
+  @media (min-width: 1280px) {
+    .cw-rail::before,
+    .cw-rail::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: hsl(var(--border));
+      pointer-events: none;
+    }
+    .cw-rail::before {
+      left: calc(50% - 600px);
+    }
+    .cw-rail::after {
+      right: calc(50% - 600px);
+    }
+  }
+
+  .cw-section {
+    @apply py-[4rem] md:py-[6rem];
+  }
+
+  .cw-hairline {
+    @apply border-t border-border;
+  }
+
+  /* ---------- Typography helpers ---------- */
+  .cw-eyebrow {
+    @apply text-label font-medium uppercase text-muted;
+  }
+
+  .cw-display {
+    @apply text-[2.5rem] leading-[1.08] tracking-[-0.03em] sm:text-[3rem] lg:text-display font-semibold;
+  }
+
+  .cw-h2 {
+    @apply text-[1.75rem] sm:text-h2 font-semibold tracking-[-0.02em];
+  }
+
+  .cw-h3 {
+    @apply text-h3 font-semibold;
+  }
+
+  .cw-body {
+    @apply text-body text-muted;
+  }
+
+  /* ---------- Buttons: 8px radius, no pills, no heavy shadow ---------- */
+  .cw-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-btn px-5 py-2.5
+           text-[0.9375rem] font-medium transition-all duration-200
+           ease-cardwise disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .cw-btn-primary {
+    @apply cw-btn bg-accent text-accent-foreground hover:bg-accent/90 active:translate-y-px;
+  }
+
+  .cw-btn-secondary {
+    @apply cw-btn border border-border bg-surface text-foreground
+           hover:border-foreground/25 hover:bg-subtle active:translate-y-px;
+  }
+
+  .cw-btn-ghost {
+    @apply cw-btn px-3 text-muted hover:bg-subtle hover:text-foreground;
+  }
+
+  /* Tertiary text link with an arrow that nudges on hover. */
+  .cw-link-arrow {
+    @apply inline-flex items-center gap-1.5 text-[0.9375rem] font-medium
+           text-accent transition-colors hover:text-foreground;
+  }
+  .cw-link-arrow svg {
+    transition: transform 200ms cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+  .cw-link-arrow:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* ---------- Cards: 12px radius, hairline border, 2px hover lift ---------- */
+  .cw-card {
+    @apply rounded-card border border-border bg-surface
+           transition-all duration-200 ease-cardwise;
+  }
+
+  .cw-card-interactive {
+    @apply cw-card hover:-translate-y-0.5 hover:border-foreground/20 hover:shadow-lift;
+  }
+
+  /* ---------- Small pieces ---------- */
+  .cw-badge {
+    @apply inline-flex items-center rounded px-2 py-0.5 text-[0.75rem]
+           font-medium uppercase tracking-wider;
+  }
+
+  .cw-badge-accent {
+    @apply cw-badge bg-accent-soft text-accent;
+  }
+
+  .cw-badge-neutral {
+    @apply cw-badge bg-subtle text-muted;
+  }
+
+  .cw-input {
+    @apply w-full rounded-btn border border-border bg-surface px-3.5 py-2.5
+           text-body text-foreground placeholder:text-muted/70
+           transition-colors duration-200 focus:border-accent focus:outline-none;
+  }
+
+  /* Assignment 2: invalid fields get a red border via this class,
+     applied by the validation code in the signup form. */
+  .cw-input-invalid {
+    border-color: #c0392b !important;
+  }
+
+  .cw-error-text {
+    @apply mt-1.5 text-[0.8125rem];
+    color: #c0392b;
+  }
+}
+
+/* ------------------------------------------------------------
+   4. MOTION SYSTEM
+   150-350ms, 8-16px travel, cubic-bezier(.2,.6,.2,1).
+   Entrance animations only; nothing loops, nothing floats.
+   ------------------------------------------------------------ */
+@layer utilities {
+  /* Scroll-reveal: elements start hidden, .is-visible is added by the
+     Reveal component's IntersectionObserver. */
+  .cw-reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 350ms cubic-bezier(0.2, 0.6, 0.2, 1),
+      transform 350ms cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+
+  .cw-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hero entrance stagger — runs once on mount. */
+  .cw-enter {
+    animation: cw-rise 400ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  }
+  .cw-enter-1 {
+    animation-delay: 40ms;
+  }
+  .cw-enter-2 {
+    animation-delay: 100ms;
+  }
+  .cw-enter-3 {
+    animation-delay: 160ms;
+  }
+  .cw-enter-4 {
+    animation-delay: 220ms;
+  }
+
+  /* Tabular figures so animated numbers do not jitter in width. */
+  .cw-numeric {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@keyframes cw-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------------------------------------------------
+   5. REDUCED MOTION
+   A complete bypass: no transitions, no animations, nothing moves.
+   Elements that rely on .cw-reveal stay fully visible.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .cw-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
