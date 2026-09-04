@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import cards from "../../data/cards.json";
-import CardFilters, { filterCards } from "../../components/CardFilters";
+import CardFilters from "../../components/CardFilters";
+import { filterCards } from "../../lib/filterCards";
 import CardGrid from "../../components/CardGrid";
 
 /**
