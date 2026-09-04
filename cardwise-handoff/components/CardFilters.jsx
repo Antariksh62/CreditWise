@@ -55,11 +55,3 @@ export default function CardFilters() {
     </nav>
   );
 }
-
-/** Shared filtering rule, used by the /cards page. */
-export function filterCards(cards, category) {
-  if (!category || category === "all") return cards;
-  return cards.filter(
-    (card) => card.category === category || (card.tags || []).includes(category),
-  );
-}

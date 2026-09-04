@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import cards from "../../data/cards.json";
-import CardFilters, { filterCards } from "../../components/CardFilters";
+import CardFilters from "../../components/CardFilters";
+import { filterCards } from "../../lib/filterCards";
 import CardGrid from "../../components/CardGrid";
 
 /**
@@ -40,7 +41,8 @@ export default function CardsPage({ searchParams }) {
           <h1 className="cw-h2">{LABELS[category] || "All credit cards"}</h1>
           <p className="cw-body mt-3 text-lead">
             {visible.length} {visible.length === 1 ? "card" : "cards"} in the CardWise
-            sample data set. Fees and benefits are realistic demo values, not live offers.
+            catalogue. Fees, APR and benefits are taken from published issuer terms and
+            change over time — always confirm on the bank's own page before applying.
           </p>
         </header>
 
