@@ -28,6 +28,8 @@ const ROWS = [
     label: "Annual fee",
     get: (c) => (c.annualFee === 0 ? "Lifetime free" : `₹${c.annualFee.toLocaleString("en-IN")}`),
   },
+  { label: "APR", get: (c) => (c.apr ? `${c.apr}% p.a.` : "—") },
+
   { label: "Cashback", get: (c) => (c.cashbackRate > 0 ? `${c.cashbackRate}%` : "—") },
   {
     label: "Reward rate",
