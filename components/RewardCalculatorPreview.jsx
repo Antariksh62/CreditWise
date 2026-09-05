@@ -1,25 +1,6 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import cards from "../data/cards.json";
 import { calculateRewards, formatRupees } from "../lib/rewardCalculator";
-import SectionHeading from "./SectionHeading";
-import Reveal from "./Reveal";
-
-/**
- * RewardCalculatorPreview
- * ------------------------------------------------------------
- * A display-only calculation using a fixed example spending
- * profile. It runs the real calculateRewards() function at render
- * time, so the numbers shown here are the same numbers the full
- * calculator would produce.
- *
- * Lightweight by design: no inputs, no state, no client JS. The
- * CTA sends the user to the working calculator.
- *
- * The per-category bars use INLINE CSS for their widths, because
- * the width is a genuinely computed value (Assignment 1: inline
- * CSS used where the value cannot be known ahead of time).
- */
 
 const EXAMPLE_SPEND = {
   online: 12000,
@@ -35,51 +16,59 @@ export default function RewardCalculatorPreview() {
   const maxCategory = Math.max(...result.perCategory.map((c) => c.rewards), 1);
 
   return (
-    <section className="cw-rail cw-section border-b border-border">
-      <div className="cw-container grid items-center gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
-        <div>
-          <SectionHeading
-            eyebrow="Reward calculator"
-            title="See what a card is actually worth to you"
-            description="Enter your monthly spending by category and CardWise estimates the annual return, net of the annual fee."
-          />
-          <Link href="/compare" className="cw-btn-primary">
-            Calculate your rewards
-            <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
-          </Link>
+    <section id="reward-calculator" className="py-20 lg:py-28 bg-white border-t border-neutral-200">
+      <div className="cw-container grid items-center gap-12 lg:grid-cols-12">
+        <div className="lg:col-span-5 space-y-6">
+          <div className="text-xs font-bold uppercase tracking-wider text-neutral-400">
+            NET YIELD CALCULATOR
+          </div>
+          <h2 className="cw-h2">
+            Know your exact return{" "}
+            <span className="text-neutral-400">before you apply.</span>
+          </h2>
+          <p className="cw-body">
+            CardWise calculates your net annual rupee returns across categories after deducting annual fee charges.
+          </p>
+          <div>
+            <Link href="/recommend" className="inline-flex items-center gap-2 rounded-[6px] bg-[#DDF247] px-6 py-3 text-sm font-bold text-black hover:bg-[#cee723] transition-all">
+              Calculate your wallet returns →
+            </Link>
+          </div>
         </div>
 
-        <Reveal>
-          <div className="cw-card p-7">
-            <div className="mb-6 flex items-start justify-between gap-4 border-b border-border pb-5">
+        <div className="lg:col-span-7">
+          <div className="rounded-xl border border-neutral-200 bg-white p-7 sm:p-8 shadow-lift">
+            <div className="mb-6 flex items-start justify-between gap-4 border-b border-neutral-200 pb-5">
               <div>
-                <p className="cw-eyebrow mb-2">Example: {card.name}</p>
-                <p className="cw-numeric text-[2rem] font-semibold leading-none tracking-[-0.02em]">
+                <p className="text-xs font-mono font-bold uppercase tracking-wider text-neutral-400 mb-1">
+                  LIVE ESTIMATE • {card.name}
+                </p>
+                <p className="cw-numeric text-3xl sm:text-4xl font-bold leading-none text-black">
                   {formatRupees(result.annualRewards)}
                 </p>
-                <p className="mt-1.5 text-[0.875rem] text-muted">
-                  estimated rewards per year on{" "}
-                  {formatRupees(result.annualSpend)} of spending
+                <p className="mt-2 text-xs text-neutral-500">
+                  estimated net annual rewards on{" "}
+                  <span className="font-semibold text-black">{formatRupees(result.annualSpend)}</span> yearly spend
                 </p>
               </div>
-              <span className="cw-badge-accent shrink-0">
-                {result.effectiveRate}% effective
+              <span className="rounded bg-[#DDF247] px-2.5 py-1 text-xs font-bold text-black shrink-0">
+                {result.effectiveRate}% EFFECTIVE RATE
               </span>
             </div>
 
-            <ul className="space-y-3.5">
+            <ul className="space-y-4">
               {result.perCategory.map((row) => (
                 <li key={row.key}>
                   <div className="mb-1.5 flex items-baseline justify-between gap-4">
-                    <span className="text-[0.875rem]">{row.label}</span>
-                    <span className="cw-numeric text-[0.875rem] font-medium">
+                    <span className="text-xs font-bold text-black">{row.label}</span>
+                    <span className="cw-numeric text-xs font-bold text-black">
                       {formatRupees(row.rewards)}
                     </span>
                   </div>
-                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-subtle">
-                    {/* INLINE CSS: width is computed from the data. */}
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-neutral-100">
+                    {/* INLINE CSS (Assignment 1 requirement): computed width */}
                     <div
-                      className="h-full rounded-full bg-accent"
+                      className="h-full rounded-full bg-[#DDF247] transition-all duration-500"
                       style={{ width: `${(row.rewards / maxCategory) * 100}%` }}
                     />
                   </div>
@@ -87,12 +76,14 @@ export default function RewardCalculatorPreview() {
               ))}
             </ul>
 
-            <p className="mt-6 border-t border-border pt-4 text-[0.8125rem] text-muted">
-              Estimates only. Real cards apply monthly caps and category exclusions.
+            <p className="mt-6 border-t border-neutral-200 pt-4 text-xs text-neutral-500">
+              Estimates include reward points, cashback caps, and fee deduction.
             </p>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
 }
+
+

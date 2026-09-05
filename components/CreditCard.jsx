@@ -1,32 +1,19 @@
 import Link from "next/link";
-import { ArrowRight, Scale } from "lucide-react";
 import CreditCardVisual from "./CreditCardVisual";
 import SaveCardButton from "./SaveCardButton";
 
-/**
- * CreditCard (tile)
- * ------------------------------------------------------------
- * The catalogue tile. Structure, top to bottom:
- *   card visual → bank + name → key figures → two actions
- *
- * The save action is a small bookmark icon in the header row,
- * NOT a third button — the two primary actions stay unambiguous.
- */
-
-/** Each card category gets a consistent tint across the whole site. */
 export const TINT_BY_CATEGORY = {
-  cashback: "emerald",
-  travel: "ink",
-  rewards: "graphite",
+  cashback: "purple",
+  travel: "graphite",
+  rewards: "emerald",
   fuel: "sand",
-  "lifetime-free": "emerald",
+  "lifetime-free": "purple",
 };
 
 function formatFee(fee) {
   return fee === 0 ? "Lifetime free" : `₹${fee.toLocaleString("en-IN")}`;
 }
 
-/** Headline earn figure — cashback if the card has one, else points. */
 function headlineRate(card) {
   if (card.cashbackRate > 0) return { value: `${card.cashbackRate}%`, label: "Top cashback" };
   if (card.rewardRate > 0)
@@ -38,9 +25,9 @@ export default function CreditCard({ card, matchScore = null }) {
   const rate = headlineRate(card);
 
   return (
-    <article className="cw-card-interactive flex flex-col overflow-hidden">
+    <article className="rounded-xl border border-neutral-200 bg-white shadow-none transition-all duration-200 hover:border-neutral-400 hover:shadow-lift flex flex-col overflow-hidden">
       {/* Visual band */}
-      <div className="flex justify-center border-b border-border bg-subtle px-6 py-7">
+      <div className="flex justify-center border-b border-neutral-200 bg-neutral-50 px-6 py-7">
         <CreditCardVisual
           tint={TINT_BY_CATEGORY[card.category] || "emerald"}
           issuer={card.bank}
@@ -49,55 +36,57 @@ export default function CreditCard({ card, matchScore = null }) {
         />
       </div>
 
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-6">
         {/* Title row + save action */}
-        <div className="mb-1 flex items-start justify-between gap-3">
+        <div className="mb-2 flex items-start justify-between gap-3">
           <div>
-            <p className="text-[0.8125rem] text-muted">{card.bank}</p>
-            <h3 className="cw-h3 mt-0.5">
+            <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">{card.bank}</p>
+            <h3 className="text-lg font-bold text-black mt-0.5 leading-snug">
               <Link
                 href={`/cards/${card.slug}`}
-                className="transition-colors duration-200 hover:text-accent"
+                className="hover:underline"
               >
                 {card.name}
               </Link>
             </h3>
           </div>
-          <div className="flex shrink-0 items-center gap-1">
+          <div className="flex shrink-0 items-center gap-1.5">
             {matchScore !== null && (
-              <span className="cw-badge-accent cw-numeric">{matchScore}% match</span>
+              <span className="rounded bg-[#DDF247] px-2 py-0.5 text-[11px] font-bold text-black">
+                {matchScore}% match
+              </span>
             )}
             <SaveCardButton slug={card.slug} name={card.name} />
           </div>
         </div>
 
-        <p className="mb-5 line-clamp-2 text-[0.875rem] leading-relaxed text-muted">
+        <p className="mb-6 line-clamp-2 text-xs leading-relaxed text-neutral-600">
           {card.description}
         </p>
 
-        {/* Key figures — a three-cell hairline grid */}
-        <dl className="mb-5 mt-auto grid grid-cols-3 gap-px overflow-hidden rounded border border-border bg-border">
-          <div className="bg-surface p-3">
-            <dt className="text-[0.6875rem] uppercase tracking-wider text-muted">
+        {/* Key figures */}
+        <dl className="mb-6 mt-auto grid grid-cols-3 gap-px overflow-hidden rounded-[6px] border border-neutral-200 bg-neutral-200">
+          <div className="bg-white p-3">
+            <dt className="text-[10px] uppercase font-bold tracking-wider text-neutral-400">
               {rate.label}
             </dt>
-            <dd className="cw-numeric mt-0.5 text-[0.9375rem] font-semibold">
+            <dd className="cw-numeric mt-0.5 text-xs font-bold text-black">
               {rate.value}
             </dd>
           </div>
-          <div className="bg-surface p-3">
-            <dt className="text-[0.6875rem] uppercase tracking-wider text-muted">
+          <div className="bg-white p-3">
+            <dt className="text-[10px] uppercase font-bold tracking-wider text-neutral-400">
               Annual fee
             </dt>
-            <dd className="cw-numeric mt-0.5 text-[0.9375rem] font-semibold">
+            <dd className="cw-numeric mt-0.5 text-xs font-bold text-black">
               {formatFee(card.annualFee)}
             </dd>
           </div>
-          <div className="bg-surface p-3">
-            <dt className="text-[0.6875rem] uppercase tracking-wider text-muted">
+          <div className="bg-white p-3">
+            <dt className="text-[10px] uppercase font-bold tracking-wider text-neutral-400">
               Lounge
             </dt>
-            <dd className="cw-numeric mt-0.5 text-[0.9375rem] font-semibold">
+            <dd className="cw-numeric mt-0.5 text-xs font-bold text-black">
               {card.loungeAccess > 0 ? `${card.loungeAccess}/yr` : "None"}
             </dd>
           </div>
@@ -105,16 +94,17 @@ export default function CreditCard({ card, matchScore = null }) {
 
         {/* Two actions only. */}
         <div className="flex gap-2">
-          <Link href={`/cards/${card.slug}`} className="cw-btn-primary flex-1">
-            View details
-            <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
+          <Link
+            href={`/cards/${card.slug}`}
+            className="flex-1 rounded-[6px] bg-black text-white text-center text-xs font-bold py-2.5 hover:bg-neutral-800 transition-colors"
+          >
+            View details →
           </Link>
           <Link
             href={`/compare?cards=${card.slug}`}
-            className="cw-btn-secondary"
+            className="rounded-[6px] border border-neutral-300 bg-white text-black text-center text-xs font-semibold px-4 py-2.5 hover:bg-neutral-50 transition-colors"
             aria-label={`Compare ${card.name}`}
           >
-            <Scale className="h-4 w-4" strokeWidth={1.75} />
             Compare
           </Link>
         </div>
@@ -122,3 +112,4 @@ export default function CreditCard({ card, matchScore = null }) {
     </article>
   );
 }
+

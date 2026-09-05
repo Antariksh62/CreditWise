@@ -84,10 +84,10 @@ export default function RecommendationQuiz() {
             return (
               <label
                 key={option.value}
-                className={`flex cursor-pointer items-center justify-between rounded-btn border px-4 py-3 text-[0.9375rem] transition-all duration-200 ease-cardwise ${
+                className={`flex cursor-pointer items-center justify-between rounded-xl border px-4.5 py-3.5 text-[0.9375rem] transition-all duration-200 ease-cardwise ${
                   selected
-                    ? "border-accent bg-accent-soft font-medium text-accent"
-                    : "border-border hover:border-foreground/25 hover:bg-subtle"
+                    ? "border-accent bg-accent-soft font-semibold text-foreground ring-1 ring-accent/30 shadow-sm"
+                    : "border-border hover:border-accent/30 hover:bg-accent-soft/30 text-muted"
                 }`}
               >
                 <span>{option.label}</span>
@@ -99,7 +99,7 @@ export default function RecommendationQuiz() {
                   onChange={() => choose(option.value)}
                   className="sr-only"
                 />
-                {selected && <Check className="h-4 w-4" strokeWidth={2} />}
+                {selected && <Check className="h-4 w-4 text-accent shrink-0" strokeWidth={2.5} />}
               </label>
             );
           })}

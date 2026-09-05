@@ -1,82 +1,66 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import blogs from "../data/blogs.json";
-import SectionHeading from "./SectionHeading";
-import Reveal from "./Reveal";
-
-/**
- * LearnPreview
- * ------------------------------------------------------------
- * Three article cards in the Stripe editorial style: a tinted
- * abstract panel instead of stock photography, a category label,
- * a tight headline and a one-line summary.
- *
- * The abstract panels are pure CSS — two offset rounded rectangles
- * per tile, rotated slightly. No images to load, no AI-generated
- * artwork, and they stay on-brand because they use the card tints.
- */
-
-const PANEL_TINTS = ["bg-card-emerald", "bg-card-graphite", "bg-card-sand"];
 
 export default function LearnPreview() {
   const featured = blogs.slice(0, 3);
 
   return (
-    <section className="cw-rail cw-section border-b border-border">
+    <section className="py-20 lg:py-28 bg-white border-t border-neutral-200">
       <div className="cw-container">
-        <SectionHeading
-          eyebrow="Learn"
-          title="Understand the product before you apply for it"
-          description="Short, plain-English guides on scores, fees and how rewards actually convert into money."
-          actionHref="/blog"
-          actionLabel={`All ${blogs.length} guides`}
-        />
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div>
+            <div className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">
+              FINANCIAL CLARITY
+            </div>
+            <h2 className="cw-h2">
+              Guides &amp; credit-card <span className="text-neutral-400">insights.</span>
+            </h2>
+          </div>
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-1.5 font-bold text-sm text-black hover:underline"
+          >
+            Read all guides →
+          </Link>
+        </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {featured.map((post, index) => (
-            <Reveal key={post.slug} delay={index * 60}>
-              <article className="cw-card-interactive flex h-full flex-col overflow-hidden">
-                {/* Abstract editorial panel */}
-                <div
-                  className={`relative h-36 overflow-hidden ${PANEL_TINTS[index % PANEL_TINTS.length]}`}
-                  aria-hidden="true"
-                >
-                  <div className="absolute -right-8 -top-10 h-32 w-32 rotate-12 rounded-[18px] border border-white/20" />
-                  <div className="absolute -bottom-14 left-6 h-32 w-32 -rotate-6 rounded-[18px] border border-white/15" />
+        <div className="grid gap-8 md:grid-cols-3">
+          {featured.map((post) => (
+            <article key={post.slug} className="rounded-xl border border-neutral-200 bg-white p-6 sm:p-8 flex flex-col justify-between hover:border-neutral-400 transition-all">
+              <div>
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider bg-neutral-100 px-2 py-0.5 rounded text-neutral-600">
+                    {post.category}
+                  </span>
+                  <span className="text-xs font-mono text-neutral-400">{post.readTime}</span>
                 </div>
 
-                <div className="flex flex-1 flex-col p-6">
-                  <div className="mb-3 flex items-center gap-2">
-                    <span className="cw-badge-neutral">{post.category}</span>
-                    <span className="text-[0.8125rem] text-muted">{post.readTime}</span>
-                  </div>
-
-                  <h3 className="cw-h3 mb-2">
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="transition-colors duration-200 hover:text-accent"
-                    >
-                      {post.title}
-                    </Link>
-                  </h3>
-
-                  <p className="mb-5 text-[0.9375rem] leading-relaxed text-muted">
-                    {post.summary}
-                  </p>
-
+                <h3 className="text-xl font-bold text-black mb-3 leading-snug">
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="cw-link-arrow mt-auto"
+                    className="hover:underline"
                   >
-                    Read guide
-                    <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
+                    {post.title}
                   </Link>
-                </div>
-              </article>
-            </Reveal>
+                </h3>
+
+                <p className="text-sm text-neutral-600 leading-relaxed mb-6">
+                  {post.summary}
+                </p>
+              </div>
+
+              <Link
+                href={`/blog/${post.slug}`}
+                className="inline-flex items-center text-xs font-bold text-black hover:underline"
+              >
+                Read full article →
+              </Link>
+            </article>
           ))}
         </div>
       </div>
     </section>
   );
 }
+
+

@@ -17,11 +17,11 @@ export const metadata = {
 };
 
 const PANEL_TINTS = [
-  "bg-card-emerald",
-  "bg-card-graphite",
-  "bg-card-sand",
-  "bg-card-ink",
-  "bg-card-emerald",
+  "bg-gradient-to-br from-[#635BFF] to-[#4F46E5]",
+  "bg-gradient-to-br from-[#0A2540] to-[#1E293B]",
+  "bg-gradient-to-br from-[#0F5741] to-[#047857]",
+  "bg-gradient-to-br from-[#7C3AED] to-[#635BFF]",
+  "bg-gradient-to-br from-[#D97706] to-[#B45309]",
 ];
 
 export default function BlogIndexPage() {

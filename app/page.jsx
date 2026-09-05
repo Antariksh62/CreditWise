@@ -1,48 +1,29 @@
 import Hero from "../components/Hero";
-import PopularCards from "../components/PopularCards";
-import HowItWorks from "../components/HowItWorks";
-import FindYourCardPreview from "../components/FindYourCardPreview";
+import IssuerNetwork from "../components/IssuerNetwork";
+import FeatureGrid from "../components/FeatureGrid";
 import ComparePreview from "../components/ComparePreview";
 import RewardCalculatorPreview from "../components/RewardCalculatorPreview";
-import ExploreCategories from "../components/ExploreCategories";
+import EditorialBanner from "../components/EditorialBanner";
+import PopularCards from "../components/PopularCards";
 import LearnPreview from "../components/LearnPreview";
+import FinalCTA from "../components/FinalCTA";
 import Disclaimer from "../components/Disclaimer";
+import ActivityTicker from "../components/ActivityTicker";
 
-/**
- * Homepage
- * ------------------------------------------------------------
- * Section order is fixed by the approved design:
- *
- *   Navbar (layout)
- *   → Hero
- *   → Popular Cards
- *   → How CardWise Works
- *   → Find Your Card preview
- *   → Compare preview
- *   → Reward Calculator preview
- *   → Explore by What Matters
- *   → Learn
- *   → Disclaimer
- *   → Footer (layout)
- *
- * Navbar and Footer live in app/layout.jsx because every route
- * needs them; everything between is this page.
- *
- * This is a server component. The only client JavaScript on the
- * homepage is the scroll-reveal observer and the save buttons.
- */
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <PopularCards />
-      <HowItWorks />
-      <FindYourCardPreview />
+      <IssuerNetwork />
+      <FeatureGrid />
       <ComparePreview />
       <RewardCalculatorPreview />
-      <ExploreCategories />
+      <EditorialBanner />
+      <PopularCards />
       <LearnPreview />
+      <FinalCTA />
       <Disclaimer />
+      <ActivityTicker />
     </>
   );
 }

@@ -1,18 +1,5 @@
 import Link from "next/link";
 import cards from "../data/cards.json";
-import SectionHeading from "./SectionHeading";
-import Reveal from "./Reveal";
-
-/**
- * ComparePreview
- * ------------------------------------------------------------
- * A real semantic HTML table — <table>, <caption>, <thead>,
- * <th scope>, <tbody> — not a grid of divs.
- *
- * Assignment 1: this is the site's table element, used for the
- * job tables actually exist for. Card names link through to their
- * dynamic detail routes.
- */
 
 const PREVIEW_SLUGS = ["hdfc-millennia-cashback", "axis-atlas", "icici-amazon-pay"];
 
@@ -31,7 +18,7 @@ const ROWS = [
   },
   {
     label: "Lounge visits",
-    get: (c) => (c.loungeAccess > 0 ? `${c.loungeAccess} per year` : "None"),
+    get: (c) => (c.loungeAccess > 0 ? `${c.loungeAccess} / year` : "None"),
   },
   { label: "Income required", get: (c) => c.incomeRequirement },
 ];
@@ -42,72 +29,87 @@ export default function ComparePreview() {
   );
 
   return (
-    <section className="cw-rail cw-section border-b border-border bg-subtle">
+    <section className="py-20 lg:py-28 bg-white border-t border-neutral-200">
       <div className="cw-container">
-        <SectionHeading
-          eyebrow="Compare"
-          title="The differences, side by side"
-          description="Fees, earn rates and lounge access on one screen, so the trade-offs are obvious before you apply."
-          actionHref="/compare"
-          actionLabel="Compare any cards"
-        />
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div>
+            <div className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">
+              TRANSPARENT COMPARISON
+            </div>
+            <h2 className="cw-h2">
+              Compare fees, perks &amp; rewards{" "}
+              <span className="text-neutral-400">side-by-side.</span>
+            </h2>
+          </div>
+          <Link
+            href="/compare"
+            className="inline-flex items-center gap-1.5 font-bold text-sm text-black hover:underline"
+          >
+            Compare all 10 cards →
+          </Link>
+        </div>
 
-        <Reveal>
-          <div className="overflow-x-auto rounded-card border border-border bg-surface">
-            <table className="w-full min-w-[640px] border-collapse text-left">
-              <caption className="sr-only">
-                Comparison of three CardWise credit cards across fees, earn rates,
-                lounge access and income requirements.
-              </caption>
+        <div className="overflow-x-auto rounded-xl border border-neutral-200 bg-white shadow-lift">
+          <table className="w-full min-w-[640px] border-collapse text-left">
+            <caption className="sr-only">
+              Comparison of three CardWise credit cards across fees, earn rates,
+              lounge access and income requirements.
+            </caption>
 
-              <thead>
-                <tr className="border-b border-border">
+            <thead>
+              <tr className="border-b border-neutral-200 bg-neutral-50">
+                <th
+                  scope="col"
+                  className="px-6 py-4 font-bold text-xs uppercase tracking-wider text-neutral-500"
+                >
+                  Metric
+                </th>
+                {selected.map((card) => (
+                  <th key={card.slug} scope="col" className="px-6 py-4">
+                    <Link
+                      href={`/cards/${card.slug}`}
+                      className="block text-base font-bold text-black hover:underline"
+                    >
+                      {card.name}
+                    </Link>
+                    <span className="block text-xs font-medium text-neutral-500">
+                      {card.bank}
+                    </span>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+
+            <tbody>
+              {ROWS.map((row, idx) => (
+                <tr
+                  key={row.label}
+                  className={`border-b border-border/80 transition-colors hover:bg-neutral-50 ${
+                    idx % 2 === 1 ? "bg-neutral-50/50" : "bg-white"
+                  }`}
+                >
                   <th
-                    scope="col"
-                    className="cw-eyebrow px-5 py-4 font-medium"
+                    scope="row"
+                    className="px-6 py-4 text-sm font-bold text-black"
                   >
-                    Feature
+                    {row.label}
                   </th>
                   {selected.map((card) => (
-                    <th key={card.slug} scope="col" className="px-5 py-4">
-                      <Link
-                        href={`/cards/${card.slug}`}
-                        className="block text-[0.9375rem] font-semibold transition-colors duration-200 hover:text-accent"
-                      >
-                        {card.name}
-                      </Link>
-                      <span className="block text-[0.8125rem] font-normal text-muted">
-                        {card.bank}
-                      </span>
-                    </th>
+                    <td
+                      key={card.slug}
+                      className="cw-numeric px-6 py-4 text-sm font-semibold text-neutral-800"
+                    >
+                      {row.get(card)}
+                    </td>
                   ))}
                 </tr>
-              </thead>
-
-              <tbody>
-                {ROWS.map((row) => (
-                  <tr key={row.label} className="border-b border-border last:border-0">
-                    <th
-                      scope="row"
-                      className="px-5 py-4 text-[0.875rem] font-medium text-muted"
-                    >
-                      {row.label}
-                    </th>
-                    {selected.map((card) => (
-                      <td
-                        key={card.slug}
-                        className="cw-numeric px-5 py-4 text-[0.9375rem]"
-                      >
-                        {row.get(card)}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Reveal>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   );
 }
+
+

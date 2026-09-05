@@ -1,228 +1,362 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import {
-  ChevronDown,
-  CreditCard,
-  Scale,
-  Calculator,
-  Sparkles,
-  BookOpen,
-  Fuel,
-  Plane,
-  ShoppingBag,
-  BadgeIndianRupee,
-  Menu,
-  X,
-} from "lucide-react";
-
-/**
- * Navbar
- * ------------------------------------------------------------
- * Stripe-style navigation: a hairline-bordered bar, a single
- * mega-menu panel under "Cards", and a quiet auth cluster on the
- * right. The mega menu is a Ramp-style icon grid — the clearest
- * borrowing from that reference.
- *
- * Assignment 1: semantic <header> / <nav> landmarks with an
- * accessible skip target and aria-expanded on the trigger.
- */
-
-const MEGA_MENU = [
-  {
-    heading: "By category",
-    links: [
-      { href: "/cards?category=cashback", label: "Cashback cards", icon: BadgeIndianRupee, desc: "Direct money back" },
-      { href: "/cards?category=travel", label: "Travel cards", icon: Plane, desc: "Miles and lounges" },
-      { href: "/cards?category=rewards", label: "Rewards cards", icon: Sparkles, desc: "Flexible points" },
-      { href: "/cards?category=fuel", label: "Fuel cards", icon: Fuel, desc: "Savings at the pump" },
-    ],
-  },
-  {
-    heading: "Tools",
-    links: [
-      { href: "/recommend", label: "Find your card", icon: Sparkles, desc: "Five questions" },
-      { href: "/compare", label: "Compare cards", icon: Scale, desc: "Side by side" },
-      { href: "/cards", label: "All cards", icon: CreditCard, desc: "Browse the catalogue" },
-    ],
-  },
-  {
-    heading: "Learn",
-    links: [
-      { href: "/blog", label: "Guides", icon: BookOpen, desc: "Plain-English basics" },
-      { href: "/blog/credit-score", label: "Credit scores", icon: BookOpen, desc: "How scoring works" },
-      { href: "/blog/understanding-annual-fees", label: "Annual fees", icon: Calculator, desc: "When a fee pays off" },
-    ],
-  },
-];
-
-const PRIMARY_LINKS = [
-  { href: "/recommend", label: "Find your card" },
-  { href: "/compare", label: "Compare" },
-  { href: "/blog", label: "Learn" },
-];
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
-  const pathname = usePathname();
-  const [megaOpen, setMegaOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const router = useRouter();
+  const [showAnnouncement, setShowAnnouncement] = useState(true);
+  const [activeMegaMenu, setActiveMegaMenu] = useState(null); // 'cards' | 'tools' | null
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Close every panel on navigation.
-  useEffect(() => {
-    setMegaOpen(false);
-    setMobileOpen(false);
-  }, [pathname]);
-
-  // Escape closes the mega menu.
-  useEffect(() => {
-    function onKey(e) {
-      if (e.key === "Escape") {
-        setMegaOpen(false);
-        setMobileOpen(false);
-      }
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  const handleNavClick = (href) => {
+    setActiveMegaMenu(null);
+    setMobileMenuOpen(false);
+    router.push(href);
+  };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-sm">
-      <nav className="cw-container" aria-label="Primary">
-        <div className="flex h-16 items-center justify-between gap-6">
-          {/* ---------- Wordmark ---------- */}
-          <Link href="/" className="flex items-center gap-2" aria-label="CardWise home">
-            <span className="grid h-7 w-7 place-items-center rounded bg-accent">
-              <CreditCard className="h-4 w-4 text-accent-foreground" strokeWidth={2} />
+    <header className="sticky top-0 z-50 w-full bg-white">
+      {/* 1. RAMP-STYLE TOP ANNOUNCEMENT BAR */}
+      {showAnnouncement && (
+        <div className="relative bg-[#0D0D0D] py-2 px-4 text-center text-xs sm:text-sm text-white font-medium flex items-center justify-between border-b border-neutral-800">
+          <div className="mx-auto flex items-center gap-2">
+            <span className="inline-block rounded bg-[#DDF247] px-1.5 py-0.5 text-[10px] font-bold text-black uppercase tracking-wider">
+              NEW
             </span>
-            <span className="text-[1.0625rem] font-semibold tracking-[-0.02em]">CardWise</span>
-          </Link>
-
-          {/* ---------- Desktop links ---------- */}
-          <div className="hidden items-center gap-1 md:flex">
-            {/* Mega-menu trigger */}
-            <div
-              className="relative"
-              onMouseEnter={() => setMegaOpen(true)}
-              onMouseLeave={() => setMegaOpen(false)}
+            <span>CardWise Engine 3.0 — find the right card in minutes.</span>
+            <Link
+              href="/recommend"
+              className="underline hover:text-[#DDF247] transition-colors inline-flex items-center gap-1 font-semibold"
             >
-              <button
-                type="button"
-                className="cw-btn-ghost text-foreground"
-                aria-expanded={megaOpen}
-                aria-haspopup="true"
-                onClick={() => setMegaOpen((v) => !v)}
-              >
-                Cards
-                <ChevronDown
-                  className={`h-4 w-4 transition-transform duration-200 ease-cardwise ${
-                    megaOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-
-              {megaOpen && (
-                <div className="absolute left-1/2 top-full w-[720px] -translate-x-1/2 pt-2 animate-cw-fade">
-                  <div className="grid grid-cols-3 gap-x-8 gap-y-2 rounded-card border border-border bg-surface p-6 shadow-lift">
-                    {MEGA_MENU.map((col) => (
-                      <div key={col.heading}>
-                        <div className="cw-eyebrow mb-3">{col.heading}</div>
-                        <ul className="space-y-0.5">
-                          {col.links.map((link) => {
-                            const Icon = link.icon;
-                            return (
-                              <li key={link.href}>
-                                <Link
-                                  href={link.href}
-                                  className="group flex gap-3 rounded p-2 transition-colors duration-200 hover:bg-subtle"
-                                >
-                                  <Icon
-                                    className="mt-0.5 h-4 w-4 shrink-0 text-accent"
-                                    strokeWidth={1.75}
-                                  />
-                                  <span>
-                                    <span className="block text-[0.875rem] font-medium">
-                                      {link.label}
-                                    </span>
-                                    <span className="block text-[0.8125rem] text-muted">
-                                      {link.desc}
-                                    </span>
-                                  </span>
-                                </Link>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {PRIMARY_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`cw-btn-ghost ${
-                  pathname === link.href ? "text-foreground" : ""
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* ---------- Auth cluster ---------- */}
-          <div className="hidden items-center gap-2 md:flex">
-            <Link href="/login" className="cw-btn-ghost">
-              Sign in
-            </Link>
-            <Link href="/signup" className="cw-btn-primary">
-              Create account
+              Learn more →
             </Link>
           </div>
-
-          {/* ---------- Mobile toggle ---------- */}
           <button
-            type="button"
-            className="cw-btn-ghost md:hidden"
-            aria-expanded={mobileOpen}
-            aria-label="Toggle navigation menu"
-            onClick={() => setMobileOpen((v) => !v)}
+            onClick={() => setShowAnnouncement(false)}
+            className="text-neutral-400 hover:text-white p-1 text-xs"
+            aria-label="Close announcement"
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            ✕
           </button>
         </div>
-      </nav>
+      )}
 
-      {/* ---------- Mobile panel ---------- */}
-      {mobileOpen && (
-        <div className="border-t border-border bg-surface md:hidden animate-cw-fade">
-          <div className="cw-container space-y-6 py-6">
-            {MEGA_MENU.map((col) => (
-              <div key={col.heading}>
-                <div className="cw-eyebrow mb-2">{col.heading}</div>
-                <ul className="space-y-1">
-                  {col.links.map((link) => (
-                    <li key={link.href}>
-                      <Link href={link.href} className="block py-1.5 text-[0.9375rem]">
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            <div className="flex gap-2 border-t border-border pt-4">
-              <Link href="/login" className="cw-btn-secondary flex-1">
-                Sign in
-              </Link>
-              <Link href="/signup" className="cw-btn-primary flex-1">
-                Create account
-              </Link>
+      {/* 2. RAMP-STYLE MAIN NAVIGATION RAIL */}
+      <div className="border-b border-neutral-200/80 bg-white">
+        <div className="cw-container flex h-16 items-center justify-between">
+          {/* LEFT: LOGO */}
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-xl font-bold tracking-tight text-black"
+            onClick={() => setActiveMegaMenu(null)}
+          >
+            <div className="flex h-7 w-7 items-center justify-center rounded bg-black text-[#DDF247] font-extrabold text-sm">
+              cw
             </div>
+            <span className="font-extrabold tracking-tighter text-black text-xl">
+              cardwise
+            </span>
+          </Link>
+
+          {/* CENTER: DESKTOP NAV WITH DROPDOWNS */}
+          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+            {/* CARDS DROPDOWN */}
+            <div
+              className="relative"
+              onMouseEnter={() => setActiveMegaMenu("cards")}
+              onMouseLeave={() => setActiveMegaMenu(null)}
+            >
+              <button
+                onClick={() => handleNavClick("/cards")}
+                className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
+                  activeMegaMenu === "cards" ? "text-black" : "text-neutral-700 hover:text-black"
+                }`}
+              >
+                Cards
+                <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "cards" ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+
+            {/* TOOLS DROPDOWN */}
+            <div
+              className="relative"
+              onMouseEnter={() => setActiveMegaMenu("tools")}
+              onMouseLeave={() => setActiveMegaMenu(null)}
+            >
+              <button
+                onClick={() => handleNavClick("/compare")}
+                className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
+                  activeMegaMenu === "tools" ? "text-black" : "text-neutral-700 hover:text-black"
+                }`}
+              >
+                Tools
+                <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "tools" ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+
+            <Link
+              href="/recommend"
+              className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black transition-colors"
+            >
+              Find your card
+            </Link>
+
+            <Link
+              href="/blog"
+              className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black transition-colors"
+            >
+              Learn
+            </Link>
+          </nav>
+
+          {/* RIGHT: CTAs */}
+          <div className="hidden md:flex items-center gap-3">
+            <Link
+              href="/login"
+              className="text-sm font-medium text-neutral-700 hover:text-black px-2 py-1 transition-colors"
+            >
+              Sign in
+            </Link>
+            <Link
+              href="/recommend"
+              className="rounded-[6px] bg-[#DDF247] px-4 py-2 text-sm font-bold text-black transition-all hover:bg-[#cee723] active:translate-y-px"
+            >
+              Find your card
+            </Link>
+          </div>
+
+          {/* MOBILE HAMBURGER BUTTON */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-neutral-700 hover:text-black"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* 3. RAMP-STYLE MEGA MENU CONTAINER */}
+      {activeMegaMenu && (
+        <div
+          className="hidden md:block absolute top-full left-0 w-full bg-white border-b border-neutral-200 shadow-ramp transition-all duration-200 z-50"
+          onMouseEnter={() => setActiveMegaMenu(activeMegaMenu)}
+          onMouseLeave={() => setActiveMegaMenu(null)}
+        >
+          <div className="cw-container py-8 grid grid-cols-12 gap-8">
+            {activeMegaMenu === "cards" && (
+              <>
+                <div className="col-span-8 grid grid-cols-2 gap-6">
+                  <div>
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3">
+                      CARD CATEGORIES
+                    </div>
+                    <ul className="space-y-4">
+                      <li>
+                        <Link href="/cards" className="group block">
+                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
+                            Cashback Cards
+                          </div>
+                          <div className="text-xs text-neutral-500">
+                            Earn flat 5% on online & offline spending
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/cards" className="group block">
+                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
+                            Travel & Lounge Cards
+                          </div>
+                          <div className="text-xs text-neutral-500">
+                            Complimentary flights, lounge access & zero forex
+                          </div>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3">
+                      PREMIUM & ZERO FEE
+                    </div>
+                    <ul className="space-y-4">
+                      <li>
+                        <Link href="/cards" className="group block">
+                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
+                            Zero Annual Fee
+                          </div>
+                          <div className="text-xs text-neutral-500">
+                            No joining fees or recurring renewal costs
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/cards" className="group block">
+                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
+                            Super Premium Cards
+                          </div>
+                          <div className="text-xs text-neutral-500">
+                            Luxury privileges, concierge & metal card status
+                          </div>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="col-span-4 bg-neutral-50 p-6 rounded-lg border border-neutral-200">
+                  <div className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">
+                    FEATURED CARD
+                  </div>
+                  <div className="font-bold text-base text-black mb-1">
+                    SBI Cashback Credit Card
+                  </div>
+                  <p className="text-xs text-neutral-600 mb-4">
+                    India&apos;s highest flat cashback card. 5% back on all online merchant spending.
+                  </p>
+                  <Link
+                    href="/cards/sbi-cashback"
+                    className="inline-flex items-center text-xs font-bold text-black hover:underline"
+                  >
+                    View card details →
+                  </Link>
+                </div>
+              </>
+            )}
+
+            {activeMegaMenu === "tools" && (
+              <>
+                <div className="col-span-8 grid grid-cols-2 gap-6">
+                  <div>
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3">
+                      INTELLIGENCE TOOLS
+                    </div>
+                    <ul className="space-y-4">
+                      <li>
+                        <Link href="/recommend" className="group block">
+                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
+                            Recommendation Quiz
+                          </div>
+                          <div className="text-xs text-neutral-500">
+                            Answer 4 questions to find your top 3 matching cards
+                          </div>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/compare" className="group block">
+                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
+                            Side-by-Side Compare
+                          </div>
+                          <div className="text-xs text-neutral-500">
+                            Compare rewards, annual fees and lounge privileges
+                          </div>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3">
+                      CALCULATORS
+                    </div>
+                    <ul className="space-y-4">
+                      <li>
+                        <Link href="/#reward-calculator" className="group block">
+                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
+                            Reward Yield Engine
+                          </div>
+                          <div className="text-xs text-neutral-500">
+                            Calculate exact net rupee returns based on monthly spending
+                          </div>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="col-span-4 bg-neutral-50 p-6 rounded-lg border border-neutral-200">
+                  <div className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">
+                    SMART MATCHING
+                  </div>
+                  <div className="font-bold text-base text-black mb-1">
+                    Find your exact match
+                  </div>
+                  <p className="text-xs text-neutral-600 mb-4">
+                    Our recommendation algorithm scores 100+ cards against your spending habits.
+                  </p>
+                  <Link
+                    href="/recommend"
+                    className="inline-flex items-center text-xs font-bold text-black hover:underline"
+                  >
+                    Start 60-second quiz →
+                  </Link>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* 4. MOBILE MENU OVERLAY */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-b border-neutral-200 bg-white px-6 py-6 space-y-4">
+          <Link
+            href="/cards"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-semibold text-black"
+          >
+            Explore Cards
+          </Link>
+          <Link
+            href="/compare"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-semibold text-black"
+          >
+            Compare Cards
+          </Link>
+          <Link
+            href="/recommend"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-semibold text-black"
+          >
+            Find Your Card
+          </Link>
+          <Link
+            href="/blog"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-semibold text-black"
+          >
+            Guides & Articles
+          </Link>
+          <div className="pt-4 border-t border-neutral-200 flex flex-col gap-3">
+            <Link
+              href="/login"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-center font-semibold text-sm text-neutral-700 py-2"
+            >
+              Sign in
+            </Link>
+            <Link
+              href="/recommend"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-center font-bold text-sm bg-[#DDF247] text-black py-3 rounded-[6px]"
+            >
+              Find your card
+            </Link>
           </div>
         </div>
       )}

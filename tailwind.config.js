@@ -1,6 +1,5 @@
 /** CardWise — Tailwind CSS v3 configuration
- *  Design system: Stripe-inspired discipline (~75%) + Ramp fintech character (~25%)
- *  Every colour below is a semantic token. Never hardcode hex values in components.
+ *  Design system: Ramp-inspired visual discipline (Black + White + Acid Lime Yellow + Dotted Grids)
  */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -11,80 +10,89 @@ module.exports = {
     "./lib/**/*.{js,jsx}",
   ],
   theme: {
-    // 1200px max content width, matching the Stripe-style centred rail.
     container: {
       center: true,
-      padding: { DEFAULT: "1.5rem", lg: "2rem" },
-      screens: { "2xl": "1200px" },
+      padding: { DEFAULT: "1.5rem", lg: "2.5rem" },
+      screens: { "2xl": "1280px" },
     },
     extend: {
       colors: {
-        // --- CardWise palette -------------------------------------------
-        background: "hsl(var(--background))", // warm white  #FBFAF8
-        surface: "hsl(var(--surface))", // pure white  #FFFFFF
-        subtle: "hsl(var(--subtle))", // section tint #F4F3F0
-        foreground: "hsl(var(--foreground))", // near-black  #111211
-        muted: "hsl(var(--muted))", // grey text   #6B6F6C
+        background: "hsl(var(--background))",
+        surface: "hsl(var(--surface))",
+        subtle: "hsl(var(--subtle))",
+        foreground: "hsl(var(--foreground))",
+        muted: "hsl(var(--muted))",
         accent: {
-          DEFAULT: "hsl(var(--accent))", // emerald     #0F5741
+          DEFAULT: "hsl(var(--accent))", // Ramp Lime Yellow (#DDF247)
           foreground: "hsl(var(--accent-foreground))",
-          soft: "hsl(var(--accent-soft))", // badge wash
+          hover: "hsl(var(--accent-hover))",
+          soft: "hsl(var(--accent-soft))",
         },
-        border: "hsl(var(--border))", // hairline    #E5E3DE
-        // Credit-card visual tints (used by CreditCardVisual only).
+        dark: {
+          DEFAULT: "#0D0D0D",
+          surface: "#141414",
+          border: "#262626",
+          muted: "#8E8E93",
+        },
+        border: "hsl(var(--border))",
         card: {
           emerald: "hsl(var(--card-emerald))",
           graphite: "hsl(var(--card-graphite))",
           sand: "hsl(var(--card-sand))",
           ink: "hsl(var(--card-ink))",
+          lime: "#DDF247",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "system-ui", "-apple-system", "sans-serif"],
       },
       fontSize: {
-        // Controlled type scale — do not invent sizes outside this list.
-        label: ["0.8125rem", { lineHeight: "1.2", letterSpacing: "0.08em" }],
+        label: ["0.75rem", { lineHeight: "1.2", letterSpacing: "0.08em" }],
         body: ["1rem", { lineHeight: "1.6" }],
         lead: ["1.125rem", { lineHeight: "1.6" }],
         h3: ["1.25rem", { lineHeight: "1.35", letterSpacing: "-0.01em" }],
-        h2: ["2.25rem", { lineHeight: "1.15", letterSpacing: "-0.02em" }],
-        display: ["3.75rem", { lineHeight: "1.05", letterSpacing: "-0.03em" }],
+        h2: ["2.25rem", { lineHeight: "1.12", letterSpacing: "-0.025em" }],
+        display: ["3.75rem", { lineHeight: "1.04", letterSpacing: "-0.035em" }],
+        hero: ["4.5rem", { lineHeight: "1.02", letterSpacing: "-0.04em" }],
       },
       borderRadius: {
-        // 8px buttons / 12px cards. Nothing rounder — no pills.
-        DEFAULT: "0.5rem",
-        btn: "0.5rem",
+        DEFAULT: "0.375rem",
+        btn: "0.375rem", // Rectangular Ramp button style
         card: "0.75rem",
       },
       spacing: {
-        // 8px base scale extensions for section rhythm.
-        section: "6rem", // 96px desktop section padding
-        "section-sm": "4rem", // 64px mobile
+        section: "6.5rem",
+        "section-sm": "4.5rem",
       },
       boxShadow: {
-        // Deliberately minimal. No glow, no coloured shadows.
         hairline: "0 0 0 1px hsl(var(--border))",
-        lift: "0 2px 8px -2px rgb(17 18 17 / 0.08)",
+        lift: "0 4px 20px -2px rgba(0, 0, 0, 0.06)",
+        ramp: "0 12px 32px -4px rgba(0, 0, 0, 0.08)",
       },
       transitionTimingFunction: {
-        cardwise: "cubic-bezier(0.2, 0.6, 0.2, 1)",
+        cardwise: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
       keyframes: {
         "cw-rise": {
-          from: { opacity: "0", transform: "translateY(12px)" },
+          from: { opacity: "0", transform: "translateY(16px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "cw-fade": {
           from: { opacity: "0" },
           to: { opacity: "1" },
         },
+        ticker: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
-        "cw-rise": "cw-rise 350ms cubic-bezier(0.2,0.6,0.2,1) both",
-        "cw-fade": "cw-fade 250ms cubic-bezier(0.2,0.6,0.2,1) both",
+        "cw-rise": "cw-rise 400ms cubic-bezier(0.16, 1, 0.3, 1) both",
+        "cw-fade": "cw-fade 300ms cubic-bezier(0.16, 1, 0.3, 1) both",
+        ticker: "ticker 35s linear infinite",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
 };
+

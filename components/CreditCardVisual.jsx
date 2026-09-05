@@ -21,35 +21,43 @@
  */
 
 const TINTS = {
-  emerald: {
-    face: "bg-card-emerald",
+  purple: {
+    face: "bg-gradient-to-br from-[#111111] via-[#1A1A1A] to-[#0A0A0A]",
     text: "text-white",
     dim: "text-white/60",
-    stroke: "rgba(255,255,255,0.22)",
-    chip: "bg-[#D6C08A]",
+    stroke: "rgba(221,242,71,0.3)",
+    chip: "bg-[#DDF247]",
+  },
+  emerald: {
+    face: "bg-gradient-to-br from-[#0D0D0D] via-[#171717] to-[#050505]",
+    text: "text-white",
+    dim: "text-white/60",
+    stroke: "rgba(221,242,71,0.25)",
+    chip: "bg-[#DDF247]",
   },
   graphite: {
-    face: "bg-card-graphite",
+    face: "bg-gradient-to-br from-[#141414] via-[#1F1F1F] to-[#0D0D0D]",
     text: "text-white",
     dim: "text-white/55",
-    stroke: "rgba(255,255,255,0.18)",
-    chip: "bg-[#C9C4B8]",
+    stroke: "rgba(255,255,255,0.2)",
+    chip: "bg-[#E2E8F0]",
   },
   ink: {
-    face: "bg-card-ink",
+    face: "bg-gradient-to-br from-[#0A0A0A] via-[#141414] to-[#000000]",
     text: "text-white",
     dim: "text-white/55",
-    stroke: "rgba(255,255,255,0.16)",
-    chip: "bg-[#D6C08A]",
+    stroke: "rgba(221,242,71,0.35)",
+    chip: "bg-[#DDF247]",
   },
   sand: {
-    face: "bg-card-sand",
-    text: "text-foreground",
-    dim: "text-foreground/60",
-    stroke: "rgba(17,18,17,0.16)",
-    chip: "bg-[#8C7B54]",
+    face: "bg-gradient-to-br from-[#1A1A1A] via-[#262626] to-[#0F0F0F]",
+    text: "text-white",
+    dim: "text-white/60",
+    stroke: "rgba(221,242,71,0.2)",
+    chip: "bg-[#DDF247]",
   },
 };
+
 
 const SIZES = {
   sm: "w-[220px]",

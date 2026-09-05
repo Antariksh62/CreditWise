@@ -77,16 +77,16 @@ export default function ComparisonTable({ initialSlugs = [] }) {
         {chosen.map((card) => (
           <span
             key={card.slug}
-            className="inline-flex items-center gap-2 rounded-btn border border-border bg-surface py-1.5 pl-3.5 pr-2 text-[0.875rem]"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface py-1.5 pl-4 pr-2 text-[0.875rem] font-semibold text-foreground shadow-sm"
           >
             {card.name}
             <button
               type="button"
               onClick={() => remove(card.slug)}
               aria-label={`Remove ${card.name} from the comparison`}
-              className="rounded p-0.5 text-muted transition-colors duration-200 hover:bg-subtle hover:text-foreground"
+              className="rounded-full p-1 text-muted transition-colors duration-200 hover:bg-accent-soft hover:text-accent"
             >
-              <X className="h-3.5 w-3.5" strokeWidth={2} />
+              <X className="h-3.5 w-3.5" strokeWidth={2.2} />
             </button>
           </span>
         ))}
@@ -98,11 +98,11 @@ export default function ComparisonTable({ initialSlugs = [] }) {
             </label>
             <select
               id="add-card"
-              className="cw-input w-auto min-w-[240px] py-1.5 text-[0.875rem]"
+              className="cw-input w-auto min-w-[240px] py-2 text-[0.875rem] font-medium"
               value=""
               onChange={(e) => add(e.target.value)}
             >
-              <option value="">Add a card…</option>
+              <option value="">Add a card to compare…</option>
               {available.map((card) => (
                 <option key={card.slug} value={card.slug}>
                   {card.bank} — {card.name}
@@ -112,7 +112,7 @@ export default function ComparisonTable({ initialSlugs = [] }) {
           </>
         )}
 
-        <span className="text-[0.8125rem] text-muted">
+        <span className="text-[0.8125rem] font-medium text-muted">
           {selected.length} of {MAX} selected
         </span>
       </div>
@@ -120,29 +120,29 @@ export default function ComparisonTable({ initialSlugs = [] }) {
       {/* ---------- The table ---------- */}
       {chosen.length === 0 ? (
         <div className="cw-card px-6 py-14 text-center">
-          <p className="cw-body">Add at least one card to start comparing.</p>
+          <p className="cw-body font-medium">Add at least one card to start comparing.</p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-card border border-border bg-surface">
+        <div className="overflow-x-auto rounded-2xl border border-border bg-surface shadow-[0_16px_36px_-8px_rgba(10,37,64,0.08)]">
           <table className="w-full min-w-[720px] border-collapse text-left">
             <caption className="sr-only">
               Feature-by-feature comparison of the selected CardWise credit cards.
             </caption>
 
             <thead>
-              <tr className="border-b border-border">
-                <th scope="col" className="cw-eyebrow w-[180px] px-5 py-4 font-medium">
-                  Feature
+              <tr className="border-b border-border/80 bg-subtle/40">
+                <th scope="col" className="cw-eyebrow w-[180px] px-6 py-4 font-semibold text-accent text-[0.75rem]">
+                  Metric
                 </th>
                 {chosen.map((card) => (
-                  <th key={card.slug} scope="col" className="px-5 py-4 align-top">
+                  <th key={card.slug} scope="col" className="px-6 py-4 align-top">
                     <Link
                       href={`/cards/${card.slug}`}
-                      className="block text-[0.9375rem] font-semibold transition-colors duration-200 hover:text-accent"
+                      className="block text-[0.9375rem] font-bold text-foreground transition-colors duration-200 hover:text-accent"
                     >
                       {card.name}
                     </Link>
-                    <span className="block text-[0.8125rem] font-normal text-muted">
+                    <span className="block text-[0.8125rem] font-medium text-muted">
                       {card.bank}
                     </span>
                   </th>
@@ -151,18 +151,18 @@ export default function ComparisonTable({ initialSlugs = [] }) {
             </thead>
 
             <tbody>
-              {ROWS.map((row) => (
-                <tr key={row.label} className="border-b border-border last:border-0">
+              {ROWS.map((row, idx) => (
+                <tr key={row.label} className={`border-b border-border/60 transition-colors hover:bg-accent-soft/30 ${idx % 2 === 1 ? "bg-subtle/20" : "bg-surface"}`}>
                   <th
                     scope="row"
-                    className="px-5 py-4 align-top text-[0.875rem] font-medium capitalize text-muted"
+                    className="px-6 py-4 align-top text-[0.875rem] font-semibold text-foreground"
                   >
                     {row.label}
                   </th>
                   {chosen.map((card) => (
                     <td
                       key={card.slug}
-                      className="px-5 py-4 align-top text-[0.9375rem] leading-relaxed"
+                      className="cw-numeric px-6 py-4 align-top text-[0.9375rem] font-medium leading-relaxed text-foreground"
                     >
                       {row.get(card)}
                     </td>
@@ -176,3 +176,4 @@ export default function ComparisonTable({ initialSlugs = [] }) {
     </div>
   );
 }
+

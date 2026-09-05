@@ -1,91 +1,49 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import CreditCardVisual from "./CreditCardVisual";
-import SpendLimitWidget from "./SpendLimitWidget";
+"use client";
 
-/**
- * Hero
- * ------------------------------------------------------------
- * The Stripe move: a 7/5 asymmetric split, oversized tight-tracked
- * display type on the left, one primary and one secondary action,
- * and a concrete product artifact on the right.
- *
- * The Ramp move: that artifact is a real credit card with a data
- * widget attached, not an abstract illustration or gradient mesh.
- *
- * Entrance animation is a single staggered rise, runs once, and is
- * switched off entirely under prefers-reduced-motion.
- */
+import Link from "next/link";
+import ProductVideoDemo from "./ProductVideoDemo";
+
 export default function Hero() {
   return (
-    <section className="cw-rail border-b border-border bg-background">
-      <div className="cw-container grid items-center gap-14 py-16 md:py-24 lg:grid-cols-[7fr_5fr] lg:gap-16">
-        {/* ---------------- Left: copy ---------------- */}
-        <div>
-          <div className="cw-enter cw-enter-1 mb-5 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent-soft/70 px-3.5 py-1 text-[0.8125rem] font-medium text-accent">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-            10 Indian Credit Cards Ranked · Rule-Based Scoring
+    <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-28 bg-white overflow-hidden">
+      <div className="cw-container">
+        {/* HERO EDITORIAL TYPOGRAPHY */}
+        <div className="max-w-4xl mx-auto text-center space-y-6 mb-12 lg:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3.5 py-1 text-xs font-semibold text-neutral-800">
+            <span className="h-2 w-2 rounded-full bg-[#DDF247]" />
+            CARDWISE ENGINE 3.0
           </div>
 
-          <h1 className="cw-display cw-enter cw-enter-2 max-w-[16ch] text-balance">
-            Find the credit card that fits{" "}
-            <span className="bg-gradient-to-r from-accent via-emerald-700 to-accent bg-clip-text text-transparent">
-              how you actually spend
+          <h1 className="cw-hero-title">
+            Find the card{" "}
+            <span className="text-neutral-400 block sm:inline">
+              that works harder for you.
             </span>
           </h1>
 
-          <p className="cw-enter cw-enter-3 mt-6 max-w-[52ch] text-lead text-muted">
-            Answer five questions and CardWise ranks ten real Indian credit cards
-            against your spending. Every score is a transparent rule you can read —
-            no black box, no affiliate ranking.
+          <p className="text-lg sm:text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+            Compare rewards, fees, lounge access, and real-world net rupee returns across India&apos;s leading credit cards in seconds.
           </p>
 
-          <div className="cw-enter cw-enter-4 mt-8 flex flex-wrap items-center gap-3">
-            <Link href="/recommend" className="cw-btn-primary">
-              Find your card
-              <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <Link
+              href="/recommend"
+              className="rounded-[6px] bg-[#DDF247] px-7 py-3.5 text-base font-bold text-black transition-all hover:bg-[#cee723] active:translate-y-px shadow-sm"
+            >
+              Find my card →
             </Link>
-            <Link href="/cards" className="cw-btn-secondary">
-              Browse all cards
+            <Link
+              href="/cards"
+              className="rounded-[6px] border border-neutral-300 bg-white px-7 py-3.5 text-base font-semibold text-black hover:bg-neutral-50 transition-colors"
+            >
+              Explore cards
             </Link>
-          </div>
-
-          {/* Partner bank strip — Stripe customer logo cue */}
-          <div className="cw-enter cw-enter-4 mt-10 border-t border-border/80 pt-6">
-            <p className="text-[0.75rem] font-semibold uppercase tracking-widest text-muted/70 mb-3">
-              Cards ranked across major Indian issuers
-            </p>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.8125rem] font-semibold tracking-tight text-muted/60">
-              <span>HDFC BANK</span>
-              <span className="text-border">•</span>
-              <span>SBI CARD</span>
-              <span className="text-border">•</span>
-              <span>AXIS BANK</span>
-              <span className="text-border">•</span>
-              <span>ICICI BANK</span>
-              <span className="text-border">•</span>
-              <span>AMEX</span>
-            </div>
           </div>
         </div>
 
-        {/* ---------------- Right: product artifact ---------------- */}
-        <div className="cw-enter cw-enter-3 relative flex justify-center lg:justify-end">
-          <div className="relative">
-            <CreditCardVisual
-              tint="emerald"
-              issuer="CardWise"
-              name="Everyday Cashback"
-              size="lg"
-            />
-            {/* Ramp-style data widget attached to the lower-left corner. */}
-            <SpendLimitWidget
-              className="absolute -bottom-10 -left-6 hidden sm:block"
-              label="Estimated annual value"
-              spent={24800}
-              limit={32000}
-            />
-          </div>
+        {/* LARGE RAMP-STYLE PRODUCT DEMONSTRATION MEDIA AREA */}
+        <div className="max-w-5xl mx-auto">
+          <ProductVideoDemo />
         </div>
       </div>
     </section>
