@@ -260,3 +260,4 @@ viva.
 - **Nothing here has been executed.** This bundle was authored in an
   environment that cannot run Next.js. Run `npm run dev` after copying and fix
   any environment-specific issues (most likely a Tailwind v3 vs v4 mismatch).
+
