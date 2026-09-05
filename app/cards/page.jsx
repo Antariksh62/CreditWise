@@ -42,8 +42,8 @@ export default async function CardsPage({ searchParams }) {
           <h1 className="cw-h2">{LABELS[category] || "All credit cards"}</h1>
           <p className="cw-body mt-3 text-lead">
             {visible.length} {visible.length === 1 ? "card" : "cards"} in the CardWise
-            catalogue. Fees, APR and benefits are taken from published issuer terms and
-            change over time — always confirm on the bank's own page before applying.
+            sample data set. Fees and benefits are realistic demo values — always
+            confirm on the bank&apos;s own page before applying.
           </p>
         </header>
 
