@@ -50,6 +50,8 @@ export default async function CardDetailPage({ params }) {
   const FACTS = [
     { label: "Joining fee", value: formatFee(card.joiningFee) },
     { label: "Annual fee", value: formatFee(card.annualFee) },
+    { label: "APR", value: card.apr ? `${card.apr}% p.a.` : "—" },
+
     {
       label: "Cashback",
       value: card.cashbackRate > 0 ? `${card.cashbackRate}%` : "—",
