@@ -1,0 +1,188 @@
+{
+  "amazon-pay-icici.jpeg": {
+    "width": 609,
+    "height": 389,
+    "aspectRatio": 1.566,
+    "isPortrait": false
+  },
+  "amex-mrcc.png": {
+    "width": 1892,
+    "height": 1205,
+    "aspectRatio": 1.57,
+    "isPortrait": false
+  },
+  "axis-horizon.png": {
+    "width": 1403,
+    "height": 928,
+    "aspectRatio": 1.512,
+    "isPortrait": false
+  },
+  "axis-magnus.png": {
+    "width": 792,
+    "height": 1248,
+    "aspectRatio": 0.635,
+    "isPortrait": true
+  },
+  "bob-eterna.png": {
+    "width": 1902,
+    "height": 1227,
+    "aspectRatio": 1.55,
+    "isPortrait": false
+  },
+  "bob-ethiad.png": {
+    "width": 2075,
+    "height": 1368,
+    "aspectRatio": 1.517,
+    "isPortrait": false
+  },
+  "flipkart-axis-bank.png": {
+    "width": 2161,
+    "height": 1303,
+    "aspectRatio": 1.658,
+    "isPortrait": false
+  },
+  "hdfc-biz-black.png": {
+    "width": 2752,
+    "height": 1272,
+    "aspectRatio": 2.164,
+    "isPortrait": false
+  },
+  "hdfc-diners-club-metal.png": {
+    "width": 1849,
+    "height": 1170,
+    "aspectRatio": 1.58,
+    "isPortrait": false
+  },
+  "hdfc-diners-club-privilege.png": {
+    "width": 1856,
+    "height": 1183,
+    "aspectRatio": 1.569,
+    "isPortrait": false
+  },
+  "hdfc-inifinia.png": {
+    "width": 2752,
+    "height": 1340,
+    "aspectRatio": 2.054,
+    "isPortrait": false
+  },
+  "hdfc-marriot-bonvoy.png": {
+    "width": 1563,
+    "height": 1067,
+    "aspectRatio": 1.465,
+    "isPortrait": false
+  },
+  "hdfc-millenia.png": {
+    "width": 2091,
+    "height": 1325,
+    "aspectRatio": 1.578,
+    "isPortrait": false
+  },
+  "hdfc-regalia-gold.png": {
+    "width": 2135,
+    "height": 1214,
+    "aspectRatio": 1.759,
+    "isPortrait": false
+  },
+  "hdfc-swiggy-blck.png": {
+    "width": 2422,
+    "height": 1528,
+    "aspectRatio": 1.585,
+    "isPortrait": false
+  },
+  "hdfc-swiggy-orgne.png": {
+    "width": 2752,
+    "height": 1275,
+    "aspectRatio": 2.158,
+    "isPortrait": false
+  },
+  "hdfc-tata-neu-inifity.png": {
+    "width": 780,
+    "height": 1257,
+    "aspectRatio": 0.621,
+    "isPortrait": true
+  },
+  "hdfc-tata-neu.png": {
+    "width": 2752,
+    "height": 1431,
+    "aspectRatio": 1.923,
+    "isPortrait": false
+  },
+  "hsbc-live-plus.png": {
+    "width": 741,
+    "height": 1144,
+    "aspectRatio": 0.648,
+    "isPortrait": true
+  },
+  "hsbc-premier.png": {
+    "width": 1564,
+    "height": 1320,
+    "aspectRatio": 1.185,
+    "isPortrait": false
+  },
+  "hsbc-rupay-cashback.png": {
+    "width": 782,
+    "height": 1288,
+    "aspectRatio": 0.607,
+    "isPortrait": true
+  },
+  "hsbc-travel-one.png": {
+    "width": 788,
+    "height": 1283,
+    "aspectRatio": 0.614,
+    "isPortrait": true
+  },
+  "idfc-power-plus.png": {
+    "width": 2752,
+    "height": 1370,
+    "aspectRatio": 2.009,
+    "isPortrait": false
+  },
+  "indusind-easydiner.png": {
+    "width": 1981,
+    "height": 1386,
+    "aspectRatio": 1.429,
+    "isPortrait": false
+  },
+  "indusind-tiger.png": {
+    "width": 781,
+    "height": 1239,
+    "aspectRatio": 0.63,
+    "isPortrait": true
+  },
+  "kiwi.png": {
+    "width": 1844,
+    "height": 1167,
+    "aspectRatio": 1.58,
+    "isPortrait": false
+  },
+  "rbl-indian-oil-extra.png": {
+    "width": 802,
+    "height": 1263,
+    "aspectRatio": 0.635,
+    "isPortrait": true
+  },
+  "sbi-bpcl-octane.png": {
+    "width": 1767,
+    "height": 1114,
+    "aspectRatio": 1.586,
+    "isPortrait": false
+  },
+  "sbi-cashback.png": {
+    "width": 919,
+    "height": 1442,
+    "aspectRatio": 0.637,
+    "isPortrait": true
+  },
+  "sbi-phonepe-black.png": {
+    "width": 846,
+    "height": 1359,
+    "aspectRatio": 0.623,
+    "isPortrait": true
+  },
+  "scapia-cc.png": {
+    "width": 1022,
+    "height": 1484,
+    "aspectRatio": 0.689,
+    "isPortrait": true
+  }
+}

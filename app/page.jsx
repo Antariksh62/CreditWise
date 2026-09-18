@@ -1,29 +1,30 @@
 import Hero from "../components/Hero";
-import IssuerNetwork from "../components/IssuerNetwork";
-import FeatureGrid from "../components/FeatureGrid";
-import ComparePreview from "../components/ComparePreview";
-import RewardCalculatorPreview from "../components/RewardCalculatorPreview";
-import EditorialBanner from "../components/EditorialBanner";
-import PopularCards from "../components/PopularCards";
+import VideoSection from "../components/VideoSection";
+import DualStorySection from "../components/DualStorySection";
+import CurationStandards from "../components/CurationStandards";
+import PersonalStorySection from "../components/PersonalStorySection";
 import LearnPreview from "../components/LearnPreview";
-import FinalCTA from "../components/FinalCTA";
-import Disclaimer from "../components/Disclaimer";
-import ActivityTicker from "../components/ActivityTicker";
 
 export default function HomePage() {
   return (
     <>
+      {/* SECTION 1: HERO (FIRST SECTION - DECIDED & UNTOUCHED) */}
       <Hero />
-      <IssuerNetwork />
-      <FeatureGrid />
-      <ComparePreview />
-      <RewardCalculatorPreview />
-      <EditorialBanner />
-      <PopularCards />
+
+      {/* SECTION 2: VIDEO RESERVED VIEWPORT (16:9 CLEAN MEDIA PLACEHOLDER) */}
+      <VideoSection />
+
+      {/* SECTION 3: DUAL STORY CARDS (RAMP 2-COLUMN STORYTELLING) */}
+      <DualStorySection />
+
+      {/* SECTION 4: 3-PILLAR CURATION STANDARDS (RAMP 3-COLUMN RHYTHM) */}
+      <CurationStandards />
+
+      {/* SECTION 5: PERSONAL STORY (RAMP ASYMMETRIC TEXT + LARGE VISUAL) */}
+      <PersonalStorySection />
+
+      {/* LAST SECTION: GUIDES & CREDIT CARD INSIGHTS (LAST SECTION - DECIDED & UNTOUCHED) */}
       <LearnPreview />
-      <FinalCTA />
-      <Disclaimer />
-      <ActivityTicker />
     </>
   );
 }

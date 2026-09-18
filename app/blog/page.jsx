@@ -1,81 +1,83 @@
+"use client";
+
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BookOpen, Award, Percent, DollarSign, ShieldCheck, CreditCard, Plane, Compass } from "lucide-react";
 import blogs from "../../data/blogs.json";
 import Reveal from "../../components/Reveal";
 
-/**
- * /blog — the Learn index
- * ------------------------------------------------------------
- * Lists all five educational articles. Each links to its dynamic
- * route at /blog/[slug].
- */
-
-export const metadata = {
-  title: "Learn about credit cards",
-  description:
-    "Five plain-English guides covering credit scores, cashback versus rewards, annual fees, credit utilisation and choosing your first card.",
+const ICON_MAP = {
+  "understanding-credit-scores": ShieldCheck,
+  "cashback-vs-rewards": Percent,
+  "understanding-annual-fees": DollarSign,
+  "credit-utilisation": Award,
+  "choosing-your-first-card": CreditCard,
 };
 
-const PANEL_TINTS = [
-  "bg-gradient-to-br from-[#635BFF] to-[#4F46E5]",
-  "bg-gradient-to-br from-[#0A2540] to-[#1E293B]",
-  "bg-gradient-to-br from-[#0F5741] to-[#047857]",
-  "bg-gradient-to-br from-[#7C3AED] to-[#635BFF]",
-  "bg-gradient-to-br from-[#D97706] to-[#B45309]",
-];
+const BADGE_MAP = {
+  "understanding-credit-scores": "780+",
+  "cashback-vs-rewards": "5%",
+  "understanding-annual-fees": "₹0",
+  "credit-utilisation": "30%",
+  "choosing-your-first-card": "1ST",
+};
 
 export default function BlogIndexPage() {
   return (
-    <div className="cw-rail">
-      <div className="cw-container py-14 md:py-20">
-        <header className="mb-12 max-w-[52ch]">
-          <p className="cw-eyebrow mb-3">Learn</p>
-          <h1 className="cw-h2">Understand the product before you apply for it</h1>
-          <p className="cw-body mt-3 text-lead">
-            {blogs.length} short guides on how credit cards, scores and rewards actually
-            work — written for people getting their first card.
+    <div className="min-h-screen bg-white py-16 sm:py-24">
+      <div className="cw-container max-w-6xl mx-auto px-4 sm:px-6">
+        {/* RAMP-STYLE CENTERED HERO HEADER */}
+        <header className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <p className="text-sm font-normal text-neutral-500 tracking-normal">
+            5 in-depth guides and counting
+          </p>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-950 leading-[1.08]">
+            Guides and Credit Card Insights.
+          </h1>
+          <p className="text-base text-neutral-600 font-normal max-w-xl mx-auto pt-1">
+            Practical breakdowns on reward math, credit score rules, and fee waiver optimization.
           </p>
         </header>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {blogs.map((post, index) => (
-            <Reveal key={post.slug} delay={index * 60}>
-              <article className="cw-card-interactive flex h-full flex-col overflow-hidden">
-                <div
-                  className={`relative h-36 overflow-hidden ${PANEL_TINTS[index % PANEL_TINTS.length]}`}
-                  aria-hidden="true"
-                >
-                  <div className="absolute -right-8 -top-10 h-32 w-32 rotate-12 rounded-[18px] border border-white/20" />
-                  <div className="absolute -bottom-14 left-6 h-32 w-32 -rotate-6 rounded-[18px] border border-white/15" />
-                </div>
+        {/* ARTICLES GRID USING RAMP MINIMAL CARDS */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {blogs.map((post, index) => {
+            const IconComponent = ICON_MAP[post.slug] || BookOpen;
+            const badge = BADGE_MAP[post.slug] || "GUIDE";
 
-                <div className="flex flex-1 flex-col p-6">
-                  <div className="mb-3 flex items-center gap-2">
-                    <span className="cw-badge-neutral">{post.category}</span>
-                    <span className="text-[0.8125rem] text-muted">{post.readTime}</span>
+            return (
+              <Reveal key={post.slug} delay={index * 50}>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group flex flex-col justify-between h-full bg-white rounded-2xl border border-neutral-200/90 p-6 sm:p-7 shadow-sm hover:border-neutral-400 hover:shadow-md transition-all duration-200"
+                >
+                  <div>
+                    <div className="flex items-center gap-3.5 mb-4">
+                      <div className="w-10 h-10 rounded-xl border border-neutral-200 bg-neutral-50 flex items-center justify-center shrink-0 text-neutral-800 group-hover:bg-neutral-100 transition-colors">
+                        <IconComponent className="w-5 h-5 text-neutral-700" strokeWidth={1.8} />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <h2 className="text-sm font-semibold text-neutral-950 leading-snug group-hover:text-black line-clamp-1">
+                          {post.title}
+                        </h2>
+                        <p className="text-xs text-neutral-500 truncate mt-0.5">
+                          {post.category} • {post.readTime}
+                        </p>
+                      </div>
+                    </div>
+
+                    <p className="text-[13px] text-neutral-600 leading-relaxed font-normal">
+                      {post.summary}
+                    </p>
                   </div>
 
-                  <h2 className="cw-h3 mb-2">
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="transition-colors duration-200 hover:text-accent"
-                    >
-                      {post.title}
-                    </Link>
-                  </h2>
-
-                  <p className="mb-5 text-[0.9375rem] leading-relaxed text-muted">
-                    {post.summary}
-                  </p>
-
-                  <Link href={`/blog/${post.slug}`} className="cw-link-arrow mt-auto">
-                    Read guide
-                    <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
-                  </Link>
-                </div>
-              </article>
-            </Reveal>
-          ))}
+                  <div className="pt-5 mt-5 border-t border-neutral-100 flex items-center justify-between text-xs font-medium text-neutral-900 group-hover:text-black">
+                    <span>Read guide</span>
+                    <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </div>

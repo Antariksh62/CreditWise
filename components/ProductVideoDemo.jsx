@@ -98,7 +98,7 @@ export default function ProductVideoDemo() {
               onClick={() => setActiveStep(1)}
               className="w-full py-2.5 bg-[#DDF247] text-black font-bold text-sm rounded-[6px] hover:bg-[#cee723] transition-colors"
             >
-              Analyze 100+ Credit Cards →
+              Evaluate Eligible Cards →
             </button>
           </div>
         )}
@@ -110,10 +110,10 @@ export default function ProductVideoDemo() {
               ⚡
             </div>
             <h4 className="text-xl font-bold text-white mb-2">
-              Scoring Indian Card Database...
+              Evaluating Card Database...
             </h4>
             <p className="text-xs text-neutral-400 mb-6">
-              Calculating annual reward yield, lounge access value, and fee waivers for 100+ cards.
+              Calculating annual reward rates, lounge allowances, and fee waiver terms across spending tiers.
             </p>
             <div className="w-full bg-neutral-800 rounded-full h-2 mb-4 overflow-hidden">
               <div className="bg-[#DDF247] h-full rounded-full w-3/4 animate-pulse" />
@@ -126,6 +126,7 @@ export default function ProductVideoDemo() {
             </button>
           </div>
         )}
+
 
         {/* STEP 3: MATCHED CARD PRODUCT REVEAL */}
         {activeStep === 2 && (

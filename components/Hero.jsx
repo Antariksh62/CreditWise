@@ -1,49 +1,75 @@
 "use client";
 
-import Link from "next/link";
-import ProductVideoDemo from "./ProductVideoDemo";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import HeroDotCanvas from "./HeroDotCanvas";
 
 export default function Hero() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+
+  const handleEmailSubmit = (e) => {
+    e.preventDefault();
+    if (!email) return;
+    router.push(`/recommend?email=${encodeURIComponent(email)}`);
+  };
+
   return (
-    <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-28 bg-white overflow-hidden">
-      <div className="cw-container">
-        {/* HERO EDITORIAL TYPOGRAPHY */}
-        <div className="max-w-4xl mx-auto text-center space-y-6 mb-12 lg:mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3.5 py-1 text-xs font-semibold text-neutral-800">
-            <span className="h-2 w-2 rounded-full bg-[#DDF247]" />
-            CARDWISE ENGINE 3.0
+    <section className="relative pt-12 pb-0 lg:pt-16 bg-white overflow-hidden border-b-0">
+      <div className="cw-container relative z-10">
+        {/* HERO EDITORIAL & TYPOGRAPHY HEADER */}
+        <div className="max-w-4xl text-left space-y-4">
+          {/* TOP FAINT STAT/LABEL BADGE */}
+          <div className="inline-flex items-center gap-2 rounded border border-neutral-200/80 bg-neutral-50 px-2.5 py-1 text-[9px] font-medium text-neutral-600 tracking-wider uppercase">
+            <span>INDIAN CREDIT CARD REWARDS OPTIMIZED:</span>
+            <span className="rounded bg-neutral-200/80 px-1.5 py-0.5 font-mono text-[8px] font-bold text-black">
+              100% TRANSPARENT
+            </span>
           </div>
 
-          <h1 className="cw-hero-title">
-            Find the card{" "}
-            <span className="text-neutral-400 block sm:inline">
-              that works harder for you.
+          {/* MAIN HEADLINE — SLEEK MEDIUM FONT WEIGHT */}
+          <h1 className="text-4xl sm:text-6xl lg:text-[3.5rem] font-normal sm:font-medium tracking-tight text-neutral-950 leading-[1.05] max-w-3xl">
+            What if your expenses could{" "}
+            <span className="text-neutral-400 block sm:inline font-normal">
+              earn rewards too?
             </span>
           </h1>
+        </div>
+      </div>
 
-          <p className="text-lg sm:text-xl text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-            Compare rewards, fees, lounge access, and real-world net rupee returns across India&apos;s leading credit cards in seconds.
+      {/* SEAMLESS DOT GRID PATTERN SECTION — MERGES BEAUTIFULLY FROM "earn rewards too?" LINE */}
+      <div className="relative w-full pt-3 pb-4">
+        {/* BLACK HOLE CURSOR-RESPONSIVE DOT CANVAS WITH TOP SEAMLESS FADE */}
+        <HeroDotCanvas />
+
+        <div className="cw-container relative z-10">
+          {/* CONCISE FAINT 1-LINE SUBTITLE */}
+          <p className="text-neutral-500 text-base sm:text-lg font-normal tracking-normal max-w-2xl leading-snug mb-6">
+            Cards, rewards, lounge access, and cashback* – matched to your spending.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <Link
-              href="/recommend"
-              className="rounded-[6px] bg-[#DDF247] px-7 py-3.5 text-base font-bold text-black transition-all hover:bg-[#cee723] active:translate-y-px shadow-sm"
+          {/* EMAIL INPUT BOX RIGHT BELOW SUBTITLE */}
+          <div className="mb-0 pb-2">
+            <form
+              onSubmit={handleEmailSubmit}
+              className="flex flex-col sm:flex-row items-center gap-2 bg-white/90 backdrop-blur border border-neutral-200/90 rounded-[8px] p-1.5 max-w-md w-full shadow-sm"
             >
-              Find my card →
-            </Link>
-            <Link
-              href="/cards"
-              className="rounded-[6px] border border-neutral-300 bg-white px-7 py-3.5 text-base font-semibold text-black hover:bg-neutral-50 transition-colors"
-            >
-              Explore cards
-            </Link>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="What's your email address?"
+                className="w-full bg-transparent px-3 py-2 text-sm text-black placeholder:text-neutral-400 focus:outline-none"
+                required
+              />
+              <button
+                type="submit"
+                className="w-full sm:w-auto shrink-0 rounded-[6px] bg-[#e4f222] px-5 py-2.5 text-sm font-medium text-black hover:bg-[#cee723] transition-colors whitespace-nowrap shadow-sm"
+              >
+                Get started for free
+              </button>
+            </form>
           </div>
-        </div>
-
-        {/* LARGE RAMP-STYLE PRODUCT DEMONSTRATION MEDIA AREA */}
-        <div className="max-w-5xl mx-auto">
-          <ProductVideoDemo />
         </div>
       </div>
     </section>

@@ -18,116 +18,133 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white">
-      {/* 1. RAMP-STYLE TOP ANNOUNCEMENT BAR */}
-      {showAnnouncement && (
-        <div className="relative bg-[#0D0D0D] py-2 px-4 text-center text-xs sm:text-sm text-white font-medium flex items-center justify-between border-b border-neutral-800">
-          <div className="mx-auto flex items-center gap-2">
-            <span className="inline-block rounded bg-[#DDF247] px-1.5 py-0.5 text-[10px] font-bold text-black uppercase tracking-wider">
-              NEW
-            </span>
-            <span>CardWise Engine 3.0 — find the right card in minutes.</span>
-            <Link
-              href="/recommend"
-              className="underline hover:text-[#DDF247] transition-colors inline-flex items-center gap-1 font-semibold"
-            >
-              Learn more →
-            </Link>
-          </div>
-          <button
-            onClick={() => setShowAnnouncement(false)}
-            className="text-neutral-400 hover:text-white p-1 text-xs"
-            aria-label="Close announcement"
-          >
-            ✕
-          </button>
-        </div>
-      )}
+
 
       {/* 2. RAMP-STYLE MAIN NAVIGATION RAIL */}
       <div className="border-b border-neutral-200/80 bg-white">
         <div className="cw-container flex h-16 items-center justify-between">
-          {/* LEFT: LOGO */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-xl font-bold tracking-tight text-black"
-            onClick={() => setActiveMegaMenu(null)}
-          >
-            <div className="flex h-7 w-7 items-center justify-center rounded bg-black text-[#DDF247] font-extrabold text-sm">
-              cw
-            </div>
-            <span className="font-extrabold tracking-tighter text-black text-xl">
-              cardwise
-            </span>
-          </Link>
-
-          {/* CENTER: DESKTOP NAV WITH DROPDOWNS */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
-            {/* CARDS DROPDOWN */}
-            <div
-              className="relative"
-              onMouseEnter={() => setActiveMegaMenu("cards")}
-              onMouseLeave={() => setActiveMegaMenu(null)}
-            >
-              <button
-                onClick={() => handleNavClick("/cards")}
-                className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
-                  activeMegaMenu === "cards" ? "text-black" : "text-neutral-700 hover:text-black"
-                }`}
-              >
-                Cards
-                <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "cards" ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-            </div>
-
-            {/* TOOLS DROPDOWN */}
-            <div
-              className="relative"
-              onMouseEnter={() => setActiveMegaMenu("tools")}
-              onMouseLeave={() => setActiveMegaMenu(null)}
-            >
-              <button
-                onClick={() => handleNavClick("/compare")}
-                className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium transition-colors ${
-                  activeMegaMenu === "tools" ? "text-black" : "text-neutral-700 hover:text-black"
-                }`}
-              >
-                Tools
-                <svg className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMegaMenu === "tools" ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-            </div>
-
+          {/* LEFT: LOGO + DESKTOP NAV ITEMS PLACED CLOSE TO LOGO */}
+          <div className="flex items-center gap-4 xl:gap-6">
+            {/* LOGO */}
             <Link
-              href="/recommend"
-              className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black transition-colors"
+              href="/"
+              className="flex items-center gap-2 text-xl font-bold tracking-tight text-black shrink-0 mr-2"
+              onClick={() => setActiveMegaMenu(null)}
             >
-              Find your card
+              <div className="flex h-7 w-7 items-center justify-center rounded bg-black text-[#e4f222] font-extrabold text-sm">
+                cw
+              </div>
+              <span className="font-extrabold tracking-tighter text-black text-xl">
+                cardwise
+              </span>
             </Link>
 
-            <Link
-              href="/blog"
-              className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black transition-colors"
-            >
-              Learn
-            </Link>
-          </nav>
+            {/* DESKTOP NAV ITEMS — CLOSER TO LOGO WITH UNIFORM SPACING */}
+            <nav className="hidden md:flex items-center gap-1 xl:gap-1.5">
+              {/* CARDS DROPDOWN */}
+              <div
+                className="relative"
+                onMouseEnter={() => setActiveMegaMenu("cards")}
+                onMouseLeave={() => setActiveMegaMenu(null)}
+              >
+                <button
+                  onClick={() => handleNavClick("/cards")}
+                  className={`group inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-[6px] transition-colors ${activeMegaMenu === "cards"
+                    ? "text-black bg-neutral-100"
+                    : "text-neutral-700 hover:text-black hover:bg-neutral-100/60"
+                    }`}
+                >
+                  Cards
+                  <svg
+                    className={`w-3.5 h-3.5 text-neutral-400 group-hover:text-black transition-transform duration-200 ${activeMegaMenu === "cards" ? "rotate-180" : ""
+                      }`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+              </div>
 
-          {/* RIGHT: CTAs */}
-          <div className="hidden md:flex items-center gap-3">
+              {/* TOOLS DROPDOWN */}
+              <div
+                className="relative"
+                onMouseEnter={() => setActiveMegaMenu("tools")}
+                onMouseLeave={() => setActiveMegaMenu(null)}
+              >
+                <button
+                  onClick={() => handleNavClick("/compare")}
+                  className={`group inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-[6px] transition-colors ${activeMegaMenu === "tools"
+                    ? "text-black bg-neutral-100"
+                    : "text-neutral-700 hover:text-black hover:bg-neutral-100/60"
+                    }`}
+                >
+                  Tools
+                  <svg
+                    className={`w-3.5 h-3.5 text-neutral-400 group-hover:text-black transition-transform duration-200 ${activeMegaMenu === "tools" ? "rotate-180" : ""
+                      }`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <Link
+                href="/compare"
+                className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black hover:bg-neutral-100/60 rounded-[6px] transition-colors"
+              >
+                Compare
+              </Link>
+
+              <Link
+                href="/recommend"
+                className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black hover:bg-neutral-100/60 rounded-[6px] transition-colors"
+              >
+                Find your card
+              </Link>
+
+              <Link
+                href="/blog"
+                className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black hover:bg-neutral-100/60 rounded-[6px] transition-colors"
+              >
+                Guides
+              </Link>
+            </nav>
+          </div>
+
+          {/* RIGHT: ACTION BUTTONS MATCHING RAMP SPECS */}
+          <div className="hidden md:flex items-center gap-2 lg:gap-3">
             <Link
               href="/login"
-              className="text-sm font-medium text-neutral-700 hover:text-black px-2 py-1 transition-colors"
+              className="text-sm font-medium text-neutral-700 hover:text-black px-3 py-2 transition-colors"
             >
               Sign in
             </Link>
             <Link
-              href="/recommend"
-              className="rounded-[6px] bg-[#DDF247] px-4 py-2 text-sm font-bold text-black transition-all hover:bg-[#cee723] active:translate-y-px"
+              href="/compare"
+              className="rounded-[6px] bg-[#e4f222] px-3.5 py-2 text-sm font-medium text-black hover:bg-[#cee723] transition-colors whitespace-nowrap"
             >
-              Find your card
+              Compare cards
+            </Link>
+            <Link
+              href="/recommend"
+              className="rounded-[6px] bg-black px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 transition-colors whitespace-nowrap"
+            >
+              Get started
             </Link>
           </div>
 
@@ -150,10 +167,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* 3. RAMP-STYLE MEGA MENU CONTAINER */}
+      {/* 3. MEGA MENU CONTAINER */}
       {activeMegaMenu && (
         <div
-          className="hidden md:block absolute top-full left-0 w-full bg-white border-b border-neutral-200 shadow-ramp transition-all duration-200 z-50"
+          className="hidden md:block absolute top-full left-0 w-full bg-white border-b border-neutral-200 shadow-lg transition-all duration-200 z-50"
           onMouseEnter={() => setActiveMegaMenu(activeMegaMenu)}
           onMouseLeave={() => setActiveMegaMenu(null)}
         >
@@ -277,10 +294,10 @@ export default function Navbar() {
                       <li>
                         <Link href="/#reward-calculator" className="group block">
                           <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
-                            Reward Yield Engine
+                            Reward Calculator
                           </div>
                           <div className="text-xs text-neutral-500">
-                            Calculate exact net rupee returns based on monthly spending
+                            See what you could get back based on your monthly spending
                           </div>
                         </Link>
                       </li>
@@ -290,19 +307,19 @@ export default function Navbar() {
 
                 <div className="col-span-4 bg-neutral-50 p-6 rounded-lg border border-neutral-200">
                   <div className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">
-                    SMART MATCHING
+                    FIND YOUR FIT
                   </div>
                   <div className="font-bold text-base text-black mb-1">
                     Find your exact match
                   </div>
                   <p className="text-xs text-neutral-600 mb-4">
-                    Our recommendation algorithm scores 100+ cards against your spending habits.
+                    Answer 4 simple questions to find cards that fit your everyday spending.
                   </p>
                   <Link
                     href="/recommend"
                     className="inline-flex items-center text-xs font-bold text-black hover:underline"
                   >
-                    Start 60-second quiz →
+                    Find your card →
                   </Link>
                 </div>
               </>
@@ -351,11 +368,18 @@ export default function Navbar() {
               Sign in
             </Link>
             <Link
+              href="/compare"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-center font-medium text-sm bg-[#e4f222] text-black py-2.5 rounded-[6px]"
+            >
+              Compare cards
+            </Link>
+            <Link
               href="/recommend"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-center font-bold text-sm bg-[#DDF247] text-black py-3 rounded-[6px]"
+              className="text-center font-medium text-sm bg-black text-white py-2.5 rounded-[6px]"
             >
-              Find your card
+              Get started
             </Link>
           </div>
         </div>
