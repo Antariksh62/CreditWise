@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import CookieBanner from "../components/CookieBanner";
 
 /**
  * Root layout
@@ -51,6 +52,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main id="main">{children}</main>
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );

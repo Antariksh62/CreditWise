@@ -1,23 +1,8 @@
 /**
  * CreditCardVisual
  * ------------------------------------------------------------
- * The signature CardWise artifact — an original credit-card
- * rendering built entirely from CSS and inline SVG. No stock
- * imagery, no gradient mesh, no glassmorphism.
- *
- * Construction:
- *   - 1.586:1 aspect ratio (real ISO/IEC 7810 ID-1 proportions)
- *   - a flat tinted face using the card-* design tokens
- *   - three engraved arcs, drawn as SVG strokes at low opacity
- *   - a machined chip built from nested rectangles
- *   - the issuer name set in the same Inter face as the site
- *
- * Renders on the server. No client JavaScript required.
- *
- * @param {string} tint     emerald | graphite | sand | ink
- * @param {string} issuer   bank name printed top-left
- * @param {string} name     card name printed bottom-left
- * @param {string} size     "sm" | "md" | "lg"
+ * Displays the verified credit card image if available,
+ * or falls back to the CreditWise signature procedural canvas.
  */
 
 const TINTS = {
@@ -58,11 +43,10 @@ const TINTS = {
   },
 };
 
-
 const SIZES = {
-  sm: "w-[220px]",
-  md: "w-[320px]",
-  lg: "w-[420px]",
+  sm: "w-[240px]",
+  md: "w-[340px]",
+  lg: "w-[440px]",
 };
 
 export default function CreditCardVisual({
@@ -70,9 +54,27 @@ export default function CreditCardVisual({
   issuer = "CardWise",
   name = "Signature",
   size = "md",
+  image = null,
   className = "",
 }) {
   const t = TINTS[tint] || TINTS.emerald;
+
+  if (image) {
+    return (
+      <div
+        className={`relative ${SIZES[size] || SIZES.md} max-w-full flex items-center justify-center select-none ${className}`}
+      >
+        <div className="relative aspect-[1.586/1] w-full overflow-hidden rounded-[16px] shadow-lift bg-neutral-950/40 p-1 flex items-center justify-center border border-neutral-200/40 dark:border-neutral-800">
+          <img
+            src={image}
+            alt={`${issuer} ${name} Credit Card`}
+            className="h-full w-full object-contain rounded-[14px] transition-transform duration-300 hover:scale-[1.02]"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -82,9 +84,6 @@ export default function CreditCardVisual({
       <div
         className={`relative aspect-[1.586/1] w-full overflow-hidden rounded-[14px] ${t.face} shadow-lift`}
       >
-        {/* --- Engraved arcs -------------------------------------
-            Three concentric strokes sweeping out of the bottom-right
-            corner. Low opacity so they read as embossing, not decoration. */}
         <svg
           className="pointer-events-none absolute inset-0 h-full w-full"
           viewBox="0 0 317 200"
@@ -111,16 +110,13 @@ export default function CreditCardVisual({
           />
         </svg>
 
-        {/* --- Face content --------------------------------------- */}
         <div className="relative flex h-full flex-col justify-between p-[7%]">
-          {/* Issuer, top-left */}
           <div className="flex items-start justify-between">
             <span
               className={`text-[0.6875rem] font-medium uppercase tracking-[0.14em] ${t.text}`}
             >
               {issuer}
             </span>
-            {/* Contactless mark — four nested arcs */}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               {[3, 6, 9, 12].map((r, i) => (
                 <path
@@ -134,13 +130,11 @@ export default function CreditCardVisual({
             </svg>
           </div>
 
-          {/* Chip — nested rectangles, machined look */}
           <div className={`h-[13%] w-[15%] rounded-[3px] ${t.chip} relative`}>
             <div className="absolute inset-[22%] rounded-[1px] border border-black/25" />
             <div className="absolute left-0 right-0 top-1/2 h-px bg-black/25" />
           </div>
 
-          {/* Card name + fake number band, bottom */}
           <div>
             <div
               className={`mb-[3%] font-mono text-[0.625rem] tracking-[0.18em] ${t.dim}`}

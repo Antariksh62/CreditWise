@@ -1,349 +1,279 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Link from "next/link";
-import { Check, Loader2, AlertCircle } from "lucide-react";
-
-/**
- * SignupForm
- * ------------------------------------------------------------
- * Demo registration form. Two assignment requirements live here:
- *
- * 1. FORM VALIDATION (Assignment 2)
- *    Every field is validated in plain JavaScript before submit:
- *    required checks, a username pattern, an email pattern, an age
- *    range, a password length rule and a confirm-password match.
- *    Invalid fields get .cw-input-invalid (red border) plus an
- *    error message wired up with aria-describedby.
- *
- * 2. jQUERY + AJAX (Assignment 3)
- *    The username field checks availability against the API route
- *    /api/check-username using jQuery's $.ajax(), debounced so it
- *    does not fire on every keystroke. jQuery is imported
- *    dynamically inside useEffect because it needs `window`.
- *
- * The "account" itself is stored in localStorage — this is a demo,
- * not real authentication, and the UI says so.
- */
-
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const USERNAME_PATTERN = /^[a-zA-Z0-9_]{3,20}$/;
-
-const EMPTY = {
-  fullName: "",
-  username: "",
-  email: "",
-  age: "",
-  password: "",
-  confirmPassword: "",
-};
+import { useRouter } from "next/navigation";
+import { Eye, EyeOff, AlertCircle, CheckCircle2 } from "lucide-react";
 
 export default function SignupForm() {
   const router = useRouter();
-  const [values, setValues] = useState(EMPTY);
+  const [values, setValues] = useState({
+    fullName: "",
+    email: "",
+    age: "",
+    password: "",
+    confirmPassword: "",
+    ageConfirmed: true,
+  });
   const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // Username availability: "idle" | "checking" | "available" | "taken" | "error"
-  const [availability, setAvailability] = useState("idle");
-  const jqueryRef = useRef(null);
-  const debounceRef = useRef(null);
-
-  // ----------------------------------------------------------
-  // Load jQuery once on the client.
-  // ----------------------------------------------------------
-  useEffect(() => {
-    let cancelled = false;
-    import("jquery").then((mod) => {
-      if (!cancelled) jqueryRef.current = mod.default || mod;
-    });
-    return () => {
-      cancelled = true;
-      if (debounceRef.current) window.clearTimeout(debounceRef.current);
-    };
-  }, []);
-
-  // ----------------------------------------------------------
-  // Assignment 3 — jQuery AJAX username availability check.
-  // ----------------------------------------------------------
-  function checkUsername(username) {
-    const $ = jqueryRef.current;
-    if (!$ || !USERNAME_PATTERN.test(username)) {
-      setAvailability("idle");
-      return;
-    }
-
-    setAvailability("checking");
-
-    $.ajax({
-      url: "/api/check-username",
-      method: "GET",
-      dataType: "json",
-      data: { username },
-      success: function (response) {
-        setAvailability(response.available ? "available" : "taken");
-      },
-      error: function () {
-        setAvailability("error");
-      },
+  function handleChange(field, value) {
+    setValues((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => {
+      const next = { ...prev };
+      delete next[field];
+      delete next.form;
+      return next;
     });
   }
 
-  function handleUsernameChange(value) {
-    setValues((prev) => ({ ...prev, username: value }));
-    setAvailability("idle");
-
-    // Debounce: wait 400ms after typing stops before hitting the API.
-    if (debounceRef.current) window.clearTimeout(debounceRef.current);
-    debounceRef.current = window.setTimeout(() => checkUsername(value), 400);
-  }
-
-  // ----------------------------------------------------------
-  // Assignment 2 — validation rules.
-  // ----------------------------------------------------------
-  function validate(data) {
+  function validate() {
     const next = {};
 
-    if (!data.fullName.trim()) {
-      next.fullName = "Enter your full name.";
-    } else if (data.fullName.trim().length < 2) {
-      next.fullName = "That name looks too short.";
+    if (!values.fullName.trim()) {
+      next.fullName = "Please enter your full name.";
     }
 
-    if (!data.username.trim()) {
-      next.username = "Choose a username.";
-    } else if (!USERNAME_PATTERN.test(data.username)) {
-      next.username = "3–20 characters, letters, numbers and underscores only.";
-    } else if (availability === "taken") {
-      next.username = "That username is already taken.";
+    if (!values.email.trim()) {
+      next.email = "Please enter your email address.";
+    } else if (!/^[^s@]+@[^s@]+.[^s@]+$/.test(values.email.trim())) {
+      next.email = "Please enter a valid email address.";
     }
 
-    if (!data.email.trim()) {
-      next.email = "Enter your email address.";
-    } else if (!EMAIL_PATTERN.test(data.email)) {
-      next.email = "Enter a valid email address, e.g. you@example.com.";
+    const ageNum = Number(values.age);
+    if (!values.age) {
+      next.age = "Please enter your age.";
+    } else if (Number.isNaN(ageNum) || ageNum < 18 || ageNum > 100) {
+      next.age = "You must be 18 years or older to apply for a credit card in India.";
     }
 
-    const age = Number(data.age);
-    if (!data.age) {
-      next.age = "Enter your age.";
-    } else if (!Number.isInteger(age) || age < 18 || age > 100) {
-      next.age = "You must be between 18 and 100 to hold a credit card.";
+    if (!values.password) {
+      next.password = "Choose a secure password.";
+    } else if (values.password.length < 8) {
+      next.password = "Password must be at least 8 characters.";
+    } else if (!/[0-9]/.test(values.password)) {
+      next.password = "Include at least one number in your password.";
     }
 
-    if (!data.password) {
-      next.password = "Choose a password.";
-    } else if (data.password.length < 8) {
-      next.password = "Use at least 8 characters.";
-    } else if (!/[0-9]/.test(data.password)) {
-      next.password = "Include at least one number.";
-    }
-
-    if (data.confirmPassword !== data.password) {
-      next.confirmPassword = "The two passwords do not match.";
+    if (values.confirmPassword !== values.password) {
+      next.confirmPassword = "Passwords do not match.";
     }
 
     return next;
   }
 
-  function handleChange(field, value) {
-    setValues((prev) => ({ ...prev, [field]: value }));
-    // Clear a field's error as soon as the user edits it.
-    setErrors((prev) => {
-      if (!prev[field]) return prev;
-      const next = { ...prev };
-      delete next[field];
-      return next;
-    });
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
-    const found = validate(values);
+    const found = validate();
     setErrors(found);
 
     if (Object.keys(found).length > 0) {
-      // Move focus to the first invalid field for keyboard users.
-      const firstKey = Object.keys(found)[0];
-      const el = document.getElementById(firstKey);
+      const firstField = Object.keys(found)[0];
+      const el = document.getElementById(firstField);
       if (el) el.focus();
       return;
     }
 
-    // Demo "account" — stored client-side only. No password is kept.
-    window.localStorage.setItem(
-      "cardwise:user",
-      JSON.stringify({
-        fullName: values.fullName,
-        username: values.username,
-        email: values.email,
-        age: Number(values.age),
-      }),
-    );
-
     setSubmitted(true);
-    window.setTimeout(() => router.push("/profile"), 900);
-  }
 
-  /** Shared props for a text input, including error wiring. */
-  function fieldProps(id, type = "text") {
-    return {
-      id,
-      name: id,
-      type,
-      value: values[id],
-      onChange: (e) => handleChange(id, e.target.value),
-      className: `cw-input ${errors[id] ? "cw-input-invalid" : ""}`,
-      "aria-invalid": errors[id] ? "true" : "false",
-      "aria-describedby": errors[id] ? `${id}-error` : undefined,
+    const newUser = {
+      fullName: values.fullName.trim(),
+      email: values.email.trim(),
+      username: values.email.trim().split("@")[0],
+      age: Number(values.age),
+      createdAt: new Date().toISOString(),
+      savedCards: [],
     };
+
+    // Store in localStorage
+    try {
+      window.localStorage.setItem("cardwise:user", JSON.stringify(newUser));
+
+      // Append to registered users list
+      let usersList = [];
+      const rawUsers = window.localStorage.getItem("cardwise:users");
+      if (rawUsers) usersList = JSON.parse(rawUsers);
+      usersList.push(newUser);
+      window.localStorage.setItem("cardwise:users", JSON.stringify(usersList));
+
+      // Clear any old onboarding profile so user gets a fresh start
+      window.localStorage.removeItem("cardwise:profile");
+    } catch {
+      // ignore storage quota issues
+    }
+
+    // Direct user straight into the clean multi-step onboarding journey
+    window.setTimeout(() => {
+      router.push("/onboarding");
+    }, 600);
   }
 
   return (
-    <form noValidate onSubmit={handleSubmit} className="cw-card p-7 md:p-8">
-      <h1 className="cw-h2 mb-1 text-[1.5rem]">Create your account</h1>
-      <p className="mb-7 text-[0.9375rem] text-muted">
-        Demo sign-up. Nothing leaves your browser and no password is stored.
-      </p>
+    <form noValidate onSubmit={handleSubmit} className="rounded-2xl border border-neutral-200/80 bg-white p-7 sm:p-9 shadow-sm">
+      <div className="mb-6">
+        <span className="text-[11px] font-bold uppercase tracking-wider bg-[#DDF247] text-black px-2.5 py-1 rounded-full">
+          Fast Sign Up
+        </span>
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-black mt-3">
+          Create your CreditWise account
+        </h1>
+        <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 leading-relaxed">
+          Initial setup takes less than a minute. No financial details or card numbers required to get started.
+        </p>
+      </div>
 
-      <div className="space-y-5">
-        {/* ---------- Full name ---------- */}
+      <div className="space-y-4">
+        {/* Full Name */}
         <div>
-          <label htmlFor="fullName" className="mb-1.5 block text-[0.875rem] font-medium">
+          <label htmlFor="fullName" className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">
             Full name
           </label>
-          <input {...fieldProps("fullName")} placeholder="Aarav Sharma" autoComplete="name" />
+          <input
+            id="fullName"
+            name="fullName"
+            type="text"
+            autoComplete="name"
+            placeholder="Aarav Sharma"
+            value={values.fullName}
+            onChange={(e) => handleChange("fullName", e.target.value)}
+            className={`w-full rounded-lg border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black ${
+              errors.fullName ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-neutral-50/40"
+            }`}
+            aria-invalid={errors.fullName ? "true" : "false"}
+            aria-describedby={errors.fullName ? "fullName-error" : undefined}
+          />
           {errors.fullName && (
-            <p id="fullName-error" role="alert" className="cw-error-text">
+            <p id="fullName-error" role="alert" className="mt-1.5 text-xs font-medium text-red-600">
               {errors.fullName}
             </p>
           )}
         </div>
 
-        {/* ---------- Username + jQuery AJAX availability ---------- */}
+        {/* Email */}
         <div>
-          <label htmlFor="username" className="mb-1.5 block text-[0.875rem] font-medium">
-            Username
-          </label>
-          <div className="relative">
-            <input
-              id="username"
-              name="username"
-              type="text"
-              autoComplete="username"
-              placeholder="aarav_s"
-              value={values.username}
-              onChange={(e) => handleUsernameChange(e.target.value)}
-              className={`cw-input pr-10 ${
-                errors.username || availability === "taken" ? "cw-input-invalid" : ""
-              }`}
-              aria-invalid={errors.username ? "true" : "false"}
-              aria-describedby="username-status username-error"
-            />
-            <span className="absolute right-3 top-1/2 -translate-y-1/2">
-              {availability === "checking" && (
-                <Loader2 className="h-4 w-4 animate-spin text-muted" strokeWidth={1.75} />
-              )}
-              {availability === "available" && (
-                <Check className="h-4 w-4 text-accent" strokeWidth={2} />
-              )}
-              {availability === "taken" && (
-                <AlertCircle className="h-4 w-4" strokeWidth={1.75} style={{ color: "#c0392b" }} />
-              )}
-            </span>
-          </div>
-
-          {/* Live region so screen readers announce the AJAX result. */}
-          <p id="username-status" aria-live="polite" className="mt-1.5 text-[0.8125rem]">
-            {availability === "checking" && (
-              <span className="text-muted">Checking availability…</span>
-            )}
-            {availability === "available" && (
-              <span className="text-accent">That username is available.</span>
-            )}
-            {availability === "taken" && (
-              <span style={{ color: "#c0392b" }}>That username is already taken.</span>
-            )}
-            {availability === "error" && (
-              <span className="text-muted">Could not check right now.</span>
-            )}
-          </p>
-
-          {errors.username && (
-            <p id="username-error" role="alert" className="cw-error-text">
-              {errors.username}
-            </p>
-          )}
-        </div>
-
-        {/* ---------- Email ---------- */}
-        <div>
-          <label htmlFor="email" className="mb-1.5 block text-[0.875rem] font-medium">
+          <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">
             Email address
           </label>
           <input
-            {...fieldProps("email", "email")}
-            placeholder="you@example.com"
+            id="email"
+            name="email"
+            type="email"
             autoComplete="email"
+            placeholder="you@example.com"
+            value={values.email}
+            onChange={(e) => handleChange("email", e.target.value)}
+            className={`w-full rounded-lg border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black ${
+              errors.email ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-neutral-50/40"
+            }`}
+            aria-invalid={errors.email ? "true" : "false"}
+            aria-describedby={errors.email ? "email-error" : undefined}
           />
           {errors.email && (
-            <p id="email-error" role="alert" className="cw-error-text">
+            <p id="email-error" role="alert" className="mt-1.5 text-xs font-medium text-red-600">
               {errors.email}
             </p>
           )}
         </div>
 
-        {/* ---------- Age ---------- */}
+        {/* Age */}
         <div>
-          <label htmlFor="age" className="mb-1.5 block text-[0.875rem] font-medium">
-            Age
+          <label htmlFor="age" className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">
+            Age (Must be 18+)
           </label>
           <input
-            {...fieldProps("age")}
-            inputMode="numeric"
-            placeholder="24"
-            className={`cw-input cw-numeric ${errors.age ? "cw-input-invalid" : ""}`}
+            id="age"
+            name="age"
+            type="number"
+            min="18"
+            max="100"
+            placeholder="25"
+            value={values.age}
+            onChange={(e) => handleChange("age", e.target.value)}
+            className={`w-full rounded-lg border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black ${
+              errors.age ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-neutral-50/40"
+            }`}
+            aria-invalid={errors.age ? "true" : "false"}
+            aria-describedby={errors.age ? "age-error" : undefined}
           />
           {errors.age && (
-            <p id="age-error" role="alert" className="cw-error-text">
+            <p id="age-error" role="alert" className="mt-1.5 text-xs font-medium text-red-600">
               {errors.age}
             </p>
           )}
         </div>
 
-        {/* ---------- Passwords ---------- */}
-        <div className="grid gap-5 sm:grid-cols-2">
+        {/* Passwords in 2 columns on tablet/desktop */}
+        <div className="grid gap-4 sm:grid-cols-2">
+          {/* Password */}
           <div>
-            <label htmlFor="password" className="mb-1.5 block text-[0.875rem] font-medium">
+            <label htmlFor="password" className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">
               Password
             </label>
-            <input
-              {...fieldProps("password", "password")}
-              autoComplete="new-password"
-              placeholder="At least 8 characters"
-            />
+            <div className="relative">
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                autoComplete="new-password"
+                placeholder="At least 8 chars"
+                value={values.password}
+                onChange={(e) => handleChange("password", e.target.value)}
+                className={`w-full rounded-lg border px-3.5 py-2.5 pr-10 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black ${
+                  errors.password ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-neutral-50/40"
+                }`}
+                aria-invalid={errors.password ? "true" : "false"}
+                aria-describedby={errors.password ? "password-error" : undefined}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-black focus:outline-none"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
             {errors.password && (
-              <p id="password-error" role="alert" className="cw-error-text">
+              <p id="password-error" role="alert" className="mt-1.5 text-xs font-medium text-red-600">
                 {errors.password}
               </p>
             )}
           </div>
 
+          {/* Confirm Password */}
           <div>
-            <label
-              htmlFor="confirmPassword"
-              className="mb-1.5 block text-[0.875rem] font-medium"
-            >
+            <label htmlFor="confirmPassword" className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">
               Confirm password
             </label>
-            <input
-              {...fieldProps("confirmPassword", "password")}
-              autoComplete="new-password"
-              placeholder="Repeat it"
-            />
+            <div className="relative">
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type={showConfirmPassword ? "text" : "password"}
+                autoComplete="new-password"
+                placeholder="Repeat password"
+                value={values.confirmPassword}
+                onChange={(e) => handleChange("confirmPassword", e.target.value)}
+                className={`w-full rounded-lg border px-3.5 py-2.5 pr-10 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black ${
+                  errors.confirmPassword ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-neutral-50/40"
+                }`}
+                aria-invalid={errors.confirmPassword ? "true" : "false"}
+                aria-describedby={errors.confirmPassword ? "confirmPassword-error" : undefined}
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-black focus:outline-none"
+                aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+              >
+                {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
             {errors.confirmPassword && (
-              <p id="confirmPassword-error" role="alert" className="cw-error-text">
+              <p id="confirmPassword-error" role="alert" className="mt-1.5 text-xs font-medium text-red-600">
                 {errors.confirmPassword}
               </p>
             )}
@@ -351,13 +281,24 @@ export default function SignupForm() {
         </div>
       </div>
 
-      <button type="submit" className="cw-btn-primary mt-7 w-full" disabled={submitted}>
-        {submitted ? "Account created — redirecting…" : "Create account"}
+      <button
+        type="submit"
+        disabled={submitted}
+        className="mt-7 w-full rounded-lg bg-black py-3 text-xs sm:text-sm font-bold text-white transition-all hover:bg-neutral-800 disabled:opacity-60 flex items-center justify-center gap-2"
+      >
+        {submitted ? (
+          <>
+            <CheckCircle2 className="h-4 w-4 text-[#DDF247]" />
+            Account created — starting onboarding…
+          </>
+        ) : (
+          "Continue to Onboarding →"
+        )}
       </button>
 
-      <p className="mt-4 text-center text-[0.875rem] text-muted">
+      <p className="mt-5 text-center text-xs text-neutral-500">
         Already have an account?{" "}
-        <Link href="/login" className="font-medium text-accent hover:underline">
+        <Link href="/login" className="font-bold text-black underline underline-offset-2">
           Sign in
         </Link>
       </p>

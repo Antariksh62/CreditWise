@@ -4,56 +4,64 @@ import CardFilters from "../../components/CardFilters";
 import { filterCards } from "../../lib/cardUtils";
 import CardGrid from "../../components/CardGrid";
 
-/**
- * /cards — the full catalogue
- * ------------------------------------------------------------
- * Reads ?category= from the URL (searchParams) so the homepage
- * category tiles and the navbar mega-menu links land on a filtered
- * view that is shareable and bookmarkable.
- *
- * CardFilters uses useSearchParams, which Next.js requires to sit
- * inside a Suspense boundary on a server-rendered page.
- */
-
 export const metadata = {
-  title: "All credit cards",
+  title: "All credit cards — CreditWise",
   description:
-    "Browse all ten CardWise credit cards, filtered by cashback, travel, rewards, fuel or lifetime-free.",
+    "Explore verified credit cards across cashback, travel, rewards, dining, fuel, and lifetime-free options.",
 };
 
 const LABELS = {
   cashback: "Cashback cards",
   travel: "Travel cards",
   rewards: "Rewards cards",
+  dining: "Dining cards",
   fuel: "Fuel cards",
-  "lifetime-free": "Lifetime-free cards",
+  "lifetime-free": "Lifetime free cards",
 };
 
 export default async function CardsPage({ searchParams }) {
-  const resolvedParams = await searchParams;
-  const category = resolvedParams?.category || "all";
-  const visible = filterCards(cards, category);
+  const resolvedSearchParams = await searchParams;
+  const category = resolvedSearchParams?.category || "all";
+  const filteredCards = filterCards(cards, category);
+  const activeLabel = category === "all" ? null : LABELS[category] || category;
 
   return (
-    <div className="cw-rail">
-      <div className="cw-container py-14 md:py-20">
-        <header className="mb-10 max-w-[52ch]">
-          <p className="cw-eyebrow mb-3">Catalogue</p>
-          <h1 className="cw-h2">{LABELS[category] || "All credit cards"}</h1>
-          <p className="cw-body mt-3 text-lead">
-            {visible.length} {visible.length === 1 ? "card" : "cards"} in the CardWise
-            sample data set. Fees and benefits are realistic demo values — always
-            confirm on the bank&apos;s own page before applying.
+    <div className="cw-rail min-h-screen bg-[#FBFBFB]">
+      <div className="cw-container py-12 md:py-16 max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Page header */}
+        <div className="mb-10 max-w-2xl">
+          <p className="text-xs font-bold uppercase tracking-wider text-neutral-400">
+            Card Database
           </p>
-        </header>
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-black mt-2">
+            {activeLabel || "Verified Credit Cards"}
+          </h1>
+          <p className="mt-3 text-sm sm:text-base leading-relaxed text-neutral-600">
+            {category === "all"
+              ? "Compare all verified credit cards across top Indian issuers with officially verified fees, reward structures, lounge access, and direct bank links."
+              : `Showing ${filteredCards.length} verified ${activeLabel?.toLowerCase() || "cards"} based on issuer documentation.`}
+          </p>
+        </div>
 
-        <Suspense fallback={<div className="mb-10 h-10" />}>
-          <CardFilters />
-        </Suspense>
+        {/* Filters */}
+        <div className="mb-10">
+          <Suspense
+            fallback={
+              <div className="h-9 w-64 animate-pulse rounded-full bg-neutral-200" />
+            }
+          >
+            <CardFilters />
+          </Suspense>
+        </div>
 
+        {/* Grid */}
         <CardGrid
-          cards={visible}
-          emptyMessage="No cards in this category yet. Try another filter."
+          cards={filteredCards}
+          emptyMessage={
+            category === "all"
+              ? "No credit cards found."
+              : `No cards match the \"${activeLabel || category}\" filter right now.`
+          }
         />
       </div>
     </div>

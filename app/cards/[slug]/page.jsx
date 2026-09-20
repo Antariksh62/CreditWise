@@ -1,21 +1,21 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, Check, Scale } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  Scale,
+  ExternalLink,
+  ShieldCheck,
+  AlertTriangle,
+  Info,
+  Sparkles,
+} from "lucide-react";
 import cards from "../../../data/cards.json";
 import CreditCardVisual from "../../../components/CreditCardVisual";
 import { TINT_BY_CATEGORY } from "../../../components/CreditCard";
 import SaveCardButton from "../../../components/SaveCardButton";
-
-/**
- * /cards/[slug] — DYNAMIC ROUTE (Assignment 4)
- * ------------------------------------------------------------
- * One page per card, generated from the slug in the URL.
- *
- * generateStaticParams() pre-renders all ten pages at build time,
- * which is the App Router equivalent of static generation.
- * generateMetadata() gives each page its own title and description
- * for search results and link previews.
- */
+import CardTechnicalDetails from "../../../components/CardTechnicalDetails";
 
 export function generateStaticParams() {
   return cards.map((card) => ({ slug: card.slug }));
@@ -27,181 +27,319 @@ export async function generateMetadata({ params }) {
   if (!card) return { title: "Card not found" };
 
   return {
-    title: `${card.name} — ${card.bank}`,
-    description: card.description.slice(0, 155),
+    title: `${card.name} — Review & Benefits | CreditWise`,
+    description: card.goodFor
+      ? `Good for ${card.goodFor}. ${card.shortDescription || card.description}`
+      : card.shortDescription || card.description,
   };
 }
 
 function formatFee(fee) {
-  return fee === 0 ? "Lifetime free" : `₹${fee.toLocaleString("en-IN")}`;
+  if (fee === 0) return "Lifetime Free";
+  return `₹${fee.toLocaleString("en-IN")}`;
 }
 
 export default async function CardDetailPage({ params }) {
   const resolvedParams = await params;
   const card = cards.find((c) => c.slug === resolvedParams.slug);
 
-  // A slug that does not exist renders the 404 page.
   if (!card) notFound();
 
   const related = cards
     .filter((c) => c.slug !== card.slug && c.category === card.category)
     .slice(0, 3);
 
-  const FACTS = [
-    { label: "Joining fee", value: formatFee(card.joiningFee) },
-    { label: "Annual fee", value: formatFee(card.annualFee) },
-    { label: "APR", value: card.apr ? `${card.apr}% p.a.` : "—" },
+  // Derive "Good For" categories based on verified card strengths
+  const goodForCategories = [];
+  if (card.goodFor) {
+    goodForCategories.push(card.goodFor);
+  }
+  if (card.category === "dining" || card.diningBenefits?.includes("10%")) {
+    goodForCategories.push("Dining & Food Delivery");
+  }
+  if (card.category === "travel" || card.loungeAccess >= 8 || card.forexBenefits?.includes("0%")) {
+    goodForCategories.push("Travel & Airport Lounges");
+  }
+  if (card.category === "fuel" || card.slug.includes("octane") || card.slug.includes("power-plus")) {
+    goodForCategories.push("Fuel & Commuting");
+  }
+  if (card.cashbackRate > 0) {
+    goodForCategories.push("Simple Cashback");
+  }
+  if (card.annualFee === 0) {
+    goodForCategories.push("Zero Fee Holding");
+  }
+  if (card.rewardRate >= 4 || card.slug.includes("amex") || card.slug.includes("horizon")) {
+    goodForCategories.push("Reward Optimization");
+  }
+  const uniqueGoodFor = Array.from(new Set(goodForCategories)).slice(0, 4);
 
-    {
-      label: "Cashback",
-      value: card.cashbackRate > 0 ? `${card.cashbackRate}%` : "—",
-    },
-    {
-      label: "Reward rate",
-      value: card.rewardRate > 0 ? `${card.rewardRate} pts / ₹100` : "—",
-    },
-    {
-      label: "Lounge access",
-      value: card.loungeAccess > 0 ? `${card.loungeAccess} per year` : "None",
-    },
-    { label: "Income required", value: card.incomeRequirement },
-  ];
+  // Key benefit highlights for above the fold (concise 3 bullets)
+  const keyBenefits = (card.benefits || []).slice(0, 3);
 
   return (
-    <div className="cw-rail">
-      <div className="cw-container py-10 md:py-14">
-        <Link href="/cards" className="cw-link-arrow mb-8 inline-flex text-muted">
-          <ArrowLeft className="h-4 w-4" strokeWidth={1.75} />
-          All cards
+    <div className="cw-rail min-h-screen bg-[#FBFBFB]">
+      <div className="cw-container py-10 md:py-14 max-w-5xl mx-auto px-4 sm:px-6">
+        {/* Back Link */}
+        <Link
+          href="/cards"
+          className="cw-link-arrow mb-8 inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-500 hover:text-black transition-colors"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2} />
+          Back to all cards
         </Link>
 
-        {/* ---------------- Header ---------------- */}
-        <div className="grid gap-10 lg:grid-cols-[7fr_5fr] lg:gap-14">
-          <div>
-            <div className="mb-3 flex flex-wrap items-center gap-2">
-              <span className="cw-badge-accent capitalize">
-                {card.category.replace("-", " ")}
-              </span>
-              {(card.tags || []).slice(0, 3).map((tag) => (
-                <span key={tag} className="cw-badge-neutral">
-                  {tag}
+        {/* ==================================================
+            ABOVE THE FOLD
+        ================================================== */}
+        <div className="rounded-2xl border border-neutral-200/80 bg-white p-6 sm:p-10 shadow-sm">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12 items-center">
+            {/* Left Column: Metadata, Title, Description, Benefit Summary & CTAs */}
+            <div>
+              {/* Issuer & Network Pills */}
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <span className="text-[11px] font-bold tracking-wider uppercase bg-[#DDF247] text-black px-2.5 py-0.5 rounded-full">
+                  {card.issuer || card.bank}
                 </span>
-              ))}
+                <span className="text-[11px] font-semibold tracking-wide uppercase bg-neutral-100 text-neutral-700 px-2.5 py-0.5 rounded-full">
+                  {card.network}
+                </span>
+                {card.annualFee === 0 && (
+                  <span className="text-[11px] font-semibold tracking-wide uppercase bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full">
+                    Lifetime Free
+                  </span>
+                )}
+              </div>
+
+              {/* Card Name + Save Bookmark */}
+              <div className="flex items-start justify-between gap-4">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-black leading-tight">
+                  {card.name}
+                </h1>
+                <SaveCardButton slug={card.slug} name={card.name} />
+              </div>
+
+              {/* One-line "Good for" Description */}
+              {card.goodFor && (
+                <p className="mt-2 text-sm font-semibold text-neutral-800">
+                  Good for: {card.goodFor}
+                </p>
+              )}
+
+              {/* Annual Fee Display */}
+              <div className="mt-4 flex items-baseline gap-2">
+                <span className="text-xl sm:text-2xl font-extrabold text-black cw-numeric">
+                  {formatFee(card.annualFee)}
+                </span>
+                {card.annualFee > 0 ? (
+                  <span className="text-xs text-neutral-500">
+                    annual fee {card.feeWaiver ? `(Waived on ${card.feeWaiver})` : ""}
+                  </span>
+                ) : (
+                  <span className="text-xs text-emerald-700 font-semibold">
+                    No annual or renewal fees
+                  </span>
+                )}
+              </div>
+
+              {/* Simple Benefit Summary (Above the fold) */}
+              <div className="mt-5 space-y-2 border-t border-neutral-100 pt-4">
+                {keyBenefits.map((b, idx) => (
+                  <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-neutral-700 font-medium">
+                    <Check className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" strokeWidth={2.5} />
+                    <span>{b}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Primary & Secondary CTAs */}
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                {card.officialUrl ? (
+                  <a
+                    href={card.officialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-black px-6 py-3 text-xs sm:text-sm font-bold text-white transition-all hover:bg-neutral-800 shadow-sm"
+                  >
+                    View on issuer website
+                    <ExternalLink className="h-3.5 w-3.5 opacity-70" strokeWidth={2} />
+                  </a>
+                ) : null}
+
+                <Link
+                  href={`/compare?cards=${card.slug}`}
+                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-neutral-300 bg-white px-5 py-3 text-xs sm:text-sm font-semibold text-neutral-800 transition-colors hover:bg-neutral-50"
+                >
+                  <Scale className="h-3.5 w-3.5 text-neutral-500" strokeWidth={2} />
+                  Compare
+                </Link>
+              </div>
             </div>
 
-            <p className="text-[0.9375rem] text-muted">{card.bank}</p>
-            <div className="flex items-start justify-between gap-4">
-              <h1 className="cw-h2 mt-1">{card.name}</h1>
-              <SaveCardButton slug={card.slug} name={card.name} />
+            {/* Right Column: Card Visual */}
+            <div className="flex justify-center items-center py-4">
+              <CreditCardVisual
+                tint={TINT_BY_CATEGORY[card.category] || "emerald"}
+                issuer={card.issuer || card.bank}
+                name={card.name}
+                image={card.image}
+                size="lg"
+              />
             </div>
-
-            <p className="cw-body mt-4 max-w-[62ch] text-lead">{card.description}</p>
-
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link href={`/compare?cards=${card.slug}`} className="cw-btn-primary">
-                <Scale className="h-4 w-4" strokeWidth={1.75} />
-                Compare this card
-              </Link>
-              <Link href="/recommend" className="cw-btn-secondary">
-                Is it right for me?
-                <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex justify-center lg:justify-end">
-            <CreditCardVisual
-              tint={TINT_BY_CATEGORY[card.category] || "emerald"}
-              issuer={card.bank}
-              name={card.name}
-              size="lg"
-            />
           </div>
         </div>
 
-        {/* ---------------- Key facts ---------------- */}
-        <section className="mt-14">
-          <h2 className="cw-eyebrow mb-4">At a glance</h2>
-          <dl className="grid gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-            {FACTS.map((fact) => (
-              <div key={fact.label} className="bg-surface p-5">
-                <dt className="text-[0.75rem] uppercase tracking-wider text-muted">
-                  {fact.label}
-                </dt>
-                <dd className="cw-numeric mt-1 text-[1.0625rem] font-semibold">
-                  {fact.value}
-                </dd>
-              </div>
+        {/* ==================================================
+            GOOD FOR SECTION
+        ================================================== */}
+        <section className="mt-8 rounded-2xl border border-neutral-200/80 bg-white p-6 sm:p-8 shadow-sm">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-2">
+            Target Alignment
+          </span>
+          <h2 className="text-base sm:text-lg font-extrabold text-black mb-4">
+            GOOD FOR
+          </h2>
+          <div className="flex flex-wrap gap-2.5">
+            {uniqueGoodFor.map((item, idx) => (
+              <span
+                key={idx}
+                className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 border border-neutral-200/60 px-3.5 py-1.5 text-xs font-bold text-neutral-800"
+              >
+                <Sparkles className="h-3 w-3 text-black" />
+                {item}
+              </span>
             ))}
-          </dl>
+          </div>
         </section>
 
-        {/* ---------------- Benefits + details ---------------- */}
-        <div className="mt-14 grid gap-12 lg:grid-cols-[7fr_5fr]">
-          <section>
-            <h2 className="cw-h3 mb-4">What you get</h2>
-            <ul className="space-y-3">
-              {card.benefits.map((benefit) => (
-                <li key={benefit} className="flex gap-3 text-[0.9375rem] leading-relaxed">
-                  <Check
-                    className="mt-1 h-4 w-4 shrink-0 text-accent"
-                    strokeWidth={2}
-                    aria-hidden="true"
-                  />
-                  {benefit}
-                </li>
-              ))}
-            </ul>
+        {/* ==================================================
+            WHY CREDITWISE MAY RECOMMEND IT
+        ================================================== */}
+        <section className="mt-8 rounded-2xl border border-neutral-200/80 bg-white p-6 sm:p-8 shadow-sm">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-2">
+            Objective Rationale
+          </span>
+          <h2 className="text-base sm:text-lg font-extrabold text-black mb-3">
+            WHY CREDITWISE MAY RECOMMEND IT
+          </h2>
+          <p className="text-sm sm:text-base leading-relaxed text-neutral-700 font-medium max-w-3xl">
+            {card.whyCreditWiseRecommends ||
+              card.whoItFits ||
+              `Useful if you already spend regularly on ${card.goodFor || "daily categories"} and want a competitive reward structure without altering your habits.`}
+          </p>
+          {card.whoItFits && card.whyCreditWiseRecommends && (
+            <p className="mt-3 text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-3xl">
+              <strong>Best suited for: </strong>{card.whoItFits}
+            </p>
+          )}
+        </section>
 
-            <h2 className="cw-h3 mb-4 mt-10">Category benefits</h2>
-            <dl className="divide-y divide-border border-y border-border">
-              {[
-                { label: "Fuel", value: card.fuelBenefits },
-                { label: "Dining", value: card.diningBenefits },
-                { label: "Online shopping", value: card.onlineShoppingBenefits },
-              ].map((row) => (
-                <div key={row.label} className="grid gap-1 py-4 sm:grid-cols-[160px_1fr]">
-                  <dt className="text-[0.875rem] font-medium text-muted">{row.label}</dt>
-                  <dd className="text-[0.9375rem] leading-relaxed">{row.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
+        {/* ==================================================
+            WATCH FOR
+        ================================================== */}
+        <section className="mt-8 rounded-2xl border border-amber-200/80 bg-amber-50/40 p-6 sm:p-8 shadow-sm">
+          <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-amber-900 mb-2">
+            <AlertTriangle className="h-4 w-4 text-amber-700" />
+            WATCH FOR
+          </div>
+          <h2 className="text-base sm:text-lg font-extrabold text-amber-950 mb-3">
+            Important Limitations & Conditions
+          </h2>
+          <div className="space-y-2 text-xs sm:text-sm text-neutral-800 font-medium leading-relaxed max-w-3xl">
+            <p>
+              • {card.whatToWatchOutFor || "Standard category limits and exclusions apply on non-qualifying transactions."}
+            </p>
+            {card.rewardCaps && (
+              <p>
+                • <strong>Reward Cap: </strong>{card.rewardCaps}
+              </p>
+            )}
+            {card.exclusions && (
+              <p>
+                • <strong>Excluded Categories: </strong>{card.exclusions}
+              </p>
+            )}
+            {card.annualFee > 0 && card.feeWaiver && (
+              <p>
+                • <strong>Renewal Fee: </strong>{formatFee(card.annualFee)} / year (Waived upon reaching {card.feeWaiver} annual spend).
+              </p>
+            )}
+          </div>
+        </section>
 
-          <aside>
-            <div className="cw-card p-6">
-              <h2 className="cw-h3 mb-2">Eligibility</h2>
-              <p className="text-[0.9375rem] leading-relaxed text-muted">
-                {card.eligibility}
-              </p>
-              <p className="cw-numeric mt-4 border-t border-border pt-4 text-[0.9375rem]">
-                Minimum income: <strong>{card.incomeRequirement}</strong>
-              </p>
-              <p className="mt-4 text-[0.8125rem] text-muted">
-                Demo data for a student project. Confirm current terms with the issuer
-                before applying.
-              </p>
-            </div>
-          </aside>
-        </div>
+        {/* ==================================================
+            TECHNICAL DETAILS (COLLAPSIBLE ACCORDION)
+        ================================================== */}
+        <CardTechnicalDetails card={card} />
 
-        {/* ---------------- Related ---------------- */}
+        {/* ==================================================
+            PRIMARY CANONICAL ISSUER CTA BAR
+        ================================================== */}
+        {card.officialUrl && (
+          <div className="mt-10 rounded-2xl border border-neutral-200/80 bg-white p-6 sm:p-8 text-center shadow-sm">
+            <h3 className="text-base sm:text-lg font-extrabold text-black mb-1.5">
+              Ready to verify current terms on the official bank site?
+            </h3>
+            <p className="text-xs text-neutral-500 mb-5 max-w-md mx-auto">
+              CreditWise provides direct canonical links to official card issuer pages. We never redirect through affiliate networks.
+            </p>
+            <a
+              href={card.officialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-black px-7 py-3 text-xs sm:text-sm font-bold text-white transition-all hover:bg-neutral-800 shadow-sm"
+            >
+              View on issuer website
+              <ExternalLink className="h-4 w-4" strokeWidth={2} />
+            </a>
+          </div>
+        )}
+
+        {/* ==================================================
+            DISCLAIMER
+        ================================================== */}
+        <footer className="mt-12 border-t border-neutral-200/80 pt-8 text-xs text-neutral-500 leading-relaxed">
+          <div className="flex items-center gap-2 text-neutral-800 font-bold uppercase tracking-wider text-[11px] mb-2">
+            <ShieldCheck className="h-4 w-4 text-emerald-600" />
+            CreditWise Independent Disclosure & Disclaimer
+          </div>
+          <p className="mb-2">
+            • <strong>Terms are subject to change:</strong> Card fees, reward structures, spend-based lounge criteria, and benefits can be updated by issuing banks at any time.
+          </p>
+          <p className="mb-2">
+            • <strong>Issuer determines approval:</strong> The issuing bank retains sole discretion over credit card approvals, credit limits, interest rates (APR), and verification requirements.
+          </p>
+          <p>
+            • <strong>Informational matching only:</strong> CreditWise provides independent comparison and matching based on verified public bank terms. CreditWise does not guarantee approval, savings, or rewards.
+          </p>
+        </footer>
+
+        {/* Related Cards */}
         {related.length > 0 && (
-          <section className="mt-16 border-t border-border pt-10">
-            <h2 className="cw-h3 mb-5">Other {card.category.replace("-", " ")} cards</h2>
-            <ul className="grid gap-4 sm:grid-cols-3">
+          <section className="mt-14 border-t border-neutral-200/80 pt-10">
+            <h2 className="text-lg font-bold text-black mb-6">
+              Other {card.category ? card.category.replace("-", " ") : "recommended"} cards
+            </h2>
+            <ul className="grid gap-5 sm:grid-cols-3">
               {related.map((other) => (
                 <li key={other.slug}>
                   <Link
                     href={`/cards/${other.slug}`}
-                    className="cw-card-interactive block p-5"
+                    className="group block rounded-xl border border-neutral-200/80 bg-white p-5 transition-all hover:border-neutral-400 hover:shadow-sm"
                   >
-                    <span className="block text-[0.8125rem] text-muted">{other.bank}</span>
-                    <span className="mt-0.5 block text-[0.9375rem] font-semibold">
+                    <span className="block text-[11px] font-bold text-neutral-400 uppercase tracking-wider">
+                      {other.issuer || other.bank}
+                    </span>
+                    <span className="mt-1 block text-sm font-bold text-black group-hover:underline">
                       {other.name}
                     </span>
-                    <span className="cw-numeric mt-3 block text-[0.8125rem] text-muted">
-                      {formatFee(other.annualFee)} per year
+                    {other.goodFor && (
+                      <span className="mt-2 block text-xs text-neutral-500 line-clamp-1">
+                        Good for: {other.goodFor}
+                      </span>
+                    )}
+                    <span className="mt-3 block text-xs font-bold text-neutral-800 cw-numeric">
+                      {formatFee(other.annualFee)} / year
                     </span>
                   </Link>
                 </li>

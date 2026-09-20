@@ -1,38 +1,26 @@
 import SignupForm from "../../components/SignupForm";
-
-/**
- * /signup — demo registration
- * ------------------------------------------------------------
- * Hosts the form that carries two assignment requirements:
- * client-side validation (Assignment 2) and the jQuery AJAX
- * username availability check (Assignment 3).
- */
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export const metadata = {
-  title: "Create an account",
+  title: "Create Account — CreditWise",
   description:
-    "Create a CardWise demo account to save cards. Includes live username availability checking.",
+    "Create your CreditWise account and discover how your existing expenses can earn more value through smart card matching.",
 };
 
 export default function SignupPage() {
   return (
-    <div className="cw-rail">
-      <div className="cw-container py-16 md:py-24">
-        <div className="mx-auto max-w-[520px]">
-          <SignupForm />
+    <div className="cw-rail min-h-screen bg-[#FBFBFB]">
+      <div className="cw-container py-12 md:py-20 max-w-xl mx-auto px-4 sm:px-6">
+        <Link
+          href="/"
+          className="cw-link-arrow mb-8 inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-500 hover:text-black transition-colors"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2} />
+          Back to Home
+        </Link>
 
-          <div className="mt-6 rounded-card border border-border bg-subtle p-5">
-            <p className="cw-eyebrow mb-2">How this works</p>
-            <p className="text-[0.875rem] leading-relaxed text-muted">
-              Every field is validated in the browser before submit. The username field
-              additionally calls <code className="text-foreground">/api/check-username</code>{" "}
-              through jQuery&apos;s <code className="text-foreground">$.ajax()</code>,
-              debounced by 400ms, and the API compares it against the sample user list.
-              Existing usernames include <em>aarav</em>, <em>diya_n</em> and{" "}
-              <em>ananya</em> — try one to see the taken state.
-            </p>
-          </div>
-        </div>
+        <SignupForm />
       </div>
     </div>
   );

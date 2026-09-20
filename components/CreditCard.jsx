@@ -7,6 +7,7 @@ export const TINT_BY_CATEGORY = {
   travel: "graphite",
   rewards: "emerald",
   fuel: "sand",
+  dining: "sand",
   "lifetime-free": "purple",
 };
 
@@ -17,7 +18,7 @@ function formatFee(fee) {
 function headlineRate(card) {
   if (card.cashbackRate > 0) return { value: `${card.cashbackRate}%`, label: "Top cashback" };
   if (card.rewardRate > 0)
-    return { value: `${card.rewardRate}x`, label: "Reward points" };
+    return { value: `${card.rewardRate}x`, label: "Reward rate" };
   return { value: "—", label: "Earn rate" };
 }
 
@@ -27,11 +28,12 @@ export default function CreditCard({ card, matchScore = null }) {
   return (
     <article className="rounded-xl border border-neutral-200 bg-white shadow-none transition-all duration-200 hover:border-neutral-400 hover:shadow-lift flex flex-col overflow-hidden">
       {/* Visual band */}
-      <div className="flex justify-center border-b border-neutral-200 bg-neutral-50 px-6 py-7">
+      <div className="flex justify-center border-b border-neutral-200 bg-neutral-50/80 px-6 py-7">
         <CreditCardVisual
           tint={TINT_BY_CATEGORY[card.category] || "emerald"}
-          issuer={card.bank}
+          issuer={card.issuer || card.bank}
           name={card.name}
+          image={card.image}
           size="sm"
         />
       </div>
@@ -40,7 +42,7 @@ export default function CreditCard({ card, matchScore = null }) {
         {/* Title row + save action */}
         <div className="mb-2 flex items-start justify-between gap-3">
           <div>
-            <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">{card.bank}</p>
+            <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider">{card.issuer || card.bank}</p>
             <h3 className="text-lg font-bold text-black mt-0.5 leading-snug">
               <Link
                 href={`/cards/${card.slug}`}
@@ -60,8 +62,16 @@ export default function CreditCard({ card, matchScore = null }) {
           </div>
         </div>
 
+        {card.goodFor && (
+          <div className="mb-3">
+            <span className="inline-block text-[11px] font-semibold text-neutral-700 bg-neutral-100 rounded px-2 py-0.5">
+              Good for: {card.goodFor}
+            </span>
+          </div>
+        )}
+
         <p className="mb-6 line-clamp-2 text-xs leading-relaxed text-neutral-600">
-          {card.description}
+          {card.shortDescription || card.description}
         </p>
 
         {/* Key figures */}
@@ -87,12 +97,12 @@ export default function CreditCard({ card, matchScore = null }) {
               Lounge
             </dt>
             <dd className="cw-numeric mt-0.5 text-xs font-bold text-black">
-              {card.loungeAccess > 0 ? `${card.loungeAccess}/yr` : "None"}
+              {card.loungeAccess === 99 ? "Unlimited" : card.loungeAccess > 0 ? `${card.loungeAccess}/yr` : "None"}
             </dd>
           </div>
         </dl>
 
-        {/* Two actions only. */}
+        {/* Action buttons */}
         <div className="flex gap-2">
           <Link
             href={`/cards/${card.slug}`}
@@ -112,4 +122,3 @@ export default function CreditCard({ card, matchScore = null }) {
     </article>
   );
 }
-

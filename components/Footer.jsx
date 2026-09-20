@@ -7,13 +7,16 @@ const COLUMNS = [
       { href: "/cards", label: "All cards" },
       { href: "/cards?category=cashback", label: "Cashback" },
       { href: "/cards?category=travel", label: "Travel" },
+      { href: "/cards?category=dining", label: "Dining" },
       { href: "/cards?category=rewards", label: "Rewards" },
       { href: "/cards?category=fuel", label: "Fuel" },
+      { href: "/cards?category=lifetime-free", label: "Lifetime free" },
     ],
   },
   {
     heading: "Tools",
     links: [
+      { href: "/onboarding", label: "Personalized onboarding" },
       { href: "/recommend", label: "Find your card" },
       { href: "/compare", label: "Compare cards" },
       { href: "/results", label: "Your matches" },
@@ -29,11 +32,12 @@ const COLUMNS = [
     ],
   },
   {
-    heading: "Account",
+    heading: "Legal & Trust",
     links: [
-      { href: "/login", label: "Sign in" },
-      { href: "/signup", label: "Create account" },
-      { href: "/profile", label: "Saved cards" },
+      { href: "/privacy", label: "Privacy Policy" },
+      { href: "/terms", label: "Terms of Service" },
+      { href: "/cookies", label: "Cookie Policy" },
+      { href: "/profile", label: "Manage your data" },
     ],
   },
 ];
@@ -43,18 +47,20 @@ export default function Footer() {
     <footer className="border-t border-neutral-200 bg-white pb-16">
       <div className="cw-container py-16">
         <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(4,1fr)]">
-          {/* Brand block */}
           <div>
             <div className="mb-4 flex items-center gap-2">
               <div className="flex h-7 w-7 items-center justify-center rounded bg-black text-[#DDF247] font-extrabold text-sm">
                 cw
               </div>
               <span className="text-xl font-extrabold tracking-tighter text-black">
-                cardwise
+                creditwise
               </span>
             </div>
-            <p className="max-w-[26ch] text-xs leading-relaxed text-neutral-500">
-              An educational credit-card discovery platform. Built as a student project. Demo data only.
+            <p className="max-w-[28ch] text-xs leading-relaxed text-neutral-500 mb-3">
+              An independent, privacy-first credit card intelligence platform. Matching verified cards to your existing spending habits.
+            </p>
+            <p className="text-[11px] text-neutral-400">
+              Zero affiliate redirection traps. Zero invasive tracking.
             </p>
           </div>
 
@@ -80,14 +86,16 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Legal strip */}
       <div className="border-t border-neutral-200 pt-6">
         <div className="cw-container flex flex-col gap-2 text-xs text-neutral-400 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} CardWise. Educational credit-card intelligence platform.</p>
-          <p>Built with Next.js App Router and Tailwind CSS.</p>
+          <p>© {new Date().getFullYear()} CreditWise. Independent credit-card intelligence platform.</p>
+          <div className="flex flex-wrap gap-4 text-xs">
+            <Link href="/privacy" className="hover:text-black">Privacy</Link>
+            <Link href="/terms" className="hover:text-black">Terms</Link>
+            <Link href="/cookies" className="hover:text-black">Cookies</Link>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
-
