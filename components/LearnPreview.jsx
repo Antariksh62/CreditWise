@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { BookOpen, Award, Percent, DollarSign, ShieldCheck, CreditCard, Plane, Compass } from "lucide-react";
+import Reveal from "./Reveal";
 
 const ROW_1_CARDS = [
   {
@@ -105,7 +106,7 @@ function ArticleCard({ item }) {
   return (
     <Link
       href={`/blog/${item.slug}`}
-      className="group block w-[320px] sm:w-[360px] shrink-0 bg-white rounded-2xl border border-neutral-200/90 p-6 shadow-sm hover:border-neutral-400 hover:shadow-md transition-all duration-200 text-left"
+      className="group block w-[290px] sm:w-[340px] lg:w-[360px] shrink-0 bg-white rounded-2xl border border-neutral-200/90 p-5 sm:p-6 shadow-sm hover:border-neutral-400 hover:shadow-md transition-all duration-200 text-left"
     >
       <div className="flex items-center gap-3.5 mb-3.5">
         <div className="w-10 h-10 rounded-xl border border-neutral-200 bg-neutral-50 flex items-center justify-center shrink-0 text-neutral-800 group-hover:bg-neutral-100 transition-colors">
@@ -132,51 +133,55 @@ export default function LearnPreview() {
   const row2 = [...ROW_2_CARDS, ...ROW_2_CARDS, ...ROW_2_CARDS];
 
   return (
-    <section className="py-24 lg:py-32 bg-white border-t border-neutral-200/80 overflow-hidden relative">
-      {/* HEADER SECTION (EXACT RAMP CENTERING & TYPOGRAPHY) */}
-      <div className="cw-container text-center max-w-4xl mx-auto mb-14 px-4 space-y-4">
-        <p className="text-sm font-normal text-neutral-500 tracking-normal">
-          5 in-depth guides and counting
-        </p>
+    <section className="py-20 sm:py-28 lg:py-36 bg-white border-t border-neutral-200/80 overflow-hidden relative">
+      {/* HEADER SECTION (SUBTLE VIEWPORT-BASED REVEAL) */}
+      <Reveal>
+        <div className="cw-container text-center max-w-4xl mx-auto mb-12 sm:mb-16 px-4 space-y-3 sm:space-y-4">
+          <p className="text-xs sm:text-sm font-normal text-neutral-500 tracking-normal">
+            5 in-depth guides and counting
+          </p>
 
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-950 leading-[1.08]">
-          Guides and Credit Card Insights.
-        </h2>
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-950 leading-[1.1] sm:leading-[1.08]">
+            Guides and Credit Card Insights.
+          </h2>
 
-        <div className="pt-2">
-          <Link
-            href="/blog"
-            className="inline-flex items-center justify-center rounded-[6px] bg-neutral-100 hover:bg-neutral-200 text-neutral-900 px-5 py-2.5 text-sm font-medium transition-colors border border-neutral-200/80"
-          >
-            View all guides
-          </Link>
+          <div className="pt-2">
+            <Link
+              href="/blog"
+              className="inline-flex items-center justify-center rounded-[6px] bg-neutral-100 hover:bg-neutral-200 text-neutral-900 px-5 py-2.5 text-sm font-medium transition-colors border border-neutral-200/80"
+            >
+              View all guides
+            </Link>
+          </div>
         </div>
-      </div>
+      </Reveal>
 
       {/* TWO-ROW RAMP-STYLE HORIZONTAL MARQUEE WALL */}
-      <div className="relative w-full space-y-4">
-        {/* LEFT & RIGHT SUBTLE EDGE FADES */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
+      <Reveal delay={140} variant="visual" className="w-full">
+        <div className="relative w-full space-y-3 sm:space-y-4">
+          {/* LEFT & RIGHT SUBTLE EDGE FADES */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-32 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10" />
 
-        {/* ROW 1 (SLIDES LEFT) */}
-        <div className="flex gap-4 overflow-x-hidden select-none py-1">
-          <div className="flex gap-4 animate-marquee-left shrink-0 hover:[animation-play-state:paused]">
-            {row1.map((item, idx) => (
-              <ArticleCard key={`r1-${idx}`} item={item} />
-            ))}
+          {/* ROW 1 (SLIDES LEFT) */}
+          <div className="flex gap-3 sm:gap-4 overflow-x-hidden select-none py-1">
+            <div className="flex gap-3 sm:gap-4 animate-marquee-left shrink-0 hover:[animation-play-state:paused]">
+              {row1.map((item, idx) => (
+                <ArticleCard key={`r1-${idx}`} item={item} />
+              ))}
+            </div>
+          </div>
+
+          {/* ROW 2 (SLIDES RIGHT / OFFSET) */}
+          <div className="flex gap-3 sm:gap-4 overflow-x-hidden select-none py-1">
+            <div className="flex gap-3 sm:gap-4 animate-marquee-right shrink-0 hover:[animation-play-state:paused]">
+              {row2.map((item, idx) => (
+                <ArticleCard key={`r2-${idx}`} item={item} />
+              ))}
+            </div>
           </div>
         </div>
-
-        {/* ROW 2 (SLIDES RIGHT / OFFSET) */}
-        <div className="flex gap-4 overflow-x-hidden select-none py-1">
-          <div className="flex gap-4 animate-marquee-right shrink-0 hover:[animation-play-state:paused]">
-            {row2.map((item, idx) => (
-              <ArticleCard key={`r2-${idx}`} item={item} />
-            ))}
-          </div>
-        </div>
-      </div>
+      </Reveal>
 
       {/* INLINE CSS FOR SILKY SMOOTH INFINITE MARQUEE */}
       <style jsx>{`

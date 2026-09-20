@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const router = useRouter();
-  const [showAnnouncement, setShowAnnouncement] = useState(true);
   const [activeMegaMenu, setActiveMegaMenu] = useState(null); // 'cards' | 'tools' | null
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -18,17 +17,16 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white">
-
-
-      {/* 2. RAMP-STYLE MAIN NAVIGATION RAIL */}
+      {/* RAMP-STYLE WIDE MAIN NAVIGATION RAIL */}
       <div className="border-b border-neutral-200/80 bg-white">
-        <div className="cw-container flex h-16 items-center justify-between">
-          {/* LEFT: LOGO + DESKTOP NAV ITEMS PLACED CLOSE TO LOGO */}
-          <div className="flex items-center gap-4 xl:gap-6">
+        <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24 flex h-16 items-center justify-between">
+          
+          {/* LEFT: LOGO + DESKTOP NAV ITEMS */}
+          <div className="flex items-center gap-6 xl:gap-8">
             {/* LOGO */}
             <Link
               href="/"
-              className="flex items-center gap-2 text-xl font-bold tracking-tight text-black shrink-0 mr-2"
+              className="flex items-center gap-2 text-xl font-bold tracking-tight text-black shrink-0 mr-1"
               onClick={() => setActiveMegaMenu(null)}
             >
               <div className="flex h-7 w-7 items-center justify-center rounded bg-black text-[#e4f222] font-extrabold text-sm">
@@ -39,7 +37,7 @@ export default function Navbar() {
               </span>
             </Link>
 
-            {/* DESKTOP NAV ITEMS — CLOSER TO LOGO WITH UNIFORM SPACING */}
+            {/* DESKTOP NAV ITEMS */}
             <nav className="hidden md:flex items-center gap-1 xl:gap-1.5">
               {/* CARDS DROPDOWN */}
               <div
@@ -49,15 +47,17 @@ export default function Navbar() {
               >
                 <button
                   onClick={() => handleNavClick("/cards")}
-                  className={`group inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-[6px] transition-colors ${activeMegaMenu === "cards"
-                    ? "text-black bg-neutral-100"
-                    : "text-neutral-700 hover:text-black hover:bg-neutral-100/60"
-                    }`}
+                  className={`group inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-[6px] transition-colors ${
+                    activeMegaMenu === "cards"
+                      ? "text-black bg-neutral-100"
+                      : "text-neutral-700 hover:text-black hover:bg-neutral-100/60"
+                  }`}
                 >
                   Cards
                   <svg
-                    className={`w-3.5 h-3.5 text-neutral-400 group-hover:text-black transition-transform duration-200 ${activeMegaMenu === "cards" ? "rotate-180" : ""
-                      }`}
+                    className={`w-3.5 h-3.5 text-neutral-400 group-hover:text-black transition-transform duration-200 ${
+                      activeMegaMenu === "cards" ? "rotate-180" : ""
+                    }`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -80,15 +80,17 @@ export default function Navbar() {
               >
                 <button
                   onClick={() => handleNavClick("/compare")}
-                  className={`group inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-[6px] transition-colors ${activeMegaMenu === "tools"
-                    ? "text-black bg-neutral-100"
-                    : "text-neutral-700 hover:text-black hover:bg-neutral-100/60"
-                    }`}
+                  className={`group inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-[6px] transition-colors ${
+                    activeMegaMenu === "tools"
+                      ? "text-black bg-neutral-100"
+                      : "text-neutral-700 hover:text-black hover:bg-neutral-100/60"
+                  }`}
                 >
                   Tools
                   <svg
-                    className={`w-3.5 h-3.5 text-neutral-400 group-hover:text-black transition-transform duration-200 ${activeMegaMenu === "tools" ? "rotate-180" : ""
-                      }`}
+                    className={`w-3.5 h-3.5 text-neutral-400 group-hover:text-black transition-transform duration-200 ${
+                      activeMegaMenu === "tools" ? "rotate-180" : ""
+                    }`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -167,29 +169,29 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* 3. MEGA MENU CONTAINER */}
+      {/* MEGA MENU CONTAINER (MATCHING FULL-WIDTH PADDING) */}
       {activeMegaMenu && (
         <div
           className="hidden md:block absolute top-full left-0 w-full bg-white border-b border-neutral-200 shadow-lg transition-all duration-200 z-50"
           onMouseEnter={() => setActiveMegaMenu(activeMegaMenu)}
           onMouseLeave={() => setActiveMegaMenu(null)}
         >
-          <div className="cw-container py-8 grid grid-cols-12 gap-8">
+          <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24 py-8 grid grid-cols-12 gap-8">
             {activeMegaMenu === "cards" && (
               <>
                 <div className="col-span-8 grid grid-cols-2 gap-6">
                   <div>
                     <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3">
-                      CARD CATEGORIES
+                      CASHBACK & DAILY SPEND
                     </div>
                     <ul className="space-y-4">
                       <li>
                         <Link href="/cards" className="group block">
                           <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
-                            Cashback Cards
+                            Online Shopping Cards
                           </div>
                           <div className="text-xs text-neutral-500">
-                            Earn flat 5% on online & offline spending
+                            Up to 5% flat cashback on Amazon, Flipkart & Swiggy
                           </div>
                         </Link>
                       </li>
@@ -328,7 +330,7 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* 4. MOBILE MENU OVERLAY */}
+      {/* MOBILE MENU OVERLAY */}
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-neutral-200 bg-white px-6 py-6 space-y-4">
           <Link

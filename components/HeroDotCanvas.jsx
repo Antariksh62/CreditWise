@@ -2,6 +2,21 @@
 
 import { useEffect, useRef } from "react";
 
+/**
+ * HeroDotCanvas
+ * Continuous interactive dotted matrix background.
+ * Begins directly at the supporting text line and extends down ~1 full page.
+ * 
+ * Features:
+ * - Enlarged cursor-reactive gravitational black-hole with smooth fluid inertia
+ * - Touch-device support: tracks touch position on tap/drag with graceful release
+ * - Subtle ambient depth fallback on touch devices when idle
+ * - Mobile performance optimizations:
+ *     - Caps canvas DPR at max 2 (prevents battery drain on 3x retina phones)
+ *     - Dynamic dot spacing (21px on mobile, 18px on desktop) for 60fps mobile rendering
+ *     - Suspends animation loop when page is hidden (document.visibilityState)
+ * - Respects prefers-reduced-motion
+ */
 export default function HeroDotCanvas() {
   const canvasRef = useRef(null);
 
@@ -15,38 +30,51 @@ export default function HeroDotCanvas() {
     let animationFrameId;
     let width = 0;
     let height = 0;
+    let gap = 18;
+    const baseRadius = 1.15;
+    const maxRadius = 3.2;
+    const eventHorizonRadius = 240;
 
-    // Grid config
-    const gap = 16; // spacing between dots
-    const baseRadius = 1.2;
-    const maxRadius = 2.4;
-    const eventHorizonRadius = 170; // Black hole gravitational reach
-    const topFadeDistance = 140; // Pixels over which dots seamlessly fade in from top
-
-    // Mouse coordinates relative to hero container
+    // Mouse / touch coordinates relative to canvas with smooth fluid inertia
     const mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000 };
 
-    // Reduced motion check
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const handleResize = () => {
       const parent = canvas.parentElement;
       if (!parent) return;
       const rect = parent.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2); // Cap at 2x DPR for mobile performance
       width = rect.width;
       height = rect.height;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+
+      // Adjust grid density on mobile to maintain 60fps performance
+      gap = width < 640 ? 21 : 18;
+
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const updateTargetPosition = (clientX, clientY) => {
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+
+      if (x >= -150 && x <= width + 150 && y >= -150 && y <= height + 150) {
+        mouse.targetX = x;
+        mouse.targetY = y;
+      } else {
+        mouse.targetX = -1000;
+        mouse.targetY = -1000;
+      }
     };
 
     const handleMouseMove = (e) => {
-      const rect = canvas.parentElement.getBoundingClientRect();
-      mouse.targetX = e.clientX - rect.left;
-      mouse.targetY = e.clientY - rect.top;
+      updateTargetPosition(e.clientX, e.clientY);
     };
 
     const handleMouseLeave = () => {
@@ -54,77 +82,128 @@ export default function HeroDotCanvas() {
       mouse.targetY = -1000;
     };
 
-    const parent = canvas.parentElement;
-    if (parent) {
-      parent.addEventListener("mousemove", handleMouseMove);
-      parent.addEventListener("mouseleave", handleMouseLeave);
-    }
+    // Touch event handlers for mobile & tablet
+    const handleTouchStart = (e) => {
+      if (e.touches && e.touches.length > 0) {
+        updateTargetPosition(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
+    const handleTouchMove = (e) => {
+      if (e.touches && e.touches.length > 0) {
+        updateTargetPosition(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
+    const handleTouchEnd = () => {
+      mouse.targetX = -1000;
+      mouse.targetY = -1000;
+    };
+
+    // Visibility change handler to pause render loop when tab is backgrounded
+    let isPageVisible = !document.hidden;
+    const handleVisibilityChange = () => {
+      isPageVisible = !document.hidden;
+      if (isPageVisible && !prefersReducedMotion) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = requestAnimationFrame(render);
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+    window.addEventListener("touchcancel", handleTouchEnd, { passive: true });
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     window.addEventListener("resize", handleResize);
     handleResize();
 
+    let frameCount = 0;
+
     const render = () => {
-      // Smooth fluid interpolation for black hole singularity focus
-      mouse.x += (mouse.targetX - mouse.x) * 0.2;
-      mouse.y += (mouse.targetY - mouse.y) * 0.2;
+      if (!isPageVisible) return;
+      frameCount++;
+
+      // Fluid inertia interpolation so the gravity field glides with cursor / touch
+      mouse.x += (mouse.targetX - mouse.x) * 0.12;
+      mouse.y += (mouse.targetY - mouse.y) * 0.12;
 
       ctx.clearRect(0, 0, width, height);
 
       const cols = Math.ceil(width / gap) + 1;
       const rows = Math.ceil(height / gap) + 1;
+      const hasInteraction = mouse.x > -200 && mouse.y > -200;
 
-      const hasMouse = mouse.x > 0 && mouse.y > 0;
+      // Subtle ambient curvature for touch devices when idle (centered at 55% width, 35% height)
+      const ambientX = width * 0.52;
+      const ambientY = Math.min(height * 0.45, 340);
+      const ambientReach = width < 640 ? 160 : 200;
+      // Gentle breathing pulsation
+      const ambientPulse = 0.5 + 0.5 * Math.sin(frameCount * 0.025);
 
       for (let i = 0; i < cols; i++) {
+        const x0 = i * gap;
         for (let j = 0; j < rows; j++) {
-          const x0 = i * gap;
           const y0 = j * gap;
-
-          // Top seamless opacity merge calculation
-          let topFade = 1;
-          if (y0 < topFadeDistance) {
-            topFade = Math.pow(y0 / topFadeDistance, 1.8);
-          }
-
-          if (topFade <= 0.001) continue; // Skip invisible dots at very top edge
 
           let renderX = x0;
           let renderY = y0;
           let radius = baseRadius;
-          let alpha = 0.12 * topFade;
+          let alpha = 0.11; // Base calm dot opacity
 
-          if (!prefersReducedMotion && hasMouse) {
-            const dx = mouse.x - x0;
-            const dy = mouse.y - y0;
-            const dist = Math.sqrt(dx * dx + dy * dy);
+          if (!prefersReducedMotion) {
+            if (hasInteraction) {
+              const dx = mouse.x - x0;
+              const dy = mouse.y - y0;
 
-            if (dist < eventHorizonRadius && dist > 0.1) {
-              // Normalized direction vector toward black hole center
-              const ux = dx / dist;
-              const uy = dy / dist;
+              // Fast bounding box test
+              if (Math.abs(dx) < eventHorizonRadius && Math.abs(dy) < eventHorizonRadius) {
+                const dist = Math.sqrt(dx * dx + dy * dy);
 
-              // Tangential vortex swirl vector
-              const tx = -uy;
-              const ty = ux;
+                if (dist < eventHorizonRadius && dist > 0.05) {
+                  const ux = dx / dist;
+                  const uy = dy / dist;
+                  const tx = -uy;
+                  const ty = ux;
 
-              // Gravitational pull curve
-              const factor = 1 - dist / eventHorizonRadius;
-              const pullFactor = Math.pow(factor, 2.2);
+                  const factor = 1 - dist / eventHorizonRadius;
+                  const pullFactor = Math.pow(factor, 1.9);
 
-              // Gravitational attraction displacement (pulls dots inward seamlessly)
-              const pullAmount = pullFactor * 40;
-              const swirlAmount = pullFactor * 12;
+                  const pullAmount = pullFactor * 48;
+                  const swirlAmount = pullFactor * 13;
 
-              renderX = x0 + ux * pullAmount + tx * swirlAmount;
-              renderY = y0 + uy * pullAmount + ty * swirlAmount;
+                  renderX = x0 + ux * pullAmount + tx * swirlAmount;
+                  renderY = y0 + uy * pullAmount + ty * swirlAmount;
 
-              radius = baseRadius + (maxRadius - baseRadius) * pullFactor;
-              alpha = (0.12 + 0.35 * pullFactor) * topFade;
+                  radius = baseRadius + (maxRadius - baseRadius) * pullFactor;
+                  alpha = 0.11 + 0.65 * pullFactor;
+                }
+              }
+            } else {
+              // Idle fallback: subtle static gravitational presence with calm breathing
+              const dx = ambientX - x0;
+              const dy = ambientY - y0;
+
+              if (Math.abs(dx) < ambientReach && Math.abs(dy) < ambientReach) {
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < ambientReach && dist > 0.05) {
+                  const factor = 1 - dist / ambientReach;
+                  const pullFactor = Math.pow(factor, 2.2);
+                  const pullAmount = pullFactor * (12 + 4 * ambientPulse);
+
+                  renderX = x0 + (dx / dist) * pullAmount;
+                  renderY = y0 + (dy / dist) * pullAmount;
+                  radius = baseRadius + 0.6 * pullFactor;
+                  alpha = 0.11 + 0.18 * pullFactor;
+                }
+              }
             }
           }
 
           ctx.beginPath();
           ctx.arc(renderX, renderY, radius, 0, Math.PI * 2);
-          // Pure monochrome dark neutral dot fill — ZERO yellow or colored circles
           ctx.fillStyle = `rgba(0, 0, 0, ${alpha})`;
           ctx.fill();
         }
@@ -138,10 +217,13 @@ export default function HeroDotCanvas() {
     render();
 
     return () => {
-      if (parent) {
-        parent.removeEventListener("mousemove", handleMouseMove);
-        parent.removeEventListener("mouseleave", handleMouseLeave);
-      }
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("touchcancel", handleTouchEnd);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("resize", handleResize);
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
@@ -154,8 +236,10 @@ export default function HeroDotCanvas() {
       ref={canvasRef}
       className="absolute inset-0 pointer-events-none z-0"
       style={{
-        maskImage: "linear-gradient(to bottom, transparent 0%, black 140px)",
-        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 140px)",
+        maskImage:
+          "linear-gradient(to bottom, transparent 0px, black 15px, black calc(100% - 180px), transparent 100%)",
+        WebkitMaskImage:
+          "linear-gradient(to bottom, transparent 0px, black 15px, black calc(100% - 180px), transparent 100%)",
       }}
       aria-hidden="true"
     />

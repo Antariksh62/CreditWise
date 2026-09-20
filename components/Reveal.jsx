@@ -5,24 +5,33 @@ import { useEffect, useRef } from "react";
 /**
  * Reveal
  * ------------------------------------------------------------
- * Wraps children in a div that fades and rises 12px into view
- * the first time it enters the viewport. Uses IntersectionObserver
- * so nothing animates until the user actually scrolls to it.
+ * Viewport-based entrance reveal component for CreditWise sections.
+ * Makes the page feel like ONE continuous visual story:
+ * - Headings quietly fade and translate 14px upward into position
+ * - Large visuals and cards reveal progressively with subtle clarity transition
+ * - Decorative elements appear gradually
+ * - Preserves 100% normal browser scrolling (no scroll-jacking)
+ * - Complies with `prefers-reduced-motion` in globals.css
  *
- * The motion itself lives in globals.css (.cw-reveal / .is-visible)
- * so `prefers-reduced-motion` can switch it off in one place.
- *
- * @param {number} delay  stagger in milliseconds
- * @param {string} as     element tag to render (default "div")
+ * @param {number} delay      stagger delay in milliseconds
+ * @param {string} as         HTML element tag to render (default "div")
+ * @param {string} variant    "default" | "visual" | "fade"
+ * @param {string} className  additional Tailwind classes
  */
-export default function Reveal({ children, delay = 0, as: Tag = "div", className = "" }) {
+export default function Reveal({
+  children,
+  delay = 0,
+  as: Tag = "div",
+  variant = "default",
+  className = "",
+}) {
   const ref = useRef(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    // If the browser cannot observe, just show the content.
+    // If the browser cannot observe, reveal immediately
     if (typeof IntersectionObserver === "undefined") {
       el.classList.add("is-visible");
       return;
@@ -32,22 +41,33 @@ export default function Reveal({ children, delay = 0, as: Tag = "div", className
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Stagger via a timeout rather than a CSS delay so the
-            // element does not sit invisible if it enters mid-scroll.
-            window.setTimeout(() => el.classList.add("is-visible"), delay);
+            if (delay > 0) {
+              window.setTimeout(() => {
+                if (el) el.classList.add("is-visible");
+              }, delay);
+            } else {
+              el.classList.add("is-visible");
+            }
             observer.unobserve(el);
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
     );
 
     observer.observe(el);
     return () => observer.disconnect();
   }, [delay]);
 
+  const baseClass =
+    variant === "visual"
+      ? "cw-reveal-visual"
+      : variant === "fade"
+      ? "cw-reveal-fade"
+      : "cw-reveal";
+
   return (
-    <Tag ref={ref} className={`cw-reveal ${className}`}>
+    <Tag ref={ref} className={`${baseClass} ${className}`}>
       {children}
     </Tag>
   );

@@ -15,11 +15,11 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative pt-12 pb-0 lg:pt-16 bg-white overflow-hidden border-b-0">
+    <section className="relative pt-12 lg:pt-16 bg-white overflow-hidden">
+      {/* 1. HERO TOP EDITORIAL HEADER */}
       <div className="cw-container relative z-10">
-        {/* HERO EDITORIAL & TYPOGRAPHY HEADER */}
         <div className="max-w-4xl text-left space-y-4">
-          {/* TOP FAINT STAT/LABEL BADGE */}
+          {/* BADGE */}
           <div className="inline-flex items-center gap-2 rounded border border-neutral-200/80 bg-neutral-50 px-2.5 py-1 text-[9px] font-medium text-neutral-600 tracking-wider uppercase">
             <span>INDIAN CREDIT CARD REWARDS OPTIMIZED:</span>
             <span className="rounded bg-neutral-200/80 px-1.5 py-0.5 font-mono text-[8px] font-bold text-black">
@@ -27,7 +27,7 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* MAIN HEADLINE — SLEEK MEDIUM FONT WEIGHT */}
+          {/* MAIN HEADLINE */}
           <h1 className="text-4xl sm:text-6xl lg:text-[3.5rem] font-normal sm:font-medium tracking-tight text-neutral-950 leading-[1.05] max-w-3xl">
             What if your expenses could{" "}
             <span className="text-neutral-400 block sm:inline font-normal">
@@ -37,22 +37,23 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* SEAMLESS DOT GRID PATTERN SECTION — MERGES BEAUTIFULLY FROM "earn rewards too?" LINE */}
-      <div className="relative w-full pt-3 pb-4">
-        {/* BLACK HOLE CURSOR-RESPONSIVE DOT CANVAS WITH TOP SEAMLESS FADE */}
+      {/* 2. CONTINUOUS DOTTED MATRIX ENVIRONMENT */}
+      {/* Starts directly at the supporting text line and extends ~1 full page below */}
+      <div className="relative w-full min-h-[720px] sm:min-h-[880px] lg:min-h-[1080px] pt-4 pb-20">
+        {/* INTERACTIVE CANVAS EXTENDING ACROSS THE ENTIRE CONTINUOUS FIELD */}
         <HeroDotCanvas />
 
         <div className="cw-container relative z-10">
-          {/* CONCISE FAINT 1-LINE SUBTITLE */}
-          <p className="text-neutral-500 text-base sm:text-lg font-normal tracking-normal max-w-2xl leading-snug mb-6">
+          {/* SUPPORTING TEXT — DOTTED FIELD CONTINUES NATURALLY FROM / BEHIND THIS LINE */}
+          <p className="text-neutral-600 text-base sm:text-lg font-normal tracking-normal max-w-2xl leading-snug mb-6">
             Cards, rewards, lounge access, and cashback* – matched to your spending.
           </p>
 
-          {/* EMAIL INPUT BOX RIGHT BELOW SUBTITLE */}
+          {/* EMAIL INPUT BOX */}
           <div className="mb-0 pb-2">
             <form
               onSubmit={handleEmailSubmit}
-              className="flex flex-col sm:flex-row items-center gap-2 bg-white/90 backdrop-blur border border-neutral-200/90 rounded-[8px] p-1.5 max-w-md w-full shadow-sm"
+              className="flex flex-col sm:flex-row items-center gap-2 bg-white/95 backdrop-blur-sm border border-neutral-200/90 rounded-[8px] p-1.5 max-w-md w-full shadow-sm"
             >
               <input
                 type="email"
