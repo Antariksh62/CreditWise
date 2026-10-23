@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, Utensils, Fuel, Plane, Globe } from "lucide-react";
+import CreditCardVisual from "@/components/CreditCardVisual";
 
 /**
  * PersonalStorySection
@@ -20,9 +21,11 @@ export default function PersonalStorySection() {
 
   useEffect(() => {
     let animId;
+    let isIntersecting = false;
+    let lastProgress = -1;
 
     const handleScroll = () => {
-      if (!sectionRef.current) return;
+      if (!isIntersecting || !sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const totalDist = rect.height - windowHeight;
@@ -32,18 +35,37 @@ export default function PersonalStorySection() {
       const currentScroll = -rect.top;
       const progress = Math.max(0, Math.min(1, currentScroll / totalDist));
 
+      // Avoid re-renders if progress change is negligible (< 0.003)
+      if (Math.abs(progress - lastProgress) < 0.003) return;
+
       cancelAnimationFrame(animId);
       animId = requestAnimationFrame(() => {
+        lastProgress = progress;
         setScrollProgress(progress);
       });
     };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isIntersecting = entry.isIntersecting;
+        if (isIntersecting) {
+          handleScroll();
+        }
+      },
+      { rootMargin: "100px 0px 100px 0px" }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
-      cancelAnimationFrame(animId);
+      if (animId) cancelAnimationFrame(animId);
     };
   }, []);
 
@@ -81,7 +103,7 @@ export default function PersonalStorySection() {
             <span className="text-neutral-400 font-normal block">Your card should be too.</span>
           </h2>
           <p className="text-xs sm:text-sm lg:text-base text-neutral-500 font-normal max-w-xl mx-auto hidden xs:block">
-            Instead of generic rankings, we analyze your actual expense categories to pinpoint the exact card that maximizes your real-world net return.
+            Instead of generic rankings, we analyze your actual expenses to find cards that give you the highest value back on what you already spend.
           </p>
         </div>
 
@@ -165,41 +187,24 @@ export default function PersonalStorySection() {
 
               <div className="flex items-center gap-1 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-[11px] sm:text-xs font-mono font-semibold">
                 <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                <span>98% Match</span>
+                <span>Verified Fit</span>
               </div>
             </div>
 
             {/* MAIN CARD RECOMMENDATION DISPLAY */}
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-6 items-center">
               
-              {/* PHYSICAL CARD VISUAL */}
+              {/* PHYSICAL CARD VISUAL - REAL VERIFIED CARD ARTWORK */}
               <div className="sm:col-span-5 flex justify-center">
-                <div className="relative w-44 sm:w-52 h-26 sm:h-32 rounded-xl bg-gradient-to-br from-[#1c1c1f] via-[#121214] to-[#0a0a0c] border border-neutral-700/60 shadow-xl p-3.5 sm:p-4 flex flex-col justify-between overflow-hidden">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-1.5">
-                      <div className="flex h-4 w-4 items-center justify-center rounded bg-white text-black font-extrabold text-[9px]">
-                        cw
-                      </div>
-                      <span className="text-white text-xs font-bold tracking-tight">
-                        cardwise
-                      </span>
-                    </div>
-                    <span className="text-[8px] font-mono text-neutral-400 uppercase tracking-widest">
-                      PREFERRED
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2 my-auto">
-                    <div className="w-6 sm:w-7 h-4 sm:h-5 rounded-xs bg-amber-200/90 border border-amber-400/50" />
-                    <span className="text-[9px] font-mono text-neutral-400">•••• 4819</span>
-                  </div>
-
-                  <div className="flex items-end justify-between">
-                    <span className="text-[9px] font-mono text-neutral-400">HSBC LIVE+</span>
-                    <span className="text-[10px] font-bold text-[#e4f222] bg-white/10 px-1.5 py-0.5 rounded">
-                      10% Back
-                    </span>
-                  </div>
+                <div className="w-48 sm:w-56 drop-shadow-xl">
+                  <CreditCardVisual
+                    issuer="HSBC"
+                    name="HSBC Live+ Credit Card"
+                    image="/credit-card-imgs/hsbc-live-plus.png"
+                    orientation="horizontal"
+                    size="sm"
+                    className="w-full"
+                  />
                 </div>
               </div>
 

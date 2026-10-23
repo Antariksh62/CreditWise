@@ -156,3 +156,38 @@ CreditWise must remain:
 - **Calm & spacious**
 - **Modern**
 - Never turn CreditWise into a generic, cluttered SaaS dashboard.
+
+---
+
+## 10. Master UI/UX Quality Rules (Persistent)
+> Full specification codified in [MASTER_UI_UX_QUALITY_RULES.md](file:///d:/Desktop/cstf-tanstack/docs/MASTER_UI_UX_QUALITY_RULES.md) and [.agents/rules/ui-ux-quality.md](file:///d:/Desktop/cstf-tanstack/.agents/rules/ui-ux-quality.md).
+
+The goal is **NOT** to make CreditWise look like a generic AI-generated SaaS application.
+The goal is to create a polished, intentional, modern financial-product experience with excellent UI/UX.
+**DESIGN QUALITY IS A REQUIREMENT, NOT A POLISHING STEP.**
+
+- **Aesthetic Feel**: Considered, restrained, premium, editorial, trustworthy, spacious, intentional, easy to understand.
+- **Never Feel**: Vibe-coded, template-generated, AI-generated, like a generic SaaS dashboard or hackathon template.
+- **Strict Visual Prohibitions**:
+  - No purple or generic blue/purple AI gradients
+  - No excessive glassmorphism, blur, or heavy drop shadows
+  - No pill-shaped UI everywhere
+  - No nested container anti-patterns (`big rounded container -> smaller container -> smaller container -> pills -> badges -> gradient`)
+  - No fake stats, fake reviews, fake ratings, or fake metrics
+  - No emoji icons in UI
+  - No useless decorative UI, excessive badges, chips, or floating elements
+  - No scroll-jacking; native browser scrolling must remain 100% intact
+- **Typography & Spacing**:
+  - Controlled headlines, standard comfortable line lengths (max 60-72ch)
+  - Clear contrast between primary and secondary text
+  - Generous whitespace; whitespace is an active design element
+- **Content & Tone**:
+  - Concise, human language; every sentence must communicate something useful
+  - Never use AI clichés (*"Unlock your potential"*, *"Revolutionize your spending"*, *"Financial freedom"*)
+  - The product optimizes existing spending: *"Don't spend more. Get more back."*
+- **Interaction & Accessibility**:
+  - Subtle, purposeful transitions (`cw-reveal`, natural hovers)
+  - Full keyboard accessibility and visible focus states
+  - WCAG AA contrast compliance and semantic HTML
+- **Designer Filter**: Before adding any component or visual effect, ask: *"Does this improve understanding or interaction?"* and *"Would a strong product designer actually use this here?"* If not, do not add it.
+

@@ -18,6 +18,34 @@ import { useEffect, useRef } from "react";
  * @param {string} variant    "default" | "visual" | "fade"
  * @param {string} className  additional Tailwind classes
  */
+// Shared singleton observer to avoid creating multiple observer instances
+let sharedObserver = null;
+const callbackMap = new WeakMap();
+
+function getSharedObserver() {
+  if (typeof window === "undefined" || typeof IntersectionObserver === "undefined") {
+    return null;
+  }
+  if (!sharedObserver) {
+    sharedObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cb = callbackMap.get(entry.target);
+            if (cb) {
+              cb();
+              callbackMap.delete(entry.target);
+            }
+            sharedObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+  }
+  return sharedObserver;
+}
+
 export default function Reveal({
   children,
   delay = 0,
@@ -31,32 +59,29 @@ export default function Reveal({
     const el = ref.current;
     if (!el) return;
 
-    // If the browser cannot observe, reveal immediately
-    if (typeof IntersectionObserver === "undefined") {
+    const observer = getSharedObserver();
+    if (!observer) {
       el.classList.add("is-visible");
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (delay > 0) {
-              window.setTimeout(() => {
-                if (el) el.classList.add("is-visible");
-              }, delay);
-            } else {
-              el.classList.add("is-visible");
-            }
-            observer.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
-    );
+    const revealElement = () => {
+      if (delay > 0) {
+        window.setTimeout(() => {
+          if (el) el.classList.add("is-visible");
+        }, delay);
+      } else {
+        el.classList.add("is-visible");
+      }
+    };
 
+    callbackMap.set(el, revealElement);
     observer.observe(el);
-    return () => observer.disconnect();
+
+    return () => {
+      callbackMap.delete(el);
+      observer.unobserve(el);
+    };
   }, [delay]);
 
   const baseClass =

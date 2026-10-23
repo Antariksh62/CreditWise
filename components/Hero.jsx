@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import HeroDotCanvas from "./HeroDotCanvas";
 
 export default function Hero() {
@@ -19,13 +20,10 @@ export default function Hero() {
       {/* 1. HERO TOP EDITORIAL HEADER */}
       <div className="cw-container relative z-10">
         <div className="max-w-4xl text-left space-y-4">
-          {/* BADGE */}
-          <div className="inline-flex items-center gap-2 rounded border border-neutral-200/80 bg-neutral-50 px-2.5 py-1 text-[9px] font-medium text-neutral-600 tracking-wider uppercase">
-            <span>INDIAN CREDIT CARD REWARDS OPTIMIZED:</span>
-            <span className="rounded bg-neutral-200/80 px-1.5 py-0.5 font-mono text-[8px] font-bold text-black">
-              100% TRANSPARENT
-            </span>
-          </div>
+          {/* EDITORIAL EYEBROW */}
+          <p className="text-xs font-mono uppercase tracking-wider text-neutral-500 font-medium">
+            INDIAN CREDIT CARD REWARDS · 100% TRANSPARENT
+          </p>
 
           {/* MAIN HEADLINE */}
           <h1 className="text-4xl sm:text-6xl lg:text-[3.5rem] font-normal sm:font-medium tracking-tight text-neutral-950 leading-[1.05] max-w-3xl">
@@ -38,8 +36,8 @@ export default function Hero() {
       </div>
 
       {/* 2. CONTINUOUS DOTTED MATRIX ENVIRONMENT */}
-      {/* Starts directly at the supporting text line and extends ~1 full page below */}
-      <div className="relative w-full min-h-[720px] sm:min-h-[880px] lg:min-h-[1080px] pt-4 pb-20">
+      {/* Starts directly at the supporting text line and extends comfortably below */}
+      <div className="relative w-full min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] pt-4 pb-20">
         {/* INTERACTIVE CANVAS EXTENDING ACROSS THE ENTIRE CONTINUOUS FIELD */}
         <HeroDotCanvas />
 
@@ -49,7 +47,7 @@ export default function Hero() {
             Cards, rewards, lounge access, and cashback* – matched to your spending.
           </p>
 
-          {/* EMAIL INPUT BOX */}
+          {/* EMAIL INPUT BOX & DIRECT QUIZ CTA */}
           <div className="mb-0 pb-2">
             <form
               onSubmit={handleEmailSubmit}
@@ -67,9 +65,18 @@ export default function Hero() {
                 type="submit"
                 className="w-full sm:w-auto shrink-0 rounded-[6px] bg-[#e4f222] px-5 py-2.5 text-sm font-medium text-black hover:bg-[#cee723] transition-colors whitespace-nowrap shadow-sm"
               >
-                Get started for free
+                Find my card
               </button>
             </form>
+            <div className="mt-3 flex items-center gap-2 text-xs text-neutral-500">
+              <span>Prefer not to share email?</span>
+              <Link
+                href="/recommend"
+                className="font-medium text-neutral-900 underline underline-offset-4 hover:text-black transition-colors"
+              >
+                Take the 1-minute quiz directly →
+              </Link>
+            </div>
           </div>
         </div>
       </div>

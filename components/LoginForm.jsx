@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff, AlertCircle, HelpCircle, X, ShieldCheck } from "lucide-react";
+import { Eye, EyeOff, AlertCircle, HelpCircle, X, ArrowRight } from "lucide-react";
 import demoUsers from "../data/users.json";
 
 export default function LoginForm() {
@@ -26,9 +26,11 @@ export default function LoginForm() {
 
   function validate() {
     const nextErrors = {};
-    if (!values.email.trim()) {
+    const emailTrimmed = values.email.trim();
+
+    if (!emailTrimmed) {
       nextErrors.email = "Email address is required.";
-    } else if (!/^[^s@]+@[^s@]+.[^s@]+$/.test(values.email.trim()) && !values.email.includes("aarav") && !values.email.includes("rohanm")) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed) && !emailTrimmed.includes("aarav") && !emailTrimmed.includes("rohanm")) {
       nextErrors.email = "Please enter a valid email address.";
     }
 
@@ -55,7 +57,7 @@ export default function LoginForm() {
 
     setLoading(true);
 
-    // Look for stored users in localStorage, falling back to demo users
+    // Check stored users in localStorage, falling back to demo users
     let storedUsers = [];
     try {
       const raw = window.localStorage.getItem("cardwise:users");
@@ -65,7 +67,7 @@ export default function LoginForm() {
     }
 
     const inputLower = values.email.trim().toLowerCase();
-    
+
     // Check locally registered users first
     const localUser = storedUsers.find(
       (u) => u.email?.toLowerCase() === inputLower || u.username?.toLowerCase() === inputLower
@@ -81,7 +83,7 @@ export default function LoginForm() {
     if (!matchedUser) {
       setLoading(false);
       setErrors({
-        form: "No account found with this email. You can sign up below or try demo user 'aarav@example.com'."
+        form: "No account found with this email. You can create a new account or select a quick demo user below.",
       });
       return;
     }
@@ -92,12 +94,17 @@ export default function LoginForm() {
       email: matchedUser.email,
       username: matchedUser.username || matchedUser.email.split("@")[0],
       age: matchedUser.age || 25,
-      savedCards: matchedUser.savedCards || []
+      savedCards: matchedUser.savedCards || [],
     };
 
-    window.localStorage.setItem("cardwise:user", JSON.stringify(sessionUser));
+    try {
+      window.localStorage.setItem("cardwise:user", JSON.stringify(sessionUser));
+      window.dispatchEvent(new Event("storage"));
+    } catch {
+      // ignore quota issues
+    }
 
-    // Check if user has an onboarding profile
+    // Direct user to onboarding if profile is incomplete, or results/profile
     const existingProfile = window.localStorage.getItem("cardwise:profile");
     if (!existingProfile) {
       router.push("/onboarding");
@@ -113,21 +120,28 @@ export default function LoginForm() {
 
   return (
     <div className="relative">
-      <form noValidate onSubmit={handleSubmit} className="rounded-2xl border border-neutral-200/80 bg-white p-7 sm:p-9 shadow-sm">
+      <form
+        noValidate
+        onSubmit={handleSubmit}
+        className="rounded-2xl border border-neutral-200/80 bg-white p-7 sm:p-9 shadow-sm"
+      >
         <div className="mb-6">
-          <span className="text-[11px] font-bold uppercase tracking-wider bg-neutral-100 text-neutral-600 px-2.5 py-1 rounded-full">
-            Demo Authentication
-          </span>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-black mt-3">
-            Sign in to CreditWise
-          </h1>
-          <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 leading-relaxed">
-            Access your personalized spending breakdown and saved card recommendations.
+          <p className="text-xs font-mono uppercase tracking-wider text-neutral-400 font-medium mb-1">
+            Account Sign In
+          </p>
+          <h2 className="text-2xl font-extrabold text-black">
+            Welcome back
+          </h2>
+          <p className="text-xs sm:text-sm text-neutral-500 mt-1 leading-relaxed">
+            Enter your email and password to access your personalized card recommendations.
           </p>
         </div>
 
         {errors.form && (
-          <div role="alert" className="mb-5 flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3.5 text-xs text-red-700">
+          <div
+            role="alert"
+            className="mb-5 flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3.5 text-xs text-red-700"
+          >
             <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
             <span>{errors.form}</span>
           </div>
@@ -136,7 +150,10 @@ export default function LoginForm() {
         <div className="space-y-4">
           {/* Email */}
           <div>
-            <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">
+            <label
+              htmlFor="email"
+              className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5"
+            >
               Email address
             </label>
             <input
@@ -147,8 +164,8 @@ export default function LoginForm() {
               placeholder="you@example.com"
               value={values.email}
               onChange={(e) => handleChange("email", e.target.value)}
-              className={`w-full rounded-lg border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black ${
-                errors.email ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-neutral-50/40"
+              className={`w-full rounded-[6px] border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 transition-colors focus:outline-none focus:ring-2 focus:ring-black ${
+                errors.email ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-white hover:border-neutral-300"
               }`}
               aria-invalid={errors.email ? "true" : "false"}
               aria-describedby={errors.email ? "email-error" : undefined}
@@ -163,7 +180,10 @@ export default function LoginForm() {
           {/* Password */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label htmlFor="password" className="block text-xs font-semibold uppercase tracking-wider text-neutral-700">
+              <label
+                htmlFor="password"
+                className="block text-xs font-semibold uppercase tracking-wider text-neutral-700"
+              >
                 Password
               </label>
               <button
@@ -183,8 +203,8 @@ export default function LoginForm() {
                 placeholder="••••••••"
                 value={values.password}
                 onChange={(e) => handleChange("password", e.target.value)}
-                className={`w-full rounded-lg border px-3.5 py-2.5 pr-10 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black ${
-                  errors.password ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-neutral-50/40"
+                className={`w-full rounded-[6px] border px-3.5 py-2.5 pr-10 text-sm text-black placeholder:text-neutral-400 transition-colors focus:outline-none focus:ring-2 focus:ring-black ${
+                  errors.password ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-white hover:border-neutral-300"
                 }`}
                 aria-invalid={errors.password ? "true" : "false"}
                 aria-describedby={errors.password ? "password-error" : undefined}
@@ -192,7 +212,7 @@ export default function LoginForm() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-black focus:outline-none"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-black focus:outline-none p-1"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
@@ -213,9 +233,16 @@ export default function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="mt-6 w-full rounded-lg bg-black py-3 text-xs sm:text-sm font-bold text-white transition-all hover:bg-neutral-800 disabled:opacity-50"
+          className="mt-6 w-full rounded-[6px] bg-black py-3 text-xs sm:text-sm font-bold text-white transition-all hover:bg-neutral-800 disabled:opacity-50 flex items-center justify-center gap-2"
         >
-          {loading ? "Signing in…" : "Sign in"}
+          {loading ? (
+            "Signing in…"
+          ) : (
+            <>
+              Sign In
+              <ArrowRight className="h-4 w-4" />
+            </>
+          )}
         </button>
 
         <p className="mt-5 text-center text-xs text-neutral-500">
@@ -226,35 +253,35 @@ export default function LoginForm() {
         </p>
       </form>
 
-      {/* Quick Demo Pre-fill */}
-      <div className="mt-5 rounded-xl border border-neutral-200/80 bg-neutral-50/80 p-4 text-xs text-neutral-600">
-        <p className="font-bold text-neutral-800 uppercase tracking-wider text-[10px] mb-1.5">
-          Quick Demo Accounts
+      {/* Quick Demo Pre-fill for Testing */}
+      <div className="mt-6 rounded-xl border border-neutral-200/80 bg-white p-5 text-xs text-neutral-600 shadow-2xs">
+        <p className="font-bold text-black uppercase tracking-wider text-[10px] mb-1">
+          Demo Testing Accounts
         </p>
-        <p className="text-neutral-500 leading-relaxed mb-2.5">
-          Click any pre-seeded profile to autofill credentials for testing:
+        <p className="text-neutral-500 leading-relaxed mb-3">
+          Click any pre-seeded profile to autofill credentials for local evaluation:
         </p>
         <div className="flex flex-wrap gap-2">
           <button
             type="button"
             onClick={() => fillDemoUser("aarav@example.com")}
-            className="rounded border border-neutral-200 bg-white px-2.5 py-1 text-xs font-medium text-neutral-700 hover:border-black"
+            className="rounded-[6px] border border-neutral-200 bg-neutral-50 px-2.5 py-1 text-xs font-medium text-neutral-800 hover:border-black hover:bg-white transition-colors"
           >
-            Aarav Sharma
+            Aarav Sharma (Cashback Spender)
           </button>
           <button
             type="button"
             onClick={() => fillDemoUser("rohan@example.com")}
-            className="rounded border border-neutral-200 bg-white px-2.5 py-1 text-xs font-medium text-neutral-700 hover:border-black"
+            className="rounded-[6px] border border-neutral-200 bg-neutral-50 px-2.5 py-1 text-xs font-medium text-neutral-800 hover:border-black hover:bg-white transition-colors"
           >
-            Rohan Mehta
+            Rohan Mehta (Travel Optimizer)
           </button>
           <button
             type="button"
             onClick={() => fillDemoUser("kabir@example.com")}
-            className="rounded border border-neutral-200 bg-white px-2.5 py-1 text-xs font-medium text-neutral-700 hover:border-black"
+            className="rounded-[6px] border border-neutral-200 bg-neutral-50 px-2.5 py-1 text-xs font-medium text-neutral-800 hover:border-black hover:bg-white transition-colors"
           >
-            Kabir Singh
+            Kabir Singh (Amazon Everyday)
           </button>
         </div>
       </div>
@@ -265,7 +292,7 @@ export default function LoginForm() {
           <div className="relative w-full max-w-md rounded-2xl border border-neutral-200 bg-white p-6 shadow-xl">
             <button
               onClick={() => setShowForgotModal(false)}
-              className="absolute right-4 top-4 text-neutral-400 hover:text-black"
+              className="absolute right-4 top-4 text-neutral-400 hover:text-black p-1"
               aria-label="Close dialog"
             >
               <X className="h-4 w-4" />
@@ -287,7 +314,7 @@ export default function LoginForm() {
             <button
               type="button"
               onClick={() => setShowForgotModal(false)}
-              className="w-full rounded-lg bg-black py-2.5 text-xs font-bold text-white hover:bg-neutral-800"
+              className="w-full rounded-[6px] bg-black py-2.5 text-xs font-bold text-white hover:bg-neutral-800 transition-colors"
             >
               Got it
             </button>

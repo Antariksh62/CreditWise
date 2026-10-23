@@ -1,13 +1,67 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
   const [activeMegaMenu, setActiveMegaMenu] = useState(null); // 'cards' | 'tools' | null
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    function readUser() {
+      if (typeof window === "undefined") return;
+      try {
+        const raw = window.localStorage.getItem("cardwise:user");
+        if (!raw) {
+          setUser(null);
+          return;
+        }
+        const parsed = JSON.parse(raw);
+        if (
+          parsed &&
+          typeof parsed === "object" &&
+          !Array.isArray(parsed) &&
+          (parsed.email || parsed.username || parsed.fullName)
+        ) {
+          setUser(parsed);
+        } else {
+          setUser(null);
+        }
+      } catch {
+        setUser(null);
+      }
+    }
+
+    readUser();
+    window.addEventListener("storage", readUser);
+    return () => window.removeEventListener("storage", readUser);
+  }, [pathname]);
+
+  const handleSignOut = () => {
+    try {
+      window.localStorage.removeItem("cardwise:user");
+    } catch {}
+    setUser(null);
+    setActiveMegaMenu(null);
+    setMobileMenuOpen(false);
+    window.dispatchEvent(new Event("storage"));
+    router.push("/");
+  };
+
+  const displayName = user
+    ? user.fullName
+      ? user.fullName.split(" ")[0]
+      : user.username || "Profile"
+    : "";
+  const initial = user
+    ? (user.fullName || user.username || user.email || "U")[0].toUpperCase()
+    : "U";
 
   const handleNavClick = (href) => {
     setActiveMegaMenu(null);
@@ -130,12 +184,37 @@ export default function Navbar() {
 
           {/* RIGHT: ACTION BUTTONS MATCHING RAMP SPECS */}
           <div className="hidden md:flex items-center gap-2 lg:gap-3">
-            <Link
-              href="/login"
-              className="text-sm font-medium text-neutral-700 hover:text-black px-3 py-2 transition-colors"
-            >
-              Sign in
-            </Link>
+            {mounted && user ? (
+              <>
+                <Link
+                  href="/profile"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-neutral-700 hover:text-black px-2.5 py-1.5 transition-colors rounded-[6px] hover:bg-neutral-100"
+                  title="View spending profile & wallet"
+                >
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-black text-[#e4f222] text-[10px] font-bold shrink-0">
+                    {initial}
+                  </span>
+                  <span className="max-w-[120px] truncate text-xs font-semibold text-neutral-900">
+                    {displayName}
+                  </span>
+                </Link>
+                <button
+                  type="button"
+                  onClick={handleSignOut}
+                  className="text-xs font-medium text-neutral-500 hover:text-black px-2.5 py-2 transition-colors"
+                  title="Sign out of demo account"
+                >
+                  Sign out
+                </button>
+              </>
+            ) : (
+              <Link
+                href="/login"
+                className="text-sm font-medium text-neutral-700 hover:text-black px-3 py-2 transition-colors"
+              >
+                Sign in
+              </Link>
+            )}
             <Link
               href="/compare"
               className="rounded-[6px] bg-[#e4f222] px-3.5 py-2 text-sm font-medium text-black hover:bg-[#cee723] transition-colors whitespace-nowrap"
@@ -271,7 +350,7 @@ export default function Navbar() {
                             Recommendation Quiz
                           </div>
                           <div className="text-xs text-neutral-500">
-                            Answer 4 questions to find your top 3 matching cards
+                            Answer 5 quick questions to find your top 3 matching cards
                           </div>
                         </Link>
                       </li>
@@ -315,7 +394,7 @@ export default function Navbar() {
                     Find your exact match
                   </div>
                   <p className="text-xs text-neutral-600 mb-4">
-                    Answer 4 simple questions to find cards that fit your everyday spending.
+                    Answer 5 quick questions to find cards that fit your everyday spending.
                   </p>
                   <Link
                     href="/recommend"
@@ -333,6 +412,30 @@ export default function Navbar() {
       {/* MOBILE MENU OVERLAY */}
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-neutral-200 bg-white px-6 py-6 space-y-4">
+          {mounted && user && (
+            <div className="pb-3 border-b border-neutral-100 flex items-center justify-between">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-full bg-black text-[#e4f222] text-xs font-bold flex items-center justify-center shrink-0">
+                  {initial}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-bold text-neutral-900 truncate">
+                    {user.fullName || user.username}
+                  </p>
+                  <p className="text-xs text-neutral-500 truncate">
+                    {user.email || ""}
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/profile"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-xs font-semibold text-neutral-900 px-2.5 py-1 bg-neutral-100 rounded hover:bg-neutral-200 shrink-0"
+              >
+                Profile
+              </Link>
+            </div>
+          )}
           <Link
             href="/cards"
             onClick={() => setMobileMenuOpen(false)}
@@ -361,28 +464,65 @@ export default function Navbar() {
           >
             Guides & Articles
           </Link>
+          {mounted && user && (
+            <Link
+              href="/profile"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-base font-semibold text-black"
+            >
+              Spending Profile & Wallet
+            </Link>
+          )}
           <div className="pt-4 border-t border-neutral-200 flex flex-col gap-3">
-            <Link
-              href="/login"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-center font-semibold text-sm text-neutral-700 py-2"
-            >
-              Sign in
-            </Link>
-            <Link
-              href="/compare"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-center font-medium text-sm bg-[#e4f222] text-black py-2.5 rounded-[6px]"
-            >
-              Compare cards
-            </Link>
-            <Link
-              href="/recommend"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-center font-medium text-sm bg-black text-white py-2.5 rounded-[6px]"
-            >
-              Get started
-            </Link>
+            {mounted && user ? (
+              <>
+                <button
+                  type="button"
+                  onClick={handleSignOut}
+                  className="w-full text-center font-semibold text-sm text-neutral-600 hover:text-black py-2"
+                >
+                  Sign out
+                </button>
+                <Link
+                  href="/compare"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center font-medium text-sm bg-[#e4f222] text-black py-2.5 rounded-[6px]"
+                >
+                  Compare cards
+                </Link>
+                <Link
+                  href="/recommend"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center font-medium text-sm bg-black text-white py-2.5 rounded-[6px]"
+                >
+                  Get started
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center font-semibold text-sm text-neutral-700 py-2"
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/compare"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center font-medium text-sm bg-[#e4f222] text-black py-2.5 rounded-[6px]"
+                >
+                  Compare cards
+                </Link>
+                <Link
+                  href="/recommend"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center font-medium text-sm bg-black text-white py-2.5 rounded-[6px]"
+                >
+                  Get started
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

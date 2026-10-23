@@ -12,7 +12,7 @@ const ROW_1_CARDS = [
     category: "Score",
     iconName: "ShieldCheck",
     badgeText: "780+",
-    slug: "understanding-credit-scores",
+    slug: "credit-score",
     quote: "Payment history carries the most weight: a single 30-day late payment can stay on your report for years, while keeping an old zero-fee card quietly protects your credit age.",
   },
   {
@@ -56,7 +56,7 @@ const ROW_2_CARDS = [
     iconName: "CreditCard",
     badgeText: "1ST",
     slug: "choosing-your-first-card",
-    quote: "Start from a month of your bank statements, not flashy marketing tables. Match the card to your two largest recurring expense categories for maximum net yield.",
+    quote: "Start from a month of your bank statements, not flashy marketing tables. Match the card to your two largest recurring expense categories to get real value from what you already spend.",
   },
   {
     id: "la",

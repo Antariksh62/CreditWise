@@ -7,7 +7,7 @@ export default function CardTechnicalDetails({ card }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="mt-12 rounded-2xl border border-neutral-200/80 bg-white overflow-hidden shadow-sm">
+    <div className="mt-10 rounded-2xl border border-neutral-200/80 bg-white overflow-hidden shadow-xs">
       {/* Header / Toggle Button */}
       <button
         type="button"
@@ -16,22 +16,22 @@ export default function CardTechnicalDetails({ card }) {
         aria-expanded={isOpen}
       >
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
-            Technical Breakdown
+          <span className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400 block mb-1">
+            Progressive Disclosure
           </span>
-          <h2 className="text-lg sm:text-xl font-extrabold text-black">
-            {isOpen ? "Full Technical Details & Exclusions" : "See full details"}
+          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight">
+            KEY DETAILS
           </h2>
           <p className="text-xs text-neutral-500 mt-1">
             {isOpen
-              ? "Detailed reward mechanics, category caps, exclusions, and verified bank terms."
-              : "Expand to review exact reward rates, exclusions, caps, lounge criteria, and milestone schedules."}
+              ? "Technical reward rates, monthly caps, spend exclusions, lounge partner criteria, and milestone schedules."
+              : "Expand to review exact reward mechanics, monthly caps, exclusions, lounge criteria, and milestone schedules."}
           </p>
         </div>
 
-        <div className="flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3.5 py-1.5 text-xs font-bold text-neutral-800 shrink-0 shadow-xs">
-          <span>{isOpen ? "Hide details" : "See full details"}</span>
-          {isOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+        <div className="flex items-center gap-2 rounded-lg border border-neutral-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-neutral-700 shrink-0 shadow-2xs">
+          <span>{isOpen ? "Hide key details" : "See key details"}</span>
+          {isOpen ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
         </div>
       </button>
 

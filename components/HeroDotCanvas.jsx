@@ -102,13 +102,35 @@ export default function HeroDotCanvas() {
 
     // Visibility change handler to pause render loop when tab is backgrounded
     let isPageVisible = !document.hidden;
-    const handleVisibilityChange = () => {
-      isPageVisible = !document.hidden;
-      if (isPageVisible && !prefersReducedMotion) {
-        cancelAnimationFrame(animationFrameId);
-        animationFrameId = requestAnimationFrame(render);
+    let isIntersecting = true;
+
+    const checkShouldAnimate = () => {
+      if (isPageVisible && isIntersecting && !prefersReducedMotion) {
+        if (!animationFrameId) {
+          animationFrameId = requestAnimationFrame(render);
+        }
+      } else {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
       }
     };
+
+    const handleVisibilityChange = () => {
+      isPageVisible = !document.hidden;
+      checkShouldAnimate();
+    };
+
+    // IntersectionObserver to pause canvas rAF when scrolled away
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isIntersecting = entry.isIntersecting;
+        checkShouldAnimate();
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave);
@@ -217,6 +239,7 @@ export default function HeroDotCanvas() {
     render();
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
       window.removeEventListener("touchstart", handleTouchStart);

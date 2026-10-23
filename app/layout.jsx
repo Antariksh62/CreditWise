@@ -23,16 +23,17 @@ const inter = Inter({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://creditwise-insights.vercel.app"),
   title: {
-    default: "CardWise — Find the credit card that fits how you spend",
-    template: "%s — CardWise",
+    default: "CreditWise — Find the credit card that fits how you spend",
+    template: "%s — CreditWise",
   },
   description:
-    "CardWise ranks ten Indian credit cards against your actual spending using a transparent, rule-based scoring system. Educational demo, no affiliate links.",
+    "CreditWise evaluates 31 verified Indian credit cards against your existing spending using an explainable, rule-based matching engine. Transparent calculations, zero affiliate bias.",
   openGraph: {
-    title: "CardWise — Find the credit card that fits how you spend",
+    title: "CreditWise — Find the credit card that fits how you spend",
     description:
-      "Answer five questions and see which credit card matches your spending, with every score explained.",
+      "Match your natural spending against 31 verified Indian credit cards with transparent calculations and fee break-even analysis.",
     type: "website",
   },
 };

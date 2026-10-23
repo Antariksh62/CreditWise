@@ -8,9 +8,9 @@ import RecommendationQuiz from "../../components/RecommendationQuiz";
  */
 
 export const metadata = {
-  title: "Find your card",
+  title: "Find your card — CreditWise",
   description:
-    "Answer five questions about how you spend and CardWise ranks ten credit cards against your answers, showing the reasoning behind every score.",
+    "Answer five questions about how you spend and CreditWise ranks verified credit cards against your answers, showing the reasoning behind every match.",
 };
 
 export default function RecommendPage() {
@@ -22,15 +22,14 @@ export default function RecommendPage() {
           <h1 className="cw-h2">Five questions about how you spend</h1>
           <p className="cw-body mt-3 text-lead">
             No account needed. Your answers stay in this browser and are used only to
-            score the ten cards in the CardWise catalogue.
+            score all 31 verified cards in the CreditWise catalogue.
           </p>
         </header>
 
         <RecommendationQuiz />
 
         <p className="mx-auto mt-6 max-w-[640px] text-center text-[0.8125rem] text-muted">
-          Scoring is rule-based and fully documented in lib/recommendation.js — no
-          machine learning is involved.
+          Matching is deterministic, rule-based, and fully transparent — no sponsored placements or affiliate rankings.
         </p>
       </div>
     </div>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff, AlertCircle, CheckCircle2 } from "lucide-react";
+import { Eye, EyeOff, AlertCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function SignupForm() {
   const router = useRouter();
@@ -11,9 +11,9 @@ export default function SignupForm() {
     fullName: "",
     email: "",
     age: "",
+    ageConfirmed: true,
     password: "",
     confirmPassword: "",
-    ageConfirmed: true,
   });
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
@@ -33,13 +33,17 @@ export default function SignupForm() {
   function validate() {
     const next = {};
 
-    if (!values.fullName.trim()) {
+    const fullNameTrimmed = values.fullName.trim();
+    if (!fullNameTrimmed) {
       next.fullName = "Please enter your full name.";
+    } else if (fullNameTrimmed.length < 2) {
+      next.fullName = "Name must be at least 2 characters.";
     }
 
-    if (!values.email.trim()) {
+    const emailTrimmed = values.email.trim();
+    if (!emailTrimmed) {
       next.email = "Please enter your email address.";
-    } else if (!/^[^s@]+@[^s@]+.[^s@]+$/.test(values.email.trim())) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed)) {
       next.email = "Please enter a valid email address.";
     }
 
@@ -47,7 +51,11 @@ export default function SignupForm() {
     if (!values.age) {
       next.age = "Please enter your age.";
     } else if (Number.isNaN(ageNum) || ageNum < 18 || ageNum > 100) {
-      next.age = "You must be 18 years or older to apply for a credit card in India.";
+      next.age = "You must be 18 years or older to hold a credit card in India.";
+    }
+
+    if (!values.ageConfirmed) {
+      next.ageConfirmed = "You must confirm that you are at least 18 years old.";
     }
 
     if (!values.password) {
@@ -58,7 +66,9 @@ export default function SignupForm() {
       next.password = "Include at least one number in your password.";
     }
 
-    if (values.confirmPassword !== values.password) {
+    if (!values.confirmPassword) {
+      next.confirmPassword = "Confirm your password.";
+    } else if (values.confirmPassword !== values.password) {
       next.confirmPassword = "Passwords do not match.";
     }
 
@@ -88,47 +98,52 @@ export default function SignupForm() {
       savedCards: [],
     };
 
-    // Store in localStorage
     try {
       window.localStorage.setItem("cardwise:user", JSON.stringify(newUser));
+      window.dispatchEvent(new Event("storage"));
 
-      // Append to registered users list
       let usersList = [];
       const rawUsers = window.localStorage.getItem("cardwise:users");
       if (rawUsers) usersList = JSON.parse(rawUsers);
       usersList.push(newUser);
       window.localStorage.setItem("cardwise:users", JSON.stringify(usersList));
 
-      // Clear any old onboarding profile so user gets a fresh start
+      // Clear any stale onboarding profile so user gets a clean personalized recommendation
       window.localStorage.removeItem("cardwise:profile");
     } catch {
-      // ignore storage quota issues
+      // ignore storage quota issues in demo
     }
 
-    // Direct user straight into the clean multi-step onboarding journey
     window.setTimeout(() => {
       router.push("/onboarding");
-    }, 600);
+    }, 450);
   }
 
   return (
-    <form noValidate onSubmit={handleSubmit} className="rounded-2xl border border-neutral-200/80 bg-white p-7 sm:p-9 shadow-sm">
+    <form
+      noValidate
+      onSubmit={handleSubmit}
+      className="rounded-2xl border border-neutral-200/80 bg-white p-7 sm:p-9 shadow-sm"
+    >
       <div className="mb-6">
-        <span className="text-[11px] font-bold uppercase tracking-wider bg-[#DDF247] text-black px-2.5 py-1 rounded-full">
-          Fast Sign Up
-        </span>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-black mt-3">
-          Create your CreditWise account
-        </h1>
-        <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 leading-relaxed">
-          Initial setup takes less than a minute. No financial details or card numbers required to get started.
+        <p className="text-xs font-mono uppercase tracking-wider text-neutral-400 font-medium mb-1">
+          Account Registration
+        </p>
+        <h2 className="text-2xl font-extrabold text-black">
+          Create your account
+        </h2>
+        <p className="text-xs sm:text-sm text-neutral-500 mt-1 leading-relaxed">
+          Initial setup takes less than a minute. No financial details or card numbers required.
         </p>
       </div>
 
       <div className="space-y-4">
         {/* Full Name */}
         <div>
-          <label htmlFor="fullName" className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">
+          <label
+            htmlFor="fullName"
+            className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5"
+          >
             Full name
           </label>
           <input
@@ -139,8 +154,8 @@ export default function SignupForm() {
             placeholder="Aarav Sharma"
             value={values.fullName}
             onChange={(e) => handleChange("fullName", e.target.value)}
-            className={`w-full rounded-lg border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black ${
-              errors.fullName ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-neutral-50/40"
+            className={`w-full rounded-[6px] border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 transition-colors focus:outline-none focus:ring-2 focus:ring-black ${
+              errors.fullName ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-white hover:border-neutral-300"
             }`}
             aria-invalid={errors.fullName ? "true" : "false"}
             aria-describedby={errors.fullName ? "fullName-error" : undefined}
@@ -154,7 +169,10 @@ export default function SignupForm() {
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">
+          <label
+            htmlFor="email"
+            className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5"
+          >
             Email address
           </label>
           <input
@@ -165,8 +183,8 @@ export default function SignupForm() {
             placeholder="you@example.com"
             value={values.email}
             onChange={(e) => handleChange("email", e.target.value)}
-            className={`w-full rounded-lg border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black ${
-              errors.email ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-neutral-50/40"
+            className={`w-full rounded-[6px] border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 transition-colors focus:outline-none focus:ring-2 focus:ring-black ${
+              errors.email ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-white hover:border-neutral-300"
             }`}
             aria-invalid={errors.email ? "true" : "false"}
             aria-describedby={errors.email ? "email-error" : undefined}
@@ -178,10 +196,13 @@ export default function SignupForm() {
           )}
         </div>
 
-        {/* Age */}
+        {/* Age (Number input) */}
         <div>
-          <label htmlFor="age" className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">
-            Age (Must be 18+)
+          <label
+            htmlFor="age"
+            className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5"
+          >
+            Age (Years)
           </label>
           <input
             id="age"
@@ -189,11 +210,11 @@ export default function SignupForm() {
             type="number"
             min="18"
             max="100"
-            placeholder="25"
+            placeholder="e.g. 26"
             value={values.age}
             onChange={(e) => handleChange("age", e.target.value)}
-            className={`w-full rounded-lg border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black ${
-              errors.age ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-neutral-50/40"
+            className={`w-full rounded-[6px] border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 transition-colors focus:outline-none focus:ring-2 focus:ring-black ${
+              errors.age ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-white hover:border-neutral-300"
             }`}
             aria-invalid={errors.age ? "true" : "false"}
             aria-describedby={errors.age ? "age-error" : undefined}
@@ -205,11 +226,38 @@ export default function SignupForm() {
           )}
         </div>
 
-        {/* Passwords in 2 columns on tablet/desktop */}
-        <div className="grid gap-4 sm:grid-cols-2">
+        {/* Age Confirmation Checkbox */}
+        <div className="pt-1">
+          <label className="flex items-start gap-2.5 cursor-pointer">
+            <input
+              id="ageConfirmed"
+              name="ageConfirmed"
+              type="checkbox"
+              checked={values.ageConfirmed}
+              onChange={(e) => handleChange("ageConfirmed", e.target.checked)}
+              className="mt-1 h-4 w-4 rounded border-neutral-300 text-black focus:ring-black"
+              aria-invalid={errors.ageConfirmed ? "true" : "false"}
+              aria-describedby={errors.ageConfirmed ? "ageConfirmed-error" : undefined}
+            />
+            <span className="text-xs text-neutral-600 leading-normal select-none">
+              I confirm that I am at least 18 years of age and eligible for financial products in India.
+            </span>
+          </label>
+          {errors.ageConfirmed && (
+            <p id="ageConfirmed-error" role="alert" className="mt-1.5 text-xs font-medium text-red-600 pl-6.5">
+              {errors.ageConfirmed}
+            </p>
+          )}
+        </div>
+
+        {/* Passwords (2 columns on tablet/desktop) */}
+        <div className="grid gap-4 sm:grid-cols-2 pt-1">
           {/* Password */}
           <div>
-            <label htmlFor="password" className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">
+            <label
+              htmlFor="password"
+              className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5"
+            >
               Password
             </label>
             <div className="relative">
@@ -221,8 +269,8 @@ export default function SignupForm() {
                 placeholder="At least 8 chars"
                 value={values.password}
                 onChange={(e) => handleChange("password", e.target.value)}
-                className={`w-full rounded-lg border px-3.5 py-2.5 pr-10 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black ${
-                  errors.password ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-neutral-50/40"
+                className={`w-full rounded-[6px] border px-3.5 py-2.5 pr-10 text-sm text-black placeholder:text-neutral-400 transition-colors focus:outline-none focus:ring-2 focus:ring-black ${
+                  errors.password ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-white hover:border-neutral-300"
                 }`}
                 aria-invalid={errors.password ? "true" : "false"}
                 aria-describedby={errors.password ? "password-error" : undefined}
@@ -230,7 +278,7 @@ export default function SignupForm() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-black focus:outline-none"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-black focus:outline-none p-1"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -245,7 +293,10 @@ export default function SignupForm() {
 
           {/* Confirm Password */}
           <div>
-            <label htmlFor="confirmPassword" className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">
+            <label
+              htmlFor="confirmPassword"
+              className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5"
+            >
               Confirm password
             </label>
             <div className="relative">
@@ -257,8 +308,8 @@ export default function SignupForm() {
                 placeholder="Repeat password"
                 value={values.confirmPassword}
                 onChange={(e) => handleChange("confirmPassword", e.target.value)}
-                className={`w-full rounded-lg border px-3.5 py-2.5 pr-10 text-sm text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black ${
-                  errors.confirmPassword ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-neutral-50/40"
+                className={`w-full rounded-[6px] border px-3.5 py-2.5 pr-10 text-sm text-black placeholder:text-neutral-400 transition-colors focus:outline-none focus:ring-2 focus:ring-black ${
+                  errors.confirmPassword ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-white hover:border-neutral-300"
                 }`}
                 aria-invalid={errors.confirmPassword ? "true" : "false"}
                 aria-describedby={errors.confirmPassword ? "confirmPassword-error" : undefined}
@@ -266,7 +317,7 @@ export default function SignupForm() {
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-black focus:outline-none"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-black focus:outline-none p-1"
                 aria-label={showConfirmPassword ? "Hide password" : "Show password"}
               >
                 {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -284,7 +335,7 @@ export default function SignupForm() {
       <button
         type="submit"
         disabled={submitted}
-        className="mt-7 w-full rounded-lg bg-black py-3 text-xs sm:text-sm font-bold text-white transition-all hover:bg-neutral-800 disabled:opacity-60 flex items-center justify-center gap-2"
+        className="mt-7 w-full rounded-[6px] bg-black py-3 text-xs sm:text-sm font-bold text-white transition-all hover:bg-neutral-800 disabled:opacity-60 flex items-center justify-center gap-2"
       >
         {submitted ? (
           <>
@@ -292,7 +343,10 @@ export default function SignupForm() {
             Account created — starting onboarding…
           </>
         ) : (
-          "Continue to Onboarding →"
+          <>
+            Create Account & Continue
+            <ArrowRight className="h-4 w-4" />
+          </>
         )}
       </button>
 

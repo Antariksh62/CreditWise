@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { QUESTIONS, isComplete } from "../lib/recommendation";
@@ -12,7 +12,7 @@ import { QUESTIONS, isComplete } from "../lib/recommendation";
  * navigation, and keyboard-accessible radio options.
  *
  * On submit the answers are written to localStorage and the user
- * is pushed to /results, which reads them back and runs the
+ * is pushed to /results?source=quiz, which reads them back and runs the
  * scoring. Keeping the answers client-side means no account is
  * needed to use the tool.
  */
@@ -23,6 +23,18 @@ export default function RecommendationQuiz() {
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
+
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(ANSWERS_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") {
+          setAnswers(parsed);
+        }
+      }
+    } catch {}
+  }, []);
 
   const question = QUESTIONS[step];
   const isLast = step === QUESTIONS.length - 1;
@@ -42,7 +54,7 @@ export default function RecommendationQuiz() {
   function submit() {
     if (!isComplete(answers)) return;
     window.localStorage.setItem(ANSWERS_KEY, JSON.stringify(answers));
-    router.push("/results");
+    router.push("/results?source=quiz");
   }
 
   return (
@@ -99,7 +111,7 @@ export default function RecommendationQuiz() {
                   onChange={() => choose(option.value)}
                   className="sr-only"
                 />
-                {selected && <Check className="h-4 w-4 text-accent shrink-0" strokeWidth={2.5} />}
+                {selected && <Check className="h-4 w-4 text-neutral-900 shrink-0" strokeWidth={2.5} />}
               </label>
             );
           })}

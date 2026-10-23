@@ -6,6 +6,7 @@ import blogs from "../../data/blogs.json";
 import Reveal from "../../components/Reveal";
 
 const ICON_MAP = {
+  "credit-score": ShieldCheck,
   "understanding-credit-scores": ShieldCheck,
   "cashback-vs-rewards": Percent,
   "understanding-annual-fees": DollarSign,
@@ -14,6 +15,7 @@ const ICON_MAP = {
 };
 
 const BADGE_MAP = {
+  "credit-score": "780+",
   "understanding-credit-scores": "780+",
   "cashback-vs-rewards": "5%",
   "understanding-annual-fees": "₹0",

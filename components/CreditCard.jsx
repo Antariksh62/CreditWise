@@ -18,7 +18,7 @@ function formatFee(fee) {
 function headlineRate(card) {
   if (card.cashbackRate > 0) return { value: `${card.cashbackRate}%`, label: "Top cashback" };
   if (card.rewardRate > 0)
-    return { value: `${card.rewardRate}x`, label: "Reward rate" };
+    return { value: `${card.rewardRate}%`, label: "Base rewards" };
   return { value: "—", label: "Earn rate" };
 }
 
@@ -28,12 +28,12 @@ export default function CreditCard({ card, matchScore = null }) {
   return (
     <article className="rounded-xl border border-neutral-200 bg-white shadow-none transition-all duration-200 hover:border-neutral-400 hover:shadow-lift flex flex-col overflow-hidden">
       {/* Visual band */}
-      <div className="flex justify-center border-b border-neutral-200 bg-neutral-50/80 px-6 py-7">
+      <div className="flex h-[210px] w-full items-center justify-center border-b border-neutral-200 bg-neutral-50/80 px-6 py-4">
         <CreditCardVisual
-          tint={TINT_BY_CATEGORY[card.category] || "emerald"}
           issuer={card.issuer || card.bank}
           name={card.name}
           image={card.image}
+          orientation={card.orientation || "horizontal"}
           size="sm"
         />
       </div>
@@ -54,8 +54,8 @@ export default function CreditCard({ card, matchScore = null }) {
           </div>
           <div className="flex shrink-0 items-center gap-1.5">
             {matchScore !== null && (
-              <span className="rounded bg-[#DDF247] px-2 py-0.5 text-[11px] font-bold text-black">
-                {matchScore}% match
+              <span className="rounded bg-neutral-100 px-2 py-0.5 text-[11px] font-semibold text-neutral-800">
+                Verified Fit
               </span>
             )}
             <SaveCardButton slug={card.slug} name={card.name} />

@@ -63,7 +63,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid hsl(var(--accent));
+    outline: 2px solid #0d0d0d;
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -243,6 +243,20 @@
   .cw-enter-3 {
     animation-delay: 160ms;
   }
+
+  /* Hero entrance stagger — runs once on mount. */
+  .cw-enter {
+    animation: cw-rise 400ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  }
+  .cw-enter-1 {
+    animation-delay: 40ms;
+  }
+  .cw-enter-2 {
+    animation-delay: 100ms;
+  }
+  .cw-enter-3 {
+    animation-delay: 160ms;
+  }
   .cw-enter-4 {
     animation-delay: 220ms;
   }
@@ -264,7 +278,148 @@
 }
 
 /* ------------------------------------------------------------
-   5. REDUCED MOTION
+   6. 3D HOLOGRAPHIC FOIL CREDIT CARD PRESENTATION
+   Adapted for verified real credit-card assets with natural orientation
+   ------------------------------------------------------------ */
+.cw-card-scene {
+  perspective: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.cw-card-3d {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--cw-rx, 0deg)) rotateY(var(--cw-ry, 0deg)) translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  cursor: pointer;
+  border-radius: 14px;
+}
+
+.cw-card-3d[data-live] {
+  transition: transform 0.08s linear;
+}
+
+.cw-card-3d:focus-visible {
+  outline: 2px solid #0d0d0d;
+  outline-offset: 4px;
+}
+
+.cw-card-3d__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 14px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Subtle foil/light layer with color-dodge blend mode */
+.cw-card-3d__foil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: color-dodge;
+  opacity: 0.22;
+  border-radius: 14px;
+  background: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(180, 210, 255, 0.24) 10%,
+    rgba(225, 180, 255, 0.24) 20%,
+    rgba(255, 215, 180, 0.24) 30%,
+    rgba(180, 255, 220, 0.24) 40%,
+    rgba(255, 255, 255, 0.04) 50%
+  );
+  background-size: 220% 220%;
+  background-position: calc(var(--cw-mx, 50%) * 0.6) calc(var(--cw-my, 50%) * 0.6);
+  transition: background-position 0.3s ease-out, opacity 0.4s ease;
+}
+
+.cw-card-3d[data-live] .cw-card-3d__foil {
+  opacity: 0.38;
+  transition: background-position 0.08s linear;
+}
+
+/* Specular highlight with overlay blend mode */
+.cw-card-3d__spec {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0;
+  border-radius: 14px;
+  background: radial-gradient(
+    farthest-corner circle at var(--cw-mx, 50%) var(--cw-my, 50%),
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.25) 24%,
+    transparent 52%
+  );
+  transition: opacity 0.35s ease;
+}
+
+.cw-card-3d[data-live] .cw-card-3d__spec {
+  opacity: 1;
+}
+
+/* Subtle glare sweep on card entrance / focus */
+.cw-card-3d__glare {
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 62%
+  );
+  transform: translateX(-120%);
+  opacity: 0;
+}
+
+.cw-card-3d[data-sweep] .cw-card-3d__glare {
+  animation: cw-card-sweep 0.9s cubic-bezier(0.3, 0, 0.2, 1);
+}
+
+@keyframes cw-card-sweep {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+/* Touch devices fallback */
+@media (hover: none) {
+  .cw-card-3d__foil {
+    animation: cw-card-drift 7s ease-in-out infinite;
+    opacity: 0.26;
+  }
+  @keyframes cw-card-drift {
+    0%, 100% {
+      background-position: 0% 40%;
+    }
+    50% {
+      background-position: 100% 60%;
+    }
+  }
+}
+
+/* ------------------------------------------------------------
+   7. REDUCED MOTION
    ------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -287,5 +442,18 @@
     transform: none !important;
     filter: none !important;
   }
-}
 
+  .cw-card-3d {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .cw-card-3d__glare {
+    display: none !important;
+  }
+
+  .cw-card-3d__foil {
+    animation: none !important;
+    opacity: 0.18 !important;
+  }
+}
