@@ -44,7 +44,7 @@ export default async function ComparePage({ searchParams }) {
         <ComparisonTable initialSlugs={initialSlugs} />
 
         {/* Reward Calculator Section */}
-        <section className="mt-16 border-t border-neutral-200/80 pt-14">
+        <section id="reward-calculator" className="mt-16 border-t border-neutral-200/80 pt-14 scroll-mt-20">
           <header className="mb-8 max-w-xl">
             <span className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400 block mb-1.5">
               Net Value Calculation

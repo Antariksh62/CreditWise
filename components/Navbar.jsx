@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+import cards from "../data/cards.json";
 
 export default function Navbar() {
   const router = useRouter();
@@ -11,6 +12,46 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [mounted, setMounted] = useState(false);
+
+  const headerRef = useRef(null);
+  const closeTimeoutRef = useRef(null);
+  const LEAVE_DELAY = 3500; // Dropdown stays open for 3.5 seconds after cursor leaves
+
+  const clearCloseTimeout = useCallback(() => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  }, []);
+
+  const closeMenuImmediately = useCallback(() => {
+    clearCloseTimeout();
+    setActiveMegaMenu(null);
+    setMobileMenuOpen(false);
+  }, [clearCloseTimeout]);
+
+  const handleTriggerMouseEnter = (menu) => {
+    clearCloseTimeout();
+    setActiveMegaMenu(menu);
+  };
+
+  const handleTriggerClick = (e, menu) => {
+    e.preventDefault();
+    e.stopPropagation();
+    clearCloseTimeout();
+    setActiveMegaMenu((prev) => (prev === menu ? null : menu));
+  };
+
+  const handleMouseLeave = () => {
+    clearCloseTimeout();
+    closeTimeoutRef.current = setTimeout(() => {
+      setActiveMegaMenu(null);
+    }, LEAVE_DELAY);
+  };
+
+  const handleMegaMenuMouseEnter = () => {
+    clearCloseTimeout();
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -43,13 +84,40 @@ export default function Navbar() {
     return () => window.removeEventListener("storage", readUser);
   }, [pathname]);
 
+  // Click outside and escape key handling to close menus
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (headerRef.current && !headerRef.current.contains(e.target)) {
+        closeMenuImmediately();
+      }
+    };
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        closeMenuImmediately();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+      clearCloseTimeout();
+    };
+  }, [closeMenuImmediately, clearCloseTimeout]);
+
+  // Close menus on route navigation
+  useEffect(() => {
+    closeMenuImmediately();
+  }, [pathname, closeMenuImmediately]);
+
   const handleSignOut = () => {
     try {
       window.localStorage.removeItem("cardwise:user");
     } catch {}
     setUser(null);
-    setActiveMegaMenu(null);
-    setMobileMenuOpen(false);
+    closeMenuImmediately();
     window.dispatchEvent(new Event("storage"));
     router.push("/");
   };
@@ -63,14 +131,13 @@ export default function Navbar() {
     ? (user.fullName || user.username || user.email || "U")[0].toUpperCase()
     : "U";
 
-  const handleNavClick = (href) => {
-    setActiveMegaMenu(null);
-    setMobileMenuOpen(false);
-    router.push(href);
-  };
-
   return (
-    <header className="sticky top-0 z-50 w-full bg-white">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-50 w-full bg-white relative"
+      onMouseEnter={clearCloseTimeout}
+      onMouseLeave={handleMouseLeave}
+    >
       {/* RAMP-STYLE WIDE MAIN NAVIGATION RAIL */}
       <div className="border-b border-neutral-200/80 bg-white">
         <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24 flex h-16 items-center justify-between">
@@ -81,7 +148,7 @@ export default function Navbar() {
             <Link
               href="/"
               className="flex items-center gap-2 text-xl font-bold tracking-tight text-black shrink-0 mr-1"
-              onClick={() => setActiveMegaMenu(null)}
+              onClick={closeMenuImmediately}
             >
               <div className="flex h-7 w-7 items-center justify-center rounded bg-black text-[#e4f222] font-extrabold text-sm">
                 cw
@@ -96,12 +163,15 @@ export default function Navbar() {
               {/* CARDS DROPDOWN */}
               <div
                 className="relative"
-                onMouseEnter={() => setActiveMegaMenu("cards")}
-                onMouseLeave={() => setActiveMegaMenu(null)}
+                onMouseEnter={() => handleTriggerMouseEnter("cards")}
+                onMouseLeave={handleMouseLeave}
               >
                 <button
-                  onClick={() => handleNavClick("/cards")}
-                  className={`group inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-[6px] transition-colors ${
+                  type="button"
+                  onClick={(e) => handleTriggerClick(e, "cards")}
+                  aria-expanded={activeMegaMenu === "cards"}
+                  aria-haspopup="true"
+                  className={`group inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-[6px] transition-colors ${
                     activeMegaMenu === "cards"
                       ? "text-black bg-neutral-100"
                       : "text-neutral-700 hover:text-black hover:bg-neutral-100/60"
@@ -129,12 +199,15 @@ export default function Navbar() {
               {/* TOOLS DROPDOWN */}
               <div
                 className="relative"
-                onMouseEnter={() => setActiveMegaMenu("tools")}
-                onMouseLeave={() => setActiveMegaMenu(null)}
+                onMouseEnter={() => handleTriggerMouseEnter("tools")}
+                onMouseLeave={handleMouseLeave}
               >
                 <button
-                  onClick={() => handleNavClick("/compare")}
-                  className={`group inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-[6px] transition-colors ${
+                  type="button"
+                  onClick={(e) => handleTriggerClick(e, "tools")}
+                  aria-expanded={activeMegaMenu === "tools"}
+                  aria-haspopup="true"
+                  className={`group inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-[6px] transition-colors ${
                     activeMegaMenu === "tools"
                       ? "text-black bg-neutral-100"
                       : "text-neutral-700 hover:text-black hover:bg-neutral-100/60"
@@ -161,6 +234,8 @@ export default function Navbar() {
 
               <Link
                 href="/compare"
+                onMouseEnter={handleMouseLeave}
+                onClick={closeMenuImmediately}
                 className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black hover:bg-neutral-100/60 rounded-[6px] transition-colors"
               >
                 Compare
@@ -168,6 +243,8 @@ export default function Navbar() {
 
               <Link
                 href="/recommend"
+                onMouseEnter={handleMouseLeave}
+                onClick={closeMenuImmediately}
                 className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black hover:bg-neutral-100/60 rounded-[6px] transition-colors"
               >
                 Find your card
@@ -175,6 +252,8 @@ export default function Navbar() {
 
               <Link
                 href="/blog"
+                onMouseEnter={handleMouseLeave}
+                onClick={closeMenuImmediately}
                 className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black hover:bg-neutral-100/60 rounded-[6px] transition-colors"
               >
                 Guides
@@ -188,6 +267,7 @@ export default function Navbar() {
               <>
                 <Link
                   href="/profile"
+                  onClick={closeMenuImmediately}
                   className="inline-flex items-center gap-2 text-sm font-medium text-neutral-700 hover:text-black px-2.5 py-1.5 transition-colors rounded-[6px] hover:bg-neutral-100"
                   title="View spending profile & wallet"
                 >
@@ -210,6 +290,7 @@ export default function Navbar() {
             ) : (
               <Link
                 href="/login"
+                onClick={closeMenuImmediately}
                 className="text-sm font-medium text-neutral-700 hover:text-black px-3 py-2 transition-colors"
               >
                 Sign in
@@ -217,12 +298,14 @@ export default function Navbar() {
             )}
             <Link
               href="/compare"
+              onClick={closeMenuImmediately}
               className="rounded-[6px] bg-[#e4f222] px-3.5 py-2 text-sm font-medium text-black hover:bg-[#cee723] transition-colors whitespace-nowrap"
             >
               Compare cards
             </Link>
             <Link
               href="/recommend"
+              onClick={closeMenuImmediately}
               className="rounded-[6px] bg-black px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 transition-colors whitespace-nowrap"
             >
               Get started
@@ -248,162 +331,337 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* MEGA MENU CONTAINER (MATCHING FULL-WIDTH PADDING) */}
+      {/* MEGA MENU CONTAINER */}
       {activeMegaMenu && (
         <div
-          className="hidden md:block absolute top-full left-0 w-full bg-white border-b border-neutral-200 shadow-lg transition-all duration-200 z-50"
-          onMouseEnter={() => setActiveMegaMenu(activeMegaMenu)}
-          onMouseLeave={() => setActiveMegaMenu(null)}
+          className="hidden md:block absolute top-full left-0 w-full bg-white border-b border-neutral-200 shadow-xl transition-all duration-200 z-50 animate-in fade-in slide-in-from-top-1"
+          onMouseEnter={handleMegaMenuMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24 py-8 grid grid-cols-12 gap-8">
+          <div className="w-full max-w-[1536px] mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24 py-8">
             {activeMegaMenu === "cards" && (
-              <>
-                <div className="col-span-8 grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-12 gap-8">
+                {/* Column 1: Cashback & Everyday */}
+                <div className="col-span-4">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3.5">
+                    CASHBACK & EVERYDAY
+                  </div>
+                  <ul className="space-y-4">
+                    <li>
+                      <Link
+                        href="/cards?category=cashback"
+                        onClick={closeMenuImmediately}
+                        className="group block"
+                      >
+                        <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors flex items-center justify-between">
+                          <span>Cashback & Shopping</span>
+                          <span className="text-neutral-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">
+                            →
+                          </span>
+                        </div>
+                        <div className="text-xs text-neutral-500 mt-0.5 leading-relaxed">
+                          Up to 5% flat cashback on Amazon, Flipkart, Swiggy & daily spends
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/cards?category=travel"
+                        onClick={closeMenuImmediately}
+                        className="group block"
+                      >
+                        <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors flex items-center justify-between">
+                          <span>Travel & Lounge Access</span>
+                          <span className="text-neutral-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">
+                            →
+                          </span>
+                        </div>
+                        <div className="text-xs text-neutral-500 mt-0.5 leading-relaxed">
+                          Airport lounge visits, zero forex markup & co-branded airline miles
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/cards?category=dining"
+                        onClick={closeMenuImmediately}
+                        className="group block"
+                      >
+                        <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors flex items-center justify-between">
+                          <span>Dining & Food Delivery</span>
+                          <span className="text-neutral-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">
+                            →
+                          </span>
+                        </div>
+                        <div className="text-xs text-neutral-500 mt-0.5 leading-relaxed">
+                          High returns on Zomato, Swiggy, and curated partner restaurants
+                        </div>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 2: Zero Fee & Specialized */}
+                <div className="col-span-4">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3.5">
+                    ZERO FEE & SPECIALIZED
+                  </div>
+                  <ul className="space-y-4">
+                    <li>
+                      <Link
+                        href="/cards?category=lifetime-free"
+                        onClick={closeMenuImmediately}
+                        className="group block"
+                      >
+                        <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors flex items-center justify-between">
+                          <span>Lifetime Free Cards</span>
+                          <span className="text-neutral-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">
+                            →
+                          </span>
+                        </div>
+                        <div className="text-xs text-neutral-500 mt-0.5 leading-relaxed">
+                          Zero joining fees and no recurring annual renewal charges
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/cards?category=rewards"
+                        onClick={closeMenuImmediately}
+                        className="group block"
+                      >
+                        <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors flex items-center justify-between">
+                          <span>Reward Points & Miles</span>
+                          <span className="text-neutral-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">
+                            →
+                          </span>
+                        </div>
+                        <div className="text-xs text-neutral-500 mt-0.5 leading-relaxed">
+                          Earn flexible points redeemable for flights, luxury stays & vouchers
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/cards?category=fuel"
+                        onClick={closeMenuImmediately}
+                        className="group block"
+                      >
+                        <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors flex items-center justify-between">
+                          <span>Fuel Surcharge Waiver</span>
+                          <span className="text-neutral-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">
+                            →
+                          </span>
+                        </div>
+                        <div className="text-xs text-neutral-500 mt-0.5 leading-relaxed">
+                          Save on petrol, diesel, and EV charges at fuel stations nationwide
+                        </div>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 3: Dedicated "Check Out All Credit Cards" Section */}
+                <div className="col-span-4 flex flex-col justify-between bg-neutral-50 p-6 rounded-lg border border-neutral-200 shadow-sm">
                   <div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3">
-                      CASHBACK & DAILY SPEND
+                    <div className="flex items-center justify-between mb-2.5">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-600 bg-white px-2.5 py-0.5 rounded border border-neutral-200">
+                        Full Catalog
+                      </span>
+                      <span className="text-xs font-semibold text-neutral-500">
+                        {cards.length} verified cards
+                      </span>
                     </div>
-                    <ul className="space-y-4">
-                      <li>
-                        <Link href="/cards" className="group block">
-                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
-                            Online Shopping Cards
-                          </div>
-                          <div className="text-xs text-neutral-500">
-                            Up to 5% flat cashback on Amazon, Flipkart & Swiggy
-                          </div>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/cards" className="group block">
-                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
-                            Travel & Lounge Cards
-                          </div>
-                          <div className="text-xs text-neutral-500">
-                            Complimentary flights, lounge access & zero forex
-                          </div>
-                        </Link>
-                      </li>
-                    </ul>
+                    <h3 className="font-bold text-base text-neutral-900 mb-1.5">
+                      Check Out All Credit Cards
+                    </h3>
+                    <p className="text-xs text-neutral-600 leading-relaxed mb-4">
+                      Explore our complete directory of verified Indian cards. Filter by bank, annual fee, or reward type with 100% transparent fee math.
+                    </p>
                   </div>
 
-                  <div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3">
-                      PREMIUM & ZERO FEE
-                    </div>
-                    <ul className="space-y-4">
-                      <li>
-                        <Link href="/cards" className="group block">
-                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
-                            Zero Annual Fee
-                          </div>
-                          <div className="text-xs text-neutral-500">
-                            No joining fees or recurring renewal costs
-                          </div>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/cards" className="group block">
-                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
-                            Super Premium Cards
-                          </div>
-                          <div className="text-xs text-neutral-500">
-                            Luxury privileges, concierge & metal card status
-                          </div>
-                        </Link>
-                      </li>
-                    </ul>
+                  <div className="space-y-2 pt-3 border-t border-neutral-200/80">
+                    <Link
+                      href="/cards"
+                      onClick={closeMenuImmediately}
+                      className="flex items-center justify-between w-full px-4 py-2.5 text-xs font-bold text-black bg-[#e4f222] hover:bg-[#cee723] rounded-[6px] transition-colors group shadow-sm"
+                    >
+                      <span>Browse all {cards.length} credit cards</span>
+                      <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+                    </Link>
+                    <Link
+                      href="/cards/sbi-cashback"
+                      onClick={closeMenuImmediately}
+                      className="flex items-center justify-between text-xs text-neutral-600 hover:text-black py-1 px-1 transition-colors"
+                    >
+                      <span className="truncate">⭐ Featured: SBI Cashback Card (5% flat)</span>
+                      <span className="text-neutral-400">Details →</span>
+                    </Link>
                   </div>
                 </div>
 
-                <div className="col-span-4 bg-neutral-50 p-6 rounded-lg border border-neutral-200">
-                  <div className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">
-                    FEATURED CARD
+                {/* Bottom Strip: Full Directory Quick Link */}
+                <div className="col-span-12 pt-4 border-t border-neutral-200/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-neutral-600">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block shrink-0" />
+                    <span className="font-semibold text-neutral-800">100% Verified Terms:</span>
+                    <span className="text-neutral-500">
+                      Zero sponsored placements. Reward rates, caps, and fee waivers verified against official bank documents.
+                    </span>
                   </div>
-                  <div className="font-bold text-base text-black mb-1">
-                    SBI Cashback Credit Card
-                  </div>
-                  <p className="text-xs text-neutral-600 mb-4">
-                    India&apos;s highest flat cashback card. 5% back on all online merchant spending.
-                  </p>
                   <Link
-                    href="/cards/sbi-cashback"
-                    className="inline-flex items-center text-xs font-bold text-black hover:underline"
+                    href="/cards"
+                    onClick={closeMenuImmediately}
+                    className="font-bold text-black hover:underline inline-flex items-center gap-1.5 self-start sm:self-auto shrink-0"
                   >
-                    View card details →
+                    <span>View complete directory ({cards.length} cards)</span>
+                    <span>→</span>
                   </Link>
                 </div>
-              </>
+              </div>
             )}
 
             {activeMegaMenu === "tools" && (
-              <>
-                <div className="col-span-8 grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-12 gap-8">
+                {/* Column 1: Decision & Intelligence Tools */}
+                <div className="col-span-4">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3.5">
+                    DECISION & INTELLIGENCE
+                  </div>
+                  <ul className="space-y-4">
+                    <li>
+                      <Link
+                        href="/recommend"
+                        onClick={closeMenuImmediately}
+                        className="group block"
+                      >
+                        <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors flex items-center justify-between">
+                          <span>Recommendation Quiz</span>
+                          <span className="text-neutral-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">
+                            →
+                          </span>
+                        </div>
+                        <div className="text-xs text-neutral-500 mt-0.5 leading-relaxed">
+                          Answer 5 quick spending questions to find cards that fit your actual budget
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/compare"
+                        onClick={closeMenuImmediately}
+                        className="group block"
+                      >
+                        <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors flex items-center justify-between">
+                          <span>Side-by-Side Compare</span>
+                          <span className="text-neutral-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">
+                            →
+                          </span>
+                        </div>
+                        <div className="text-xs text-neutral-500 mt-0.5 leading-relaxed">
+                          Compare up to 3 cards across annual fees, lounge access & real reward rates
+                        </div>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 2: Calculators & Wallet */}
+                <div className="col-span-4">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3.5">
+                    CALCULATORS & WALLET
+                  </div>
+                  <ul className="space-y-4">
+                    <li>
+                      <Link
+                        href="/compare#reward-calculator"
+                        onClick={closeMenuImmediately}
+                        className="group block"
+                      >
+                        <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors flex items-center justify-between">
+                          <span>Reward Calculator</span>
+                          <span className="text-neutral-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">
+                            →
+                          </span>
+                        </div>
+                        <div className="text-xs text-neutral-500 mt-0.5 leading-relaxed">
+                          Estimate net value return on your monthly category spends after deducting fees
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/profile"
+                        onClick={closeMenuImmediately}
+                        className="group block"
+                      >
+                        <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors flex items-center justify-between">
+                          <span>Spending Profile & Wallet</span>
+                          <span className="text-neutral-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all text-xs">
+                            →
+                          </span>
+                        </div>
+                        <div className="text-xs text-neutral-500 mt-0.5 leading-relaxed">
+                          Manage saved cards, track renewal waivers, and calibrate spending targets
+                        </div>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 3: Featured Action Box */}
+                <div className="col-span-4 flex flex-col justify-between bg-neutral-50 p-6 rounded-lg border border-neutral-200 shadow-sm">
                   <div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3">
-                      INTELLIGENCE TOOLS
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-600 bg-white px-2.5 py-0.5 rounded border border-neutral-200 inline-block mb-2.5">
+                      Personalized Fit
                     </div>
-                    <ul className="space-y-4">
-                      <li>
-                        <Link href="/recommend" className="group block">
-                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
-                            Recommendation Quiz
-                          </div>
-                          <div className="text-xs text-neutral-500">
-                            Answer 5 quick questions to find your top 3 matching cards
-                          </div>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/compare" className="group block">
-                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
-                            Side-by-Side Compare
-                          </div>
-                          <div className="text-xs text-neutral-500">
-                            Compare rewards, annual fees and lounge privileges
-                          </div>
-                        </Link>
-                      </li>
-                    </ul>
+                    <h3 className="font-bold text-base text-neutral-900 mb-1.5">
+                      Unsure which card to choose?
+                    </h3>
+                    <p className="text-xs text-neutral-600 leading-relaxed mb-4">
+                      Take our 1-minute personalized questionnaire. We analyze your existing spending to find cards that earn maximum rewards.
+                    </p>
                   </div>
 
-                  <div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3">
-                      CALCULATORS
-                    </div>
-                    <ul className="space-y-4">
-                      <li>
-                        <Link href="/#reward-calculator" className="group block">
-                          <div className="font-semibold text-sm text-black group-hover:text-neutral-600 transition-colors">
-                            Reward Calculator
-                          </div>
-                          <div className="text-xs text-neutral-500">
-                            See what you could get back based on your monthly spending
-                          </div>
-                        </Link>
-                      </li>
-                    </ul>
+                  <div className="space-y-2 pt-3 border-t border-neutral-200/80">
+                    <Link
+                      href="/recommend"
+                      onClick={closeMenuImmediately}
+                      className="flex items-center justify-between w-full px-4 py-2.5 text-xs font-bold text-black bg-[#e4f222] hover:bg-[#cee723] rounded-[6px] transition-colors group shadow-sm"
+                    >
+                      <span>Take 1-minute quiz</span>
+                      <span className="group-hover:translate-x-0.5 transition-transform">→</span>
+                    </Link>
+                    <Link
+                      href="/compare"
+                      onClick={closeMenuImmediately}
+                      className="flex items-center justify-between text-xs text-neutral-600 hover:text-black py-1 px-1 transition-colors"
+                    >
+                      <span>Launch card comparison table</span>
+                      <span className="text-neutral-400">Open →</span>
+                    </Link>
                   </div>
                 </div>
 
-                <div className="col-span-4 bg-neutral-50 p-6 rounded-lg border border-neutral-200">
-                  <div className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2">
-                    FIND YOUR FIT
+                {/* Bottom Strip */}
+                <div className="col-span-12 pt-4 border-t border-neutral-200/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-neutral-600">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#cee723] inline-block shrink-0" />
+                    <span className="font-semibold text-neutral-800">Spend Optimization:</span>
+                    <span className="text-neutral-500">
+                      Built to maximize returns on expenses you already have — never to encourage debt or impulse spending.
+                    </span>
                   </div>
-                  <div className="font-bold text-base text-black mb-1">
-                    Find your exact match
-                  </div>
-                  <p className="text-xs text-neutral-600 mb-4">
-                    Answer 5 quick questions to find cards that fit your everyday spending.
-                  </p>
                   <Link
-                    href="/recommend"
-                    className="inline-flex items-center text-xs font-bold text-black hover:underline"
+                    href="/compare"
+                    onClick={closeMenuImmediately}
+                    className="font-bold text-black hover:underline inline-flex items-center gap-1.5 self-start sm:self-auto shrink-0"
                   >
-                    Find your card →
+                    <span>Compare cards side-by-side</span>
+                    <span>→</span>
                   </Link>
                 </div>
-              </>
+              </div>
             )}
           </div>
         </div>
