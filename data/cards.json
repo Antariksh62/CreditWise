@@ -12,10 +12,11 @@
       "cashback",
       "shopping",
       "lifetime-free",
-      "online"
+      "online",
+      "low-forex"
     ],
-    "shortDescription": "Unlimited 5% cashback on Amazon for Prime members with zero annual fee.",
-    "description": "Co-branded lifetime-free card offering direct statement cashback: 5% for Amazon Prime members, 3% for non-Prime, and 2% on 100+ partner merchants.",
+    "shortDescription": "Unlimited 5% cashback on Amazon for Prime members with zero annual fee and 1.99% forex markup.",
+    "description": "Co-branded lifetime-free card offering direct Amazon Pay balance cashback: 5% on Amazon for Prime members, 3% for non-Prime, 2% on 100+ partner merchants, and a reduced 1.99% forex markup.",
     "annualFee": 0,
     "joiningFee": 0,
     "feeWaiver": "Lifetime Free with no minimum spend conditions.",
@@ -23,39 +24,102 @@
     "cashbackRate": 5,
     "rewardRate": 0,
     "loungeAccess": 0,
-    "rewardSummary": "5% cashback on Amazon for Prime members, 3% for non-Prime, 2% on partner merchants, 1% on all other retail spends. Automatically credited as Amazon Pay balance.",
+    "rewardSummary": "5% cashback on Amazon for Prime members (3% for non-Prime), 2% on digital products, flight bookings, and 100+ partner merchants, 1% on other eligible retail and international spends. Automatically credited to Amazon Pay balance post-statement.",
     "rewardCategories": {
-      "amazonPrime": "5% cashback",
+      "amazonPrime": "5% cashback (physical goods)",
       "amazonNonPrime": "3% cashback",
-      "partnerMerchants": "2% cashback",
+      "digitalProducts": "2% cashback (e-books, gift cards, software, flights)",
+      "partnerMerchants": "2% cashback (Swiggy, Uber, etc.)",
+      "internationalSpends": "1% cashback (with 1.99% forex markup)",
       "otherRetail": "1% cashback"
     },
     "rewardCaps": "No maximum cap on cashback earnings.",
-    "exclusions": "Fuel purchases, EMI transactions, gold/bullion, wallet reloads, and government payments.",
+    "exclusions": "Rent payments (in-app & 3rd party), education fees, EMI transactions, gold/bullion, wallet reloads, cash withdrawals, fuel (surcharge waiver only), external utility bill payments (0% outside Amazon), taxes & government payments (MCC 9311/9313), and Amazon Business purchases.",
     "benefits": [
-      "5% unlimited cashback on Amazon for Prime members",
-      "2% cashback on 100+ Amazon Pay partner merchants (Swiggy, Uber, etc.)",
-      "1% unlimited cashback on all other eligible spends",
+      "5% unlimited cashback on Amazon for Prime members (3% for non-Prime)",
+      "Discounted 1.99% forex markup fee (down from standard 3.5%) with 1% international cashback",
+      "2% cashback on 100+ partner merchants and Amazon recharges/bill payments",
+      "1% unlimited cashback on all other eligible domestic and international retail spends",
       "1% fuel surcharge waiver across all petrol pumps in India",
-      "No joining fee or annual renewal fee ever"
+      "Lifetime free with zero joining and zero annual renewal fees"
     ],
     "eligibility": "Indian resident aged 18-60 years with existing ICICI relationship or pre-approved offer on Amazon.",
     "incomeRequirement": "₹25,000/month for salaried; ₹30,000/month for self-employed",
     "locationRestrictions": "Available across serviceable pin codes in India.",
-    "travelBenefits": "Standard flight & hotel booking discounts via Amazon Travel.",
+    "travelBenefits": "Competitive international card due to permanent 1.99% low forex markup; flight discounts via Amazon Travel.",
     "loungeBenefits": "None",
-    "fuelBenefits": "1% fuel surcharge waiver on transactions up to ₹4,000 at all fuel stations.",
+    "fuelBenefits": "1% fuel surcharge waiver on transactions up to ₹4,000 at all fuel stations (no cashback earned on fuel).",
     "diningBenefits": "15% off at partner restaurants via ICICI Culinary Treats.",
-    "forexBenefits": "Standard 3.5% foreign currency markup.",
+    "forexBenefits": "Discounted 1.99% + GST foreign currency markup fee (significantly lower than standard 3.5%), with 1% cashback on international transactions.",
     "milestoneBenefits": "None (continuous uncapped cashback model).",
     "officialUrl": "https://www.icicibank.com/personal-banking/cards/credit-card/amazon-pay-credit-card",
-    "officialSource": "ICICI Bank Official Website",
-    "lastVerified": "2026-09-20",
+    "officialSource": "ICICI Bank & Amazon Pay Official Terms",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active (via Amazon App and ICICI NetBanking)",
-    "goodFor": "Frequent Amazon shoppers and everyday online spending",
-    "whoItFits": "Anyone who shops regularly on Amazon and prefers direct, zero-effort cashback with no annual fee.",
-    "whatToWatchOutFor": "Does not include airport lounge access and non-Prime members earn a lower 3% rate.",
-    "whyCreditWiseRecommends": "It delivers reliable 5% cashback on household purchases without charging any annual fee or requiring complicated points redemption.",
+    "goodFor": "Amazon ecosystem, everyday online spending, and low-forex international purchases",
+    "whoItFits": "Anyone who shops regularly on Amazon, values zero-annual-fee simplicity, and wants low forex charges without high card fees.",
+    "whatToWatchOutFor": [
+      "No airport lounge access included.",
+      "Shared credit limit: Existing ICICI core cardholders share their existing credit line rather than receiving a separate limit.",
+      "Digital products earn only 2% (e-books, software downloads, flight bookings, and Amazon Gift Cards earn 2%, even for Prime members).",
+      "Excluded from broader ICICI Bank festive sale discounts: 10% instant discounts on external merchants (Flipkart, Myntra, etc.) usually exclude this co-branded card.",
+      "No instant checkout redemption: Cashback is not deducted immediately; it is credited to Amazon Pay Balance a few days post-statement generation."
+    ],
+    "whyCreditWiseRecommends": "It delivers reliable 5% cashback on Amazon and an industry-rare 1.99% low forex rate with zero annual holding cost and no renewal spend hoops.",
+    "keyInsights": [
+      {
+        "title": "The Global 1.99% Forex Rate Enhancement",
+        "description": "Most standard credit cards levy a 3.5% foreign currency markup charge, but following a partnership renewal, this card features a permanent 1.99% forex markup fee. While you only earn a baseline 1% cashback on international transactions, the heavily discounted markup fee effectively makes it a competitive zero-annual-fee card for international websites or travel."
+      },
+      {
+        "title": "A 'Shared Limit' System With Other ICICI Cards",
+        "description": "If you already possess a core ICICI Bank credit card (like the Coral, Platinum, or Rubyx) and get approved for the Amazon Pay card, ICICI usually merges your credit limits into a single shared pool rather than issuing a separate credit line."
+      },
+      {
+        "title": "Digital Products Only Earn 2% (Even for Prime Members)",
+        "description": "While Amazon Prime members typically expect a flat 5% back on the platform, e-books, software downloads, flight bookings, and Amazon Gift Cards drop down to a 2% cashback rate."
+      },
+      {
+        "title": "Limited Eligibility for Broader ICICI Sales & Offers",
+        "description": "During major festive sales on external e-commerce sites (like Flipkart, Myntra, or Tatacliq) where banners advertise '10% Instant Discount on ICICI Bank Credit Cards', the Amazon Pay ICICI card is almost universally excluded. A core ICICI card is needed to capitalise on those instant bank discounts."
+      },
+      {
+        "title": "No Instant Point Redemptions (Monthly Statement Translation)",
+        "description": "Unlike cards where rewards can be instantly redeemed at checkout, accumulated earnings undergo an automated monthly billing cycle translation and land in your Amazon Pay Balance a few days after your official monthly statement is generated."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Big-Ticket Fixed Outlays",
+        "items": [
+          "Rent Payments: Both inside the Amazon app and via third-party platforms (ICICI may also levy an additional processing fee on rent transactions).",
+          "Education Fees: School, college, or coaching institute payments."
+        ]
+      },
+      {
+        "category": "High-Value Financial & Investment Spends",
+        "items": [
+          "EMI Transactions: Direct EMI purchases or post-purchase conversions.",
+          "Gold and Precious Metals: Purchases of physical gold coins and digital gold on Amazon.in.",
+          "Wallet Loading: Adding money to digital prepaid wallets (Paytm, Mobikwik, etc.).",
+          "Cash Withdrawals: Any cash advances taken from ATMs."
+        ]
+      },
+      {
+        "category": "Everyday Utilities & Routine Costs",
+        "items": [
+          "Fuel Purchases: 0% cashback (receives a standard 1% fuel surcharge waiver instead).",
+          "Utility Bills Paid Outside Amazon: Utility bills paid through Amazon earn 2%, but payments made directly on external provider websites/apps earn 0%.",
+          "Taxes & Government Payments: Government transactions, including specific tax categories (such as MCC 9311 and 9313), yield no cashback."
+        ]
+      },
+      {
+        "category": "Commercial Spends",
+        "items": [
+          "Amazon Business Purchases: Transactions made through an Amazon Business Account are entirely excluded from the personal credit card cashback framework."
+        ]
+      }
+    ],
     "orientation": "horizontal"
   },
   {
@@ -73,46 +137,179 @@
       "lifestyle"
     ],
     "shortDescription": "Accelerated Membership Rewards through monthly spend milestones and 18/24 Karat Gold Collection.",
-    "description": "Milestone-heavy rewards card rewarding consistent monthly usage: 1,000 bonus points for 4 transactions of ₹1,500+ and 1,000 points on ₹20,000 monthly spend.",
+    "description": "Milestone-heavy rewards card rewarding consistent monthly usage: 1,000 bonus points for 4 transactions of ₹1,500+ and 1,000 bonus points on ₹20,000 monthly spend (requires enrollment). Redeemable for 18K/24K Gold Collection vouchers and hotel transfers.",
     "annualFee": 4500,
     "joiningFee": 1000,
-    "feeWaiver": "100% renewal fee waiver on annual spends of ₹1,50,000; 50% waiver on ₹90,000.",
+    "feeWaiver": "100% renewal fee waiver (₹4,500 + 18% GST = ₹5,310) on annual spends of ₹1,50,000+; 50% waiver (customer pays ₹2,250 + 18% GST = ₹2,655) on annual spends of ₹90,000 to ₹1,49,999.",
     "apr": 42,
     "cashbackRate": 0,
     "rewardRate": 2,
     "loungeAccess": 0,
-    "rewardSummary": "1 MR point per ₹50 spent. 1,000 bonus points each month for completing 4 transactions of ₹1,500+. Additional 1,000 bonus points on ₹20,000 monthly spend.",
+    "rewardSummary": "Important: ₹20,000 milestone requires enrollment. Earn 1 MR point per ₹50 spent + 1,000 bonus MR points each month for 4 transactions of ₹1,500+ AND an additional 1,000 bonus MR points on reaching ₹20,000 monthly spend. Redeemable via 18K/24K Gold Collection or hotel partners.",
     "rewardCategories": {
-      "base": "1 MR point per ₹50",
-      "monthlyTransactions": "1,000 bonus MR points (4x ₹1,500)",
-      "monthlySpend": "1,000 bonus MR points on ₹20k spend"
+      "base": "1 MR point per ₹50 (2 pts/₹100)",
+      "monthlyTransactions": "1,000 bonus MR points (4x ₹1,500+)",
+      "monthlySpend": "1,000 bonus MR points on ₹20k spend (Enrollment required)"
     },
-    "rewardCaps": "Bonus MR points capped at 2,000 points per month (24,000 MR points per year).",
-    "exclusions": "Fuel, insurance, utility bill payments (except via Amex portal), and cash advances.",
+    "rewardCaps": "Bonus MR points capped at 2,000 points per month (24,000 bonus MR points per year).",
+    "exclusions": "Fuel purchases, insurance premiums, utility bill payments (electricity, water, gas), EMI transactions (online & physical POS), and cash advances.",
     "benefits": [
-      "Earn up to 24,000 bonus Membership Rewards points annually via milestone goals",
-      "Points never expire as long as account remains active",
+      "Earn up to 24,000 bonus Membership Rewards points annually via monthly milestone challenges",
+      "1,000 bonus MR points each month for completing 4 transactions of ₹1,500 or more",
+      "Additional 1,000 bonus MR points on ₹20,000 monthly spend (requires one-time enrollment)",
       "Redeem points for 18 Karat and 24 Karat Gold Collection vouchers (Taj, Amazon, Flipkart)",
-      "Comprehensive fraud protection with zero lost-card liability",
-      "Dedicated 24/7 Amex customer service"
+      "Points never expire as long as account remains in good standing",
+      "Transfer points to airline partners and hotel programs (Marriott Bonvoy 1:1, Taj, Hilton)"
     ],
     "eligibility": "Indian resident aged 21+, good credit history with CIBIL score 750+.",
     "incomeRequirement": "₹6,00,000 per annum (salaried or self-employed)",
     "locationRestrictions": "Limited to Tier 1 and major Tier 2 cities where Amex operates (Delhi NCR, Mumbai, Bengaluru, Chennai, Hyderabad, Pune, Kolkata, etc.).",
     "travelBenefits": "Transfer points to partner airlines (British Airways, Virgin Atlantic, Singapore Airlines) and hotel chains (Marriott Bonvoy, Hilton Honors).",
     "loungeBenefits": "None included directly.",
-    "fuelBenefits": "0% fuel surcharge at HPCL pumps for transactions up to ₹5,000.",
+    "fuelBenefits": "0% fuel surcharge at HPCL pumps for transactions up to ₹5,000 (no base MR points earned on fuel).",
     "diningBenefits": "Up to 20% savings at select partner restaurants under Amex Dining Privileges.",
     "forexBenefits": "3.5% foreign currency markup.",
-    "milestoneBenefits": "1,000 bonus MR points on 4 x ₹1,500 transactions/month + 1,000 bonus MR points on ₹20,000 spend/month.",
+    "milestoneBenefits": "Notice: ₹20,000 milestone requires one-time enrollment to activate. Earn 1,000 bonus MR points on 4 x ₹1,500 transactions/month + 1,000 bonus MR points on ₹20,000 spend/month (up to 24,000 bonus points/yr).",
     "officialUrl": "https://www.americanexpress.com/in/credit-cards/membership-rewards-card/",
     "officialSource": "American Express India Official Portal",
-    "lastVerified": "2026-09-20",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
-    "goodFor": "Disciplined spenders who hit monthly milestone targets",
+    "goodFor": "Disciplined spenders hitting ₹20,000/month across 4+ transactions for hotel points and Gold Collection vouchers",
     "whoItFits": "Individuals who can routinely spend ₹20,000 a month across 4+ transactions to maximize high-value hotel and voucher conversions.",
-    "whatToWatchOutFor": "Offline merchant acceptance can be lower than Visa/Mastercard; no complimentary lounge visits.",
+    "whatToWatchOutFor": [
+      "The ₹20,000 monthly spend milestone strictly requires one-time manual enrollment; it does not activate automatically.",
+      "Points de-pooling: Amex maintains MR points balances separately per card (e.g. MRCC and Gold Card points are not pooled into a single balance).",
+      "Zero base MR points on utilities, insurance premiums, fuel, EMI transactions, and cash advances.",
+      "The 'Amazon Pay voucher workaround' on Gyftr/ShopWise attracts extra platform convenience fees.",
+      "Offline merchant POS acceptance can be lower than Visa/Mastercard in smaller non-metro establishments.",
+      "Annual renewal fee of ₹5,310 (₹4,500 + 18% GST) applies unless spending ₹1,50,000/yr for 100% waiver or ₹90,000/yr for 50% waiver."
+    ],
     "whyCreditWiseRecommends": "When used strategically for its monthly milestone challenges, the effective reward return easily exceeds 6% to 8% in Marriott or Taj points.",
+    "goldCollection": {
+      "collection24k": [
+        {
+          "brand": "Taj Hotels Voucher",
+          "value": "₹14,000"
+        },
+        {
+          "brand": "Shoppers Stop Voucher",
+          "value": "₹10,000"
+        },
+        {
+          "brand": "Tata CLiQ Voucher",
+          "value": "₹9,000"
+        },
+        {
+          "brand": "Tanishq Voucher",
+          "value": "₹9,000"
+        },
+        {
+          "brand": "Amazon Voucher",
+          "value": "₹8,000"
+        },
+        {
+          "brand": "Flipkart Voucher",
+          "value": "₹8,000"
+        },
+        {
+          "brand": "Reliance Digital Voucher",
+          "value": "₹8,000"
+        }
+      ],
+      "collection18k": [
+        {
+          "brand": "Taj Hotels Voucher",
+          "value": "₹9,000"
+        },
+        {
+          "brand": "Shoppers Stop Voucher",
+          "value": "₹7,000"
+        },
+        {
+          "brand": "Tata CLiQ Voucher",
+          "value": "₹7,000"
+        },
+        {
+          "brand": "Myntra Voucher",
+          "value": "₹7,000"
+        },
+        {
+          "brand": "Amazon Voucher",
+          "value": "₹6,000"
+        },
+        {
+          "brand": "Flipkart Voucher",
+          "value": "₹6,000"
+        },
+        {
+          "brand": "Reliance Digital Voucher",
+          "value": "₹6,000"
+        }
+      ]
+    },
+    "keyInsights": [
+      {
+        "title": "₹20,000 Monthly Milestone Requires Enrollment (Must Be Activated First)",
+        "description": "While the 4 x ₹1,500 transaction milestone tracks automatically, the second 1,000 bonus MR points milestone for ₹20,000 monthly spend strictly requires one-time manual enrollment via Amex customer service or the Amex online portal. Cardholders who do not enroll will not receive this second batch of 1,000 bonus points regardless of spending volume."
+      },
+      {
+        "title": "The 'Bonus' Milestones Architecture",
+        "description": "You can earn 1,000 bonus MR points by completing 4 transactions of ₹1,500 or more in a calendar month. You can earn an additional 1,000 bonus MR points if your total monthly spends cross ₹20,000 (with enrollment), yielding up to 24,000 bonus MR points per year on ₹2.4 Lakh annual spend."
+      },
+      {
+        "title": "Points De-pooling Across Multiple Amex Cards",
+        "description": "If you hold multiple basic Amex cards (e.g., MRCC alongside an Amex Gold Card), American Express maintains their Membership Rewards points balances separately per card rather than combining them into a single centralized pool."
+      },
+      {
+        "title": "The 'Amazon Pay Loophole' (With ShopWise Platform Fee)",
+        "description": "While the card formally excludes utilities and insurance, cardholders traditionally purchase Amazon Pay Gift Vouchers via Gyftr / Amex ShopWise. Because this codes as a voucher purchase rather than utility/insurance, it earns reward points and counts toward monthly milestones. Cardholders then load these vouchers into Amazon Pay to pay bills, insurance premiums, or food deliveries. Note: purchasing Amazon Pay vouchers via ShopWise incurs an additional platform processing fee."
+      },
+      {
+        "title": "Tiered 50% / 100% Annual Fee Waiver",
+        "description": "The annual renewal fee of ₹5,310 (₹4,500 + 18% GST) is 100% waived off on annual spends of ₹1,50,000 and above. Cardholders who spend between ₹90,000 and ₹1,49,999 receive a 50% waiver, paying ₹2,655 (₹2,250 + 18% GST)."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Everyday Utilities & Fuel",
+        "items": [
+          "Utilities: Electricity, water, and gas bills earn zero base MR points (traditionally routed via voucher platforms).",
+          "Fuel: Petrol and diesel purchases earn zero base MR points (covered by 0% fuel surcharge at HPCL pumps up to ₹5,000 instead)."
+        ]
+      },
+      {
+        "category": "Financial Services & Outlays",
+        "items": [
+          "Insurance Premiums: Life, medical, motor, and general insurance payments earn zero base MR points.",
+          "EMI Transactions: Purchases converted into EMIs at online checkouts or physical point-of-sale terminals earn zero MR points.",
+          "Cash Advances: Any cash withdrawals made at ATMs earn zero MR points."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "Flying Delhi to London via Virgin Atlantic (The High-Value Sweet Spot)",
+        "partner": "Virgin Atlantic Flying Club (800 MR = 640 Miles / 1 : 0.8 ratio)",
+        "scenario": "Standard off-peak Economy reward seat from Delhi (DEL) to London Heathrow (LHR).",
+        "cashPrice": "₹45,000",
+        "pointsRequired": "12,500 MR points (Transferred to get 10,000 Virgin Miles)",
+        "taxesAndFees": "₹9,500 in carrier taxes/fees",
+        "netCashSaved": "₹35,500",
+        "realizedValuePerPoint": "₹2.84 / MR point",
+        "bottomLine": "By transferring points to Virgin Atlantic instead of converting them directly to a standard statement credit (which gives a poor ₹0.25 value), you elevate the cash value of your points by more than 1,000%."
+      },
+      {
+        "title": "Staying at Luxury Properties via Marriott Bonvoy (The Baseline Strategy)",
+        "partner": "Marriott Bonvoy (1 : 1 clean transfer ratio)",
+        "scenario": "5-night stay at Courtyard by Marriott Aravali Resort utilizing Marriott's 'Stay for 5, Pay for 4' reward benefit (5th night completely free).",
+        "cashPrice": "₹75,000 (5 nights @ ₹15,000/night)",
+        "pointsRequired": "80,000 MR points (4 nights @ 20,000 pts/night)",
+        "taxesAndFees": "₹0 cash outlay",
+        "netCashSaved": "₹75,000",
+        "realizedValuePerPoint": "₹0.93 / MR point",
+        "bottomLine": "Even without the 5th-night-free benefit, booking a single night (20,000 points replacing a ₹15,000 stay) locks in ₹0.75 per point, tripling the baseline value of your accumulated milestone points."
+      }
+    ],
     "orientation": "horizontal"
   },
   {
@@ -131,45 +328,129 @@
       "rewards"
     ],
     "shortDescription": "Direct EDGE Miles card with unconditional domestic & international lounge access.",
-    "description": "Travel specialist card offering 5 EDGE Miles per ₹100 on Travel EDGE portal & airline spends, with spend-criteria-free airport lounge visits.",
+    "description": "Travel specialist card offering 5 EDGE Miles per ₹100 on direct airlines and Travel EDGE portal, 2 EDGE Miles per ₹100 on retail, and unconditional domestic lounge access with zero quarterly spend hurdles.",
     "annualFee": 3000,
     "joiningFee": 3000,
-    "feeWaiver": "No spend-based waiver; ₹3,000 annual fee is non-waivable (waived only for select Axis Burgundy tier relationships).",
+    "feeWaiver": "No standard milestone or spend-based waiver exists for regular accounts. Annual renewal fee of ₹3,540 (₹3,000 + 18% GST) is only waived (Nil) for customers with an Axis Burgundy Savings Account opened on or after July 1, 2026.",
     "apr": 52.86,
     "cashbackRate": 0,
     "rewardRate": 5,
     "loungeAccess": 10,
-    "rewardSummary": "5 EDGE Miles per ₹100 spent on Axis Travel EDGE and airline bookings; 1.5 EDGE Miles per ₹100 on other eligible retail spends.",
+    "rewardSummary": "5 EDGE Miles per ₹100 spent on direct airline bookings and Axis Travel EDGE portal (flights & hotels); 2 EDGE Miles per ₹100 on all other eligible online and offline retail transactions. Redeemable at 1:1 on Travel EDGE (1 Mile = ₹1) or 2:1 transfer to airline partners.",
     "rewardCategories": {
-      "travelAndAirlines": "5 EDGE Miles / ₹100",
-      "otherRetail": "1.5 EDGE Miles / ₹100"
+      "airlinesAndTravelEdge": "5 EDGE Miles / ₹100 (Direct airlines & Travel EDGE)",
+      "otherRetail": "2 EDGE Miles / ₹100 (All other eligible retail)",
+      "travelEdgeRedemption": "1 EDGE Mile = ₹1.00 (Flights & hotels)",
+      "partnerTransferRatio": "2 EDGE Miles = 1 Partner Mile (KrisFlyer, etc.)",
+      "shoppingVoucherDevaluation": "1 EDGE Mile = ₹0.20 (80% haircut penalty)"
     },
     "rewardCaps": "EDGE Miles do not have a restrictive monthly ceiling on direct travel.",
-    "exclusions": "Wallet loading, rent payments, fuel, jewelry, government institutions, and utility spends.",
+    "exclusions": "Wallet loading & gift cards, rental payments & insurance premiums, fuel transactions, government institutions, utilities, telecom bills, educational institution payments, and transportation, tolls & transit services.",
     "benefits": [
-      "5,000 welcome EDGE Miles upon card activation and joining fee payment",
-      "8 complimentary domestic airport lounge visits per year with no quarterly spend hurdles",
-      "2 complimentary international lounge visits per year via Priority Pass",
-      "1:1 and 1:2 redemption ratios across 15+ frequent flyer and hotel loyalty programs",
+      "Welcome Bonus: 5,000 EDGE Miles upon card activation and payment of the joining fee (worth ₹5,000 on Travel EDGE)",
+      "Domestic Lounges: 8 complimentary airport lounge visits per year across India with no quarterly spend hurdles",
+      "International Lounges: 2 complimentary international lounge visits per year via Priority Pass",
+      "5 EDGE Miles per ₹100 on direct airline bookings and Axis Travel EDGE portal",
+      "2 EDGE Miles per ₹100 on all other eligible online and offline retail spending",
+      "Direct 1:1 redemption on Travel EDGE portal (1 EDGE Mile = ₹1) with cash + miles flexibility (earning 5X on cash portion)",
       "1% fuel surcharge waiver on transactions between ₹400 and ₹5,000"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
     "incomeRequirement": "₹9,00,000 per annum",
     "locationRestrictions": "PAN India serviceable locations.",
-    "travelBenefits": "Direct conversion to airlines including Singapore Airlines KrisFlyer, Qatar Airways Privilege Club, and Air India.",
-    "loungeBenefits": "8 domestic lounge visits/year (unconditional) + 2 international lounge visits/year.",
-    "fuelBenefits": "1% fuel surcharge waiver up to ₹400 per billing cycle.",
+    "travelBenefits": "Direct conversion to airlines including Singapore Airlines KrisFlyer (2:1 ratio) and United MileagePlus; direct 1:1 travel redemptions on Travel EDGE.",
+    "loungeBenefits": "8 domestic lounge visits/year (unconditional with no quarterly spend hurdles) + 2 international lounge visits/year via Priority Pass.",
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹400 per billing cycle (no EDGE Miles earned on fuel).",
     "diningBenefits": "Up to 15% discount at partner restaurants through Axis Bank Dining Delights.",
-    "forexBenefits": "Standard 3.5% forex markup.",
-    "milestoneBenefits": "Annual bonus EDGE Miles on crossing ₹5,00,000 in card spends.",
+    "forexBenefits": "Standard 3.5% + GST forex markup.",
+    "milestoneBenefits": "Welcome Bonus: 5,000 EDGE Miles on first transaction of ₹1,000+ within 30 days (+₹1,460 net Year 1 profit over joining fee).",
     "officialUrl": "https://www.axisbank.com/retail/cards/credit-card/horizon-credit-card",
     "officialSource": "Axis Bank Official Cards Portal",
-    "lastVerified": "2026-10-23",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
-    "goodFor": "Frequent air travelers and airline miles enthusiasts",
+    "goodFor": "Frequent air travelers and airline miles enthusiasts looking for unconditional domestic lounge access",
     "whoItFits": "Travelers seeking unconditional airport lounge access and high conversion rates to international airline loyalty programs.",
-    "whatToWatchOutFor": "₹3,000 annual fee is recurring and non-waivable on standard retail accounts (no spend-based waiver milestone).",
+    "whatToWatchOutFor": [
+      "Non-Waivable Fee: The ₹3,540 annual fee (₹3,000 + 18% GST) is recurring and cannot be waived through standard retail milestone spending. It is only free for select Burgundy tier relationships established on/after July 1, 2026.",
+      "The 80% Devaluation Trap: Never redeem EDGE Miles for shopping vouchers or statement credit (value crashes from ₹1.00 to ₹0.20 per mile—an 80% loss in purchasing power).",
+      "Common Reward Exclusions: No EDGE Miles are earned on wallet loading, gift cards, rent payments, fuel, insurance, jewelry, government institutions, utilities, telecom, education, and tolls/transit.",
+      "Transfer Partner List Changes: Marriott Bonvoy, Accor, and Qatar Airways were removed from Horizon's direct transfer list; international airline partners transfer at 2:1 (2 EDGE Miles = 1 Partner Mile, min 500 miles).",
+      "Eligibility baseline: Minimum income of ₹9,00,000 per annum required for basic underwriting.",
+      "Cash advance fee: 2.5% of transaction amount, subject to a strict minimum fee of ₹500."
+    ],
     "whyCreditWiseRecommends": "Unlike most mid-tier cards that recently added strict quarterly spend hurdles for airport lounge access, Horizon maintains hassle-free lounge privileges.",
+    "keyInsights": [
+      {
+        "title": "Unconditional Domestic & International Lounge Access",
+        "description": "While most Indian credit cards have recently introduced steep quarterly spend thresholds (₹10,000 to ₹50,000) to access lounges, the Axis Horizon provides 8 complimentary domestic lounge visits per year across India and 2 international lounge visits via Priority Pass with zero quarterly spend hurdles."
+      },
+      {
+        "title": "Fee Structure & The Burgundy Account Exception",
+        "description": "Both joining and annual renewal fees are ₹3,000 + 18% GST (Total: ₹3,540). No standard spend-based or milestone waiver exists for regular retail accounts. The fees are only waived (Nil) for customers who opened an Axis Burgundy Savings Account on or after July 1, 2026."
+      },
+      {
+        "title": "Welcome Milestone Math: Net +₹1,460 Year 1 Value",
+        "description": "Upon paying the ₹3,540 joining fee and making a first retail transaction of at least ₹1,000 within 30 days, cardholders receive 5,000 welcome EDGE Miles. Redeemed on the Travel EDGE portal at 1 Mile = ₹1, this yields ₹5,000 in flight/hotel credits, generating an immediate +₹1,460 net financial gain in Year 1."
+      },
+      {
+        "title": "Warning: Avoid the 80% Devaluation Trap!",
+        "description": "Never redeem Axis EDGE Miles for shopping vouchers (e.g. Amazon, brand gift cards) or statement credit. On Travel EDGE portal bookings, 10,000 EDGE Miles equals ₹10,000 (₹1/mile). For retail vouchers, the conversion rate drops to ₹0.20 per mile (yielding only ₹2,000)—inflicting a massive 80% haircut on the purchasing power of your rewards. If you do not intend to book flights, hotels, or airline transfers, this is the wrong card for you."
+      },
+      {
+        "title": "Cash + Miles Flexibility With 5X Accelerated Rewards",
+        "description": "When booking on the Axis Travel EDGE portal, if you do not have enough miles to cover the full ticket (e.g. 5,000 miles for an ₹8,500 flight), the portal allows you to pay the remaining ₹3,500 using your Horizon card—and you will earn 5X accelerated EDGE Miles on that cash portion."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Prepaid, Rent & Insurance",
+        "items": [
+          "Wallet Loading & Gift Card Purchases: Zero EDGE Miles earned.",
+          "Rental Payments & Processing Charges: Zero EDGE Miles earned.",
+          "Insurance Premiums: Life, health, motor, and general insurance payments earn zero EDGE Miles."
+        ]
+      },
+      {
+        "category": "Utilities, Telecom & Government",
+        "items": [
+          "Government Institutions & Tax Outlays: Zero EDGE Miles earned.",
+          "Utilities & Electricity/Water/Gas Bills: Zero EDGE Miles earned.",
+          "Telecom Bills: Mobile recharges and landline/broadband bills earn zero EDGE Miles."
+        ]
+      },
+      {
+        "category": "Education, Transit & Fuel",
+        "items": [
+          "Educational Institutions: School, college, coaching, and university fees earn zero EDGE Miles.",
+          "Transportation, Tolls & Transit Services: FASTag reloads, road tolls, and metro/transit spends earn zero EDGE Miles.",
+          "Fuel Transactions: Petrol and diesel purchases earn zero EDGE Miles (covered by 1% fuel surcharge waiver up to ₹400/billing cycle instead)."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "Direct Flight Booking via Axis Travel EDGE Portal (The 100% Cashless Flight)",
+        "partner": "Axis Travel EDGE Portal (1 EDGE Mile = ₹1.00 direct travel credit)",
+        "scenario": "Round-trip IndiGo flight from Mumbai (BOM) to Goa (GOI) booked directly on Travel EDGE.",
+        "cashPrice": "₹8,500 (inclusive of taxes)",
+        "pointsRequired": "8,500 EDGE Miles",
+        "taxesAndFees": "₹0 cash outlay (plus standard ₹99 + GST portal convenience fee)",
+        "netCashSaved": "₹8,500",
+        "realizedValuePerPoint": "₹1.00 / EDGE Mile",
+        "bottomLine": "1 EDGE Mile translates to exactly ₹1.00 cash value toward any airline or hotel without blackout dates. Any remaining cash balance paid with the card earns 5X accelerated miles."
+      },
+      {
+        "title": "Singapore Airlines KrisFlyer Transfer (International Business Class Sweet Spot)",
+        "partner": "Singapore Airlines KrisFlyer (2 : 1 ratio — 2 EDGE Miles = 1 KrisFlyer Mile)",
+        "scenario": "One-way Singapore Airlines Business Class Saver Award from Mumbai (BOM) to Singapore (SIN).",
+        "cashPrice": "₹75,000 (retail Business Class fare)",
+        "pointsRequired": "86,000 EDGE Miles (transferred at 2:1 ratio to receive 43,000 KrisFlyer Miles)",
+        "taxesAndFees": "₹4,500 in carrier taxes/fees",
+        "netCashSaved": "₹70,500",
+        "realizedValuePerPoint": "₹0.82 / EDGE Mile",
+        "bottomLine": "While ₹0.82/mile is slightly below the flat ₹1.00 portal value, it unlocks a high-luxury Business Class experience with exceptional aspirational and experiential return."
+      }
+    ],
     "orientation": "horizontal"
   },
   {
@@ -188,45 +469,118 @@
       "concierge"
     ],
     "shortDescription": "Super-premium card offering airport concierge, luxury transfer ratios, and unlimited lounge visits.",
-    "description": "High-end luxury travel card featuring 12 EDGE Reward Points per ₹200 on regular spends and 35 EDGE Reward Points per ₹200 on Travel EDGE.",
+    "description": "High-end luxury travel card featuring 12 EDGE Reward Points per ₹200 on regular retail, 35 EDGE Reward Points per ₹200 on Travel EDGE, 8 VIP airport concierge services, and unlimited domestic & international lounge access with 4 guest visits.",
     "annualFee": 12500,
     "joiningFee": 12500,
-    "feeWaiver": "Waived on annual spends of ₹25,00,000 in the preceding year.",
+    "feeWaiver": "Annual fee of ₹14,750 (₹12,500 + 18% GST) is waived on eligible retail spends of ₹25,00,000+ in preceding year. Lifetime Free for Burgundy Private clients (TRV ₹5 Cr+); waived for new standard Burgundy accounts opened in promo windows.",
     "apr": 52.86,
     "cashbackRate": 0,
     "rewardRate": 6,
     "loungeAccess": 99,
-    "rewardSummary": "12 EDGE Reward Points per ₹200 on general spends; 35 EDGE Reward Points per ₹200 on Axis Travel EDGE portal.",
+    "rewardSummary": "12 EDGE Reward Points per ₹200 on eligible retail (6 pts/₹100); 35 EDGE Reward Points per ₹200 on Axis Travel EDGE portal (17.5 pts/₹100). Points transfer to airline partners at 5:2 ratio (5:4 for Burgundy variant) or 5:1 on Travel EDGE (₹0.20/pt). Monthly spend milestone discontinued.",
     "rewardCategories": {
-      "travelEdge": "35 EDGE Points / ₹200",
-      "generalRetail": "12 EDGE Points / ₹200"
+      "travelEdgeAccelerated": "35 EDGE Points / ₹200 (17.5 pts/₹100)",
+      "generalRetailBase": "12 EDGE Points / ₹200 (6 pts/₹100)",
+      "partnerTransferRatio": "5:2 (5 EDGE Points = 2 Airline Miles/Hotel Points)",
+      "travelEdgePortalRedemption": "5 EDGE Points = ₹1.00 (₹0.20 / point)",
+      "shoppingVoucherDevaluation": "₹0.20 / point (Avoid statement credit/vouchers)"
     },
-    "rewardCaps": "Accelerated points on Travel EDGE capped at ₹2,00,000 spend per month.",
-    "exclusions": "Rent, fuel, wallet reloads, gold/jewelry, government transactions, and insurance above threshold.",
+    "rewardCaps": "Accelerated points on Travel EDGE capped at ₹2,00,000 spend/month. Annual partner transfers strictly capped at 5,00,000 points per calendar year.",
+    "exclusions": "Rent payments, wallet loading transactions, fuel purchases, insurance premiums, government institutions, utilities, and gold/jewelry transactions (excluded from points earn and fee waiver calculation).",
     "benefits": [
-      "Choice of luxury domestic flight ticket or hotel voucher worth ₹12,500 on joining/renewal",
-      "Unlimited domestic lounge access for primary cardholder and guests",
-      "Unlimited international lounge visits with Priority Pass + 4 guest visits per year",
-      "8 complimentary VIP airport concierge meet-and-greet services per year",
-      "Reduced 2.0% forex markup for foreign travel"
+      "Welcome / Renewal Benefit: Luxury travel voucher (flight or hotel) worth ₹12,500 upon fee payment and card activation",
+      "Unlimited complimentary domestic lounge access for primary cardholder + 4 guest visits per calendar year (zero spend hurdles)",
+      "Unlimited complimentary international lounge access via Priority Pass for primary cardholder + 4 guest visits per year",
+      "8 complimentary VIP airport meet-and-greet concierge sessions per year (check-in, security, luggage tracking)",
+      "35 EDGE Reward Points per ₹200 on Axis Travel EDGE portal bookings (17.5 pts/₹100)",
+      "12 EDGE Reward Points per ₹200 on all eligible retail spending (6 pts/₹100)",
+      "Competitive 2.0% + GST forex markup fee for international transactions",
+      "1% fuel surcharge waiver up to ₹400 per month"
     ],
     "eligibility": "Indian resident aged 21-65 years with high credit score and income.",
     "incomeRequirement": "₹24,00,000 per annum or Burgundy account relationship",
     "locationRestrictions": "PAN India serviceable cities.",
-    "travelBenefits": "VIP airport meet & assist, luxury transfer partner ratios, and comprehensive overseas travel insurance.",
-    "loungeBenefits": "Unlimited domestic and international airport lounge visits for cardholder + guest allocations.",
-    "fuelBenefits": "1% fuel surcharge waiver up to ₹400/month.",
+    "travelBenefits": "8 VIP airport meet & assist sessions, 5:2 airline transfer ratios (KrisFlyer, Aeroplan, United), and comprehensive overseas travel insurance.",
+    "loungeBenefits": "Unlimited domestic lounge access + 4 guest visits/year; Unlimited international visits via Priority Pass + 4 guest visits/year (unconditional).",
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹400/month (no EDGE points earned on fuel).",
     "diningBenefits": "Up to 40% off at over 4,000 premium restaurants via Axis Bank Dining Delights.",
-    "forexBenefits": "Reduced 2.0% foreign currency markup.",
-    "milestoneBenefits": "Annual renewal luxury travel voucher worth up to ₹12,500.",
+    "forexBenefits": "Competitive 2.0% + GST foreign currency markup fee.",
+    "milestoneBenefits": "Luxury travel voucher (domestic flight or hotel) worth ₹12,500 upon joining and each annual renewal.",
     "officialUrl": "https://www.axisbank.com/retail/cards/credit-card/magnus-card",
     "officialSource": "Axis Bank Official Portal",
-    "lastVerified": "2026-09-20",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
-    "goodFor": "High net-worth travelers seeking airport VIP treatment",
+    "goodFor": "High net-worth executives and business owners (₹25L+ spend) seeking VIP airport concierge and guest lounge access",
     "whoItFits": "Frequent international flyers who utilize airport meet-and-greet services, guest lounge access, and luxury hotel loyalty redemptions.",
-    "whatToWatchOutFor": "High annual fee (₹12,500) and steep ₹25 Lakh waiver threshold; reward points earn rate lower outside Travel EDGE.",
+    "whatToWatchOutFor": [
+      "Annual Partner Transfer Cap: Strictly capped at 5,00,000 EDGE Reward Points per calendar year (split into up to 1,00,000 points for Group A partners like Singapore Airlines/Air India and up to 4,00,000 for Group B partners like Hilton). Excess points cannot be transferred until Jan 1.",
+      "Partner Transfer Devaluation: Marriott Bonvoy, Accor Live Limitless, and Qatar Airways were completely removed from this card tier; standard transfer ratio is 5:2 (5:4 only for Burgundy tier).",
+      "High Non-Waivable Holding Cost: Annual fee is ₹14,750 (₹12,500 + 18% GST), requiring a steep ₹25 Lakh eligible annual spend hurdle to waive on regular retail accounts.",
+      "Discontinued Milestone: The historic 25,000 bonus points monthly milestone on ₹1 Lakh spend has been permanently eliminated; points are purely transactional.",
+      "Strict Exclusions: Zero reward points and zero waiver progress on rent, wallet loads, fuel, insurance, utilities, government payments, and jewelry.",
+      "Direct Portal / Voucher Redemption Penalty: Converting points on Travel EDGE portal or for shopping vouchers yields only ₹0.20 per point."
+    ],
     "whyCreditWiseRecommends": "The 8 complimentary VIP airport concierge services alone comfortably offset the annual fee for frequent family travelers.",
+    "keyInsights": [
+      {
+        "title": "Hidden Annual Capping on Partner Point Transfers (Group A & Group B)",
+        "description": "Axis Bank strictly caps partner mileage transfers at 5,00,000 EDGE Reward Points per calendar year. This is segmented into a maximum of 1,00,000 points transferred to Group A partners (e.g. Singapore Airlines KrisFlyer, Air India) and up to 4,00,000 points to Group B partners (e.g. Hilton Honors, Lufthansa Miles & More). Any points accumulated beyond these quotas cannot be transferred out until the January 1 reset."
+      },
+      {
+        "title": "Banking Relationship Impact: Burgundy vs. Burgundy Private vs. Regular",
+        "description": "1. Standard Burgundy: Fees are not automatically waived (only waived during specific promotional sign-up windows), but holding Burgundy status unlocks the 'Magnus for Burgundy' variant with an elevated 5:4 partner transfer ratio. 2. Burgundy Private: Clients with ₹5 Crore+ TRV receive the card completely Lifetime Free (₹0 joining & renewal fee). 3. Regular Accounts: Full ₹14,750 fee applies unless spending ₹25 Lakhs annually."
+      },
+      {
+        "title": "VIP Airport Meet-and-Greet Concierge Service",
+        "description": "Cardholders receive 8 complimentary airport concierge sessions per year across major domestic and international hubs, covering dedicated assistance through check-in, immigration/security, and luggage handling—a major time-saver for frequent business and family travelers."
+      },
+      {
+        "title": "Uncapped Airport Lounge Visits With 4 Guest Passes",
+        "description": "Unlike cards with quarterly spend conditions, Magnus offers unconditional unlimited domestic lounge visits for the cardholder, unlimited international lounge visits via Priority Pass, plus 4 complimentary guest visits per year across both networks."
+      },
+      {
+        "title": "Discontinuation of Monthly Spend Milestones",
+        "description": "The historic 25,000 monthly bonus points for spending ₹1 Lakh in a calendar month has been permanently discontinued. Reward accumulation is now strictly transactional: 12 points/₹200 on retail and 35 points/₹200 on Travel EDGE."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Prepaid, Real Estate & Financial",
+        "items": [
+          "Rent Payments: Inside third-party portals or banking apps (zero points, excluded from fee waiver).",
+          "Wallet Loading: Reloading digital prepaid wallets (zero points, excluded from fee waiver).",
+          "Insurance Premiums: Life, health, and motor insurance payments earn zero EDGE points."
+        ]
+      },
+      {
+        "category": "Utilities, Taxes & Government",
+        "items": [
+          "Government Institutions: Tax payments, fines, and municipal services earn zero points.",
+          "Utilities: Electricity, water, and gas bills earn zero EDGE points."
+        ]
+      },
+      {
+        "category": "Jewelry, Fuel & Cash",
+        "items": [
+          "Gold & Jewelry: Physical and digital bullion/jewelry spends earn zero points.",
+          "Fuel Purchases: Zero reward points (covered by 1% surcharge waiver up to ₹400/month).",
+          "Cash Advances: ATM cash withdrawals earn zero points."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "Singapore Airlines KrisFlyer Economy Flight Math",
+        "partner": "Singapore Airlines KrisFlyer (5 : 2 ratio — 5 EDGE Points = 2 KrisFlyer Miles)",
+        "scenario": "One-way Singapore Airlines Economy flight from Mumbai (BOM) to Singapore (SIN).",
+        "cashPrice": "₹22,000 (typical one-way cash fare)",
+        "pointsRequired": "46,250 EDGE Reward Points (transferred at 5:2 ratio to yield 18,500 KrisFlyer Miles)",
+        "taxesAndFees": "₹3,000 in government taxes/fees",
+        "netCashSaved": "₹19,000",
+        "realizedValuePerPoint": "₹0.41 / EDGE Point",
+        "bottomLine": "While ₹0.41/point is lower than the card's historic 5:4 era, it still delivers double the value of direct statement credit or voucher conversions (which permanently devalue rewards to ₹0.20/point)."
+      }
+    ],
     "orientation": "vertical"
   },
   {
@@ -242,49 +596,111 @@
       "rewards",
       "dining",
       "travel",
-      "movies"
+      "movies",
+      "cashback"
     ],
     "shortDescription": "Premium lifestyle card with 3.75% reward return on dining, travel, and international spends.",
-    "description": "BOBCARD's flagship card delivering 15 reward points per ₹100 on travel, dining, and international transactions alongside unlimited domestic lounge visits.",
+    "description": "BOBCARD's flagship rewards card delivering 15 reward points per ₹100 (3.75% value) on online shopping, travel, dining, and international spends, with direct statement credit redemption (1 pt = ₹0.25).",
     "annualFee": 2499,
-    "joiningFee": 2499,
-    "feeWaiver": "Waived on annual spends of ₹2,50,000.",
+    "joiningFee": 0,
+    "feeWaiver": "Annual renewal fee of ₹2,949 (₹2,499 + 18% GST) is 100% waived on annual retail spends of ₹2,50,000+ within the card anniversary year.",
     "apr": 42,
     "cashbackRate": 0,
     "rewardRate": 3.75,
     "loungeAccess": 99,
-    "rewardSummary": "15 reward points per ₹100 on online shopping, travel, and dining (3.75% return); 3 points per ₹100 on other categories (0.75% return).",
+    "rewardSummary": "15 Reward Points per ₹100 on online shopping, travel bookings, dining, and international transactions (3.75% effective return); 3 points per ₹100 on other retail (0.75% return). 1 pt = ₹0.25 direct statement credit with zero devaluation penalty.",
     "rewardCategories": {
-      "travelAndDining": "15 points / ₹100 (3.75%)",
-      "international": "15 points / ₹100 (3.75%)",
-      "otherRetail": "3 points / ₹100 (0.75%)"
+      "acceleratedShoppingTravelDining": "15 points / ₹100 (3.75% return)",
+      "internationalSpends": "15 points / ₹100 (3.75% return)",
+      "baseRetail": "3 points / ₹100 (0.75% return)",
+      "cashbackRedemption": "1 pt = ₹0.25 (Statement credit & travel portal)",
+      "onboardingMilestone": "10,000 bonus pts (₹2,500) on ₹50k in 60 days",
+      "annualMilestone": "20,000 bonus pts (₹5,000) on ₹5L annual spend"
     },
-    "rewardCaps": "Accelerated points capped at 5,000 reward points per statement cycle.",
-    "exclusions": "Fuel, wallet loads, rent, utilities, and education payments.",
+    "rewardCaps": "Accelerated 15x points capped at 5,000 reward points per billing cycle across online, travel, and dining combined.",
+    "exclusions": "Fuel purchases (surcharge waiver only, capped at ₹250/cycle), wallet loading transactions, rental payments, utility bill payments, and educational institution fees.",
     "benefits": [
-      "10,000 bonus reward points (worth ₹2,500) on spending ₹50,000 in first 60 days",
-      "Unlimited domestic airport lounge access (subject to ₹75,000 spend in preceding calendar quarter)",
-      "Buy 1 Get 1 free movie ticket on Paytm Movies (up to ₹250 discount, twice a month)",
-      "Reduced 2.0% forex markup for overseas expenditure",
-      "Complimentary golf rounds and lessons"
+      "Joining fee is Nil under rolling promotional offer (saving ₹2,499 + GST)",
+      "15 Reward Points per ₹100 on online shopping, travel, dining, and international transactions (3.75% return)",
+      "3 Reward Points per ₹100 on all other retail transactions (0.75% return)",
+      "10,000 bonus reward points (worth ₹2,500) on spending ₹50,000 in the first 60 days",
+      "20,000 bonus reward points (worth ₹5,000) on crossing ₹5 Lakhs in annual spends",
+      "Unlimited domestic airport lounge access (strictly subject to ₹75,000 spend in preceding calendar quarter)",
+      "Buy 1 Get 1 free movie ticket on Paytm/District app up to ₹250 discount once per month",
+      "Competitive 2.0% + GST foreign currency markup fee",
+      "Complimentary 12-month FITPASS PRO membership (worth ₹15,000) on spending ₹10,000 in first 30 days"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
     "incomeRequirement": "₹12,00,000 per annum",
     "locationRestrictions": "All branches across India.",
-    "travelBenefits": "Unlimited domestic lounge access and low 2% forex markup.",
-    "loungeBenefits": "Unlimited domestic airport lounge access (unlocked by spending ₹75,000 in the preceding calendar quarter).",
+    "travelBenefits": "Unlimited domestic lounge access (spend-linked) and low 2.0% forex markup for international spends.",
+    "loungeBenefits": "Unlimited domestic airport lounge visits for primary cardholder, strictly subject to spending ₹75,000 in preceding calendar quarter. International lounge access is not included (chargeable).",
     "fuelBenefits": "1% fuel surcharge waiver on transactions between ₹400 and ₹5,000 (up to ₹250/month).",
-    "diningBenefits": "Accelerated 15 reward points per ₹100 spent on dining.",
-    "forexBenefits": "2.0% foreign currency markup.",
-    "milestoneBenefits": "20,000 bonus points on annual spends of ₹5,00,000.",
+    "diningBenefits": "Accelerated 15 reward points per ₹100 spent on dining (3.75% return).",
+    "forexBenefits": "Reduced 2.0% + GST foreign currency markup fee (saves 1.5% vs standard 3.5% banking baseline).",
+    "milestoneBenefits": "10,000 bonus points (worth ₹2,500) on ₹50,000 spend in first 60 days + 20,000 bonus points (worth ₹5,000) on ₹5,00,000 annual spend.",
     "officialUrl": "https://www.bobcard.co.in/eterna",
     "officialSource": "BOBCARD Official Website",
-    "lastVerified": "2026-10-23",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
-    "goodFor": "Dining, movie lovers, and frequent domestic travelers",
-    "whoItFits": "Anyone looking for a high 3.75% rewards return on dining and travel alongside unlimited domestic lounge access for under ₹2,500 annual fee.",
-    "whatToWatchOutFor": "5,000 reward points cap on the 15x accelerated categories per month.",
-    "whyCreditWiseRecommends": "One of the most cost-effective premium cards on the market, paying for itself through movie ticket savings and unlimited airport lounges.",
+    "goodFor": "Middle-income professionals spending heavily online, on dining, and domestic travel wanting a clean 3.75% cashback rate",
+    "whoItFits": "Anyone looking for a high 3.75% rewards return on dining and travel alongside domestic lounge access for under ₹2,500 annual fee.",
+    "whatToWatchOutFor": [
+      "Lounge Access Spend Hurdle: Unlimited domestic lounge access requires a strict minimum spend of ₹75,000 in the preceding calendar quarter.",
+      "No Free International Lounges: Priority Pass is not bundled; international lounge access is fully chargeable.",
+      "Accelerated Reward Ceiling: The 15x points tier (3.75%) is capped at 5,000 reward points per billing cycle across shopping, dining, and travel combined.",
+      "Strict Exclusions: Fuel, wallet loading, rent payments, utility bills, and educational institution fees earn zero points.",
+      "Annual renewal fee of ₹2,949 (₹2,499 + 18% GST) applies unless retail spending crosses ₹2,50,000 in the anniversary year."
+    ],
+    "whyCreditWiseRecommends": "One of the most cost-effective premium cards on the market, paying for itself through movie ticket savings, direct statement credits, and domestic lounges.",
+    "keyInsights": [
+      {
+        "title": "Clean, Uniform ₹0.25 Point Valuation (No Devaluation Trap)",
+        "description": "Unlike competitor cards that slash point valuations if you choose cashback over flight transfers, BOBCARD maintains an unwavering, flat conversion rate of 1 Reward Point = ₹0.25. Points can be directly credited against your statement with zero devaluation penalty."
+      },
+      {
+        "title": "Domestic Lounge Spend Hurdle (₹75,000/Quarter)",
+        "description": "BOBCARD has discontinued unconditional lounge entries. To unlock unlimited domestic airport lounge visits, cardholders must cross a spend threshold of ₹75,000 in the immediately preceding calendar quarter."
+      },
+      {
+        "title": "5X Accelerated Cap on Online, Travel & Dining",
+        "description": "The accelerated 15 points/₹100 (3.75% value) is capped at 5,000 bonus reward points per statement cycle across online shopping, dining, and travel categories combined. Once reached, spends earn the base 3 points/₹100 rate (0.75%)."
+      },
+      {
+        "title": "Competitive 2.0% Forex & Lifestyle Perks",
+        "description": "Features a low 2.0% + GST foreign currency markup fee (saving 1.5% vs the 3.5% industry norm), a monthly BOGO movie ticket discount up to ₹250 on the Paytm/District app, and a 12-month FITPASS PRO membership on spending ₹10,000 in the first 30 days."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Prepaid, Real Estate & Fuel",
+        "items": [
+          "Fuel Purchases: Zero reward points (covered by 1% fuel surcharge waiver up to ₹250/billing cycle).",
+          "Wallet Loading: Reloading digital prepaid wallets earns zero points.",
+          "Rental Payments: Rent payments via third-party platforms earn zero points."
+        ]
+      },
+      {
+        "category": "Utilities & Education",
+        "items": [
+          "Utility Bill Payments: Electricity, gas, water, and telecom bills earn zero points.",
+          "Educational Institutions: School, college, and coaching institute fees earn zero points."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "Cashing Out Milestone Math (Onboarding Yield)",
+        "partner": "Direct Statement Credit (1 Reward Point = ₹0.25 flat cash credit)",
+        "scenario": "You spend ₹50,000 online on retail and hotel bookings within your first 60 days of card issuance.",
+        "cashPrice": "₹50,000 spend outlay",
+        "pointsRequired": "17,500 Reward Points (7,500 regular accelerated points + 10,000 welcome milestone bonus)",
+        "taxesAndFees": "₹0 joining fee (promotional Nil joining offer)",
+        "netCashSaved": "₹4,375 statement credit",
+        "realizedValuePerPoint": "₹0.25 / pt (8.75% effective spend yield)",
+        "bottomLine": "A ₹4,375 direct cash return on ₹50,000 spend gives an outstanding 8.75% flat return during onboarding, completely wiping out future card renewal liabilities."
+      }
+    ],
     "orientation": "horizontal"
   },
   {
@@ -302,46 +718,102 @@
       "etihad",
       "forex"
     ],
-    "shortDescription": "Co-branded Etihad Guest card with accelerated air miles and reduced 1% forex markup.",
-    "description": "Co-branded airline card offering 3 Etihad Guest Miles per ₹100 on Etihad bookings, 1% low forex markup, and up to 12 airport lounge visits per year.",
+    "shortDescription": "Co-branded Etihad Guest card with accelerated air miles and ultra-low 1% forex markup.",
+    "description": "Direct co-branded airline card offering 3 Etihad Guest Miles per ₹100 on Etihad bookings, 1% low forex markup, up to 12 lounge visits/year, and direct deposits into your Etihad Guest account.",
     "annualFee": 2500,
     "joiningFee": 2500,
-    "feeWaiver": "Waived on annual spends of ₹3,00,000 in preceding year.",
+    "feeWaiver": "Annual renewal fee of ₹2,950 (₹2,500 + 18% GST) is 100% waived on eligible retail spends of ₹3,00,000+ within the preceding card anniversary year.",
     "apr": 42,
     "cashbackRate": 0,
     "rewardRate": 3,
     "loungeAccess": 12,
-    "rewardSummary": "3 Etihad Guest Miles per ₹100 spent on Etihad.com; 1 Etihad Guest Mile per ₹100 on all other retail spending.",
+    "rewardSummary": "3 Etihad Guest Miles per ₹100 spent directly on Etihad Airways (flights & ancillary services); 1 Etihad Guest Mile per ₹100 on general eligible retail. Direct airline currency with ~₹0.60–₹1.20+ valuation on award flights. Statement credits unavailable.",
     "rewardCategories": {
-      "etihadSpends": "3 Etihad Guest Miles / ₹100",
-      "otherSpends": "1 Etihad Guest Mile / ₹100"
+      "etihadDirect": "3 Etihad Guest Miles / ₹100 (3% yield)",
+      "otherRetail": "1 Etihad Guest Mile / ₹100 (1% yield)",
+      "flightRedemption": "~₹0.60 to ₹1.20+ per mile (Etihad & partner award flights)",
+      "nonFlightDevaluation": "Slashing to ~₹0.20/mile (Avoid merchandise/catalogs)",
+      "monthlyMilestone": "1,000 bonus miles on ₹25k monthly spend",
+      "annualMilestone": "10,000 bonus miles on ₹5L annual spend"
     },
     "rewardCaps": "No cap on miles earned on Etihad tickets.",
-    "exclusions": "Fuel transactions, wallet loads, rent, and cash advances.",
+    "exclusions": "Fuel purchases (surcharge waiver only), wallet loading and digital prepaid reloads, rental payments, cash advances, dynamic currency conversion fees, and late payment finance charges.",
     "benefits": [
-      "2,500 welcome Etihad Guest Miles on qualifying initial spends",
-      "8 complimentary domestic airport lounge visits + 4 international lounge visits per year",
-      "Ultra-low 1% foreign currency transaction markup",
-      "Up to 12,000 milestone bonus Etihad Guest Miles per year",
-      "1% fuel surcharge waiver up to ₹250 per month"
+      "Welcome Bonus: 2,500 welcome Etihad Guest Miles credited upon card activation and fee payment",
+      "Ultra-Low Forex: Disruptive 1.0% + GST foreign currency markup fee for international transactions",
+      "8 complimentary domestic airport lounge visits per year across India (spend-linked)",
+      "4 complimentary international airport lounge visits per year via bundled lounge program",
+      "3 Etihad Guest Miles per ₹100 spent directly on Etihad Airways flights & services",
+      "1 Etihad Guest Mile per ₹100 spent on all general eligible retail transactions",
+      "Earn 1,000 bonus Etihad Guest Miles each month on crossing ₹25,000 in spend (up to 12,000 miles/yr)",
+      "Earn 10,000 bonus Etihad Guest Miles upon crossing ₹5 Lakhs in annual spends",
+      "1% fuel surcharge waiver on transactions between ₹400 and ₹5,000 (up to ₹250/month)"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
     "incomeRequirement": "₹8,00,000 per annum",
     "locationRestrictions": "Pan India.",
-    "travelBenefits": "Direct Etihad Guest Miles credit, fast-track tier status, and 1% forex markup.",
-    "loungeBenefits": "8 domestic + 4 international airport lounge visits per year.",
+    "travelBenefits": "Direct Etihad Guest Miles credit, fast-track tier status, and ultra-low 1% forex markup.",
+    "loungeBenefits": "8 domestic lounge visits per year (strictly subject to spending ₹75,000 in preceding calendar quarter) + 4 complimentary international lounge visits per year.",
     "fuelBenefits": "1% fuel surcharge waiver for spends between ₹400 and ₹5,000.",
     "diningBenefits": "Standard BOBCARD dining tie-up discounts.",
-    "forexBenefits": "Ultra-low 1.0% foreign currency markup.",
-    "milestoneBenefits": "1,000 bonus miles per month on ₹25,000 spend + 10,000 bonus miles on ₹5 Lakh annual spend.",
+    "forexBenefits": "Disruptive 1.0% + GST foreign currency markup fee (saves 2.5% vs standard 3.5% banking baseline).",
+    "milestoneBenefits": "1,000 bonus miles per month on ₹25,000 spend (up to 12,000 miles/yr) + 10,000 bonus miles upon crossing ₹5 Lakhs in annual spends.",
     "officialUrl": "https://www.bobcard.co.in/etihad-guest",
     "officialSource": "BOBCARD Official Portal",
-    "lastVerified": "2026-09-20",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
-    "goodFor": "Frequent flyers traveling to UAE, Middle East, Europe, or USA via Etihad",
+    "goodFor": "Frequent international flyers to UAE, Europe, or North America via Abu Dhabi seeking low 1% forex markup",
     "whoItFits": "Travelers who fly Etihad Airways and want direct miles credit coupled with low 1% foreign currency fees.",
-    "whatToWatchOutFor": "Reward value is strictly tied to the Etihad Guest program; less versatile if you don't fly Etihad or partners.",
+    "whatToWatchOutFor": [
+      "Lounge Access Spend Hurdle: Domestic lounge access requires spending ₹75,000 in the preceding calendar quarter to unlock access for the following quarter.",
+      "Reward Currency Lockdown: Rewards are deposited strictly as Etihad Guest airline miles; direct statement credit or general cash back is completely unavailable.",
+      "Non-Flight Devaluation: Redeeming miles for merchandise, car rentals, or gift cards slashes value down to ~₹0.20 to ₹0.25 per mile.",
+      "Strict Exclusions: Zero miles on fuel, wallet loads, rent, cash advances, and dynamic currency conversion fees.",
+      "Annual renewal fee of ₹2,950 (₹2,500 + 18% GST) applies unless spending ₹3,00,000 in the anniversary year."
+    ],
     "whyCreditWiseRecommends": "The 1% forex markup is among the lowest in India for a ₹2,500 card, saving thousands on overseas trips.",
+    "keyInsights": [
+      {
+        "title": "Disruptive 1.0% Foreign Currency Markup",
+        "description": "Features an ultra-competitive 1.0% + GST forex markup fee—matching or beating ultra-premium credit cards costing triple the fee. On ₹2 Lakhs of overseas spending, this saves ₹5,000 in raw cash fees compared to the standard 3.5% banking baseline."
+      },
+      {
+        "title": "Direct Airline Mileage Deposit (No Bank Conversion Friction)",
+        "description": "Bypasses bank reward points entirely, depositing miles straight into your linked Etihad Guest frequent flyer profile. Miles yield ~₹0.60 to ₹1.20+ value when redeemed for award flights on Etihad Airways or SkyTeam/partner airlines."
+      },
+      {
+        "title": "Domestic Lounge Spend Hurdle (₹75,000/Quarter)",
+        "description": "While offering 8 domestic and 4 international lounge visits per year, BOBCARD applies a rolling spend requirement of ₹75,000 in the preceding calendar quarter to unlock domestic lounge privileges for the subsequent quarter."
+      },
+      {
+        "title": "Dual Milestone Architecture (Up to 22,000 Bonus Miles/Yr)",
+        "description": "Cardholders earn 1,000 bonus Etihad Guest Miles each calendar month upon spending ₹25,000 (yielding 12,000 miles/yr), plus an additional 10,000 bonus miles upon crossing ₹5 Lakhs in annual retail spending."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Prepaid, Real Estate & Cash",
+        "items": [
+          "Fuel Purchases: Zero reward miles (covered by 1% fuel surcharge waiver for bills between ₹400 and ₹5,000).",
+          "Wallet Loading: Reloading digital prepaid wallets earns zero miles.",
+          "Rental Payments: Rent payments via third-party platforms earn zero miles.",
+          "Cash Advances & Finance Charges: Cash withdrawals, DCC fees, and finance charges earn zero miles."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "Mumbai to Abu Dhabi Flight Award Math",
+        "partner": "Etihad Airways Guest Flight Award",
+        "scenario": "One-way Economy Class award ticket from Mumbai (BOM) to Abu Dhabi (AUH) on Etihad Airways.",
+        "cashPrice": "₹15,000 (typical retail ticket fare)",
+        "pointsRequired": "12,000 Etihad Guest Miles",
+        "taxesAndFees": "₹4,000 in government taxes/carrier fees",
+        "netCashSaved": "₹11,000",
+        "realizedValuePerPoint": "₹0.91 / Etihad Guest Mile",
+        "bottomLine": "Routing ₹25,000/month across 12 months earns 17,500 total miles (including welcome bonus and fee waiver), comfortably funding a flight to the UAE at ₹0.91/mile plus saving ₹5,000 on every ₹2 Lakhs spent overseas via the 1% forex markup."
+      }
+    ],
     "orientation": "horizontal"
   },
   {
@@ -359,47 +831,105 @@
       "online",
       "dining"
     ],
-    "shortDescription": "5% unlimited cashback on Flipkart and 4% on preferred partners like Swiggy and Uber.",
-    "description": "One of India's most popular cashback cards providing 5% flat cashback on Flipkart & Cleartrip, 4% on selected partner merchants, and 1% on other spends.",
+    "shortDescription": "5% unlimited cashback on Flipkart & Cleartrip and 4% on everyday partners like Swiggy and Uber.",
+    "description": "Direct statement cashback card providing 5% unlimited cashback on Flipkart & Cleartrip, 4% unlimited on Swiggy, Uber, PVR INOX & Tata 1mg, and 1% on other eligible retail.",
     "annualFee": 500,
     "joiningFee": 500,
-    "feeWaiver": "Waived on annual spends of ₹3,50,000.",
+    "feeWaiver": "Annual renewal fee of ₹590 (₹500 + 18% GST) is 100% waived on eligible retail spends of ₹3,50,000+ within the card anniversary year.",
     "apr": 52.86,
     "cashbackRate": 5,
     "rewardRate": 0,
     "loungeAccess": 0,
-    "rewardSummary": "5% unlimited cashback on Flipkart; 4% unlimited cashback on Swiggy, Uber, PVR, and Tata 1mg; 1% unlimited cashback on all other eligible spends.",
+    "rewardSummary": "5% unlimited cashback on Flipkart and Cleartrip; 4% unlimited cashback on preferred partners (Swiggy, Uber, PVR INOX, Tata 1mg); 1% unlimited cashback on all other eligible retail. Directly credited to credit card statement each month with zero devaluation.",
     "rewardCategories": {
-      "flipkart": "5% unlimited cashback",
-      "preferredPartners": "4% unlimited cashback",
-      "otherRetail": "1% unlimited cashback"
+      "flipkartAndCleartrip": "5% unlimited cashback",
+      "preferredPartners": "4% unlimited cashback (Swiggy, Uber, PVR INOX, Tata 1mg)",
+      "allOtherRetail": "1% unlimited cashback",
+      "statementCredit": "1 Point = ₹1.00 (Automated monthly statement credit)"
     },
-    "rewardCaps": "No monthly cap on cashback earned across Flipkart and partner merchants.",
-    "exclusions": "Fuel, gift card purchases, wallet reloads, rent, government utilities, and EMI purchases.",
+    "rewardCaps": "No monthly cap on cashback earnings across Flipkart, Cleartrip, and preferred partner platforms.",
+    "exclusions": "Fuel purchases (surcharge waiver only), wallet loading and prepaid instruments, rental payments, government institutions, utilities & tax payments, educational institution transactions, all EMI purchases (merchant EMI and post-purchase conversions), and Flipkart gift card purchases.",
     "benefits": [
-      "₹600 worth welcome vouchers on card activation",
-      "5% uncapped cashback on Flipkart & Cleartrip credited directly to statement",
-      "4% uncapped cashback on Swiggy, Uber, PVR, and Cult.fit",
-      "1% uncapped cashback on all other retail transactions",
-      "1% fuel surcharge waiver up to ₹400 per statement cycle"
+      "Welcome Benefits: Up to ₹600 worth of activation perks (₹500 Flipkart voucher on first transaction + ₹100 Swiggy discount)",
+      "5% unlimited cashback on Flipkart and Cleartrip credited directly to statement",
+      "4% unlimited cashback on Swiggy, Uber, PVR INOX, and Tata 1mg",
+      "1% unlimited cashback on all other eligible online and offline retail spending",
+      "Direct automatic statement credit: Cashback lowers your upcoming card bill each month without redemption steps",
+      "1% fuel surcharge waiver on transactions between ₹400 and ₹4,000 (up to ₹400/month)"
     ],
     "eligibility": "Indian resident aged 18-70 years.",
     "incomeRequirement": "₹25,000/month for salaried; ₹30,000/month for self-employed",
     "locationRestrictions": "Available across India.",
-    "travelBenefits": "5% cashback on flight and hotel bookings via Cleartrip on Flipkart.",
-    "loungeBenefits": "Domestic lounge access discontinued in recent policy update.",
-    "fuelBenefits": "1% fuel surcharge waiver for transactions between ₹400 and ₹4,000.",
-    "diningBenefits": "Up to 15% discount on partner restaurants under Axis Dining Delights.",
-    "forexBenefits": "Standard 3.5% foreign currency markup.",
+    "travelBenefits": "5% uncapped cashback on flight and hotel bookings via Cleartrip.",
+    "loungeBenefits": "None. Complimentary airport lounge access has been completely discontinued across this card tier.",
+    "fuelBenefits": "1% fuel surcharge waiver for transactions between ₹400 and ₹4,000 (up to ₹400/month).",
+    "diningBenefits": "4% unlimited cashback on Swiggy + dining discounts under Axis Dining Delights.",
+    "forexBenefits": "Standard 3.5% + GST foreign currency markup fee.",
     "milestoneBenefits": "None (direct continuous cashback structure).",
     "officialUrl": "https://www.axisbank.com/retail/cards/credit-card/flipkart-axis-bank-credit-card",
     "officialSource": "Axis Bank Official Website",
-    "lastVerified": "2026-09-20",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
-    "goodFor": "Frequent Flipkart shoppers and everyday app users (Uber, Swiggy)",
-    "whoItFits": "Shoppers who use Flipkart as their primary e-commerce store and want automated monthly statement cashback.",
-    "whatToWatchOutFor": "Complimentary airport lounge access has been removed from this card; ₹3.5 Lakh waiver threshold is high for a ₹500 card.",
-    "whyCreditWiseRecommends": "The 4% cashback on everyday services like Uber and Swiggy makes it exceptionally valuable beyond just Flipkart shopping.",
+    "goodFor": "Frequent Flipkart shoppers and daily users of Swiggy, Uber, and Tata 1mg",
+    "whoItFits": "Shoppers who use Flipkart as their primary e-commerce store and want automated monthly statement cashback without reward portal tracking.",
+    "whatToWatchOutFor": [
+      "Disproportionately High Fee Waiver Hurdle: Annual fee of ₹590 (₹500 + 18% GST) requires spending ₹3.5 Lakhs/year to waive (much higher than the typical ₹1L–₹2L hurdle on competitor cards).",
+      "Airport Lounge Access Removed: Complimentary domestic and international airport lounge access has been completely eliminated.",
+      "Strict Exclusions: Zero cashback and zero waiver progress on fuel, wallet loads, rent, utilities, government payments, education, gift cards, and all EMI purchases.",
+      "Standard 3.5% + GST foreign currency markup fee (not economical for international spends)."
+    ],
+    "whyCreditWiseRecommends": "The 4% cashback on everyday services like Uber, Swiggy, and Tata 1mg makes it exceptionally valuable beyond just Flipkart shopping.",
+    "keyInsights": [
+      {
+        "title": "Automated Direct Statement Cashback (1 Point = ₹1)",
+        "description": "Bypasses bank reward catalogs entirely. Cashback earned across Flipkart, preferred partners, and general retail in a billing cycle is automatically computed and credited directly to your credit card statement as real cash in the subsequent month, lowering your bill with zero redemption friction or devaluation risk."
+      },
+      {
+        "title": "The Disproportionate Fee Waiver Threshold (₹3.5 Lakhs)",
+        "description": "While the card carries an accessible ₹590 annual fee (₹500 + 18% GST), its fee waiver milestone is set at an unusually steep ₹3,50,000 per year. For cardholders who do not hit this threshold, recovering the ₹590 annual fee organically requires roughly ₹11,800 in annual Flipkart spending (at 5%) just to break even."
+      },
+      {
+        "title": "Preferred Merchant Ecosystem (4% on Everyday Services)",
+        "description": "Unlike store-locked cards, this card provides 4% uncapped cashback across everyday lifestyle apps: Swiggy (food delivery), Uber (cabs), PVR INOX (movies), and Tata 1mg (pharmacy and healthcare), making it a formidable daily utility card."
+      },
+      {
+        "title": "Discontinuation of Airport Lounge Access",
+        "description": "Following portfolio restructuring by Axis Bank, complimentary airport lounge visits (both domestic and international) have been completely removed from the Flipkart Axis Bank card."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Prepaid, Real Estate & Financial",
+        "items": [
+          "Fuel Purchases: Zero cashback (covered by 1% fuel surcharge waiver up to ₹400/month).",
+          "Wallet Loading: Reloading digital prepaid wallets earns zero cashback.",
+          "Rental Payments: Rent transactions on third-party portals earn zero cashback.",
+          "EMI Purchases: Direct merchant EMI checkouts and post-purchase EMI conversions earn zero cashback."
+        ]
+      },
+      {
+        "category": "Utilities, Government & Gift Cards",
+        "items": [
+          "Government Institutions & Taxes: Zero cashback.",
+          "Utilities & Bill Payments: Electricity, water, and gas payments earn zero cashback.",
+          "Educational Institutions: School, college, and coaching fee payments earn zero cashback.",
+          "Gift Cards: Purchasing gift cards on Flipkart earns zero cashback."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "Monthly E-Commerce & Everyday Lifestyle Math",
+        "partner": "Direct Monthly Statement Credit",
+        "scenario": "In a single billing cycle, you spend ₹10,000 on Flipkart, ₹5,000 on Swiggy/Uber, and ₹4,000 on general offline retail (plus a ₹10,000 smartphone purchase converted to EMI).",
+        "cashPrice": "₹19,000 eligible spend outlay (₹10,000 EMI excluded)",
+        "pointsRequired": "₹740 cashback earned (₹500 on Flipkart @ 5% + ₹200 on Swiggy/Uber @ 4% + ₹40 on retail @ 1% + ₹0 on EMI)",
+        "taxesAndFees": "₹590 annual fee liability (₹500 + 18% GST)",
+        "netCashSaved": "₹740 statement credit",
+        "realizedValuePerPoint": "3.89% flat effective return on eligible spend",
+        "bottomLine": "The ₹740 cashback is credited directly to your next statement, completely eliminating your entire ₹590 annual holding cost in a single month of natural spending."
+      }
+    ],
     "orientation": "horizontal"
   },
   {
@@ -415,49 +945,109 @@
       "business",
       "rewards",
       "lounge",
-      "metal"
+      "metal",
+      "tax"
     ],
-    "shortDescription": "Super-premium metal business card with 5X rewards on tax, vendor payments, and business travel.",
-    "description": "Metal business card tailored for self-employed founders and corporate executives, featuring 5X reward points on business essentials and unlimited worldwide lounge access.",
+    "shortDescription": "Super-premium metal business card with 5X rewards (16.65% value) on tax, GST, and business travel.",
+    "description": "Super-premium metal business card tailored for self-employed professionals and founders, featuring 5X reward points (16.65% value) on tax/GST & vendor spends, SmartBuy multipliers up to 10X, and unlimited worldwide lounge access.",
     "annualFee": 10000,
     "joiningFee": 10000,
-    "feeWaiver": "Waived on annual business spends of ₹8,00,000 in preceding year.",
+    "feeWaiver": "Annual renewal fee of ₹11,800 (₹10,000 + 18% GST) is 100% waived on retail card spends crossing ₹7.5 Lakhs in preceding 12 billing cycles. Upfront joining fee waived on spending ₹1,50,000 within first 90 days.",
     "apr": 40.8,
     "cashbackRate": 0,
     "rewardRate": 3.3,
     "loungeAccess": 99,
-    "rewardSummary": "5 reward points per ₹150 base rate (3.3% return); 5X accelerated points (up to 16.5% return) on business essentials like GST, income tax, and corporate travel.",
+    "rewardSummary": "5 Reward Points per ₹150 base (3.33% return); 25 Reward Points per ₹150 (16.65% value) on business tax, GST, vendor payments, and SmartPay; up to 50 RP/₹150 (up to 33% value) on SmartBuy travel. 1 RP = ₹1 on flights/hotels and 1:1 airline miles.",
     "rewardCategories": {
-      "businessEssentials": "5X Reward Points (16.5% value)",
-      "smartBuyTravel": "Up to 10X Reward Points",
-      "generalRetail": "5 points / ₹150 (3.3%)"
+      "businessTaxAndGST": "25 points / ₹150 (16.65% return)",
+      "smartBuyTravel": "Up to 50 points / ₹150 (Up to 33% return)",
+      "generalRetail": "5 points / ₹150 (3.33% return)",
+      "travelRedemption": "1 RP = ₹1.00 (SmartBuy flights & hotels)",
+      "airlineHotelTransfer": "1 RP = 1 Mile / Hotel Point (1:1 KrisFlyer & Accor ALL)",
+      "cashbackDevaluation": "1 RP = ₹0.30 (Avoid cash statement credit)"
     },
-    "rewardCaps": "Accelerated business points capped at 10,000 points per month.",
-    "exclusions": "Fuel, wallet loads, personal rent, and cash advances.",
+    "rewardCaps": "5X business accelerator capped at 7,500 Reward Points per statement cycle (optimally hit at ₹56,250 monthly spend).",
+    "exclusions": "Fuel purchases (1% surcharge waiver only), wallet loading transactions, rental payments, cash advances, late payment fees, and bank interest charges.",
     "benefits": [
-      "Crafted in premium matte metal with contactless Diners Club technology",
-      "Unlimited complimentary airport lounge access worldwide for primary and add-on cardholders",
-      "5X points on government tax payments (GST, Advance Tax) and business software subscriptions",
-      "Comprehensive corporate liability waiver and travel insurance coverage",
+      "Welcome / Activation Benefit: Club Marriott Annual Membership + ₹5,000 Taj Hotel Stay Voucher upon spending ₹1.5 Lakhs in first 90 days (joining fee also waived)",
+      "5X Reward Points (25 RP per ₹150 = 16.65% return) on Income Tax, GST, vendor spends, and business bill payments",
+      "Up to 10X Reward Points (up to 50 RP per ₹150) on flights and hotels via HDFC SmartBuy portal",
+      "Unlimited complimentary domestic airport lounge access for primary cardholder and add-on family members",
+      "Unlimited international airport lounge access via native Diners Club worldwide network (no Priority Pass needed)",
+      "Earn a ₹5,000 flight or Taj Hotel voucher for every ₹5 Lakhs spent (up to ₹20,000 in vouchers on ₹20L annual spend)",
+      "6 complimentary golf games per calendar quarter",
+      "Discounted 2.0% + GST foreign currency markup fee on international business spends",
       "Up to 55 days interest-free credit cycle for optimized working capital"
     ],
-    "eligibility": "Self-employed professionals, directors, and sole proprietors filing ITR > ₹21 Lakhs.",
-    "incomeRequirement": "ITR > ₹21,00,000 per annum",
+    "eligibility": "Self-employed professionals, sole proprietors, and directors filing ITR showing minimum business income of ₹30 Lakhs per annum.",
+    "incomeRequirement": "ITR > ₹30,00,000 per annum (business income strictly required)",
     "locationRestrictions": "Pan India for registered business entities.",
-    "travelBenefits": "Unlimited international and domestic airport lounge access via Diners Club network.",
-    "loungeBenefits": "Unlimited domestic and international airport lounge access.",
-    "fuelBenefits": "1% fuel surcharge waiver up to ₹1,000 per statement cycle.",
+    "travelBenefits": "Unlimited international and domestic airport lounge access via Diners Club network, 1:1 airline miles, and 1 RP = ₹1 flight redemptions.",
+    "loungeBenefits": "Unlimited complimentary domestic & international lounge visits for primary cardholder and add-ons via Diners Club network. Requires at least 1 retail swipe of any value in the preceding calendar month to maintain active domestic lounge vouchers.",
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹1,000 per statement cycle (no reward points on fuel).",
     "diningBenefits": "Exclusive dining privileges and table reservations via Diners Club Concierge.",
-    "forexBenefits": "Reduced 2.0% foreign currency markup on international business spends.",
-    "milestoneBenefits": "Annual bonus reward points upon achieving ₹12,00,000 spend threshold.",
+    "forexBenefits": "Discounted 2.0% + GST foreign currency markup on international business spends.",
+    "milestoneBenefits": "₹5,000 flight or Taj Hotel voucher for every ₹5 Lakhs spent (up to 4 times = ₹20,000/yr in vouchers on ₹20L spend).",
     "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/business-credit-cards/biz-black-metal-edition",
     "officialSource": "HDFC Bank Official Business Cards Portal",
-    "lastVerified": "2026-09-20",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
-    "goodFor": "Business owners, founders, and professionals paying high taxes and vendor bills",
-    "whoItFits": "Entrepreneurs and self-employed professionals who can route tax, cloud software, and business expenses through a commercial card.",
-    "whatToWatchOutFor": "Strictly for business owners and self-employed professionals; requires proof of business income (ITR).",
+    "goodFor": "Business owners, sole proprietors, and professionals paying high Income Tax and GST bills",
+    "whoItFits": "Entrepreneurs and self-employed professionals who can route tax, vendor payments, and business expenses through a commercial card.",
+    "whatToWatchOutFor": [
+      "5X Business Accelerator Cap: The 16.65% rate on tax and GST payments is strictly capped at 7,500 Reward Points per billing cycle (optimally maxed at ₹56,250 monthly spend; excess earns base 3.33%).",
+      "Strict Underwriting & Income Floor: Requires verified Income Tax Return (ITR) of ₹30 Lakhs+ per annum showing business income; fixed deposit or limit-transfer approvals discontinued.",
+      "Active Card Lounge Condition: Must complete at least one retail transaction of any value on the card in the previous calendar month to keep domestic lounge privileges active.",
+      "Non-Travel Redemption Devaluation: Converting points to cash statement credits devalues points to ₹0.30 per point; shopping vouchers drop to ₹0.50 per point.",
+      "Annual renewal fee of ₹11,800 (₹10,000 + 18% GST) applies unless retail spends cross ₹7.5 Lakhs in preceding 12 billing cycles."
+    ],
     "whyCreditWiseRecommends": "One of the only premium cards in India that rewards statutory tax payments and business utilities at high reward multiples.",
+    "keyInsights": [
+      {
+        "title": "The 'Silent King' of Business Cards: 16.65% Value on Tax & GST",
+        "description": "While virtually all personal credit cards in India have completely excluded government, tax, and GST payments from rewards, HDFC BizBlack explicitly accelerates them at 25 Reward Points per ₹150 (16.65% return). When redeemed for flights on SmartBuy (1 RP = ₹1), this effortlessly monetizes mandatory tax payments into luxury family vacations."
+      },
+      {
+        "title": "5X Accelerator Monthly Capping Architecture",
+        "description": "The 5X business accelerator is capped at 7,500 Reward Points per statement cycle. This is mathematically optimized at exactly ₹56,250 per month in tax and vendor spends. Any spend beyond ₹56,250 in a single month continues to earn the base 5 RP/₹150 (3.33% return) with no ceiling."
+      },
+      {
+        "title": "Strict ₹30 Lakh Business ITR Underwriting Bar",
+        "description": "HDFC Bank strictly enforces commercial underwriting for BizBlack. Applicants must provide an Income Tax Return (ITR) reflecting at least ₹30 Lakhs in annual business/professional income. Sole proprietors, partners, and company directors are eligible, while fixed deposit-backed applications are blocked."
+      },
+      {
+        "title": "Active Card Lounge Condition & Diners Global Network",
+        "description": "Primary and add-on cardholders enjoy unlimited global lounge access via Diners Club without needing a Priority Pass card. However, to keep domestic lounge entry vouchers active, cardholders must make at least one retail swipe of any value on the card in the immediately preceding calendar month."
+      },
+      {
+        "title": "Quarterly Milestone Vouchers (Up to ₹20,000/Yr)",
+        "description": "Cardholders earn a ₹5,000 flight or Taj Hotel voucher for every ₹5 Lakhs spent in a year, claimable up to 4 times to unlock ₹20,000 in vouchers upon reaching ₹20 Lakhs in annual card spending."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Prepaid, Real Estate & Financial",
+        "items": [
+          "Fuel Purchases: Zero reward points (covered by 1% fuel surcharge waiver up to ₹1,000/month).",
+          "Wallet Loading: Reloading digital prepaid wallets earns zero points.",
+          "Rental Payments: Rent payments via third-party portals earn zero points.",
+          "Cash Advances & Finance Charges: ATM cash withdrawals, late payment fees, and bank interest charges earn zero points."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "The Annual Tax Payment & SmartBuy Travel Math",
+        "partner": "HDFC SmartBuy Portal & 1:1 Airline Partners (1 RP = ₹1.00)",
+        "scenario": "You route ₹50,000 monthly in business GST/Income tax (₹6,00,000/yr) plus ₹1,50,000 on general business utilities/expenses to reach ₹7,50,000 annual spend and waive the renewal fee.",
+        "cashPrice": "₹7,50,000 mandatory tax & business expenses",
+        "pointsRequired": "1,05,000 Reward Points (1,00,000 on tax @ 5X + 5,00,00 on base retail) + ₹5,000 Taj/Flight Milestone Voucher",
+        "taxesAndFees": "₹0 annual renewal fee (₹11,800 fee waived on ₹7.5L spend)",
+        "netCashSaved": "₹1,10,000 total travel purchasing power",
+        "realizedValuePerPoint": "14.6% flat effective travel return",
+        "bottomLine": "Securing ₹1,10,000 in premium international flights (1 RP = ₹1) on a mandatory ₹7,50,000 tax outlay yields an extraordinary 14.6% return, confirming BizBlack as India's premier tax-monetization card."
+      }
+    ],
     "orientation": "horizontal"
   },
   {
@@ -480,44 +1070,129 @@
     "description": "Heavy metal luxury card delivering 5 reward points per ₹150 base (3.3% value), up to 10X points on SmartBuy (33.3% return), and unlimited domestic & international lounge access.",
     "annualFee": 10000,
     "joiningFee": 10000,
-    "feeWaiver": "Waived on annual spends of ₹8,00,000 in preceding anniversary year.",
+    "feeWaiver": "Annual renewal fee of ₹11,800 (₹10,000 + 18% GST) is 100% waived on retail card spending crossing ₹8,00,000 in the anniversary year. First-year welcome memberships triggered on spending ₹1,50,000 in first 90 days.",
     "apr": 23.88,
     "cashbackRate": 0,
     "rewardRate": 3.3,
     "loungeAccess": 99,
-    "rewardSummary": "5 reward points per ₹150 on retail spends (1 RP = ₹1 on flights/hotels via SmartBuy); 10X points on SmartBuy hotels (33.3% return); 5X points on SmartBuy flights (16.6% return).",
+    "rewardSummary": "5 Reward Points per ₹150 base (3.33% return); 2X points (10 RP/₹150 = 6.66%) on weekend dining; up to 10X points (up to 50 RP/₹150 = 33.3%) on SmartBuy travel. 10,000 bonus points on ₹4L quarterly spend. 1 RP = ₹1 on SmartBuy flights/hotels (up to 70% booking value) & 1:1 airline miles.",
     "rewardCategories": {
-      "smartBuyHotels": "10X points (33.3%)",
-      "smartBuyFlights": "5X points (16.6%)",
-      "baseRetail": "5 points / ₹150 (3.3%)"
+      "smartBuyHotels": "10X points (up to 33.3% return)",
+      "smartBuyFlights": "5X points (up to 16.6% return)",
+      "weekendDining": "2X points (10 RP / ₹150 = 6.66% return)",
+      "baseRetail": "5 points / ₹150 (3.33% return)",
+      "smartBuyTravelRedemption": "1 RP = ₹1.00 (Max 70% ticket value; 30% cash earns 10X)",
+      "airlineHotelTransfer": "1 RP = 1 Mile / Hotel Point (1:1 KrisFlyer, British Airways, Accor)",
+      "cashbackDevaluation": "1 RP = ₹0.30 (Avoid cash statement credit)"
     },
-    "rewardCaps": "Daily and monthly SmartBuy bonus points cap (10,000 points per month).",
-    "exclusions": "Fuel, wallet loads, rent payments, government transactions, and jewelry.",
+    "rewardCaps": "Reward point accrual capped at 75,000 Reward Points per statement cycle (up to 9,00,000 points annually). SmartBuy daily and monthly bonus caps apply per bank guidelines.",
+    "exclusions": "Fuel purchases (1% surcharge waiver only), wallet loading, rental payments, government transactions & tax payments, EasyEMI and merchant EMIs, cash advances, joining fees, and bank interest charges.",
     "benefits": [
-      "Complimentary annual memberships: Club Marriott, Swiggy One, and Amazon Prime",
-      "Unlimited complimentary airport lounge visits worldwide for both primary and add-on cardholders",
-      "Up to 33.3% reward rate on travel bookings through HDFC SmartBuy",
-      "6 complimentary golf games per quarter across world-class courses",
-      "Lowest interest rate in the industry at 1.99% per month (23.88% p.a.)"
+      "Welcome / Activation Benefit: Complimentary annual memberships for Amazon Prime, Swiggy One, and Club Marriott upon spending ₹1,50,000 in first 90 days",
+      "Unlimited complimentary domestic airport lounge access for primary cardholder and all add-on cardholders",
+      "Unlimited complimentary international lounge access worldwide via native Diners Club network (no Priority Pass needed)",
+      "1:1 Reward Point transfer to Singapore Airlines KrisFlyer, British Airways Executive Club, Air India, and Accor ALL",
+      "Direct flight & hotel redemptions at 1 RP = ₹1 on HDFC SmartBuy (up to 70% of booking value; 30% cash earns 10X)",
+      "Weekend Dining Accelerator: 2X Reward Points (10 RP per ₹150 = 6.66%) on standalone restaurants on Saturdays and Sundays",
+      "Quarterly Milestone Bonus: 10,000 bonus reward points on crossing ₹4,00,000 spend per calendar quarter (up to 40,000 pts/yr)",
+      "6 complimentary golf rounds per calendar quarter at premier golf courses worldwide",
+      "Discounted 2.0% + GST foreign currency markup fee on international transactions",
+      "Comprehensive insurance cover: ₹2 Crore Air Accident Death Cover and ₹50 Lakh Overseas Emergency Hospitalization"
     ],
     "eligibility": "Salaried Indian resident with net monthly salary > ₹1,75,000 or self-employed with ITR > ₹21 Lakhs.",
     "incomeRequirement": "₹21,00,000 per annum",
     "locationRestrictions": "Pan India.",
-    "travelBenefits": "1:1 redemption of reward points against air tickets and hotels on SmartBuy; unlimited lounge visits worldwide.",
-    "loungeBenefits": "Unlimited domestic and international airport lounge access for primary and add-on users.",
+    "travelBenefits": "Unlimited international & domestic lounge access for primary and add-ons via Diners Club network, 1:1 airline transfers, and 1 RP = ₹1 travel redemptions on SmartBuy.",
+    "loungeBenefits": "Unlimited complimentary domestic and international airport lounge access for both primary cardholder and all add-on members directly via Diners Club network without needing an external Priority Pass card.",
     "fuelBenefits": "1% fuel surcharge waiver on transactions above ₹400 (up to ₹1,000/month).",
-    "diningBenefits": "2 complimentary dining privileges per quarter via Good Food Trail / Diners Club.",
-    "forexBenefits": "Reduced 2.0% foreign currency transaction markup.",
-    "milestoneBenefits": "10,000 bonus reward points on spending ₹4,00,000 every calendar quarter.",
+    "diningBenefits": "2X Reward Points (10 points per ₹150 = 6.66% return) on weekend dining at standalone restaurants on Saturdays and Sundays.",
+    "forexBenefits": "Discounted 2.0% + GST foreign currency transaction markup fee.",
+    "milestoneBenefits": "10,000 bonus reward points every calendar quarter upon crossing ₹4,00,000 in retail spend (up to 40,000 bonus points annually).",
     "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/diners-club-black-metal-edition",
     "officialSource": "HDFC Bank Official Credit Cards Page",
-    "lastVerified": "2026-09-20",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
-    "goodFor": "High spenders and frequent travelers seeking maximum travel redemption value",
-    "whoItFits": "Individuals spending ₹8+ Lakhs annually who book travel through SmartBuy to unlock 16% to 33% effective value.",
-    "whatToWatchOutFor": "Diners Club POS merchant acceptance in smaller domestic shops can occasionally be lower than Visa/Mastercard.",
-    "whyCreditWiseRecommends": "With 1 RP = ₹1 on flight and hotel bookings, this card provides one of the absolute highest real-world reward yields in India.",
-    "orientation": "horizontal"
+    "goodFor": "High earners seeking Infinia-tier 1:1 airline transfers, SmartBuy 1 RP = ₹1 value, and unlimited primary & add-on lounge access without an invite",
+    "whoItFits": "Salaried professionals earning ₹1.75L+ monthly or self-employed individuals with ₹21L+ ITR who spend ₹8L+ annually and optimize travel through SmartBuy and airline miles.",
+    "whatToWatchOutFor": [
+      "Global Acceptance Gap: Because this card operates on the Diners Club network rather than Visa or Mastercard, occasional POS terminal rejections occur at smaller tier-2/3 offline domestic merchants in India.",
+      "75,000 Monthly Points Ceiling: HDFC Bank strictly caps monthly reward accumulation to 75,000 Reward Points per statement cycle; spends beyond this threshold in a cycle earn zero points.",
+      "SmartBuy 70/30 Points Rule: When booking flights or hotels on SmartBuy at 1 RP = ₹1, points can only cover up to 70% of the booking value; the remaining 30% must be paid with the card (earning 10X points).",
+      "High ₹8 Lakh Annual Waiver Hurdle: Annual renewal fee of ₹11,800 (₹10,000 + 18% GST) applies unless retail spends cross ₹8,00,000 in the anniversary year.",
+      "Severe Non-Travel Devaluation: Converting points to cash statement credit slashes value to ₹0.30 per point; shopping catalog items drop to ₹0.50 per point."
+    ],
+    "whyCreditWiseRecommends": "DCB Metal matches HDFC Infinia’s elite 1:1 miles and 1 RP = ₹1 SmartBuy redemption power, pairing it with unlimited primary and add-on lounge access and a 2X weekend dining accelerator.",
+    "orientation": "horizontal",
+    "keyInsights": [
+      {
+        "title": "Infinia-Grade Travel Power Without the Invite Barrier",
+        "description": "DCB Metal offers the exact same core travel redemption rates as HDFC Infinia: 1 RP = ₹1.00 on SmartBuy flights and hotels, and 1:1 transfers to Singapore Airlines KrisFlyer, British Airways Executive Club, and Accor ALL, accessible through standard application criteria rather than invite-only banking."
+      },
+      {
+        "title": "The SmartBuy 70/30 Booking Synergy",
+        "description": "When redeeming points on SmartBuy, up to 70% of the booking value can be paid using points (at 1 RP = ₹1). The remaining 30% paid with the DCB Metal card directly earns SmartBuy 5X/10X multipliers, kicking thousands of points right back into your rewards balance on the same booking."
+      },
+      {
+        "title": "Weekend Dining Accelerator (2X Multiplier)",
+        "description": "Earns 2X Reward Points (10 RP per ₹150 = 6.66% return) on standalone restaurant dining transactions made on Saturdays and Sundays, doubling the return on weekend meals without needing special aggregator apps."
+      },
+      {
+        "title": "Dual Primary & Add-on Unlimited Global Lounge Access",
+        "description": "Primary cardholders and all add-on cardholders enjoy unlimited complimentary domestic and international lounge visits directly via the native Diners Club network, eliminating the need to carry or manage Priority Pass cards."
+      },
+      {
+        "title": "Quarterly Milestone Engine: 10,000 Bonus Points",
+        "description": "Crossing ₹4,00,000 in retail spending in a calendar quarter unlocks 10,000 bonus reward points. Hitting this milestone all 4 quarters yields 40,000 bonus points annually worth ₹40,000 in travel."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Zero-Reward Categories & Ineligible Spends",
+        "items": [
+          "Fuel Purchases: Zero reward points (covered by 1% fuel surcharge waiver on transactions above ₹400).",
+          "Wallet Loading: Reloading digital prepaid wallets earns zero reward points.",
+          "Rental Payments: Rent payments via third-party platforms earn zero reward points.",
+          "Government & Tax Transactions: All government utilities, tax payments, and statutory dues earn zero points.",
+          "EMI Transactions: EasyEMI conversions and post-purchase merchant EMIs earn zero points.",
+          "Banking Charges & Cash: ATM cash advances, annual joining/renewal fees, and outstanding finance charges earn zero points."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "Booking Luxury Resort via HDFC SmartBuy (The 70/30 Play)",
+        "partner": "HDFC SmartBuy Portal (1 RP = ₹1.00)",
+        "scenario": "A 3-night premium weekend stay at Taj Aravali Resort & Spa, Udaipur, with a cash price of ₹60,000.",
+        "cashPrice": "₹60,000 total stay price",
+        "pointsRequired": "42,000 Reward Points (70% max points limit)",
+        "taxesAndFees": "₹18,000 cash balance paid with DCB Metal (earns 10X SmartBuy multiplier = +6,000 RP back!)",
+        "netCashSaved": "₹42,000 direct cash saved",
+        "realizedValuePerPoint": "₹1.00 per point (+ 6,000 bonus RP generated)",
+        "bottomLine": "You knock ₹42,000 off a luxury stay at ₹1.00 per point, while the mandatory 30% cash payment on SmartBuy immediately kicks 6,000 reward points back into your account."
+      },
+      {
+        "title": "Singapore Airlines KrisFlyer Transfer (International Business Class Play)",
+        "partner": "Singapore Airlines KrisFlyer (1:1 Transfer Ratio)",
+        "scenario": "One-way Singapore Airlines Business Class Saver Award ticket from Mumbai (BOM) to Singapore (SIN).",
+        "cashPrice": "₹75,000 cash retail fare",
+        "pointsRequired": "43,000 DCB Reward Points transferred 1:1 to 43,000 KrisFlyer miles",
+        "taxesAndFees": "₹4,500 government airport taxes paid out of pocket",
+        "netCashSaved": "₹70,500 net cash saved",
+        "realizedValuePerPoint": "₹1.63 per point (440% higher than ₹0.30 statement credit)",
+        "bottomLine": "Transferring 43,000 points 1:1 to KrisFlyer delivers ₹70,500 in luxury business class value at ₹1.63 per point, outperforming basic cash statement credit by over 440%."
+      },
+      {
+        "title": "Quarterly Spend Optimization Math (7.5% Effective Yield)",
+        "partner": "HDFC SmartBuy Portal & Quarterly Milestone",
+        "scenario": "Quarterly spending of ₹4,00,000 with ₹50,000 on SmartBuy flights (5X) and ₹3,50,000 on general retail.",
+        "cashPrice": "₹4,00,000 quarterly retail outlay",
+        "pointsRequired": "30,000 Total Points Earned (8,333 RP on flights + 11,666 RP on retail + 10,000 RP milestone bonus)",
+        "taxesAndFees": "₹0 (neutralizes upkeep costs)",
+        "netCashSaved": "₹30,000 hotel/flight booking purchasing power",
+        "realizedValuePerPoint": "7.5% net optimization yield",
+        "bottomLine": "Securing ₹30,000 in direct travel value on ₹4 Lakhs quarterly spend yields an outstanding 7.5% net return, completely neutralizing annual card maintenance costs."
+      }
+    ]
   },
   {
     "id": "hdfc-diners-club-privilege",
@@ -538,43 +1213,103 @@
     "description": "Mid-to-premium lifestyle card offering 4 reward points per ₹150, up to 10X points on SmartBuy, and complimentary domestic & international airport lounge visits.",
     "annualFee": 2500,
     "joiningFee": 2500,
-    "feeWaiver": "Waived on annual spends of ₹3,00,000 in preceding year.",
+    "feeWaiver": "Annual renewal fee of ₹2,950 (₹2,500 + 18% GST) is 100% waived on retail card spending crossing ₹3,00,000 in the anniversary year. Welcome bonus of 2,500 Reward Points (worth ₹1,250 in travel) upon payment of joining fee.",
     "apr": 42,
     "cashbackRate": 0,
-    "rewardRate": 1.3,
-    "loungeAccess": 8,
-    "rewardSummary": "4 reward points per ₹150 base spend; up to 10X points on partner brands and travel via SmartBuy (1 RP = ₹0.50 on SmartBuy hotel/flight bookings).",
+    "rewardRate": 1.33,
+    "loungeAccess": 12,
+    "rewardSummary": "4 Reward Points per ₹150 base spend; up to 5X points (20 RP/₹150 = 3.33% return) on Swiggy & Zomato; up to 10X on SmartBuy travel. Up to 40,000 bonus points annually via spend tiers. 1 RP = ₹0.50 on SmartBuy flights/hotels & 2:1 airline miles.",
     "rewardCategories": {
-      "smartBuyPartners": "Up to 10X Reward Points",
-      "baseRetail": "4 points / ₹150"
+      "swiggyAndZomato": "Up to 5X points (20 RP / ₹150 = 3.33% return)",
+      "smartBuyTravel": "Up to 10X points on SmartBuy flights & hotels",
+      "baseRetail": "4 points / ₹150 (1.33% return on travel)",
+      "smartBuyRedemption": "1 RP = ₹0.50 (Flights & hotel bookings on SmartBuy)",
+      "vouchersAndProducts": "1 RP = ₹0.35 (Brand vouchers via net banking)",
+      "airlineTransfer": "2 RP = 1 Air Mile (2:1 ratio for frequent flyer programs)",
+      "cashbackDevaluation": "1 RP = ₹0.20 (Avoid basic cash statement credit)"
     },
-    "rewardCaps": "Daily and monthly accelerated caps apply on SmartBuy.",
-    "exclusions": "Fuel, wallet loads, rent, government transactions, and EMI transactions.",
+    "rewardCaps": "Daily and monthly SmartBuy accelerated reward point caps apply per bank guidelines.",
+    "exclusions": "Fuel purchases (1% surcharge waiver only), wallet loading transactions & digital reloads, rental payments, government transactions & tax payments, EasyEMI and merchant EMIs, cash advances, joining fees, and bank interest charges.",
     "benefits": [
-      "Welcome benefits: Swiggy One and Times Prime memberships upon spending ₹75,000 in first 90 days",
-      "8 complimentary airport lounge visits per calendar year (domestic and international)",
+      "Welcome Benefit: 2,500 Reward Points credited upon payment of joining fee (worth ₹1,250 in travel redemptions)",
+      "Complimentary annual memberships for Amazon Prime, Swiggy One, and Times Prime upon spending ₹75,000 in first 90 days (or on annual renewal)",
+      "12 complimentary domestic and international airport lounge visits per calendar year for the primary cardholder via native Diners Club network",
+      "Preferred Partners Accelerator: 5X Reward Points (20 RP per ₹150 = 3.33% return) on Swiggy and Zomato",
+      "Up to 10X Reward Points when booking flights and hotels via HDFC SmartBuy portal",
+      "Annual Spend Milestones: Earn up to 40,000 bonus points per year (10,000 points at ₹4L, +10,000 points per extra ₹2L up to ₹8L total)",
+      "Dining Privileges: Up to 25% savings at premium partner restaurants via HDFC Good Food Trail program",
+      "Discounted 2.0% + GST foreign currency markup fee on international transactions",
       "Buy 1 Get 1 free movie ticket on BookMyShow (up to ₹250 discount, twice a month)",
-      "2 complimentary golf games per quarter",
-      "Low foreign currency markup of 2.0%"
+      "2 complimentary golf games per calendar quarter"
     ],
     "eligibility": "Indian resident aged 21-60 years.",
     "incomeRequirement": "₹70,000/month for salaried; ITR > ₹8.4 Lakhs for self-employed",
     "locationRestrictions": "Pan India.",
-    "travelBenefits": "Lounge access across 1,000+ Diners Club lounges worldwide and 2% forex markup.",
-    "loungeBenefits": "8 complimentary domestic and international airport lounge visits per year.",
+    "travelBenefits": "12 complimentary international & domestic lounge visits per year via Diners Club network, 2:1 air miles transfer, and 1 RP = ₹0.50 SmartBuy flight/hotel redemptions.",
+    "loungeBenefits": "12 complimentary domestic and international airport lounge visits per calendar year for primary cardholder directly via Diners Club network (no Priority Pass needed). Subject to a spend hurdle of ₹15,000 in the preceding calendar quarter.",
     "fuelBenefits": "1% fuel surcharge waiver up to ₹500 per statement cycle.",
-    "diningBenefits": "Exclusive dining discounts via Swiggy Dineout and Diners Club privileges.",
-    "forexBenefits": "Reduced 2.0% foreign currency markup.",
-    "milestoneBenefits": "Complimentary hotel voucher or shopping voucher worth ₹1,500 on crossing ₹1.5 Lakh quarterly spend.",
+    "diningBenefits": "5X Reward Points (20 RP per ₹150) on Swiggy and Zomato, plus up to 25% savings via Good Food Trail.",
+    "forexBenefits": "Discounted 2.0% + GST foreign currency transaction markup fee.",
+    "milestoneBenefits": "Up to 40,000 bonus reward points annually (10,000 bonus points at ₹4 Lakhs, and 10,000 points for every additional ₹2 Lakhs spent, capped at ₹8 Lakhs).",
     "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/diners-club-privilege",
     "officialSource": "HDFC Bank Official Website",
-    "lastVerified": "2026-09-20",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
-    "goodFor": "Young professionals seeking premium lifestyle perks without a five-figure fee",
-    "whoItFits": "Individuals who value dining perks, movie discounts, and international lounge access at an accessible ₹2,500 fee point.",
-    "whatToWatchOutFor": "Reward points on flight redemption are valued at ₹0.50 per point (compared to ₹1.00 on Diners Black).",
-    "whyCreditWiseRecommends": "Provides a balanced mix of domestic/international lounges, 2% low forex, and golf access for an easily justifiable annual spend.",
-    "orientation": "horizontal"
+    "goodFor": "Mid-income professionals spending on dining, food delivery, and domestic/international travel seeking premium perks for a reasonable fee",
+    "whoItFits": "Salaried individuals earning ₹70,000+/month or self-employed with ITR > ₹8.4L who spend heavily on Swiggy/Zomato and want 12 global lounge visits with a ₹3L annual spend waiver.",
+    "whatToWatchOutFor": [
+      "Quarterly Lounge Spend Hurdle: Complimentary lounge visits require a minimum spend hurdle of ₹15,000 in the preceding calendar quarter to unlock the next quarter’s lounge vouchers.",
+      "Offline POS Acceptance Gap: Because this card operates on the Diners Club network rather than Visa or Mastercard, tier-2 and tier-3 town merchants in India may occasionally reject the card at offline POS terminals.",
+      "Lower Travel Valuation Than DCB Black: Reward points are valued at ₹0.50 per point on SmartBuy (compared to ₹1.00 on Diners Black), and airline transfers convert at 2:1 instead of 1:1.",
+      "Severe Cash Devaluation: Converting points to cash statement credit drops value to ₹0.20 per point (60% value loss compared to travel redemption).",
+      "Annual renewal fee of ₹2,950 (₹2,500 + 18% GST) applies unless retail spending crosses ₹3,00,000 in the anniversary year."
+    ],
+    "whyCreditWiseRecommends": "Combines 12 domestic and international lounge visits, 5X rewards on Swiggy/Zomato, and 2.0% forex markup at an accessible ₹2,500 fee point with an achievable ₹3 Lakh annual waiver hurdle.",
+    "orientation": "horizontal",
+    "keyInsights": [
+      {
+        "title": "12 Unified Global Lounge Visits (Domestic + International)",
+        "description": "Unlike many mid-tier cards that restrict lounge access to domestic airports or require external Priority Pass memberships with visit charges, Diners Club Privilege provides 12 complimentary lounge visits annually usable across both domestic and international airports via the native Diners Club network."
+      },
+      {
+        "title": "Lifestyle Multipliers: 5X on Swiggy & Zomato",
+        "description": "Accelerates daily food delivery spending with 20 Reward Points per ₹150 (3.33% effective return on travel bookings) directly on Swiggy and Zomato, maximizing value on everyday culinary expenses."
+      },
+      {
+        "title": "The ₹15,000 Quarterly Spend Condition for Lounges",
+        "description": "To unlock your lounge access vouchers each quarter, HDFC Bank enforces a mandatory retail spend hurdle of ₹15,000 in the immediately preceding calendar quarter. Keeping your regular food and online expenses on the card ensures uninterrupted access."
+      },
+      {
+        "title": "Progressive Milestone Stash (Up to 40,000 Bonus Points)",
+        "description": "Earn up to 40,000 bonus reward points annually: 10,000 points upon crossing ₹4 Lakhs spend, and an additional 10,000 points for every subsequent ₹2 Lakhs spent, maxing out at ₹8 Lakhs total spend (worth ₹20,000 in SmartBuy travel)."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Zero-Reward Categories & Ineligible Spends",
+        "items": [
+          "Fuel Purchases: Zero reward points (covered by 1% fuel surcharge waiver on transactions above ₹400).",
+          "Wallet Loading: Reloading digital prepaid wallets earns zero reward points.",
+          "Rental Payments: Rent payments via third-party platforms earn zero reward points.",
+          "Government & Tax Transactions: All government utilities, tax payments, and statutory dues earn zero points.",
+          "EMI Transactions: EasyEMI conversions and post-purchase merchant EMIs earn zero points.",
+          "Banking Charges & Cash: ATM cash advances, annual joining/renewal fees, and outstanding finance charges earn zero points."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "SmartBuy Domestic Flight Booking Math",
+        "partner": "HDFC SmartBuy Portal (1 RP = ₹0.50)",
+        "scenario": "Booking a domestic family flight ticket with a total cash fare of ₹12,000 directly through HDFC SmartBuy.",
+        "cashPrice": "₹12,000 total cash fare",
+        "pointsRequired": "16,000 Reward Points (accumulated from regular food delivery and retail spend)",
+        "taxesAndFees": "₹4,000 remaining cash balance paid with card",
+        "netCashSaved": "₹8,000 direct cash saved (16,000 RP × ₹0.50)",
+        "realizedValuePerPoint": "₹0.50 per point (150% higher than ₹0.20 cash statement credit)",
+        "bottomLine": "Redeeming 16,000 points for flights yields ₹8,000 in cash savings. Using those same points as a standard statement credit (1 RP = ₹0.20) would yield only ₹3,200, destroying ₹4,800 in real purchasing power."
+      }
+    ]
   },
   {
     "id": "hdfc-infinia",
@@ -596,44 +1331,133 @@
     "description": "The gold standard of Indian credit cards: invite-only metal card delivering 5 reward points per ₹150 base (3.33%), up to 10X on SmartBuy (33.3%), and unlimited global lounge access.",
     "annualFee": 12500,
     "joiningFee": 12500,
-    "feeWaiver": "Waived on annual spends of ₹10,00,000 in preceding year.",
+    "feeWaiver": "Annual renewal fee of ₹14,750 (₹12,500 + 18% GST) is 100% waived on retail card spending crossing ₹10,00,000 in preceding anniversary year. Welcome and renewal benefit of 12,500 Reward Points (worth ₹12,500 in clean travel value) credited upon fee payment, effectively neutralizing the base fee.",
     "apr": 23.88,
     "cashbackRate": 0,
     "rewardRate": 3.33,
     "loungeAccess": 99,
-    "rewardSummary": "5 reward points per ₹150 base; 10X points on SmartBuy hotels/buses (33.3% value); 5X points on SmartBuy flights (16.6% value); 1 RP = ₹1 on flights and hotels.",
+    "rewardSummary": "5 Reward Points per ₹150 base (3.33% return); 10X points (50 RP/₹150 = 33.3% return) on SmartBuy hotels/buses; 5X points (25 RP/₹150 = 16.65% return) on SmartBuy flights, Apple products, and GyFTR vouchers; 3X points (10% return) on Tanishq. 1 RP = ₹1 on SmartBuy flights/hotels/Apple/Tanishq, 1:1 airline transfers, and up to ₹1.85 via Accor ALL.",
     "rewardCategories": {
-      "smartBuyHotels": "10X points (33.3%)",
-      "smartBuyFlights": "5X points (16.6%)",
-      "baseRetail": "5 points / ₹150 (3.33%)"
+      "smartBuyHotelsAndBuses": "10X points (50 RP / ₹150 = 33.3% return)",
+      "smartBuyFlightsAndApple": "5X points (25 RP / ₹150 = 16.65% return)",
+      "smartBuyGyftrVouchers": "5X points (25 RP / ₹150 = 16.65% return, sub-capped)",
+      "smartBuyTanishq": "3X points (15 RP / ₹150 = 10.0% return)",
+      "baseRetail": "5 points / ₹150 (3.33% return)",
+      "smartBuyTravelRedemption": "1 RP = ₹1.00 (Max 70% booking value; 30% cash earns 5X-10X)",
+      "appleAndTanishqParity": "1 RP = ₹1.00 (Apple products & Tanishq vouchers on portal)",
+      "accorLiveLimitless": "1 RP = 1 Accor Point (Worth ~₹1.85 per point at €0.02/pt)",
+      "airlineTransfer": "1 RP = 1 Mile (1:1 KrisFlyer, British Airways, Club Vistara)",
+      "cashbackDevaluation": "1 RP = ₹0.30 (Avoid cash statement credit)"
     },
-    "rewardCaps": "15,000 bonus reward points per calendar month on SmartBuy.",
-    "exclusions": "Fuel, wallet loads, rent, utilities, government payments, and education.",
+    "rewardCaps": "15,000 accelerated Reward Points per calendar month on SmartBuy. Within that pool, GyFTR brand vouchers are sub-capped at 3,000 bonus RP/month (at ₹15,000 spend). Monthly grocery rewards capped at 2,000 points. Portal flight/hotel redemptions capped at 1,50,000 points per month.",
+    "exclusions": "Wallet loading transactions, rental payments & property management, government transactions & tax payments, fuel purchases (1% surcharge waiver between ₹400 and ₹1,00,000), EasyEMI conversions and merchant EMIs, cash advances, joining fees, and bank interest charges.",
     "benefits": [
-      "12,500 reward points upon payment of joining and annual renewal fee",
-      "Unlimited domestic and international airport lounge access for primary and add-on cardholders + guests",
-      "Global Concierge 24x7 for bespoke reservations and travel itinerary planning",
-      "Unlimited complimentary golf rounds at leading courses in India and abroad",
-      "Reduced 2.0% forex markup for international travel"
+      "Welcome & Annual Renewal Benefit: 12,500 Reward Points credited upon fee payment (worth ₹12,500 in clean travel value, neutralizing the base fee)",
+      "Unlimited complimentary airport lounge access worldwide for both primary and all add-on cardholders (domestic via card swipe; international via dedicated unlimited Priority Pass for each cardholder)",
+      "Up to 33.3% reward return on SmartBuy Hotels & Buses (10X = 50 RP per ₹150)",
+      "Up to 16.65% reward return on SmartBuy Flights, Apple Store, and GyFTR brand vouchers (5X = 25 RP per ₹150)",
+      "1:1 Reward Point transfer to Singapore Airlines KrisFlyer, British Airways Executive Club, Air India, and Accor ALL (worth ~₹1.85/pt)",
+      "1 RP = ₹1.00 redemption for Apple products and Tanishq vouchers directly on the SmartBuy portal",
+      "Unlimited complimentary golf games and coaching sessions across premier golf clubs in India and globally",
+      "ITC Hotels Luxury Privilege: 1+1 complimentary buffet night stay offer across participating luxury ITC Hotels",
+      "Club Marriott Annual Membership offering up to 20% off on dining and stays across Marriott properties in APAC",
+      "Market-minimum 2.0% + GST foreign currency markup fee on international transactions"
     ],
     "eligibility": "Strictly by invitation from HDFC Bank management.",
     "incomeRequirement": "Net salary > ₹3,00,000/month or ITR > ₹36 Lakhs with existing high HDFC credit limit (> ₹8 Lakhs)",
     "locationRestrictions": "Pan India (Invite only).",
-    "travelBenefits": "1:1 flight and hotel redemption on SmartBuy; unlimited lounge access for entire family including add-on members.",
-    "loungeBenefits": "Unlimited domestic and international lounge visits for primary and add-on cardholders + complimentary guest privileges.",
+    "travelBenefits": "Unlimited global lounge access for primary and all add-ons with Priority Pass, 1:1 airline transfers, 1 RP = ₹1 on SmartBuy flights/hotels, and ~₹1.85/pt on Accor transfers.",
+    "loungeBenefits": "Unlimited complimentary domestic and international airport lounge access for primary and all add-on cardholders. Domestic entered via physical card swipe; international entered via bundled unlimited Priority Pass (add-on cardholders receive their own dedicated Priority Pass).",
     "fuelBenefits": "1% fuel surcharge waiver up to ₹1,000 per statement cycle.",
-    "diningBenefits": "1+1 on buffet at participating ITC hotels and 15% discount across luxury partner restaurants.",
-    "forexBenefits": "Reduced 2.0% foreign currency markup.",
-    "milestoneBenefits": "12,500 reward points renewal benefit matching the annual fee.",
+    "diningBenefits": "1+1 complimentary buffet night stay at participating luxury ITC Hotels, Club Marriott membership with up to 20% savings, and exclusive dining privileges.",
+    "forexBenefits": "Market-minimum 2.0% + GST foreign currency transaction markup fee.",
+    "milestoneBenefits": "12,500 Reward Points credited automatically upon payment of the annual renewal fee, neutralizing the base fee with ₹12,500 in pure travel currency.",
     "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/infinia-metal-edition",
     "officialSource": "HDFC Bank Official Infinia Page",
-    "lastVerified": "2026-09-20",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Invite-Only",
-    "goodFor": "Ultra high net-worth individuals who want India's highest travel reward returns",
-    "whoItFits": "High earners with large discretionary budgets who book international flights and hotels regularly.",
-    "whatToWatchOutFor": "Cannot be applied for directly off the shelf; issued solely via invitation or relationship upgrade.",
-    "whyCreditWiseRecommends": "Its 12,500 bonus points on renewal make the card effectively free, while the 33% travel return on SmartBuy remains unmatched.",
-    "orientation": "horizontal"
+    "goodFor": "Ultra-high-net-worth individuals and high earners seeking India’s highest sustained travel yields and unlimited family lounge privileges",
+    "whoItFits": "Salaried executives earning ₹3L+ net monthly or self-employed individuals with ITR > ₹36L and existing high HDFC credit limit (> ₹8L) who spend ₹10L+ annually.",
+    "whatToWatchOutFor": [
+      "Invite-Only Exclusivity: Cannot be applied for off-the-shelf; issued strictly by invitation from HDFC Bank based on relationship value, salary, and credit limit.",
+      "SmartBuy Accelerated Monthly Caps: Overall accelerated bonus is capped at 15,000 points per calendar month. GyFTR brand vouchers carry a strict sub-cap of 3,000 bonus points (reached at ₹15,000 spend).",
+      "Monthly Redemption Ceiling: Flight and hotel redemptions on SmartBuy are capped at 1,50,000 Reward Points per calendar month.",
+      "SmartBuy 70/30 Points Rule: Points can cover up to 70% of flight/hotel booking values; remaining 30% must be paid via Infinia card (earning 5X-10X points).",
+      "Severe Non-Travel Devaluation: Statement cash credits slash value to ₹0.30 per point; product catalog items drop to ₹0.50 per point.",
+      "Annual renewal fee of ₹14,750 (₹12,500 + 18% GST) applies unless retail spends cross ₹10,00,000 in the anniversary year (neutralized by 12,500 renewal points if paid)."
+    ],
+    "whyCreditWiseRecommends": "The undisputed benchmark for premium credit cards in India. 12,500 renewal points effectively neutralize the base fee, while 10X SmartBuy hotel returns (33.3%) and 1:1 transfers to Accor ALL (~₹1.85/pt) and KrisFlyer deliver unrivaled monetary purchasing power.",
+    "orientation": "horizontal",
+    "keyInsights": [
+      {
+        "title": "The Hyper-Accrual Matrix: Up to 33.3% Travel Yield",
+        "description": "Infinia sets India's reward benchmark by combining a base 3.33% rate (5 RP/₹150) with massive SmartBuy multipliers: 10X on hotels/buses (33.3% return), 5X on flights, Apple products, and GyFTR vouchers (16.65% return), and 3X on Tanishq (10% return)."
+      },
+      {
+        "title": "12,500 Points Fee Neutralization Architecture",
+        "description": "Unlike cards where fees are sunken costs, paying the ₹14,750 fee (₹12,500 + GST) deposits 12,500 Reward Points straight into your balance, delivering ₹12,500 in clean travel purchasing power and making the effective card cost just the ₹2,250 GST delta."
+      },
+      {
+        "title": "The Accor ALL Arbitrage (~₹1.85 per Point)",
+        "description": "Transferring Infinia points 1:1 to Accor Live Limitless unlocks fixed global redemption value: 2,000 Accor points = €40 (approx. ₹3,700), bypassing the standard ₹1.00 portal valuation to realize an exceptional ~₹1.85 per point on luxury hotels."
+      },
+      {
+        "title": "SmartBuy 70/30 Booking Synergy Kickback",
+        "description": "SmartBuy caps flight/hotel point redemptions at 70% of booking value (1 RP = ₹1). The mandatory 30% cash component swiped on the Infinia card directly triggers the 5X/10X SmartBuy multiplier, generating thousands of fresh reward points on the very same booking."
+      },
+      {
+        "title": "Dedicated Priority Pass for Primary & Add-on Holders",
+        "description": "Both the primary cardholder and every add-on family member receive unlimited complimentary domestic lounge access via card swipe and dedicated unlimited international Priority Pass cards with guest privileges."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Zero-Reward Categories & Blocked Spends",
+        "items": [
+          "Fuel Purchases: Zero reward points (covered by 1% fuel surcharge waiver for transactions between ₹400 and ₹1,00,000).",
+          "Wallet Loading: Reloading digital prepaid wallets earns zero reward points.",
+          "Rental & Property Management: Rent payments and property management services earn zero reward points.",
+          "Government & Tax Transactions: All government utilities, statutory payments, and tax transactions earn zero points.",
+          "EMI Transactions: EasyEMI conversions and merchant EMIs earn zero points and do not count toward fee waivers.",
+          "Cash Advances & Finance Charges: ATM cash withdrawals, annual fees, and outstanding banking interest charges earn zero points."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "The 10X SmartBuy Hotel Optimization Play (The 70/30 Rule)",
+        "partner": "HDFC SmartBuy Portal (1 RP = ₹1.00 + 10X Multiplier)",
+        "scenario": "A 4-night luxury stay at the JW Marriott Hotel Bengaluru with a total booking price of ₹1,00,000.",
+        "cashPrice": "₹1,00,000 total booking price",
+        "pointsRequired": "70,000 Infinia Points applied (70% max points limit)",
+        "taxesAndFees": "₹30,000 cash balance paid with Infinia card via SmartBuy Hotels",
+        "netCashSaved": "₹70,000 direct cash saved (1 RP = ₹1.00)",
+        "realizedValuePerPoint": "₹1.00 per point (+ 10,000 bonus RP kickback!)",
+        "bottomLine": "70,000 points completely wipe out ₹70,000 in cash. Because the remaining ₹30,000 is swiped on SmartBuy Hotels (10X multiplier = 50 RP/₹150), you immediately earn 10,000 Reward Points back, reducing the net points cost to just 60,000 points!"
+      },
+      {
+        "title": "Accor Live Limitless (ALL) Point Transfer Sweep",
+        "partner": "Accor Live Limitless (1:1 Transfer Ratio)",
+        "scenario": "Luxury romantic vacation stay at Fairmont Jaipur or Sofitel Mumbai BKC with a cash price of ₹37,000.",
+        "cashPrice": "₹37,000 cash room rate",
+        "pointsRequired": "20,000 Infinia Reward Points transferred 1:1 to 20,000 Accor Points",
+        "taxesAndFees": "₹0 out of pocket (20,000 Accor pts = €400 ≈ ₹37,000)",
+        "netCashSaved": "₹37,000 direct room cost saved",
+        "realizedValuePerPoint": "₹1.85 per point (516% higher than ₹0.30 statement credit)",
+        "bottomLine": "Transferring 20,000 Infinia points 1:1 to Accor ALL delivers ₹37,000 in luxury stay value at ₹1.85 per point, beating standard cash credit (₹0.30) by over 500%."
+      },
+      {
+        "title": "SmartBuy International Flight Booking Kickback",
+        "partner": "HDFC SmartBuy Flights (5X Multiplier)",
+        "scenario": "Booking a multi-city international flight for ₹1,00,000, deploying 60,000 saved Infinia points.",
+        "cashPrice": "₹1,00,000 total flight fare",
+        "pointsRequired": "60,000 Infinia Points (wipes out ₹60,000 at 1 RP = ₹1)",
+        "taxesAndFees": "₹40,000 remaining cash balance swiped on Infinia card",
+        "netCashSaved": "₹60,000 fare cost saved",
+        "realizedValuePerPoint": "₹1.00 per point (+ 6,666 bonus RP kickback)",
+        "bottomLine": "Applying 60,000 points saves ₹60,000, while the ₹40,000 cash balance on SmartBuy Flights (5X = 25 RP/₹150) kicks 6,666 points back into your account. Basic statement credit would have yielded only ₹18,000."
+      }
+    ]
   },
   {
     "id": "hdfc-marriott-bonvoy",
@@ -654,44 +1478,116 @@
     "description": "India's first co-branded hotel credit card providing a Free Night Award worth up to 15,000 points every year, 12 lounge visits, and 8 points per ₹150 at Marriott hotels.",
     "annualFee": 3000,
     "joiningFee": 3000,
-    "feeWaiver": "No spend-based waiver; 1 Free Night Award granted on renewal fee payment.",
+    "feeWaiver": "Non-waivable fee of ₹3,540 (₹3,000 + 18% GST). No spend-based waiver exists. The fee is completely neutralized every year by 1 Free Night Award (worth up to 15,000 Bonvoy points) valid at participating Marriott properties worldwide.",
     "apr": 42,
     "cashbackRate": 0,
-    "rewardRate": 5.3,
-    "loungeAccess": 12,
-    "rewardSummary": "8 Marriott Bonvoy points per ₹150 spent at participating Marriott properties; 4 points per ₹150 on dining, travel, and entertainment; 2 points per ₹150 on other retail.",
+    "rewardRate": 2.8,
+    "loungeAccess": 24,
+    "rewardSummary": "8 Marriott Bonvoy points per ₹200 spent directly at Marriott properties worldwide; 4 points per ₹200 on dining, travel, and entertainment; 2 points per ₹200 on general retail. 1 Free Night Award (up to 15k pts) on joining & renewal + up to 3 milestone Free Night Awards.",
     "rewardCategories": {
-      "marriottProperties": "8 Bonvoy points / ₹150",
-      "diningTravel": "4 Bonvoy points / ₹150",
-      "otherRetail": "2 Bonvoy points / ₹150"
+      "marriottDirect": "8 Bonvoy points / ₹200 (4% point yield)",
+      "diningTravelEntertainment": "4 Bonvoy points / ₹200 (2% point yield)",
+      "generalRetail": "2 Bonvoy points / ₹200 (1% point yield)",
+      "freeNightAwardValuation": "1 FNA = Up to 15,000 points (worth ₹7,000–₹15,000 in hotel stays)",
+      "hotelRedemptionRate": "1 Bonvoy Point = ~₹0.50 to ₹0.90+ (Stay 5, Pay 4 bonus)",
+      "cashStatementCredit": "Not Available (Points locked into Marriott Bonvoy ecosystem)"
     },
-    "rewardCaps": "No ceiling on points earned on direct Marriott expenditures.",
-    "exclusions": "Fuel, wallet loads, rent, government transactions, and utilities.",
+    "rewardCaps": "Accelerated 4X rate at Marriott properties capped at ₹10,00,000 spent per month; Travel and Dining categories have structural monthly caps.",
+    "exclusions": "Fuel purchases (1% surcharge waiver only), wallet loading, rental payments & property management, government transactions, tax filings, public utility bills, EasyEMI conversions, merchant EMIs, cash advances, and bank interest charges.",
     "benefits": [
-      "1 Free Night Award (up to 15,000 points value) upon joining and annual renewal",
-      "Complimentary Marriott Bonvoy Silver Elite Status + 10 Elite Night Credits each year",
-      "12 complimentary domestic airport lounge visits per calendar year",
-      "12 complimentary international airport lounge visits per calendar year",
-      "Earn up to 3 additional Free Night Awards on reaching annual spend milestones"
+      "1 Free Night Award (worth up to 15,000 points) upon payment of joining and annual renewal fees, easily offsetting the ₹3,540 card fee",
+      "Unconditional Lounge Access: 12 domestic and 12 international airport lounge visits per calendar year (24 total) with zero quarterly spend hurdles",
+      "Complimentary Marriott Bonvoy Silver Elite Status + 10 Elite Night Credits credited every year to fast-track Gold/Platinum status",
+      "Co-Branded Mega Rate: 8 Marriott Bonvoy Points per ₹200 spent directly at participating Marriott properties worldwide",
+      "Accelerated Lifestyle Rewards: 4 Marriott Bonvoy Points per ₹200 spent on Dining, Travel, and Entertainment",
+      "Spend Milestones: Earn up to 3 additional Free Night Awards upon crossing ₹6 Lakhs, ₹9 Lakhs, and ₹15 Lakhs in annual spends",
+      "The 5th Night Free Benefit: Book 4 consecutive award nights on points and receive the 5th night completely free",
+      "FNA Top-Off Flexibility: Add up to 15,000 points from your account to your 15,000-point FNA to book luxury rooms up to 30,000 points/night",
+      "2 complimentary global golf games or coaching lessons per calendar quarter"
     ],
     "eligibility": "Indian resident aged 21-60 years.",
     "incomeRequirement": "₹1,00,000/month for salaried; ITR > ₹15 Lakhs for self-employed",
     "locationRestrictions": "Pan India.",
-    "travelBenefits": "1 Free Night Award annually, 10 Elite Night Credits fast-tracking Gold Elite status, and 24 total lounge visits.",
-    "loungeBenefits": "12 domestic + 12 international airport lounge visits per calendar year.",
+    "travelBenefits": "24 unconditional global lounge visits (12 domestic + 12 international), 1 Free Night Award annually, 10 Elite Night Credits, and 5th night free on award stays.",
+    "loungeBenefits": "24 complimentary airport lounge visits per calendar year (12 domestic + 12 international) directly via Diners Club network with zero quarterly spend requirements for primary and add-on cardholders.",
     "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per statement cycle.",
-    "diningBenefits": "4 Bonvoy points per ₹150 spent on dining; exclusive Marriott restaurant discounts.",
-    "forexBenefits": "Standard 3.5% foreign currency markup.",
-    "milestoneBenefits": "1 additional Free Night Award on ₹6 Lakhs, ₹9 Lakhs, and ₹15 Lakhs annual spends (up to 4 free nights/year total).",
+    "diningBenefits": "4 Bonvoy points per ₹200 on dining and exclusive dining discounts at participating Marriott hotel restaurants.",
+    "forexBenefits": "Standard 3.5% + GST foreign currency markup fee. Beware of new 1.75% Dynamic Currency Conversion (DCC) fee on international INR transactions.",
+    "milestoneBenefits": "1 Free Night Award automatically upon annual fee payment, plus 1 additional Free Night Award on reaching ₹6 Lakhs, ₹9 Lakhs, and ₹15 Lakhs annual spend (up to 4 FNAs/year).",
     "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/marriott-bonvoy-hdfc-bank-credit-card",
     "officialSource": "HDFC Bank Official Cards Directory",
-    "lastVerified": "2026-09-20",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
-    "goodFor": "Leisure and business travelers who stay at Marriott properties",
-    "whoItFits": "Vacationers who can easily redeem the annual Free Night Award at hotels like Courtyard, Fairfield, or Westin.",
-    "whatToWatchOutFor": "No annual fee waiver option; you must pay the ₹3,000 fee each year to receive the Free Night Award.",
-    "whyCreditWiseRecommends": "The annual Free Night Award routinely redeems for hotel rooms worth ₹7,000 to ₹12,000, easily exceeding the ₹3,000 renewal fee.",
-    "orientation": "horizontal"
+    "goodFor": "Travelers who stay at Marriott hotels and want guaranteed unconditional domestic & international lounge access without spend hurdles",
+    "whoItFits": "Vacationers and business travelers who easily recover the ₹3,540 non-waivable fee via the 15,000-point Free Night Award and value 24 unconditional lounge visits.",
+    "whatToWatchOutFor": [
+      "Non-Waivable Annual Fee: The ₹3,540 renewal fee (₹3,000 + 18% GST) cannot be waived through card spends; it must be paid annually (neutralized by the 15,000-pt FNA).",
+      "Recent Reward Rate Revision: HDFC shifted points accrual from multiples of ₹150 to ₹200, resulting in a 25% drop in base and accelerated earn rates.",
+      "No Direct Cashback or Statement Credit: Points are deposited directly into your Marriott Bonvoy account and cannot be redeemed for cash or statement credit.",
+      "New 1.75% DCC Fee Trap: A 1.75% Dynamic Currency Conversion fee applies if you pay in INR at international merchants or overseas hotel portals. Always pay in local currency.",
+      "Offline POS Diners Club Acceptance: Occasional acceptance issues at smaller offline merchant terminals in tier-2/3 Indian cities."
+    ],
+    "whyCreditWiseRecommends": "A rare card offering 24 truly unconditional lounge visits (12 domestic + 12 international) with zero quarterly spend hurdles, while the annual 15,000-point Free Night Award easily delivers ₹8,000–₹15,000 in room value against a ₹3,540 fee.",
+    "orientation": "horizontal",
+    "keyInsights": [
+      {
+        "title": "Unconditional Lounge Access (Zero Spend Hurdles)",
+        "description": "While almost all Indian banks have introduced strict ₹35,000–₹50,000 quarterly spend hurdles for airport lounge access, Marriott Bonvoy HDFC provides 12 domestic and 12 international visits per year (24 total) completely unconditional for primary and add-on cardholders."
+      },
+      {
+        "title": "Automated Fee Neutralization via Free Night Award",
+        "description": "The non-waivable ₹3,540 annual fee (₹3,000 + 18% GST) is effortlessly offset by the 15,000-point Free Night Award automatically issued on renewal, easily unlocking hotel rooms worth ₹7,000 to ₹15,000+ at properties like Courtyard by Marriott or Fairfield."
+      },
+      {
+        "title": "FNA Top-Off Flexibility (Up to 30,000 Points)",
+        "description": "Marriott allows cardholders to 'top off' their 15,000-point FNA by combining it with up to 15,000 points from their balance, opening up high-end properties (like Le Méridien or Westin) priced up to 30,000 points per night."
+      },
+      {
+        "title": "Stay for 5, Pay for 4 Award Benefit",
+        "description": "When redeeming points for 5 consecutive nights at any Marriott property worldwide, the lowest-priced night is completely free (0 points), giving an automatic 20% discount on extended points holidays."
+      },
+      {
+        "title": "Elite Status Fast-Track: 10 Elite Night Credits",
+        "description": "Comes bundled with Marriott Bonvoy Silver Elite status and deposits 10 Elite Night Credits into your account annually, cutting the requirement for Gold Elite status down to just 15 additional nights."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Zero-Reward Categories & Blocked Spends",
+        "items": [
+          "Fuel Purchases: Zero points (covered by 1% fuel surcharge waiver).",
+          "Wallet Loading: Digital prepaid wallet reloads earn zero points.",
+          "Rental & Property Management: Rent payments earn zero points.",
+          "Government & Tax Payments: Tax payments, statutory dues, and public utility bills earn zero points.",
+          "EMI Transactions: EasyEMI and merchant EMIs earn zero points.",
+          "Banking Charges & Cash: ATM cash advances, annual fees, and interest charges earn zero points."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "The Sweet Spot Room Top-Off Play (Weekend Getaway)",
+        "partner": "Marriott Bonvoy Free Night Award (Top-Off Rule)",
+        "scenario": "Booking a 1-night weekend stay at Courtyard by Marriott Aravali Resort or Fairfield Goa Benaulim (cash price ₹15,500 incl. taxes).",
+        "cashPrice": "₹15,500 room cash price",
+        "pointsRequired": "15,000-point renewal FNA + 8,000 Bonvoy Points from account balance",
+        "taxesAndFees": "₹3,540 annual card fee paid to acquire FNA",
+        "netCashSaved": "₹11,960 net cash profit (₹15,500 room value – ₹3,540 card fee)",
+        "realizedValuePerPoint": "₹0.68 per point on the 8,000 supplemental points",
+        "bottomLine": "Your ₹3,540 renewal voucher plus 8,000 card points eliminates a ₹15,500 luxury stay, locking in ₹11,960 in pure net travel value right upon renewal."
+      },
+      {
+        "title": "The Stay for 5, Pay for 4 Extended Vacation Strategy",
+        "partner": "Marriott Bonvoy Award Stays (5th Night Free)",
+        "scenario": "5-night consecutive luxury vacation at Le Méridien Mahabaleshwar Resort & Spa (cash fare ₹16,000/night = ₹80,000 total).",
+        "cashPrice": "₹80,000 total stay value",
+        "pointsRequired": "88,000 Bonvoy Points (22,000 pts/night × 4 nights; 5th night is 0 points, saving 22,000 pts)",
+        "taxesAndFees": "₹0 room charges",
+        "netCashSaved": "₹80,000 direct holiday savings",
+        "realizedValuePerPoint": "₹0.91 per Bonvoy point",
+        "bottomLine": "Redeeming 88,000 points across 5 nights completely covers an ₹80,000 stay, yielding a high ₹0.91/point value. Points can be accelerated by pooling with Amex MRCC or HDFC Infinia transfers."
+      }
+    ]
   },
   {
     "id": "hdfc-millennia",
@@ -712,43 +1608,104 @@
     "description": "India's benchmark shopping card offering 5% CashPoints on top e-commerce merchants and 1% on all other spends with points redeemable 1:1 against statement balance.",
     "annualFee": 1000,
     "joiningFee": 1000,
-    "feeWaiver": "Waived on annual spends of ₹1,00,000 in preceding year.",
+    "feeWaiver": "Annual renewal fee of ₹1,180 (₹1,000 + 18% GST) is 100% waived on retail card spending crossing ₹1,00,000 in preceding anniversary year. Welcome gift of 1,000 CashPoints (worth ₹1,000 statement credit) credited upon joining fee payment, effectively neutralizing the base fee.",
     "apr": 43.2,
     "cashbackRate": 5,
-    "rewardRate": 1,
+    "rewardRate": 5,
     "loungeAccess": 4,
-    "rewardSummary": "5% CashPoints on 10 partner merchants: Amazon, Flipkart, Swiggy, Zomato, Myntra, Tata CLiQ, Cult.fit, Uber, BookMyShow, and SonyLIV; 1% on other spends.",
+    "rewardSummary": "5% CashPoints on 10 top partner platforms (Amazon, Flipkart, Swiggy, Zomato, Myntra, Tata CLiQ, Cult.fit, Uber, BookMyShow, SonyLIV) capped at 1,000 CashPoints/month (optimal at ₹20,000 monthly spend); 1% on other retail. 1 CashPoint = ₹1.00 strictly when redeemed against statement cash credit.",
     "rewardCategories": {
-      "partnerPlatforms": "5% CashPoints",
-      "otherSpends": "1% CashPoints"
+      "partnerPlatforms5Pct": "5% CashPoints on 10 partner apps (Amazon, Flipkart, Swiggy, Zomato, Uber, Myntra, etc.)",
+      "otherRetail1Pct": "1% CashPoints on general eligible retail transactions",
+      "statementCreditRedemption": "1 CashPoint = ₹1.00 (Statement cash credit — optimal redemption)",
+      "smartBuyTravelRedemption": "1 CashPoint = ₹0.30 (Flights & hotels on SmartBuy)",
+      "productCatalogDevaluation": "1 CashPoint = ₹0.25 to ₹0.30 (Avoid catalog & vouchers)"
     },
-    "rewardCaps": "5% CashPoints capped at ₹1,000 per calendar month; 1% CashPoints capped at ₹1,000 per month.",
-    "exclusions": "Fuel, wallet loads, rent, government transactions, and education.",
+    "rewardCaps": "5% CashPoints strictly capped at 1,000 CashPoints per calendar month (reached at exactly ₹20,000 spend on 5% merchants; spend beyond ₹20k earns 0%). 1% category capped at 1,000 CashPoints/month. Minimum 500 CashPoints required to initiate redemption.",
+    "exclusions": "Rent payments, government transactions & tax payments, fuel purchases (1% surcharge waiver between ₹400 and ₹5,000), insurance premium payments, wallet loading & prepaid reloads, EasyEMI conversions, cash advances, and bank interest charges.",
     "benefits": [
-      "1,000 CashPoints welcome gift on fee payment",
-      "5% cashback across top Indian internet apps (Amazon, Flipkart, Swiggy, Zomato, Uber)",
-      "CashPoints redeemable directly against card statement credit at 1 CashPoint = ₹1",
-      "1 complimentary domestic airport lounge visit per quarter on spending ₹1 Lakh in previous quarter",
-      "1% fuel surcharge waiver on transactions between ₹400 and ₹5,000"
+      "Welcome Benefit: 1,000 CashPoints credited upon joining fee payment (worth ₹1,000 in cash statement credit, neutralizing the base fee)",
+      "5% CashPoints across 10 top lifestyle platforms: Amazon, Flipkart, Swiggy, Zomato, Myntra, Tata CLiQ, Cult.fit, Uber, BookMyShow, and SonyLIV",
+      "1% CashPoints on all other eligible retail spends",
+      "1 CashPoint = ₹1.00 direct statement balance credit via HDFC NetBanking",
+      "1 complimentary domestic airport lounge visit per calendar quarter upon spending ₹1,00,000 in the previous calendar quarter",
+      "1% fuel surcharge waiver up to ₹250 per statement cycle on transactions between ₹400 and ₹5,000",
+      "Up to 20% discount on dining out via Swiggy Dineout"
     ],
     "eligibility": "Salaried employee aged 21-40 years.",
     "incomeRequirement": "₹35,000/month for salaried; ITR > ₹6 Lakhs for self-employed",
     "locationRestrictions": "Pan India.",
-    "travelBenefits": "1 lounge visit per quarter upon meeting spend criteria.",
-    "loungeBenefits": "Spend-linked: 1 lounge visit per calendar quarter unlocked only on quarterly retail spends of ₹1,00,000 or more (available as an either/or choice with the ₹1,00,000 milestone ₹1,000 brand voucher; direct swipe discontinued).",
-    "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per month.",
-    "diningBenefits": "Up to 20% discount on dining out via Swiggy Dineout.",
-    "forexBenefits": "Standard 3.5% foreign currency markup.",
-    "milestoneBenefits": "₹1,000 gift voucher on spending ₹1,00,000 every calendar quarter.",
+    "travelBenefits": "1 domestic airport lounge visit per calendar quarter subject to ₹1,00,000 prior quarter spend.",
+    "loungeBenefits": "1 complimentary domestic airport lounge visit per calendar quarter unlocked strictly upon crossing ₹1,00,000 in retail spending in the immediately preceding calendar quarter (4 visits/year maximum).",
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per statement cycle on transactions between ₹400 and ₹5,000 (no reward points on fuel).",
+    "diningBenefits": "5% CashPoints on Swiggy and Zomato, plus up to 20% dining discounts via Swiggy Dineout.",
+    "forexBenefits": "Standard 3.5% + GST foreign currency transaction markup fee.",
+    "milestoneBenefits": "₹1,000 gift voucher on spending ₹1,00,000 every calendar quarter (or lounge voucher choice).",
     "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/millennia-cards",
     "officialSource": "HDFC Bank Official Website",
-    "lastVerified": "2026-10-23",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
-    "goodFor": "Online shoppers who divide their spending across multiple delivery and e-commerce apps",
-    "whoItFits": "Urban shoppers who don't want to be locked into just Amazon or Flipkart, enjoying 5% across both platforms plus food delivery and cabs.",
-    "whatToWatchOutFor": "5% cashback is capped at ₹1,000 per month; lounge access requires ₹1 Lakh prior-quarter spend.",
-    "whyCreditWiseRecommends": "Unlike single-brand co-brand cards, Millennia gives you 5% cashback whether you shop on Amazon or Flipkart, or order from Swiggy or Zomato.",
-    "orientation": "horizontal"
+    "goodFor": "Young professionals and bachelors spending ₹10,000 to ₹20,000 monthly across everyday delivery, cab, and e-commerce apps",
+    "whoItFits": "Urban consumers who divide their online spending across Amazon, Flipkart, Swiggy, Zomato, and Uber without wanting to be locked to a single co-branded merchant.",
+    "whatToWatchOutFor": [
+      "Strict ₹1,000 Monthly 5% Cap: The 5% rate is hard-capped at 1,000 CashPoints per month, reached at exactly ₹20,000 spend. Any spend above ₹20,000 in a month earns 0% cashback.",
+      "Multi-Tier Redemption Trap: 1 CashPoint = ₹1.00 ONLY when redeemed as a statement cash credit. Converting to flights/hotels drops value to ₹0.30, and product catalog vouchers drop to ₹0.25 (up to 75% value loss).",
+      "High ₹1 Lakh Quarterly Lounge Hurdle: Unlocking 1 lounge visit requires spending ₹1,00,000 in the preceding quarter (₹33,333/month), an aggressive threshold for an entry-level card.",
+      "Minimum 500 CashPoints Redemption Floor: You cannot redeem points in small increments; a minimum balance of 500 CashPoints is strictly required to initiate a payout.",
+      "Broad Exclusions: Rent payments, government transactions, fuel, and insurance premiums earn zero CashPoints and do not count toward fee waivers.",
+      "CashPoints 2-Year Expiry: Unredeemed CashPoints expire exactly 2 years (24 months) from the month of accrual."
+    ],
+    "whyCreditWiseRecommends": "The best entry-level card for balanced online delivery, cab, and shopping spends up to ₹20,000/month, delivering clean 5% statement cashback across Amazon, Flipkart, Swiggy, and Uber.",
+    "orientation": "horizontal",
+    "keyInsights": [
+      {
+        "title": "The ₹20,000 Monthly Sweet Spot (1,000 Points Cap)",
+        "description": "While marketed as 5% cashback on top lifestyle apps, HDFC enforces a strict ceiling of 1,000 CashPoints per calendar month. This means the 5% benefit is mathematically maxed out at exactly ₹20,000 spent on partner merchants; spending beyond ₹20,000 in a month drops to 0% cashback."
+      },
+      {
+        "title": "The Multi-Tier Redemption Trap (₹1.00 vs ₹0.25)",
+        "description": "1 CashPoint equals ₹1.00 ONLY when redeemed directly against your credit card statement balance via NetBanking. If accidentally redeemed for product catalog items or shopping vouchers, HDFC slashes the valuation to ₹0.25–₹0.30 per point, destroying 70% to 75% of your hard-earned value."
+      },
+      {
+        "title": "500 CashPoints Minimum Redemption Floor",
+        "description": "CashPoints cannot be redeemed incrementally or immediately. Cardholders must accumulate at least 500 CashPoints before HDFC allows a statement credit redemption, meaning low spenders may wait several months before seeing their first cash credit."
+      },
+      {
+        "title": "Steep ₹1 Lakh Quarterly Spend Hurdle for Lounges",
+        "description": "HDFC removed unconditional lounge access on Millennia. Cardholders must now spend ₹1,00,000 or more in the preceding calendar quarter (an average of ₹33,333/month) to unlock a single domestic lounge visit in the next quarter."
+      },
+      {
+        "title": "Competitor Reality: Millennia vs SBI Cashback vs Amazon Pay ICICI",
+        "description": "SBI Cashback offers 5% online anywhere (not restricted to partner lists) with a much higher ₹5,000 monthly cap (₹1 Lakh spend ceiling). Amazon Pay ICICI is completely Lifetime Free with unlimited 5% on Amazon for Prime members. Millennia wins specifically for users who split ₹10,000–₹20,000 monthly between Amazon, Flipkart, Swiggy, Zomato, and Uber."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Zero-Reward Categories & Ineligible Spends",
+        "items": [
+          "Rent Payments: Rental transactions earn zero CashPoints.",
+          "Government & Tax Transactions: All government utilities, tax payments, and statutory dues earn zero CashPoints.",
+          "Fuel Purchases: Zero CashPoints (covered by 1% fuel surcharge waiver on ₹400–₹5,000 transactions).",
+          "Insurance Premiums: Payments to life, health, and general insurance providers earn zero CashPoints.",
+          "Wallet Loading: Reloading digital prepaid wallets earns zero CashPoints.",
+          "EMI Transactions: EasyEMI conversions and merchant EMIs earn zero CashPoints.",
+          "Cash Advances & Finance Charges: ATM cash withdrawals, annual fees, and interest charges earn zero points."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "The Monthly E-Commerce Sweet Spot Math",
+        "partner": "HDFC NetBanking Direct Statement Credit (1 CP = ₹1.00)",
+        "scenario": "Spending ₹18,000 monthly across Amazon (₹8,000), Swiggy & Zomato (₹6,000), and Uber (₹4,00,0).",
+        "cashPrice": "₹2,16,000 annual spend (₹18,000/month)",
+        "pointsRequired": "10,800 CashPoints accumulated annually (900 CashPoints/month @ 5%)",
+        "taxesAndFees": "₹0 annual fee (₹1,180 fee waived automatically on crossing ₹1,00,000 spend)",
+        "netCashSaved": "₹10,800 direct statement cashback credited to your account",
+        "realizedValuePerPoint": "₹1.00 per CashPoint (5.0% flat effective return)",
+        "bottomLine": "Spending ₹18,000/month safely stays beneath the 1,000 CP cap, yields ₹10,800 in clean statement cash, and waives the annual fee. Converting these points to catalog vouchers (1 CP = ₹0.25) would slash value to just ₹2,700, losing ₹8,100."
+      }
+    ]
   },
   {
     "id": "hdfc-regalia-gold",
@@ -769,43 +1726,133 @@
     "description": "Comprehensive travel and lifestyle card offering 4 reward points per ₹150 base spend, 5X points on retail partners, and generous airport lounge allowances.",
     "annualFee": 2500,
     "joiningFee": 2500,
-    "feeWaiver": "Waived on annual retail spends of ₹4,00,000 in preceding year.",
+    "feeWaiver": "Annual renewal fee of ₹2,950 (₹2,500 + 18% GST) is 100% waived on retail card spending crossing ₹4,00,000 in preceding anniversary year. Welcome voucher worth ₹2,500 upon joining fee payment, effectively neutralizing the base fee.",
     "apr": 43.2,
     "cashbackRate": 0,
     "rewardRate": 2.6,
     "loungeAccess": 18,
-    "rewardSummary": "4 reward points per ₹150 on retail spends; 5X points on Marks & Spencer, Myntra, Nykaa, and Reliance Digital (20 points / ₹150); 1 RP = ₹0.50 on SmartBuy flights.",
+    "rewardSummary": "4 Reward Points per ₹150 base spend (or 5 RP/₹200 = 1.25% value return); 5X points (20 RP/₹150 = up to 6.66% return) on Marks & Spencer, Myntra, Nykaa, and Reliance Digital; up to 10X points on SmartBuy hotels. 1 RP = ₹0.50 on SmartBuy flights/hotels (max 70% booking value) & 1:0.5 air miles.",
     "rewardCategories": {
-      "brandPartners": "5X Reward Points (20 pts / ₹150)",
-      "baseRetail": "4 points / ₹150"
+      "smartBuyHotels": "10X Reward Points on SmartBuy Hotels",
+      "smartBuyFlights": "5X Reward Points on SmartBuy Flights",
+      "retailPartners5X": "5X Reward Points (20 RP / ₹150) on Myntra, Nykaa, M&S, Reliance Digital",
+      "baseRetail": "4 points / ₹150 (1.25%–1.33% effective return)",
+      "smartBuyTravelRedemption": "1 RP = ₹0.50 (Flights & hotels on SmartBuy, max 70% value)",
+      "airMilesTransfer": "1 RP = 0.5 Air Mile (1:0.5 ratio to Air India, KrisFlyer, Vistara)",
+      "appleGoldCatalogue": "1 RP = Up to ₹0.35 (Apple & Bose products in Gold Catalogue)",
+      "brandVouchers": "1 RP = ₹0.25 (Amazon, Flipkart, Marriott vouchers)",
+      "statementCashbackDevaluation": "1 RP = ₹0.20 (Avoid direct statement balance credit)"
     },
-    "rewardCaps": "5X accelerated brand points capped at 5,000 points per month.",
-    "exclusions": "Fuel, wallet loads, rent, utilities, and government services.",
+    "rewardCaps": "5X accelerated retail partner points capped at 5,000 points per calendar month. SmartBuy portal daily/monthly caps apply. Reward points expire strictly 2 years (24 months) from the month of accrual.",
+    "exclusions": "Fuel purchases (1% surcharge waiver only), wallet loading transactions & digital reloads, rental payments & property management, government transactions & tax payments, insurance premium payments, EasyEMI conversions, merchant EMIs, cash advances, and bank interest charges.",
     "benefits": [
-      "Complimentary Club Vistara Silver tier and MMT Black Elite tier on meeting spend threshold",
-      "12 complimentary domestic airport lounge visits per calendar year (unlocked on ₹60,000 quarterly spend)",
-      "6 complimentary international lounge visits per year with Priority Pass",
-      "Flight vouchers worth ₹5,000 on annual spend of ₹5,00,000 + extra ₹5,00,000 on ₹7.5 Lakhs",
-      "1% fuel surcharge waiver on transactions between ₹400 and ₹5,000"
+      "Welcome Benefit: ₹2,500 brand gift voucher credited upon payment of joining fee, neutralizing the base card fee",
+      "12 complimentary domestic airport lounge visits per calendar year (unlocked on ₹60,000 spend in preceding quarter)",
+      "6 complimentary international airport lounge visits per year via bundled Priority Pass with zero spend conditions",
+      "Accelerated Retail: 5X Reward Points (20 RP per ₹150) at Marks & Spencer, Myntra, Nykaa, and Reliance Digital",
+      "SmartBuy Multipliers: 10X points on SmartBuy Hotels and 5X points on SmartBuy Flights",
+      "Quarterly Milestone Bonus: ₹1,500 brand voucher (Marriott, Reliance Digital, etc.) on spending ₹1.5 Lakhs in a calendar quarter",
+      "Annual Flight Milestones: ₹5,000 flight voucher at ₹5 Lakhs annual spend + an extra ₹5,000 flight voucher at ₹7.5 Lakhs spend",
+      "Discounted 2.0% + GST foreign currency markup fee on international transactions",
+      "Exclusive dining privileges under Good Food Trail via Swiggy Dineout"
     ],
     "eligibility": "Indian resident aged 21-60 years.",
     "incomeRequirement": "₹1,00,000/month for salaried; ITR > ₹12 Lakhs for self-employed",
     "locationRestrictions": "Pan India.",
-    "travelBenefits": "18 total lounge visits, Club Vistara Silver tier, and ₹10,000 in annual milestone flight vouchers.",
-    "loungeBenefits": "12 domestic airport lounge visits/year (3 per calendar quarter, unlocked on ₹60,000 spend in preceding quarter) + 6 international lounge visits via Priority Pass.",
-    "fuelBenefits": "1% fuel surcharge waiver up to ₹400 per statement cycle.",
-    "diningBenefits": "Exclusive dining privileges under Good Food Trail via Swiggy Dineout.",
-    "forexBenefits": "Reduced 2.0% foreign currency markup.",
-    "milestoneBenefits": "₹1,500 voucher on ₹1.5 Lakh quarterly spend; ₹5,000 flight voucher at ₹5 Lakhs annual spend.",
+    "travelBenefits": "18 total lounge visits (12 domestic + 6 unconditional international via Priority Pass), 1:0.5 air miles transfer, and 1 RP = ₹0.50 on SmartBuy flights/hotels.",
+    "loungeBenefits": "12 domestic airport lounge visits per year (3 per quarter, unlocked strictly upon spending ₹60,000 in the preceding calendar quarter) + 6 international lounge visits per year via Priority Pass with zero spend requirements.",
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹400 per statement cycle on transactions between ₹400 and ₹5,000 (no reward points on fuel).",
+    "diningBenefits": "Exclusive dining discounts under Good Food Trail via Swiggy Dineout.",
+    "forexBenefits": "Discounted 2.0% + GST foreign currency transaction markup fee. Beware of new 1.75% DCC fee on international INR transactions.",
+    "milestoneBenefits": "₹1,500 voucher on ₹1.5 Lakh quarterly spend; ₹5,000 flight voucher at ₹5 Lakhs annual spend + additional ₹5,000 flight voucher at ₹7.5 Lakhs spend.",
     "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/regalia-gold-credit-card",
     "officialSource": "HDFC Bank Official Cards Page",
-    "lastVerified": "2026-10-23",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
-    "goodFor": "Frequent domestic & international travelers seeking reliable lounge access and flight rewards",
-    "whoItFits": "Professionals spending ₹4 to ₹8 Lakhs a year who want generous lounge access and milestone flight vouchers.",
-    "whatToWatchOutFor": "Reward point redemption on general merchandise yields lower value than flight/hotel bookings.",
-    "whyCreditWiseRecommends": "With 12 domestic and 6 international lounge visits plus low 2% forex markup, it is the most well-rounded mid-premium travel card in India.",
-    "orientation": "horizontal"
+    "goodFor": "Mid-to-senior professionals who want reliable domestic and international airport lounge access combined with shopping and flight rewards",
+    "whoItFits": "Shoppers and travelers spending ₹4 to ₹8 Lakhs annually who shop at Myntra, Nykaa, or Reliance Digital and redeem points for SmartBuy flights or airline miles.",
+    "whatToWatchOutFor": [
+      "₹60,000 Quarterly Domestic Lounge Hurdle: Domestic lounge access requires spending ₹60,000 or more in the preceding calendar quarter (international Priority Pass visits remain unconditional).",
+      "SmartBuy 70% Points Cap: When booking flights or hotels on SmartBuy, points can only cover up to 70% of the booking value; remaining 30% must be paid with the card.",
+      "Multi-Tier Redemption Slump: 1 RP = ₹0.50 on flights/hotels and air miles, but drops to ₹0.35 on Apple products, ₹0.25 on brand vouchers, and a terrible ₹0.20 on statement cash credits.",
+      "₹99 + GST Redemption Fee: HDFC charges a flat ₹99 + GST redemption fee on every redemption request; hoard points and redeem in large batches.",
+      "Strict 2-Year Point Expiry: Points expire strictly 2 years (24 months) from the month of accrual; you cannot hoard them indefinitely.",
+      "1.75% Dynamic Currency Conversion (DCC) Fee: Charged if you pay in INR at international merchants or foreign websites (Netflix US, foreign hotel portals). Always pay in local currency abroad.",
+      "Annual renewal fee of ₹2,950 (₹2,500 + 18% GST) applies unless retail spends cross ₹4,00,000 in the anniversary year."
+    ],
+    "whyCreditWiseRecommends": "HDFC Regalia Gold provides one of the best mid-tier lounge suites in India (including 6 unconditional international visits via Priority Pass) paired with a low 2.0% forex markup and 5X shopping multipliers.",
+    "orientation": "horizontal",
+    "keyInsights": [
+      {
+        "title": "The 70/30 SmartBuy Redemption Rule",
+        "description": "When redeeming Regalia Gold points for flights or hotels on HDFC SmartBuy at full 1 RP = ₹0.50 parity, points can cover a maximum of 70% of the total booking cost. The remaining 30% must be paid using the Regalia Gold card (which in turn earns fresh points)."
+      },
+      {
+        "title": "Unconditional International vs Spend-Linked Domestic Lounges",
+        "description": "Domestic lounge access requires spending ₹60,000 or more in the previous calendar quarter. However, the 6 complimentary international lounge visits provided via the bundled Priority Pass card remain completely unconditional with zero spend hurdles."
+      },
+      {
+        "title": "AirMiles Transfer Arbitrage (1:0.5 Ratio)",
+        "description": "Transferring points to airline partners like Club Vistara, Air India Flying Returns, or Singapore Airlines KrisFlyer at a 1:0.5 ratio yields an effective value of ₹0.50 per point while completely bypassing the 70% SmartBuy booking cap, allowing 100% award-ticket redemptions."
+      },
+      {
+        "title": "The Multi-Tier Valuation Spectrum (₹0.50 to ₹0.20)",
+        "description": "Points are worth ₹0.50 on travel and air miles, ₹0.35 on Apple/Bose gear via the Gold Catalogue, ₹0.25 on brand vouchers (Amazon/Flipkart), and only ₹0.20 when applied as a direct statement credit—a 60% loss in purchasing power."
+      },
+      {
+        "title": "Batch Redemption Strategy (Avoiding the ₹99 Fee)",
+        "description": "HDFC levies a flat ₹99 + 18% GST fee every single time you submit a reward redemption request on the portal. Cardholders should accumulate points and redeem them in large single batches rather than frequent small redemptions."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Zero-Reward Categories & Blocked Spends",
+        "items": [
+          "Fuel Purchases: Zero reward points (covered by 1% fuel surcharge waiver on ₹400–₹5,000 transactions).",
+          "Wallet Loading: Reloading digital prepaid wallets earns zero reward points.",
+          "Rental & Property Management: Rent payments earn zero reward points.",
+          "Government & Tax Transactions: All government utilities, tax payments, and statutory dues earn zero points.",
+          "Insurance Premiums: Insurance payments earn zero points and do not count toward spend milestones.",
+          "EMI Transactions: EasyEMI conversions and merchant EMIs earn zero points.",
+          "Banking Charges & Cash: ATM cash advances, annual fees, and finance charges earn zero points."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "SmartBuy Flight & Hotel Booking Math (70/30 Rule)",
+        "partner": "HDFC SmartBuy Portal (1 RP = ₹0.50)",
+        "scenario": "Booking a hotel room or flight ticket costing ₹10,000 through the HDFC SmartBuy portal.",
+        "cashPrice": "₹10,000 total booking cost",
+        "pointsRequired": "14,000 Reward Points (covers 70% = ₹7,000 at ₹0.50/point)",
+        "taxesAndFees": "₹3,000 cash balance paid with Regalia Gold card",
+        "netCashSaved": "₹7,000 direct cash saved",
+        "realizedValuePerPoint": "₹0.50 per point",
+        "bottomLine": "You knock ₹7,000 off a ₹10,000 booking using 14,000 points at ₹0.50/point. The ₹3,000 cash portion swiped on the card earns points back toward your next vacation."
+      },
+      {
+        "title": "AirMiles Transfer Play (Bypassing the 70% Cap)",
+        "partner": "Air India Flying Returns / Singapore Airlines KrisFlyer (1:0.5 Ratio)",
+        "scenario": "Booking an award flight costing 10,000 miles (cash fare: ₹10,000).",
+        "cashPrice": "₹10,000 cash retail fare",
+        "pointsRequired": "20,000 Regalia Gold points transferred 1:0.5 to 10,000 miles",
+        "taxesAndFees": "Taxes paid separately via airline portal",
+        "netCashSaved": "₹10,000 saved on airline ticket",
+        "realizedValuePerPoint": "₹0.50 per point (bypasses SmartBuy 70% cap)",
+        "bottomLine": "Transferring 20,000 points converts to 10,000 miles, completely covering a ₹10,000 flight at ₹0.50/pt without being bound by the 70% SmartBuy portal restriction."
+      },
+      {
+        "title": "The Valuation Spectrum Contrast (₹0.50 Travel vs ₹0.20 Cashback Trap)",
+        "partner": "Travel Redemption vs Statement Balance Credit",
+        "scenario": "Deploying 10,000 accumulated Regalia Gold points across different redemption channels.",
+        "cashPrice": "10,000 Reward Points balance",
+        "pointsRequired": "10,000 points deployed",
+        "taxesAndFees": "₹99 + GST redemption fee per transaction",
+        "netCashSaved": "₹5,000 on SmartBuy flights (₹0.50) vs ₹2,000 on Statement Credit (₹0.20)",
+        "realizedValuePerPoint": "₹0.50 (Travel) vs ₹0.35 (Apple) vs ₹0.25 (Vouchers) vs ₹0.20 (Statement Credit)",
+        "bottomLine": "Using 10,000 points on travel saves ₹5,000. Cashing it out against your credit card bill yields just ₹2,000, destroying ₹3,000 (60%) of your earned monetary purchasing power."
+      }
+    ]
   },
   {
     "id": "hdfc-swiggy-blck",
@@ -826,44 +1873,104 @@
     "description": "Premium dining card providing 10% direct cashback on food delivery, Instamart groceries, and Dineout dining, plus 5% across major online platforms.",
     "annualFee": 1000,
     "joiningFee": 1000,
-    "feeWaiver": "Waived on annual spends of ₹2,00,000.",
+    "feeWaiver": "Annual renewal fee of ₹1,180 (₹1,000 + 18% GST) is 100% waived on annual retail spending crossing ₹2,00,000 in preceding anniversary year. First Year Free (FYF) for eligible migrating users; upgrades from Lifetime Free (LTF) lose LTF status.",
     "apr": 43.2,
     "cashbackRate": 10,
     "rewardRate": 0,
     "loungeAccess": 0,
-    "rewardSummary": "10% cashback on Swiggy orders (Food, Instamart, Dineout, Genie); 5% cashback on other online shopping (Amazon, Flipkart, Myntra, Uber, Nykaa); 1% on other spends.",
+    "rewardSummary": "10% direct statement cashback on Swiggy (Food, Instamart, Dineout, Genie) capped at ₹1,500/month; 5% cashback on top online merchants (Amazon, Flipkart, Myntra, Uber, Nykaa) with a separate ₹1,500/month cap; 1% on other retail. Automatic credit to statement.",
     "rewardCategories": {
-      "swiggyPlatform": "10% cashback",
-      "onlinePartners": "5% cashback",
-      "otherRetail": "1% cashback"
+      "swiggyPlatform10Pct": "10% cashback on Swiggy Food, Instamart, Dineout, Genie (min ₹249/order, capped at ₹1,500/mo)",
+      "onlinePartners5Pct": "5% cashback on Amazon, Flipkart, Myntra, Uber, Nykaa, etc. (min ₹100/order, capped at ₹1,500/mo)",
+      "otherRetail1Pct": "1% cashback on other eligible retail spends (capped at ₹500/month)",
+      "directStatementCashback": "1:1 pure cash credit automatically applied to monthly credit card statement"
     },
-    "rewardCaps": "10% Swiggy cashback capped at ₹1,500/month; 5% online shopping cashback capped at ₹1,000/month; 1% other spends capped at ₹500/month.",
-    "exclusions": "Fuel, wallet loads, rent, utilities, government payments, and jewelry.",
+    "rewardCaps": "Independent dual-cap architecture: ₹1,500 monthly cap on Swiggy (maxed at ₹15,000 spend) + separate ₹1,500 monthly cap on 5% online shopping (maxed at ₹30,000 spend). Potential ₹3,000/month (₹36,000/yr) total cashback.",
+    "exclusions": "Transactions below ₹249 on Swiggy (earn base 1%), transactions below ₹100 on 5% shopping (earn base 1%), fuel purchases (1% surcharge waiver only), wallet loading transactions & digital reloads, rental payments, government transactions & tax payments, public utilities, jewelry purchases, EasyEMI conversions, and finance charges.",
     "benefits": [
-      "Complimentary 3-month Swiggy BLCK VIP membership on card activation",
-      "10% cashback on Swiggy food orders, Instamart groceries, and Dineout restaurant bills",
-      "5% cashback on a wide list of online merchants (Amazon, Flipkart, Uber, Myntra, BMS)",
-      "Cashback credited directly as Swiggy Money or statement credit",
-      "Zero lost-card liability with 24x7 customer assistance"
+      "Independent Dual-Cap Architecture: Separate ₹1,500/month cap on Swiggy + separate ₹1,500/month cap on 5% online partners (up to ₹3,000/month total cashback)",
+      "10% direct statement cashback on Swiggy food orders, Instamart grocery deliveries, Genie, and Dineout reservations",
+      "5% direct statement cashback on top online merchants including Amazon, Flipkart, Myntra, Nykaa, and Uber",
+      "1% unlimited cashback on other eligible retail spends (capped at ₹500/month)",
+      "Automatic No-Fuss Statement Credit: Cashback automatically credits directly to your credit card statement as pure cash (no catalog traps or redemption fees)",
+      "Low breakeven spend of just ₹10,000 per year (₹835/month) on Swiggy to completely recover the ₹1,000 card fee",
+      "1% fuel surcharge waiver on transactions between ₹400 and ₹5,000 (up to ₹250/month)"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
     "incomeRequirement": "₹40,000/month for salaried; ITR > ₹6 Lakhs for self-employed",
     "locationRestrictions": "Cities with Swiggy presence.",
-    "travelBenefits": "None.",
-    "loungeBenefits": "None.",
-    "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per month.",
-    "diningBenefits": "10% cashback on all Swiggy Food and Dineout restaurant reservations.",
-    "forexBenefits": "Standard 3.5% foreign currency markup.",
-    "milestoneBenefits": "Fee waiver on spending ₹2,00,000 annually.",
+    "travelBenefits": "None. Optimized strictly for urban food delivery, grocery, and e-commerce cashback.",
+    "loungeBenefits": "No complimentary airport lounge access is offered on this card.",
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per statement cycle on transactions between ₹400 and ₹5,000 (no cashback on fuel).",
+    "diningBenefits": "10% direct cashback on Swiggy Food and Dineout restaurant table bookings with minimum order value of ₹249.",
+    "forexBenefits": "Standard 3.5% + GST foreign currency transaction markup fee.",
+    "milestoneBenefits": "Annual renewal fee of ₹1,180 (₹1,000 + 18% GST) waived on reaching ₹2,00,000 in annual card spends.",
     "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/swiggy-hdfc-bank-credit-card",
     "officialSource": "HDFC Bank & Swiggy Official Co-Brand Portal",
-    "lastVerified": "2026-09-20",
+    "lastVerified": "2026-10-29",
     "applicationAvailability": "Active (via Swiggy App and HDFC Website)",
-    "goodFor": "Heavy Swiggy, Instamart, and Dineout users",
-    "whoItFits": "Foodies and busy city dwellers ordering food, groceries, and dining out via Swiggy multiple times a week.",
-    "whatToWatchOutFor": "No airport lounge access; 10% cashback requires minimum order value of ₹249 on select promotions.",
-    "whyCreditWiseRecommends": "With grocery costs and dining being major monthly household expenses, 10% back on Instamart alone saves over ₹1,000 every single month.",
-    "orientation": "horizontal"
+    "goodFor": "Households and urban professionals spending ₹2,000 to ₹15,000 monthly on Swiggy, Instamart groceries, Dineout, and e-commerce shopping",
+    "whoItFits": "Daily food delivery and Instamart quick-commerce shoppers who order items above ₹249 and want automatic monthly cash credits without catalog conversion hassles.",
+    "whatToWatchOutFor": [
+      "₹249 Minimum Order Hurdle for 10%: Swiggy transactions below ₹249 do NOT earn 10% cashback; they drop to the base 1% rate. For 5% online shopping, the minimum order value is ₹100.",
+      "Independent Category Caps: 10% Swiggy cashback is capped at ₹1,500/month (reached at ₹15,000 spend); 5% online shopping is capped at a separate ₹1,500/month (reached at ₹30,000 spend).",
+      "The Migration Default Trap: If upgrading from older phased-out Swiggy cards without responding to the selection prompt, HDFC defaults users to Swiggy Ornge (slashing cashback to 5% with a shared cap).",
+      "Loss of Lifetime Free (LTF) Status: Upgrading an existing LTF Swiggy card to BLCK removes LTF status and incurs the ₹1,000 (+ 18% GST) annual fee.",
+      "No Airport Lounge Access: Card features zero domestic or international lounge access privileges.",
+      "Exclusions: Zero cashback on fuel, wallet loads, rent, government transactions, utilities, and jewelry."
+    ],
+    "whyCreditWiseRecommends": "The dual-cap matrix granting separate ₹1,500 monthly limits on Swiggy and online shopping makes BLCK an extraordinary asset for urban households spending heavily on Instamart groceries and food delivery.",
+    "orientation": "horizontal",
+    "keyInsights": [
+      {
+        "title": "Independent Dual-Cap Matrix (₹1,500 + ₹1,500)",
+        "description": "Unlike the entry-level Swiggy Ornge card which lumps all spending into a single shared cap, Swiggy BLCK separates the limits: you get up to ₹1,500 cashback/month on Swiggy (maxed at ₹15,000 spend) and an independent ₹1,500 cashback/month on top online shopping (maxed at ₹30,000 spend), enabling up to ₹3,000 monthly in pure cash returns."
+      },
+      {
+        "title": "The ₹249 & ₹100 Minimum Transaction Hurdle",
+        "description": "To trigger the 10% cashback on Swiggy, each individual transaction must be at least ₹249. Orders below ₹249 drop to the standard 1% base rate. Similarly, 5% online shopping requires a minimum transaction value of ₹100."
+      },
+      {
+        "title": "Automatic 'No-Fuss' Statement Balance Credit",
+        "description": "Unlike traditional reward point cards with complex catalogs, 2-year expiration policies, and ₹99 redemption fees, cashback earned on Swiggy BLCK is automatically calculated and credited directly against your monthly credit card statement balance as real cash."
+      },
+      {
+        "title": "The Low ₹10,000 Annual Breakeven Spend",
+        "description": "To completely offset the ₹1,000 base fee purely from the 10% tier, a cardholder only needs to spend ₹10,000 per year (roughly ₹835 per month) on Swiggy food orders or Instamart groceries (₹10,000 × 10% = ₹1,000)."
+      },
+      {
+        "title": "The Migration Default Trap (BLCK vs Ornge)",
+        "description": "When migrating from older Swiggy cards, HDFC defaults non-responding users to the Swiggy Ornge variant (which cuts cashback to 5% with a shared cap). Cardholders spending over ₹2,000/month on Swiggy must actively choose BLCK to preserve the superior 10% rate and dual caps."
+      }
+    ],
+    "exclusionCategories": [
+      {
+        "category": "Zero-Cashback Categories & Ineligible Spends",
+        "items": [
+          "Transactions Below Minimums: Swiggy orders below ₹249 and online partner purchases below ₹100 drop to base 1% cashback.",
+          "Fuel Purchases: Zero cashback (covered by 1% fuel surcharge waiver on ₹400–₹5,000 transactions).",
+          "Wallet Loading: Reloading digital prepaid wallets earns zero cashback.",
+          "Rental Payments: Rent payments via third-party platforms earn zero cashback.",
+          "Government & Tax Transactions: All government utilities, tax payments, and statutory dues earn zero cashback.",
+          "Public Utilities & Insurance: Payments to electricity, water, gas, and insurance providers earn zero cashback.",
+          "Jewelry Purchases: Spends on precious jewelry merchants earn zero cashback.",
+          "EMI & Banking Fees: EasyEMI conversions, merchant EMIs, cash advances, annual fees, and interest charges earn zero cashback."
+        ]
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "The Dual-Bucket Household Spend Math",
+        "partner": "Swiggy & Partner Online Merchants (Direct Statement Cash)",
+        "scenario": "Spending ₹6,000/month on Swiggy Instamart groceries & food (orders >₹249) plus ₹10,000/month on Amazon & Myntra shopping (orders >₹100).",
+        "cashPrice": "₹16,000 monthly spend (₹1,92,000 annual spend)",
+        "pointsRequired": "₹1,100 Monthly Direct Cashback (₹600 on Swiggy @ 10% + ₹500 on online partners @ 5%)",
+        "taxesAndFees": "₹1,180 annual renewal fee (₹1,000 + 18% GST)",
+        "netCashSaved": "₹12,020 net profit after fee deduction (₹13,200 annual cashback – ₹1,180 fee)",
+        "realizedValuePerPoint": "₹1.00 per ₹1 cashback (100% pure cash statement credit)",
+        "bottomLine": "A regular urban household spending ₹6,000 on Swiggy and ₹10,000 online extracts ₹13,200 in direct cash credits annually. Subtracting the ₹1,180 fee yields a net profit of ₹12,020 in pure cash. Beware: splitting the Swiggy spend into sub-₹249 micro-orders would drop cashback from ₹600 to just ₹60/month!"
+      }
+    ]
   },
   {
     "id": "hdfc-swiggy-orgne",

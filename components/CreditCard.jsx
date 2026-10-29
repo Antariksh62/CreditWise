@@ -22,7 +22,7 @@ function headlineRate(card) {
   return { value: "—", label: "Earn rate" };
 }
 
-export default function CreditCard({ card, matchScore = null }) {
+export default function CreditCard({ card, matchScore = null, priority = false }) {
   const rate = headlineRate(card);
 
   return (
@@ -35,6 +35,7 @@ export default function CreditCard({ card, matchScore = null }) {
           image={card.image}
           orientation={card.orientation || "horizontal"}
           size="sm"
+          priority={priority}
         />
       </div>
 
@@ -86,11 +87,14 @@ export default function CreditCard({ card, matchScore = null }) {
           </div>
           <div className="bg-white p-3">
             <dt className="text-[10px] uppercase font-bold tracking-wider text-neutral-400">
-              Annual fee
+              Total Annual Cost
             </dt>
             <dd className="cw-numeric mt-0.5 text-xs font-bold text-black">
-              {formatFee(card.annualFee)}
+              {card.annualFee === 0 ? "Lifetime Free" : `₹${Math.round(card.annualFee * 1.18).toLocaleString("en-IN")}`}
             </dd>
+            <span className="text-[9px] text-neutral-400 block font-normal leading-tight mt-0.5">
+              {card.annualFee === 0 ? "₹0 fee" : `₹${card.annualFee.toLocaleString("en-IN")} + 18% GST`}
+            </span>
           </div>
           <div className="bg-white p-3">
             <dt className="text-[10px] uppercase font-bold tracking-wider text-neutral-400">

@@ -119,7 +119,7 @@ export default function RewardCalculator() {
               <span className="cw-badge-accent">{result.effectiveRate}% effective</span>
               <p className="cw-numeric mt-2 text-[0.875rem] text-muted">
                 {formatRupees(result.netAnnualRewards)} after the{" "}
-                {card.annualFee === 0 ? "₹0" : formatRupees(card.annualFee)} fee
+                {card.annualFee === 0 ? "₹0 fee" : `${formatRupees(Math.round(card.annualFee * 1.18))} total fee (${formatRupees(card.annualFee)} + 18% GST)`}
               </p>
             </div>
           </div>

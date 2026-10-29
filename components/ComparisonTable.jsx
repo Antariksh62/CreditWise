@@ -24,8 +24,9 @@ import { TINT_BY_CATEGORY } from "./CreditCard";
 const MAX = 3;
 
 function formatFee(fee) {
-  if (fee === 0) return "Lifetime free";
-  return `₹${fee.toLocaleString("en-IN")} / year`;
+  if (fee === 0) return "Lifetime Free";
+  const total = Math.round(fee * 1.18);
+  return `₹${total.toLocaleString("en-IN")}/yr (₹${fee.toLocaleString("en-IN")} + 18% GST)`;
 }
 
 function getCardSuitabilitySummary(card) {
@@ -49,10 +50,22 @@ const CORE_ROWS = [
     label: "Annual fee & waiver",
     render: (c) => (
       <div>
-        <p className="font-bold text-neutral-900">{formatFee(c.annualFee)}</p>
+        {c.annualFee === 0 ? (
+          <p className="font-bold text-neutral-900">Lifetime Free</p>
+        ) : (
+          <div>
+            <p className="font-bold text-neutral-900">
+              ₹{Math.round(c.annualFee * 1.18).toLocaleString("en-IN")}{" "}
+              <span className="text-xs font-normal text-neutral-500">total / yr</span>
+            </p>
+            <p className="text-[11px] text-neutral-500 font-mono">
+              ₹{c.annualFee.toLocaleString("en-IN")} + 18% GST (₹{Math.round(c.annualFee * 0.18).toLocaleString("en-IN")})
+            </p>
+          </div>
+        )}
         {c.feeWaiver && c.annualFee > 0 && (
-          <p className="text-[11px] text-neutral-500 mt-0.5 leading-snug">
-            {c.feeWaiver}
+          <p className="text-[11px] text-neutral-600 mt-1 leading-snug">
+            <strong>Waiver:</strong> {c.feeWaiver}
           </p>
         )}
       </div>
@@ -104,9 +117,17 @@ const CORE_ROWS = [
     label: "Major limitations & caps",
     render: (c) => (
       <div className="space-y-1 text-xs text-neutral-700">
-        <p className="leading-relaxed">
-          • {c.whatToWatchOutFor || "Standard category limits and partner merchant exclusions apply."}
-        </p>
+        {Array.isArray(c.whatToWatchOutFor) ? (
+          c.whatToWatchOutFor.slice(0, 3).map((item, idx) => (
+            <p key={idx} className="leading-relaxed">
+              • {item}
+            </p>
+          ))
+        ) : (
+          <p className="leading-relaxed">
+            • {c.whatToWatchOutFor || "Standard category limits and partner merchant exclusions apply."}
+          </p>
+        )}
         {c.rewardCaps && !c.rewardCaps.toLowerCase().includes("no maximum cap") && (
           <p className="text-[11px] text-neutral-500">
             <strong>Caps:</strong> {c.rewardCaps}
@@ -146,9 +167,20 @@ const TECHNICAL_ROWS = [
   {
     label: "Joining fee",
     render: (c) => (
-      <span className="text-xs text-neutral-800">
-        {c.joiningFee === 0 ? "None (₹0)" : `₹${c.joiningFee.toLocaleString("en-IN")}`}
-      </span>
+      <div className="text-xs text-neutral-800">
+        {c.joiningFee === 0 ? (
+          "None (₹0)"
+        ) : (
+          <div>
+            <span className="font-bold">
+              ₹{Math.round(c.joiningFee * 1.18).toLocaleString("en-IN")}
+            </span>{" "}
+            <span className="text-[11px] text-neutral-500 font-mono">
+              (₹{c.joiningFee.toLocaleString("en-IN")} + 18% GST)
+            </span>
+          </div>
+        )}
+      </div>
     ),
   },
   {

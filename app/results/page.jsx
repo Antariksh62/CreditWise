@@ -20,7 +20,8 @@ import SaveCardButton from "../../components/SaveCardButton";
 
 function formatFee(fee) {
   if (fee === 0) return "Lifetime Free";
-  return `₹${fee.toLocaleString("en-IN")} / year`;
+  const total = Math.round(fee * 1.18);
+  return `₹${total.toLocaleString("en-IN")}/yr (₹${fee.toLocaleString("en-IN")} + 18% GST)`;
 }
 
 export default function ResultsPage() {
@@ -351,14 +352,24 @@ export default function ResultsPage() {
                       />
                     </div>
 
-                    {/* Annual Fee Block */}
+                    {/* Annual Fee Block with GST Transparency */}
                     <div className="mt-4 text-center w-full pt-3 border-t border-neutral-100">
-                      <p className="text-xs font-bold text-neutral-900">
-                        {formatFee(card.annualFee)}
-                      </p>
+                      {card.annualFee === 0 ? (
+                        <p className="text-xs font-bold text-emerald-700">Lifetime Free</p>
+                      ) : (
+                        <div>
+                          <p className="text-xs font-bold text-neutral-900">
+                            ₹{Math.round(card.annualFee * 1.18).toLocaleString("en-IN")}{" "}
+                            <span className="text-[10px] font-normal text-neutral-500">total / yr</span>
+                          </p>
+                          <p className="text-[10px] text-neutral-400 font-mono mt-0.5">
+                            ₹{card.annualFee.toLocaleString("en-IN")} + 18% GST
+                          </p>
+                        </div>
+                      )}
                       {card.feeWaiver && card.annualFee > 0 && (
-                        <p className="text-[11px] text-neutral-500 mt-0.5 leading-snug">
-                          {card.feeWaiver}
+                        <p className="text-[11px] text-neutral-500 mt-1 leading-snug">
+                          <strong>Waiver:</strong> {card.feeWaiver}
                         </p>
                       )}
                       {card.officialUrl && (

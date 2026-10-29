@@ -40,7 +40,7 @@ function getSharedObserver() {
           }
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.05, rootMargin: "120px 0px 120px 0px" }
     );
   }
   return sharedObserver;
@@ -59,17 +59,28 @@ export default function Reveal({
     const el = ref.current;
     if (!el) return;
 
+    // Check if element is already in viewport or if motion is disabled
+    if (typeof window !== "undefined") {
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReduced) {
+        el.classList.add("is-visible");
+        return;
+      }
+    }
+
     const observer = getSharedObserver();
     if (!observer) {
       el.classList.add("is-visible");
       return;
     }
 
+    const effectiveDelay = Math.min(delay, 120);
+
     const revealElement = () => {
-      if (delay > 0) {
+      if (effectiveDelay > 0) {
         window.setTimeout(() => {
           if (el) el.classList.add("is-visible");
-        }, delay);
+        }, effectiveDelay);
       } else {
         el.classList.add("is-visible");
       }

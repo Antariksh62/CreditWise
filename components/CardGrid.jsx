@@ -5,8 +5,7 @@ import Reveal from "./Reveal";
  * CardGrid
  * ------------------------------------------------------------
  * Three-up on desktop, two-up on tablet, one-up on mobile.
- * Each tile reveals on scroll with a 60ms stagger so the row
- * arrives as a sequence rather than a flash.
+ * Rapid, lightweight rendering with priority loading for above-the-fold cards.
  *
  * @param {Array}  cards    card records
  * @param {object} scores   optional { [slug]: matchScore }
@@ -24,10 +23,11 @@ export default function CardGrid({ cards, scores = {}, emptyMessage = "No cards 
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {cards.map((card, index) => (
-        <Reveal key={card.slug} delay={index * 60}>
+        <Reveal key={card.slug} delay={Math.min(index * 20, 80)}>
           <CreditCard
             card={card}
             matchScore={scores[card.slug] ?? null}
+            priority={index < 6}
           />
         </Reveal>
       ))}

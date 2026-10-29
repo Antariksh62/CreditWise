@@ -15,7 +15,7 @@ export default function Navbar() {
 
   const headerRef = useRef(null);
   const closeTimeoutRef = useRef(null);
-  const LEAVE_DELAY = 3500; // Dropdown stays open for 3.5 seconds after cursor leaves
+  const LEAVE_DELAY = 1500; // Dropdown automatically closes 1.5 seconds after cursor leaves
 
   const clearCloseTimeout = useCallback(() => {
     if (closeTimeoutRef.current) {
@@ -349,7 +349,7 @@ export default function Navbar() {
                   <ul className="space-y-4">
                     <li>
                       <Link
-                        href="/cards?category=cashback"
+                        prefetch={true} href="/cards?category=cashback"
                         onClick={closeMenuImmediately}
                         className="group block"
                       >
@@ -366,7 +366,7 @@ export default function Navbar() {
                     </li>
                     <li>
                       <Link
-                        href="/cards?category=travel"
+                        prefetch={true} href="/cards?category=travel"
                         onClick={closeMenuImmediately}
                         className="group block"
                       >
@@ -383,7 +383,7 @@ export default function Navbar() {
                     </li>
                     <li>
                       <Link
-                        href="/cards?category=dining"
+                        prefetch={true} href="/cards?category=dining"
                         onClick={closeMenuImmediately}
                         className="group block"
                       >
@@ -409,7 +409,7 @@ export default function Navbar() {
                   <ul className="space-y-4">
                     <li>
                       <Link
-                        href="/cards?category=lifetime-free"
+                        prefetch={true} href="/cards?category=lifetime-free"
                         onClick={closeMenuImmediately}
                         className="group block"
                       >
@@ -426,7 +426,7 @@ export default function Navbar() {
                     </li>
                     <li>
                       <Link
-                        href="/cards?category=rewards"
+                        prefetch={true} href="/cards?category=rewards"
                         onClick={closeMenuImmediately}
                         className="group block"
                       >
@@ -443,7 +443,7 @@ export default function Navbar() {
                     </li>
                     <li>
                       <Link
-                        href="/cards?category=fuel"
+                        prefetch={true} href="/cards?category=fuel"
                         onClick={closeMenuImmediately}
                         className="group block"
                       >
@@ -482,7 +482,7 @@ export default function Navbar() {
 
                   <div className="space-y-2 pt-3 border-t border-neutral-200/80">
                     <Link
-                      href="/cards"
+                      href="/cards" prefetch={true}
                       onClick={closeMenuImmediately}
                       className="flex items-center justify-between w-full px-4 py-2.5 text-xs font-bold text-black bg-[#e4f222] hover:bg-[#cee723] rounded-[6px] transition-colors group shadow-sm"
                     >
@@ -510,7 +510,7 @@ export default function Navbar() {
                     </span>
                   </div>
                   <Link
-                    href="/cards"
+                    href="/cards" prefetch={true}
                     onClick={closeMenuImmediately}
                     className="font-bold text-black hover:underline inline-flex items-center gap-1.5 self-start sm:self-auto shrink-0"
                   >
@@ -695,7 +695,7 @@ export default function Navbar() {
             </div>
           )}
           <Link
-            href="/cards"
+            href="/cards" prefetch={true}
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-semibold text-black"
           >

@@ -443,8 +443,8 @@ export default function ProfilePage() {
                             <h3 className="text-xs font-bold text-neutral-900 line-clamp-1">{card.name}</h3>
                             <p className="text-[11px] text-neutral-500 mt-0.5 line-clamp-2">{card.goodFor}</p>
                             <div className="mt-3 pt-3 border-t border-neutral-200/70 flex items-center justify-between text-xs">
-                              <span className="font-bold text-neutral-900">
-                                {card.annualFee === 0 ? "Lifetime Free" : `₹${card.annualFee.toLocaleString("en-IN")}/yr`}
+                              <span className="font-bold text-neutral-900" title={card.annualFee > 0 ? `₹${card.annualFee.toLocaleString("en-IN")} + 18% GST` : undefined}>
+                                {card.annualFee === 0 ? "Lifetime Free" : `₹${Math.round(card.annualFee * 1.18).toLocaleString("en-IN")}/yr (incl. GST)`}
                               </span>
                               <Link
                                 href={`/cards/${card.slug}`}

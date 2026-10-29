@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronUp, ShieldCheck, FileText, Check, ExternalLink } from "lucide-react";
+import { ChevronDown, ChevronUp, ShieldCheck, FileText, Check, ExternalLink, AlertTriangle, Sparkles, TrendingUp } from "lucide-react";
 
 export default function CardTechnicalDetails({ card }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,6 +64,31 @@ export default function CardTechnicalDetails({ card }) {
             </div>
           </div>
 
+          {/* Essential Nuances & Policy Insights */}
+          {card.keyInsights && card.keyInsights.length > 0 && (
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 mb-3 flex items-center gap-2">
+                <FileText className="h-3.5 w-3.5 text-black" />
+                Essential Policy Nuances & Operational Rules
+              </h3>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {card.keyInsights.map((insight, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded-xl border border-neutral-200/80 bg-white p-4 sm:p-5 space-y-1.5"
+                  >
+                    <span className="text-xs font-bold text-neutral-900 block">
+                      {idx + 1}. {insight.title}
+                    </span>
+                    <p className="text-xs text-neutral-600 leading-relaxed">
+                      {insight.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Caps & Exclusions Grid */}
           <div className="grid gap-4 sm:grid-cols-2">
             {/* Reward Caps */}
@@ -86,6 +111,155 @@ export default function CardTechnicalDetails({ card }) {
               </p>
             </div>
           </div>
+
+          {/* Detailed Categorized Exclusions (when available) */}
+          {card.exclusionCategories && card.exclusionCategories.length > 0 && (
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 mb-3 flex items-center gap-2">
+                <AlertTriangle className="h-3.5 w-3.5 text-amber-600" />
+                Official Reward Exclusion Rules by Category
+              </h3>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {card.exclusionCategories.map((group, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded-xl border border-neutral-200/80 bg-white p-4 sm:p-5 space-y-2"
+                  >
+                    <span className="text-xs font-bold uppercase tracking-wider text-neutral-900 block">
+                      {group.category}
+                    </span>
+                    <ul className="space-y-1.5 text-xs text-neutral-600">
+                      {group.items.map((item, i) => (
+                        <li key={i} className="flex items-start gap-1.5 leading-relaxed">
+                          <span className="text-neutral-400 font-bold shrink-0">•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* 18 Karat & 24 Karat Gold Collection Redemption Catalog */}
+          {card.goldCollection && (
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 mb-3 flex items-center gap-2">
+                <Sparkles className="h-3.5 w-3.5 text-amber-600" />
+                18 Karat & 24 Karat Gold Collection Voucher Options
+              </h3>
+              <div className="grid gap-4 md:grid-cols-2">
+                {/* 24K Collection */}
+                <div className="rounded-xl border border-amber-200/90 bg-amber-50/20 p-5 space-y-3">
+                  <div className="flex items-center justify-between border-b border-amber-200/70 pb-2.5">
+                    <span className="text-xs font-bold text-neutral-900 uppercase tracking-wide">
+                      24 Karat Gold Collection
+                    </span>
+                    <span className="text-xs font-bold text-amber-900 bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-300/60 font-mono">
+                      24,000 MR Points
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-neutral-500">
+                    Choose any one verified voucher upon reaching 24,000 points:
+                  </p>
+                  <ul className="space-y-1.5 text-xs text-neutral-700">
+                    {card.goldCollection.collection24k.map((item, idx) => (
+                      <li key={idx} className="flex items-center justify-between py-1 border-b border-neutral-100 last:border-0">
+                        <span className="font-medium text-neutral-800">{item.brand}</span>
+                        <span className="font-bold text-neutral-900 font-mono">{item.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* 18K Collection */}
+                <div className="rounded-xl border border-neutral-200/80 bg-white p-5 space-y-3">
+                  <div className="flex items-center justify-between border-b border-neutral-200 pb-2.5">
+                    <span className="text-xs font-bold text-neutral-900 uppercase tracking-wide">
+                      18 Karat Gold Collection
+                    </span>
+                    <span className="text-xs font-bold text-neutral-800 bg-neutral-100 px-2.5 py-0.5 rounded-full border border-neutral-200 font-mono">
+                      18,000 MR Points
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-neutral-500">
+                    Choose any one verified voucher upon reaching 18,000 points:
+                  </p>
+                  <ul className="space-y-1.5 text-xs text-neutral-700">
+                    {card.goldCollection.collection18k.map((item, idx) => (
+                      <li key={idx} className="flex items-center justify-between py-1 border-b border-neutral-100 last:border-0">
+                        <span className="font-medium text-neutral-800">{item.brand}</span>
+                        <span className="font-bold text-neutral-900 font-mono">{item.value}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Real-World Redemption Sweet Spots & Case Studies */}
+          {card.redemptionSweetSpots && card.redemptionSweetSpots.length > 0 && (
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 mb-3 flex items-center gap-2">
+                <TrendingUp className="h-3.5 w-3.5 text-emerald-600" />
+                What Can Be Done With Points If Used Properly (Real Case Studies)
+              </h3>
+              <div className="space-y-4">
+                {card.redemptionSweetSpots.map((spot, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded-xl border border-neutral-200/90 bg-white p-5 space-y-3.5"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-neutral-100 pb-3">
+                      <div>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">
+                          Case Study {idx + 1} · {spot.partner}
+                        </span>
+                        <h4 className="text-sm font-bold text-neutral-900 mt-0.5">
+                          {spot.title}
+                        </h4>
+                      </div>
+                      <div className="flex items-center gap-1.5 self-start sm:self-auto bg-emerald-50 border border-emerald-200 text-emerald-800 px-2.5 py-1 rounded-full text-xs font-bold shrink-0">
+                        <span>Realized Value:</span>
+                        <span className="font-mono">{spot.realizedValuePerPoint}</span>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-neutral-600 leading-relaxed">
+                      {spot.scenario}
+                    </p>
+
+                    {/* Financial Breakdown Grid */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-[#F9F9F9] rounded-lg p-3 text-xs">
+                      <div>
+                        <span className="text-[10px] text-neutral-400 uppercase font-semibold block">Cash Price</span>
+                        <span className="font-bold text-neutral-900 font-mono">{spot.cashPrice}</span>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-neutral-400 uppercase font-semibold block">Points Used</span>
+                        <span className="font-bold text-neutral-900 font-mono">{spot.pointsRequired}</span>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-neutral-400 uppercase font-semibold block">Taxes / Cash Outlay</span>
+                        <span className="font-bold text-neutral-700 font-mono">{spot.taxesAndFees}</span>
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-emerald-700 uppercase font-semibold block">Net Cash Saved</span>
+                        <span className="font-bold text-emerald-700 font-mono">{spot.netCashSaved}</span>
+                      </div>
+                    </div>
+
+                    <p className="text-xs text-neutral-700 font-medium bg-neutral-50 p-2.5 rounded border border-neutral-100 leading-relaxed">
+                      <strong className="text-black">The Bottom Line: </strong>
+                      {spot.bottomLine}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Specific Per-Category Details */}
           <div>

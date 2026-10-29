@@ -36,7 +36,8 @@ export async function generateMetadata({ params }) {
 
 function formatFee(fee) {
   if (fee === 0) return "Lifetime Free";
-  return `₹${fee.toLocaleString("en-IN")}`;
+  const total = Math.round(fee * 1.18);
+  return `₹${total.toLocaleString("en-IN")} (₹${fee.toLocaleString("en-IN")} + 18% GST)`;
 }
 
 export default async function CardDetailPage({ params }) {
@@ -72,7 +73,11 @@ export default async function CardDetailPage({ params }) {
   // What to watch for items
   const watchForItems = [];
   if (card.whatToWatchOutFor) {
-    watchForItems.push(card.whatToWatchOutFor);
+    if (Array.isArray(card.whatToWatchOutFor)) {
+      watchForItems.push(...card.whatToWatchOutFor);
+    } else {
+      watchForItems.push(card.whatToWatchOutFor);
+    }
   }
   if (card.rewardCaps && !card.rewardCaps.toLowerCase().includes("no maximum cap")) {
     watchForItems.push(`Monthly reward limits: ${card.rewardCaps}`);
@@ -126,25 +131,35 @@ export default async function CardDetailPage({ params }) {
                 </p>
               )}
 
-              {/* Annual Fee Display */}
+              {/* Annual Fee Display with 18% GST Breakdown */}
               <div className="mt-4 pt-4 border-t border-neutral-100">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-2xl font-bold text-neutral-900">
-                    {formatFee(card.annualFee)}
-                  </span>
-                  {card.annualFee > 0 ? (
-                    <span className="text-xs text-neutral-500">
-                      annual renewal fee
+                {card.annualFee === 0 ? (
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-bold text-neutral-900">
+                      Lifetime Free
                     </span>
-                  ) : (
                     <span className="text-xs text-emerald-700 font-semibold">
-                      Zero annual fee
+                      ₹0 annual fee
                     </span>
-                  )}
-                </div>
+                  </div>
+                ) : (
+                  <div>
+                    <div className="flex items-baseline gap-2 flex-wrap">
+                      <span className="text-2xl font-bold text-neutral-900">
+                        ₹{Math.round(card.annualFee * 1.18).toLocaleString("en-IN")}
+                      </span>
+                      <span className="text-xs text-neutral-500 font-medium">
+                        total customer cost / year
+                      </span>
+                    </div>
+                    <p className="text-xs text-neutral-600 mt-1 font-mono">
+                      ₹{card.annualFee.toLocaleString("en-IN")} base fee + ₹{Math.round(card.annualFee * 0.18).toLocaleString("en-IN")} (18% GST)
+                    </p>
+                  </div>
+                )}
                 {card.feeWaiver && card.annualFee > 0 && (
-                  <p className="text-xs text-neutral-500 mt-0.5">
-                    {card.feeWaiver}
+                  <p className="text-xs text-neutral-500 mt-1.5">
+                    <strong>Waiver:</strong> {card.feeWaiver}
                   </p>
                 )}
               </div>
