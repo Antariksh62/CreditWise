@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import ComparisonTable from "../../components/ComparisonTable";
 import RewardCalculator from "../../components/RewardCalculator";
 
@@ -18,14 +19,7 @@ export const metadata = {
     "Compare verified credit cards side by side on fees, reward mechanics, airport lounge access, and major limitations without sponsored rankings.",
 };
 
-export default async function ComparePage({ searchParams }) {
-  const resolvedParams = await paramsOrSearchParams(searchParams);
-  const raw = resolvedParams?.cards || "";
-  const initialSlugs = raw
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
-
+export default function ComparePage() {
   return (
     <div className="cw-rail min-h-screen bg-[#FBFBFB]">
       <div className="cw-container py-12 md:py-18 max-w-5xl mx-auto px-4 sm:px-6">
@@ -41,7 +35,16 @@ export default async function ComparePage({ searchParams }) {
           </p>
         </header>
 
-        <ComparisonTable initialSlugs={initialSlugs} />
+        <Suspense
+          fallback={
+            <div className="space-y-4 animate-pulse">
+              <div className="h-10 w-72 bg-neutral-200 rounded-lg" />
+              <div className="h-96 w-full bg-neutral-100 rounded-xl" />
+            </div>
+          }
+        >
+          <ComparisonTable />
+        </Suspense>
 
         {/* Reward Calculator Section */}
         <section id="reward-calculator" className="mt-16 border-t border-neutral-200/80 pt-14 scroll-mt-20">
@@ -72,10 +75,4 @@ export default async function ComparePage({ searchParams }) {
       </div>
     </div>
   );
-}
-
-async function paramsOrSearchParams(sp) {
-  if (!sp) return {};
-  if (typeof sp.then === "function") return await sp;
-  return sp;
 }

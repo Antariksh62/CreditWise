@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, AlertCircle, ArrowRight, CheckCircle2 } from "lucide-react";
@@ -19,6 +19,10 @@ export default function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    router.prefetch("/onboarding");
+  }, [router]);
 
   function handleChange(field, value) {
     setValues((prev) => ({ ...prev, [field]: value }));
@@ -114,16 +118,14 @@ export default function SignupForm() {
       // ignore storage quota issues in demo
     }
 
-    window.setTimeout(() => {
-      router.push("/onboarding");
-    }, 450);
+    router.push("/onboarding");
   }
 
   return (
     <form
       noValidate
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-neutral-200/80 bg-white p-7 sm:p-9 shadow-sm"
+      className="rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-8 md:p-9 shadow-sm"
     >
       <div className="mb-6">
         <p className="text-xs font-mono uppercase tracking-wider text-neutral-400 font-medium mb-1">

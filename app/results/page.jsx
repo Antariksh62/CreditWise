@@ -308,7 +308,7 @@ export default function ResultsPage() {
             return (
               <article
                 key={card.slug}
-                className="rounded-2xl border border-neutral-200/80 bg-white p-7 sm:p-9 shadow-xs transition-all hover:border-neutral-300"
+                className="rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-7 md:p-9 shadow-xs transition-all hover:border-neutral-300"
               >
                 {/* Mobile Header: Displays Card Name and Fit Badge on small screens before visual */}
                 <div className="md:hidden mb-4">
@@ -332,15 +332,20 @@ export default function ResultsPage() {
                   </h2>
                 </div>
 
-                <div className="grid gap-8 md:grid-cols-[260px_1fr] items-start">
+                <div className="grid gap-8 md:grid-cols-[260px_1fr] items-start min-w-0">
                   {/* Real Card Image as Visual Focus */}
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center min-w-0 w-full">
                     <div className="w-full flex items-center justify-between mb-3 text-[10px] uppercase font-semibold tracking-wider text-neutral-400">
                       <span>{card.issuer}</span>
                       {card.network && <span>{card.network}</span>}
                     </div>
 
-                    <div className="w-full flex justify-center">
+                    <Link
+                      href={`/cards/${card.slug}`}
+                      aria-label={`View full review of ${card.name}`}
+                      prefetch={true}
+                      className="w-full flex justify-center cursor-pointer transition-transform hover:scale-[1.02]"
+                    >
                       <CreditCardVisual
                         issuer={card.issuer || card.bank}
                         name={card.name}
@@ -350,7 +355,7 @@ export default function ResultsPage() {
                         priority={itemIdx === 0}
                         className="w-full max-w-[260px]"
                       />
-                    </div>
+                    </Link>
 
                     {/* Annual Fee Block with GST Transparency */}
                     <div className="mt-4 text-center w-full pt-3 border-t border-neutral-100">

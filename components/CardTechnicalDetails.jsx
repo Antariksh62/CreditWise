@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, ShieldCheck, FileText, Check, ExternalLink, AlertTriangle, Sparkles, TrendingUp } from "lucide-react";
 
 export default function CardTechnicalDetails({ card }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <div className="mt-10 rounded-2xl border border-neutral-200/80 bg-white overflow-hidden shadow-xs">

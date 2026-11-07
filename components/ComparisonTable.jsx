@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { X, ChevronDown, ChevronUp, ExternalLink, ArrowRight, ShieldCheck, Plus } from "lucide-react";
 import cards from "../data/cards.json";
 import CreditCardVisual from "./CreditCardVisual";
@@ -190,12 +191,40 @@ const TECHNICAL_ROWS = [
 ];
 
 export default function ComparisonTable({ initialSlugs = [] }) {
+  const searchParams = useSearchParams();
+
   const [selected, setSelected] = useState(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const sp = new URLSearchParams(window.location.search);
+        const raw = sp.get("cards");
+        if (raw) {
+          const valid = raw
+            .split(",")
+            .map((s) => s.trim())
+            .filter((slug) => cards.some((c) => c.slug === slug));
+          if (valid.length > 0) return valid.slice(0, MAX);
+        }
+      } catch {}
+    }
     const valid = initialSlugs.filter((slug) => cards.some((c) => c.slug === slug));
     return valid.length > 0
       ? valid.slice(0, MAX)
       : ["hsbc-live-plus", "amazon-pay-icici", "hdfc-regalia-gold"];
   });
+
+  useEffect(() => {
+    const raw = searchParams ? searchParams.get("cards") : null;
+    if (raw) {
+      const valid = raw
+        .split(",")
+        .map((s) => s.trim())
+        .filter((slug) => cards.some((c) => c.slug === slug));
+      if (valid.length > 0) {
+        setSelected(valid.slice(0, MAX));
+      }
+    }
+  }, [searchParams]);
 
   const [showTechnical, setShowTechnical] = useState(false);
 

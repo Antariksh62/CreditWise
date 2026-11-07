@@ -234,6 +234,7 @@ export default function Navbar() {
 
               <Link
                 href="/compare"
+                prefetch={true}
                 onMouseEnter={handleMouseLeave}
                 onClick={closeMenuImmediately}
                 className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black hover:bg-neutral-100/60 rounded-[6px] transition-colors"
@@ -243,6 +244,7 @@ export default function Navbar() {
 
               <Link
                 href="/recommend"
+                prefetch={true}
                 onMouseEnter={handleMouseLeave}
                 onClick={closeMenuImmediately}
                 className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black hover:bg-neutral-100/60 rounded-[6px] transition-colors"
@@ -252,6 +254,7 @@ export default function Navbar() {
 
               <Link
                 href="/blog"
+                prefetch={true}
                 onMouseEnter={handleMouseLeave}
                 onClick={closeMenuImmediately}
                 className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black hover:bg-neutral-100/60 rounded-[6px] transition-colors"
@@ -267,6 +270,7 @@ export default function Navbar() {
               <>
                 <Link
                   href="/profile"
+                  prefetch={true}
                   onClick={closeMenuImmediately}
                   className="inline-flex items-center gap-2 text-sm font-medium text-neutral-700 hover:text-black px-2.5 py-1.5 transition-colors rounded-[6px] hover:bg-neutral-100"
                   title="View spending profile & wallet"
@@ -290,6 +294,7 @@ export default function Navbar() {
             ) : (
               <Link
                 href="/login"
+                prefetch={true}
                 onClick={closeMenuImmediately}
                 className="text-sm font-medium text-neutral-700 hover:text-black px-3 py-2 transition-colors"
               >
@@ -298,6 +303,7 @@ export default function Navbar() {
             )}
             <Link
               href="/compare"
+              prefetch={true}
               onClick={closeMenuImmediately}
               className="rounded-[6px] bg-[#e4f222] px-3.5 py-2 text-sm font-medium text-black hover:bg-[#cee723] transition-colors whitespace-nowrap"
             >
@@ -305,6 +311,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/recommend"
+              prefetch={true}
               onClick={closeMenuImmediately}
               className="rounded-[6px] bg-black px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 transition-colors whitespace-nowrap"
             >
@@ -315,7 +322,7 @@ export default function Navbar() {
           {/* MOBILE HAMBURGER BUTTON */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-neutral-700 hover:text-black"
+            className="md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center p-2 text-neutral-700 hover:text-black rounded-lg"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? (

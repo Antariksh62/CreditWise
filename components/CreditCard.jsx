@@ -28,7 +28,12 @@ export default function CreditCard({ card, matchScore = null, priority = false }
   return (
     <article className="rounded-xl border border-neutral-200 bg-white shadow-none transition-all duration-200 hover:border-neutral-400 hover:shadow-lift flex flex-col overflow-hidden">
       {/* Visual band */}
-      <div className="flex h-[210px] w-full items-center justify-center border-b border-neutral-200 bg-neutral-50/80 px-6 py-4">
+      <Link
+        href={`/cards/${card.slug}`}
+        aria-label={`View details for ${card.name}`}
+        prefetch={true}
+        className="flex h-[210px] w-full items-center justify-center border-b border-neutral-200 bg-neutral-50/80 px-6 py-4 transition-colors hover:bg-neutral-100/60 focus:outline-none focus:ring-2 focus:ring-black focus:ring-inset"
+      >
         <CreditCardVisual
           issuer={card.issuer || card.bank}
           name={card.name}
@@ -37,7 +42,7 @@ export default function CreditCard({ card, matchScore = null, priority = false }
           size="sm"
           priority={priority}
         />
-      </div>
+      </Link>
 
       <div className="flex flex-1 flex-col p-6">
         {/* Title row + save action */}

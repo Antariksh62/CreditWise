@@ -97,7 +97,7 @@ Every credit card asset in `public/credit-card-imgs/` was inspected, cross-check
 - **Annual / Renewal Fee**: ₹4,500
 - **Fee Waiver Condition**: 100% renewal fee waiver on annual spends of ₹1,50,000; 50% waiver on ₹90,000.
 - **Good For**: *Disciplined spenders who hit monthly milestone targets*
-- **Who It Fits**: Individuals who can routinely spend ₹20,000 a month across 4+ transactions to maximize high-value hotel and voucher conversions.
+- **Who It Fits**: Individuals who can routinely spend ₹20,000 a month cumulatively, and also make 4 transactions of ₹1,500 or more, so in total you will get 2,000 MR points for sure.
 - **Why CreditWise Recommends**: When used strategically for its monthly milestone challenges, the effective reward return easily exceeds 6% to 8% in Marriott or Taj points.
 - **What To Watch Out For**: Offline merchant acceptance can be lower than Visa/Mastercard; no complimentary lounge visits.
 - **Reward Summary**: 1 MR point per ₹50 spent. 1,000 bonus points each month for completing 4 transactions of ₹1,500+. Additional 1,000 bonus points on ₹20,000 monthly spend.

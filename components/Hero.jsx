@@ -72,6 +72,7 @@ export default function Hero() {
               <span>Prefer not to share email?</span>
               <Link
                 href="/recommend"
+                prefetch={true}
                 className="font-medium text-neutral-900 underline underline-offset-4 hover:text-black transition-colors"
               >
                 Take the 1-minute quiz directly →

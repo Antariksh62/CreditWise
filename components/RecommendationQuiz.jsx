@@ -25,6 +25,8 @@ export default function RecommendationQuiz() {
   const [answers, setAnswers] = useState({});
 
   useEffect(() => {
+    router.prefetch("/results?source=quiz");
+    router.prefetch("/results");
     try {
       const raw = window.localStorage.getItem(ANSWERS_KEY);
       if (raw) {
@@ -34,7 +36,7 @@ export default function RecommendationQuiz() {
         }
       }
     } catch {}
-  }, []);
+  }, [router]);
 
   const question = QUESTIONS[step];
   const isLast = step === QUESTIONS.length - 1;
@@ -58,7 +60,7 @@ export default function RecommendationQuiz() {
   }
 
   return (
-    <div className="cw-card mx-auto max-w-[640px] p-7 md:p-9">
+    <div className="cw-card mx-auto max-w-[640px] p-5 sm:p-7 md:p-9">
       {/* ---------- Progress ---------- */}
       <div className="mb-8">
         <div className="mb-3 flex items-center justify-between">

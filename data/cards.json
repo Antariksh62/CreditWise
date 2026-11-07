@@ -6,7 +6,7 @@
     "issuer": "ICICI Bank",
     "bank": "ICICI Bank",
     "network": "Visa",
-    "image": "/credit-card-imgs/amazon-pay-icici.jpeg",
+    "image": "/credit-card-imgs/amazon-pay-icici.png",
     "category": "cashback",
     "tags": [
       "cashback",
@@ -37,7 +37,6 @@
     "exclusions": "Rent payments (in-app & 3rd party), education fees, EMI transactions, gold/bullion, wallet reloads, cash withdrawals, fuel (surcharge waiver only), external utility bill payments (0% outside Amazon), taxes & government payments (MCC 9311/9313), and Amazon Business purchases.",
     "benefits": [
       "5% unlimited cashback on Amazon for Prime members (3% for non-Prime)",
-      "Discounted 1.99% forex markup fee (down from standard 3.5%) with 1% international cashback",
       "2% cashback on 100+ partner merchants and Amazon recharges/bill payments",
       "1% unlimited cashback on all other eligible domestic and international retail spends",
       "1% fuel surcharge waiver across all petrol pumps in India",
@@ -56,7 +55,7 @@
     "officialSource": "ICICI Bank & Amazon Pay Official Terms",
     "lastVerified": "2026-10-29",
     "applicationAvailability": "Active (via Amazon App and ICICI NetBanking)",
-    "goodFor": "Amazon ecosystem, everyday online spending, and low-forex international purchases",
+    "goodFor": "Everyday online spending on Amazon website only, 5% cashback there",
     "whoItFits": "Anyone who shops regularly on Amazon, values zero-annual-fee simplicity, and wants low forex charges without high card fees.",
     "whatToWatchOutFor": [
       "No airport lounge access included.",
@@ -175,7 +174,7 @@
     "lastVerified": "2026-10-29",
     "applicationAvailability": "Active",
     "goodFor": "Disciplined spenders hitting ₹20,000/month across 4+ transactions for hotel points and Gold Collection vouchers",
-    "whoItFits": "Individuals who can routinely spend ₹20,000 a month across 4+ transactions to maximize high-value hotel and voucher conversions.",
+    "whoItFits": "Individuals who can routinely spend ₹20,000 a month cumulatively, and also make 4 transactions of ₹1,500 or more, so in total you will get 2,000 MR points for sure.",
     "whatToWatchOutFor": [
       "The ₹20,000 monthly spend milestone strictly requires one-time manual enrollment; it does not activate automatically.",
       "Points de-pooling: Amex maintains MR points balances separately per card (e.g. MRCC and Gold Card points are not pooled into a single balance).",
@@ -599,7 +598,7 @@
       "movies",
       "cashback"
     ],
-    "shortDescription": "Premium lifestyle card with 3.75% reward return on dining, travel, and international spends.",
+    "shortDescription": "High-reward dining and travel card with up to 3.75% reward return on restaurant, flight, and international spends.",
     "description": "BOBCARD's flagship rewards card delivering 15 reward points per ₹100 (3.75% value) on online shopping, travel, dining, and international spends, with direct statement credit redemption (1 pt = ₹0.25).",
     "annualFee": 2499,
     "joiningFee": 0,
@@ -1209,8 +1208,8 @@
       "lounge",
       "dining"
     ],
-    "shortDescription": "Premium lifestyle card with complimentary memberships, lounge access, and SmartBuy multipliers.",
-    "description": "Mid-to-premium lifestyle card offering 4 reward points per ₹150, up to 10X points on SmartBuy, and complimentary domestic & international airport lounge visits.",
+    "shortDescription": "Dining and travel card with complimentary memberships, lounge access, and SmartBuy multipliers.",
+    "description": "Versatile dining and travel card offering 4 reward points per ₹150, up to 10X points on SmartBuy, and complimentary domestic & international airport lounge visits.",
     "annualFee": 2500,
     "joiningFee": 2500,
     "feeWaiver": "Annual renewal fee of ₹2,950 (₹2,500 + 18% GST) is 100% waived on retail card spending crossing ₹3,00,000 in the anniversary year. Welcome bonus of 2,500 Reward Points (worth ₹1,250 in travel) upon payment of joining fee.",
@@ -1857,7 +1856,7 @@
   {
     "id": "hdfc-swiggy-blck",
     "slug": "hdfc-swiggy-blck",
-    "name": "Swiggy HDFC Bank BLCK Credit Card",
+    "name": "Swiggy BLCK HDFC Bank Credit Card",
     "issuer": "HDFC Bank",
     "bank": "HDFC Bank",
     "network": "Mastercard",
@@ -1873,31 +1872,33 @@
     "description": "Premium dining card providing 10% direct cashback on food delivery, Instamart groceries, and Dineout dining, plus 5% across major online platforms.",
     "annualFee": 1000,
     "joiningFee": 1000,
-    "feeWaiver": "Annual renewal fee of ₹1,180 (₹1,000 + 18% GST) is 100% waived on annual retail spending crossing ₹2,00,000 in preceding anniversary year. First Year Free (FYF) for eligible migrating users; upgrades from Lifetime Free (LTF) lose LTF status.",
+    "feeWaiver": "Joining Fee waived if the user spends ₹75,000 within the first 90 days. Annual renewal fee waived completely if total spends cross ₹2,00,000 in the preceding calendar year.",
     "apr": 43.2,
     "cashbackRate": 10,
     "rewardRate": 0,
     "loungeAccess": 0,
-    "rewardSummary": "10% direct statement cashback on Swiggy (Food, Instamart, Dineout, Genie) capped at ₹1,500/month; 5% cashback on top online merchants (Amazon, Flipkart, Myntra, Uber, Nykaa) with a separate ₹1,500/month cap; 1% on other retail. Automatic credit to statement.",
+    "rewardSummary": "10% Cashback on Swiggy App Spends (Food Delivery, Instamart, Dineout; min ₹249); 5% Cashback on Select Online Shopping (Amazon, Flipkart, Myntra, Ajio, Ola, Uber, Nykaa, BookMyShow, Cleartrip; min ₹100); 1% Cashback on All Other Spends (min ₹100). Auto-credited as statement balance credit.",
     "rewardCategories": {
-      "swiggyPlatform10Pct": "10% cashback on Swiggy Food, Instamart, Dineout, Genie (min ₹249/order, capped at ₹1,500/mo)",
-      "onlinePartners5Pct": "5% cashback on Amazon, Flipkart, Myntra, Uber, Nykaa, etc. (min ₹100/order, capped at ₹1,500/mo)",
-      "otherRetail1Pct": "1% cashback on other eligible retail spends (capped at ₹500/month)",
-      "directStatementCashback": "1:1 pure cash credit automatically applied to monthly credit card statement"
+      "swiggyApp10Pct": "10% Cashback on Swiggy Food Delivery, Instamart, and Dineout (min ₹249 transaction, isolated ₹1,500/mo cap)",
+      "onlineShopping5Pct": "5% Cashback on Amazon, Flipkart, Myntra, Ajio, Ola, Uber, Nykaa, BookMyShow, Cleartrip (min ₹100 transaction, isolated ₹1,500/mo cap)",
+      "otherRetail1Pct": "1% Cashback on All Other Spends (min ₹100 transaction, isolated ₹1,000/mo cap)",
+      "statementCredit": "Direct statement credit automatically applied each billing cycle"
     },
-    "rewardCaps": "Independent dual-cap architecture: ₹1,500 monthly cap on Swiggy (maxed at ₹15,000 spend) + separate ₹1,500 monthly cap on 5% online shopping (maxed at ₹30,000 spend). Potential ₹3,000/month (₹36,000/yr) total cashback.",
-    "exclusions": "Transactions below ₹249 on Swiggy (earn base 1%), transactions below ₹100 on 5% shopping (earn base 1%), fuel purchases (1% surcharge waiver only), wallet loading transactions & digital reloads, rental payments, government transactions & tax payments, public utilities, jewelry purchases, EasyEMI conversions, and finance charges.",
+    "rewardCaps": "Swiggy Cap: Capped at an isolated maximum of ₹1,500 per billing cycle. Online Shopping Cap: Capped at a separate, isolated maximum of ₹1,500 per billing cycle. Base Cap: The 1% general spend tier is capped separately at ₹1,000 per billing cycle.",
+    "exclusions": "Fuel, rent, wallet loads, government services, utilities, EMI conversions, jewellery, cash advances, SmartBuy/SmartPay portal purchases, and foreign currency transactions.",
     "benefits": [
-      "Independent Dual-Cap Architecture: Separate ₹1,500/month cap on Swiggy + separate ₹1,500/month cap on 5% online partners (up to ₹3,000/month total cashback)",
-      "10% direct statement cashback on Swiggy food orders, Instamart grocery deliveries, Genie, and Dineout reservations",
-      "5% direct statement cashback on top online merchants including Amazon, Flipkart, Myntra, Nykaa, and Uber",
-      "1% unlimited cashback on other eligible retail spends (capped at ₹500/month)",
-      "Automatic No-Fuss Statement Credit: Cashback automatically credits directly to your credit card statement as pure cash (no catalog traps or redemption fees)",
-      "Low breakeven spend of just ₹10,000 per year (₹835/month) on Swiggy to completely recover the ₹1,000 card fee",
-      "1% fuel surcharge waiver on transactions between ₹400 and ₹5,000 (up to ₹250/month)"
+      "10% Cashback on Swiggy App Spends (Food Delivery, Instamart, Dineout) on orders of ₹249 and above (capped at ₹1,500/mo)",
+      "5% Cashback on Select Online Shopping (Amazon, Flipkart, Myntra, Ajio, Ola, Uber, Nykaa, BookMyShow, Cleartrip) on orders of ₹100 and above (capped separately at ₹1,500/mo)",
+      "1% Cashback on all other eligible spends on purchases of ₹100 and above (capped separately at ₹1,000/mo)",
+      "Isolated dual-cap architecture allowing up to ₹3,000/month (₹36,000/year) in combined accelerated cashback",
+      "Complimentary 3-Month Swiggy BLCK Premium Membership (Market Value: ₹599) upon activation within 37 days",
+      "Mastercard Golf Program: 12 complimentary golf lessons and 4 green-fee rounds per calendar year + 50% off additional games",
+      "Travel & Retail Boosters: Up to 19% discount on Cleartrip hotel bookings and 5% baseline discount at Nykaa",
+      "Birthday Bonus: Extra 10% instant discount on Swiggy Dineout up to ₹500 (min spend ₹3,000) during birthday week",
+      "1% fuel surcharge waiver up to ₹250 per month across all fuel stations in India"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
-    "incomeRequirement": "₹40,000/month for salaried; ITR > ₹6 Lakhs for self-employed",
+    "incomeRequirement": "₹1,00,000/month for salaried; ITR > ₹12,00,000 for self-employed",
     "locationRestrictions": "Cities with Swiggy presence.",
     "travelBenefits": "None. Optimized strictly for urban food delivery, grocery, and e-commerce cashback.",
     "loungeBenefits": "No complimentary airport lounge access is offered on this card.",
@@ -1909,17 +1910,14 @@
     "officialSource": "HDFC Bank & Swiggy Official Co-Brand Portal",
     "lastVerified": "2026-10-29",
     "applicationAvailability": "Active (via Swiggy App and HDFC Website)",
-    "goodFor": "Households and urban professionals spending ₹2,000 to ₹15,000 monthly on Swiggy, Instamart groceries, Dineout, and e-commerce shopping",
-    "whoItFits": "Daily food delivery and Instamart quick-commerce shoppers who order items above ₹249 and want automatic monthly cash credits without catalog conversion hassles.",
+    "goodFor": "High-frequency Swiggy power users, foodies, and heavy online shoppers looking to maximize double-digit cashbacks on larger monthly budgets.",
+    "whoItFits": "High-frequency Swiggy food and Instamart shoppers who spend ₹10,000–₹15,000/month and want separate ₹1,500 caps on both Swiggy and general online shopping.",
     "whatToWatchOutFor": [
-      "₹249 Minimum Order Hurdle for 10%: Swiggy transactions below ₹249 do NOT earn 10% cashback; they drop to the base 1% rate. For 5% online shopping, the minimum order value is ₹100.",
-      "Independent Category Caps: 10% Swiggy cashback is capped at ₹1,500/month (reached at ₹15,000 spend); 5% online shopping is capped at a separate ₹1,500/month (reached at ₹30,000 spend).",
-      "The Migration Default Trap: If upgrading from older phased-out Swiggy cards without responding to the selection prompt, HDFC defaults users to Swiggy Ornge (slashing cashback to 5% with a shared cap).",
-      "Loss of Lifetime Free (LTF) Status: Upgrading an existing LTF Swiggy card to BLCK removes LTF status and incurs the ₹1,000 (+ 18% GST) annual fee.",
-      "No Airport Lounge Access: Card features zero domestic or international lounge access privileges.",
-      "Exclusions: Zero cashback on fuel, wallet loads, rent, government transactions, utilities, and jewelry."
+      "Orders below ₹249 on Swiggy drop from 10% to the 1% base rate.",
+      "Higher underwriting income threshold (₹1,00,000/mo for salaried or ₹12L ITR).",
+      "Swiggy Money wallet reloads, liquor delivery, and Minis earn zero cashback."
     ],
-    "whyCreditWiseRecommends": "The dual-cap matrix granting separate ₹1,500 monthly limits on Swiggy and online shopping makes BLCK an extraordinary asset for urban households spending heavily on Instamart groceries and food delivery.",
+    "whyCreditWiseRecommends": "The isolated dual-cap system enables up to ₹3,000/month in pure statement cashback without pooling Swiggy and Amazon limits together.",
     "orientation": "horizontal",
     "keyInsights": [
       {
@@ -1970,12 +1968,57 @@
         "realizedValuePerPoint": "₹1.00 per ₹1 cashback (100% pure cash statement credit)",
         "bottomLine": "A regular urban household spending ₹6,000 on Swiggy and ₹10,000 online extracts ₹13,200 in direct cash credits annually. Subtracting the ₹1,180 fee yields a net profit of ₹12,020 in pure cash. Beware: splitting the Swiggy spend into sub-₹249 micro-orders would drop cashback from ₹600 to just ₹60/month!"
       }
+    ],
+    "feeDetails": "₹1,180 total cost (₹1,000 base fee + 18% GST). This premium variant is not eligible for Lifetime Free (LTF) setups.",
+    "welcomeBenefits": "Complimentary 3-Month Swiggy BLCK Premium Membership (Market Value: ₹599). Requires card activation within 37 days of issuance.",
+    "redemptionMethod": "Pure Statement Credit. Cashback is automatically auto-credited directly to the primary credit card statement balance each billing cycle to lower the next out-of-pocket bill amount.",
+    "hiddenPerks": [
+      "Birthday Bonus: Additional 10% instant discount on Swiggy Dineout up to ₹500 on a minimum transaction of ₹3,000. Valid for a 7-day window around birthday.",
+      "Golf Access: 12 complimentary golf lessons and 4 green-fee rounds per calendar year via the Mastercard Golf Program, plus 50% discount on additional green fees.",
+      "Travel & Retail Extra Boosters: Up to 19% discount on Cleartrip hotel bookings and 5% baseline discount at Nykaa over and above regular cashback tiers.",
+      "Fuel Surcharge: 1% fuel surcharge waiver up to ₹250 per month across all fuel stations in India."
+    ],
+    "underwritingEligibility": {
+      "salaried": "Age 21 to 60 years with net monthly income above ₹1,00,000",
+      "selfEmployed": "Age 21 to 65 years with annual ITR above ₹12,00,000"
+    },
+    "realWorldGotchas": [
+      {
+        "title": "The \"Merchant Category Code\" (MCC) Trap",
+        "tag": "MCC Categorization",
+        "description": "Users often assume \"Select Online Shopping\" covers everything bought on the internet. In reality, banks rely strictly on MCC codes sent by the merchant terminal/gateway. If a user buys a laptop or phone from electronics sellers hosted inside Amazon or Flipkart, the transaction might get processed under an \"Electronics\" wholesale code rather than an \"E-commerce retail\" code. When this happens, the system drops the reward down from 5% to 1% (or zero if it triggers a generic utility/commercial wholesale code)."
+      },
+      {
+        "title": "Reversals and Refunds Can Penalty-Drop Next Month's Cashback",
+        "tag": "Refund Adjustment",
+        "description": "How HDFC processes returns: If a user makes a ₹5,000 online purchase in November (earning ₹250 cashback) but returns the item in December, HDFC subtracts ₹250 directly from the cashback earned in December's billing cycle. If you earned ₹300 in December, you will only see ₹50 credited on your statement."
+      },
+      {
+        "title": "The \"Swiggy App\" Exclusions (Transactions that yield 0%)",
+        "tag": "0% App Spends",
+        "description": "Even if a transaction happens directly inside the Swiggy application, 5% or 10% cashback is not guaranteed: Swiggy Money in-app wallet loads earn 0% cashback; Swiggy Liquor alcohol delivery orders are completely excluded from accelerated tiers; and Swiggy Minis purchases from independent local D2C brands are excluded from the 5%/10% structure."
+      },
+      {
+        "title": "The Minimum Payment / Default Wipeout",
+        "tag": "Payment Default",
+        "description": "If you are even one day late on paying the \"Minimum Amount Due\" on your credit card bill, all pending cashback accrued during that billing cycle is instantly forfeited and canceled. It will not be restored even after subsequently paying the total amount due with late charges."
+      },
+      {
+        "title": "Commercial Use Audits & Velocity Flags",
+        "tag": "Usage Auditing",
+        "description": "HDFC explicitly deploys velocity algorithms to detect commercial usage. If high-frequency ordering is flagged as office pantry stocking or commercial food reselling rather than personal household consumption, HDFC reserves the contractual right to cancel all accumulated cashback and close the account without warning."
+      },
+      {
+        "title": "EMI Conversions Erase Cashbacks Retrospectively",
+        "tag": "EMI Clawback",
+        "description": "If an eligible purchase (e.g. ₹20,000 on Amazon) is converted into an EasyEMI or merchant EMI plan after the purchase date, HDFC retroactively claws back the entire cashback amount. Even if you subsequently cancel or foreclose the EMI plan early and pay the full lump sum, the cashback is permanently lost."
+      }
     ]
   },
   {
     "id": "hdfc-swiggy-orgne",
     "slug": "hdfc-swiggy-orgne",
-    "name": "Swiggy HDFC Bank Ornge Credit Card",
+    "name": "Swiggy Ornge HDFC Bank Credit Card",
     "issuer": "HDFC Bank",
     "bank": "HDFC Bank",
     "network": "Mastercard",
@@ -1991,28 +2034,32 @@
     "description": "Accessible entry card tailored for regular diners and online shoppers offering 5% cashback on Swiggy, 5% on top partner apps, and complimentary Swiggy One membership.",
     "annualFee": 500,
     "joiningFee": 500,
-    "feeWaiver": "Waived on annual spends of ₹1,50,000 in preceding year.",
+    "feeWaiver": "Annual renewal fee is waived completely if the user spends ₹1,50,000 or more in the preceding calendar year.",
     "apr": 43.2,
     "cashbackRate": 5,
     "rewardRate": 0,
     "loungeAccess": 0,
-    "rewardSummary": "5% cashback on Swiggy (Food, Instamart, Dineout); 5% cashback on select online shopping platforms; 1% on other spends.",
+    "rewardSummary": "5% Cashback on Swiggy App Spends (Food Delivery, Instamart, Dineout; min ₹249); 5% Cashback on Select Online Shopping (Amazon, Flipkart, Myntra, Ajio, Ola, Uber, Nykaa, BookMyShow; min ₹249); 1% Cashback on All Other Spends (min ₹100). Auto-credited as statement balance credit.",
     "rewardCategories": {
-      "swiggyPlatform": "5% cashback",
-      "onlineShopping": "5% cashback",
-      "otherRetail": "1% cashback"
+      "swiggyApp5Pct": "5% Cashback on Swiggy Food Delivery, Instamart, and Dineout (min ₹249 transaction)",
+      "onlineShopping5Pct": "5% Cashback on Amazon, Flipkart, Myntra, Ajio, Ola, Uber, Nykaa, BookMyShow (min ₹249 transaction)",
+      "otherRetail1Pct": "1% Cashback on All Other Spends (min ₹100 transaction)",
+      "statementCredit": "Direct statement credit automatically applied each billing cycle"
     },
-    "rewardCaps": "Swiggy cashback capped at ₹1,000/month; 5% online shopping capped at ₹750/month.",
-    "exclusions": "Fuel, wallet loads, rent, utilities, government payments.",
+    "rewardCaps": "Accelerated Cap: The 5% Swiggy tier and 5% Online Shopping tier share a combined maximum cap of ₹1,500 per billing cycle. Base Cap: The 1% general spend tier is capped separately at ₹1,000 per billing cycle.",
+    "exclusions": "Fuel, rent, wallet loads, government services, utilities, EMI conversions, jewellery, cash advances, SmartBuy/SmartPay portal purchases, and foreign currency transactions.",
     "benefits": [
-      "Complimentary 12-month Swiggy One membership on card activation",
-      "5% cashback on Swiggy food delivery and Instamart quick commerce",
-      "5% cashback on popular online brands like Amazon, Myntra, and Uber",
-      "1% cashback on all other eligible purchases",
-      "Low ₹500 annual fee with simple spend waiver"
+      "5% Cashback on Swiggy App Spends (Food Delivery, Instamart, Dineout) on orders of ₹249 and above",
+      "5% Cashback on Select Online Shopping (Amazon, Flipkart, Myntra, Ajio, Ola, Uber, Nykaa, BookMyShow) on orders of ₹249 and above",
+      "1% Cashback on all other eligible spends on purchases of ₹100 and above",
+      "Combined accelerated monthly cap of ₹1,500 across 5% Swiggy and 5% online shopping, plus ₹1,000 monthly cap on 1% base spends",
+      "Complimentary 12-Month Swiggy One Membership (Market Value: ₹1,199) upon activation within 37 days",
+      "Mastercard Golf Program: 12 complimentary golf lessons and 4 green-fee rounds per calendar year",
+      "Birthday Bonus: Extra 10% instant discount on Swiggy Dineout up to ₹500 (min spend ₹3,000) during birthday week",
+      "1% fuel surcharge waiver up to ₹250 per month across all fuel stations in India"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
-    "incomeRequirement": "₹25,000/month for salaried; ITR > ₹4 Lakhs for self-employed",
+    "incomeRequirement": "₹20,000/month for salaried; ITR > ₹6,00,000 for self-employed",
     "locationRestrictions": "Cities with Swiggy service.",
     "travelBenefits": "None.",
     "loungeBenefits": "None.",
@@ -2024,11 +2071,59 @@
     "officialSource": "HDFC Bank & Swiggy Official Portal",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active (via Swiggy App and HDFC Portal)",
-    "goodFor": "Everyday food delivery, grocery orders, and casual online shopping",
-    "whoItFits": "Students and young earners who order from Swiggy and want 5% cashback paired with free deliveries via Swiggy One.",
-    "whatToWatchOutFor": "Lower cashback rate (5% vs 10% on BLCK) and lower monthly reward caps.",
-    "whyCreditWiseRecommends": "The included 12-month Swiggy One membership alone is worth more than the card's entire ₹500 fee.",
-    "orientation": "horizontal"
+    "goodFor": "Everyday budget spenders, students, and young professionals looking for solid food delivery perks paired with a low, waivable fee.",
+    "whoItFits": "Everyday budget spenders, students, and young professionals looking for food delivery & quick commerce savings with a modest ₹500 fee that waives at ₹1.5L annual spend.",
+    "whatToWatchOutFor": [
+      "Requires min order of ₹249 to trigger 5% cashback on Swiggy and partner online merchants (orders below ₹249 drop to 1%).",
+      "The 5% Swiggy and 5% online shopping tiers share a single combined cap of ₹1,500 per billing cycle.",
+      "Swiggy Money wallet reloads, Swiggy Liquor, and Swiggy Minis are strictly excluded from cashback."
+    ],
+    "whyCreditWiseRecommends": "The complimentary 12-month Swiggy One membership (valued at ₹1,199) and 5% cashback on groceries and food orders easily out-earn the ₹500 annual fee on typical household spending.",
+    "orientation": "horizontal",
+    "feeDetails": "₹590 total first-year cost (₹500 base fee + 18% GST). The card is Lifetime Free (LTF) only if the user is explicitly migrated from an older LTF co-branded Swiggy variant.",
+    "welcomeBenefits": "Complimentary 12-Month Swiggy One Membership (Market Value: ₹1,199). Requires successful card activation within 37 days of issuance.",
+    "redemptionMethod": "Pure Statement Credit. Cashback is automatically auto-credited directly to the primary credit card statement balance each billing cycle to lower the next out-of-pocket bill amount.",
+    "hiddenPerks": [
+      "Birthday Bonus: Additional 10% instant discount on Swiggy Dineout up to ₹500 on a minimum transaction of ₹3,000. Valid for a 7-day window (3 days before, day of, and 3 days after birthday).",
+      "Golf Access: 12 complimentary golf lessons and 4 green-fee rounds per calendar year via the Mastercard Golf Program.",
+      "Fuel Surcharge: 1% fuel surcharge waiver up to ₹250 per month across all fuel stations in India."
+    ],
+    "underwritingEligibility": {
+      "salaried": "Age 21 to 60 years with net monthly income above ₹20,000",
+      "selfEmployed": "Age 21 to 65 years with annual ITR above ₹6,00,000"
+    },
+    "realWorldGotchas": [
+      {
+        "title": "The \"Merchant Category Code\" (MCC) Trap",
+        "tag": "MCC Categorization",
+        "description": "Users often assume \"Select Online Shopping\" covers everything bought on the internet. In reality, banks rely strictly on MCC codes sent by the merchant terminal/gateway. If a user buys a laptop or phone from electronics sellers hosted inside Amazon or Flipkart, the transaction might get processed under an \"Electronics\" wholesale code rather than an \"E-commerce retail\" code. When this happens, the system drops the reward down from 5% to 1% (or zero if it triggers a generic utility/commercial wholesale code)."
+      },
+      {
+        "title": "Reversals and Refunds Can Penalty-Drop Next Month's Cashback",
+        "tag": "Refund Adjustment",
+        "description": "How HDFC processes returns: If a user makes a ₹5,000 online purchase in November (earning ₹250 cashback) but returns the item in December, HDFC subtracts ₹250 directly from the cashback earned in December's billing cycle. If you earned ₹300 in December, you will only see ₹50 credited on your statement."
+      },
+      {
+        "title": "The \"Swiggy App\" Exclusions (Transactions that yield 0%)",
+        "tag": "0% App Spends",
+        "description": "Even if a transaction happens directly inside the Swiggy application, 5% or 10% cashback is not guaranteed: Swiggy Money in-app wallet loads earn 0% cashback; Swiggy Liquor alcohol delivery orders are completely excluded from accelerated tiers; and Swiggy Minis purchases from independent local D2C brands are excluded from the 5%/10% structure."
+      },
+      {
+        "title": "The Minimum Payment / Default Wipeout",
+        "tag": "Payment Default",
+        "description": "If you are even one day late on paying the \"Minimum Amount Due\" on your credit card bill, all pending cashback accrued during that billing cycle is instantly forfeited and canceled. It will not be restored even after subsequently paying the total amount due with late charges."
+      },
+      {
+        "title": "Commercial Use Audits & Velocity Flags",
+        "tag": "Usage Auditing",
+        "description": "HDFC explicitly deploys velocity algorithms to detect commercial usage. If high-frequency ordering is flagged as office pantry stocking or commercial food reselling rather than personal household consumption, HDFC reserves the contractual right to cancel all accumulated cashback and close the account without warning."
+      },
+      {
+        "title": "EMI Conversions Erase Cashbacks Retrospectively",
+        "tag": "EMI Clawback",
+        "description": "If an eligible purchase (e.g. ₹20,000 on Amazon) is converted into an EasyEMI or merchant EMI plan after the purchase date, HDFC retroactively claws back the entire cashback amount. Even if you subsequently cancel or foreclose the EMI plan early and pay the full lump sum, the cashback is permanently lost."
+      }
+    ]
   },
   {
     "id": "hdfc-tata-neu-infinity",
@@ -2050,31 +2145,34 @@
     "description": "Flagship Tata ecosystem card offering 5% + 5% NeuCoins on Tata Neu app, 1.5% NeuCoins on UPI merchant Scan & Pay transactions, and complimentary domestic & international lounge access.",
     "annualFee": 1499,
     "joiningFee": 1499,
-    "feeWaiver": "Waived on annual retail spends of ₹3,00,000.",
+    "feeWaiver": "Annual renewal fee is waived completely if total retail spends cross ₹3,00,000 in the preceding calendar year.",
     "apr": 43.2,
     "cashbackRate": 10,
     "rewardRate": 1.5,
     "loungeAccess": 12,
-    "rewardSummary": "5% NeuCoins on Tata brands via Tata Neu (plus 5% extra via NeuPass, totaling 10%); 1.5% NeuCoins on UPI payments and non-Tata spends; 1 NeuCoin = ₹1.",
+    "rewardSummary": "5% to 10% Value Back on Tata Ecosystem (5% base NeuCoins on card + 5% via NeuPass on Tata Neu App/Website); 1.5% NeuCoins on UPI (0.5% base on third-party apps + 1.0% bonus on Tata Neu UPI ID); 1.5% NeuCoins on non-Tata spends. 1 NeuCoin = ₹1.",
     "rewardCategories": {
-      "tataEcosystem": "10% NeuCoins (5% card + 5% NeuPass)",
-      "upiTransactions": "1.5% NeuCoins",
-      "otherSpends": "1.5% NeuCoins"
+      "tataEcosystem10Pct": "5% base NeuCoins + 5% NeuPass bonus on Tata Neu App/Website (BigBasket, Croma, Air India Express, Tata 1mg, Taj Hotels)",
+      "upiTransactions1_5Pct": "1.5% NeuCoins using Tata Neu UPI ID (0.5% on third-party UPI apps like GPay/PhonePe)",
+      "nonTataSpends1_5Pct": "1.5% NeuCoins on all other eligible non-Tata retail spends",
+      "valuation": "1 NeuCoin = ₹1 (locked within Tata Neu ecosystem)"
     },
-    "rewardCaps": "UPI reward points capped at 500 NeuCoins per calendar month.",
+    "rewardCaps": "The UPI Ceiling: Total UPI rewards are strictly capped at 500 NeuCoins per calendar month (spends beyond ₹33,333 earn 0). Household Spend Caps: Grocery spends capped at 2,000 NeuCoins/month (limits 10% returns to ₹20,000 spend). Insurance, Utility bills, and Telecom/Cable spending are capped at 2,000 NeuCoins/month per category.",
     "exclusions": "Fuel, wallet loads, rent, government transactions, cash advances.",
     "benefits": [
-      "1,499 welcome NeuCoins upon card activation",
-      "Total 10% value back on Tata brands (BigBasket, Croma, Air India, Tata 1mg, Westside, Titan)",
-      "1.5% NeuCoins on all UPI merchant transactions (Scan & Pay) on RuPay variant",
-      "8 complimentary domestic lounge visits per year + 4 international lounge visits via Priority Pass",
-      "1 NeuCoin = ₹1 redeemable seamlessly across the entire Tata Neu app"
+      "1,499 Welcome NeuCoins on card activation within 30 days of issuance",
+      "Up to 10% value back across Tata ecosystem (5% card + 5% NeuPass membership via Tata Neu App/Website)",
+      "1.5% NeuCoins on UPI merchant Scan & Pay via Tata Neu UPI ID (0.5% on third-party apps)",
+      "1.5% NeuCoins on non-Tata eligible retail spends",
+      "8 complimentary domestic airport lounge visits per year (spend-linked: ₹50,000 in preceding calendar quarter)",
+      "4 complimentary international airport lounge visits per year via Priority Pass",
+      "1% fuel surcharge waiver up to ₹500 per statement cycle across all fuel stations in India"
     ],
     "eligibility": "Indian resident aged 21-60 years.",
     "incomeRequirement": "₹1,00,000/month for salaried; ITR > ₹12 Lakhs for self-employed",
     "locationRestrictions": "Pan India.",
     "travelBenefits": "10% value back on Air India and Air India Express bookings on Tata Neu; domestic & international lounge access.",
-    "loungeBenefits": "8 domestic airport lounge visits + 4 international lounge visits per year.",
+    "loungeBenefits": "8 complimentary domestic lounge visits per year (2 visits/quarter, unlocked by spending at least ₹50,000 in the preceding calendar quarter) + 4 international lounge visits per year via Priority Pass.",
     "fuelBenefits": "1% fuel surcharge waiver up to ₹500 per month.",
     "diningBenefits": "Up to 25% discount at IHCL/Taj restaurants via NeuPass.",
     "forexBenefits": "Reduced 2.0% foreign currency markup.",
@@ -2083,11 +2181,69 @@
     "officialSource": "HDFC Bank Official Tata Neu Portal",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active",
-    "goodFor": "Shoppers invested in Tata brands (BigBasket, Croma, Air India, 1mg) and high-volume UPI spenders",
+    "goodFor": "Shoppers deeply invested in the Tata ecosystem (BigBasket, Croma, Air India Express, Tata 1mg, Taj Hotels) and high-volume UPI QR code scanners.",
     "whoItFits": "Anyone buying groceries on BigBasket, electronics at Croma, or medicines on 1mg who also wants industry-leading 1.5% cashback on UPI.",
-    "whatToWatchOutFor": "NeuCoins can only be spent inside the Tata ecosystem (though the ecosystem spans groceries, flights, hotels, and electronics).",
+    "whatToWatchOutFor": [
+      "UPI rewards are capped at 500 NeuCoins per calendar month (max ₹33,333 spend).",
+      "NeuCoins require active manual claiming in the Tata Neu app within 12 months or they expire.",
+      "₹99 + GST redemption fee charged by HDFC on every NeuCoins redemption order.",
+      "Lounge access requires ₹50,000 minimum retail spend in the immediately preceding quarter.",
+      "Air India flights, Tanishq, Cult.fit, and Tata Play are excluded from the extra 5% NeuPass bonus.",
+      "Online gaming transactions earn 0% rewards; spending over ₹10,000/mo incurs a 1% fee.",
+      "Utility spends above ₹50,000/mo and wallet loads above ₹10,000/mo attract a 1% surcharge.",
+      "Education fees paid via third-party apps (CRED, PayZapp, Paytm) attract a 1% fee."
+    ],
     "whyCreditWiseRecommends": "At 1.5% cashback, it offers the highest UPI Scan & Pay return of any major credit card in India, with 1 NeuCoin equaling an exact ₹1.",
-    "orientation": "vertical"
+    "orientation": "vertical",
+    "feeDetails": "₹1,769 total first-year cost (₹1,499 base fee + 18% GST). Welcome Benefit: 1,499 NeuCoins credited upon completing the card's first transaction within 30 days of issuance.",
+    "welcomeBenefits": "1,499 NeuCoins credited upon completing the card's first transaction within 30 days of issuance.",
+    "realWorldGotchas": [
+      {
+        "title": "The Active \"Claim\" Process Rule",
+        "tag": "12-Month Expiry",
+        "description": "NeuCoins no longer drop automatically into a user's usable wallet balance. The primary cardholder must log into the Tata Neu App, go to NeuCard, and click \"Claim NeuCoins\" within 12 months of the statement date, or the rewards expire permanently."
+      },
+      {
+        "title": "The Mobile Number Lockout",
+        "tag": "Primary Account Lock",
+        "description": "The 5% NeuPass bonus reward will only trigger if the purchase is made using the Primary Cardholder's registered mobile number account. If a spouse or family member logs into their own Tata Neu app and uses the card, the reward drops by half."
+      },
+      {
+        "title": "Ecosystem Lock & Redemption Taxes",
+        "tag": "₹99 + GST Fee",
+        "description": "1 NeuCoin = ₹1, but they are purely currency tokens locked within the Tata ecosystem. Furthermore, HDFC charges a ₹99 + GST reward redemption fee every single time a user pays for an order using their accumulated coins."
+      },
+      {
+        "title": "Lounge Access Spend Hurdles (Preceding Quarter Rule)",
+        "tag": "₹50,000 / Quarter",
+        "description": "Domestic lounge access (8 visits per year) is no longer unconditionally free. HDFC operates a milestone model: users must spend at least ₹50,000 in a calendar quarter to unlock the lounge access voucher for the following quarter."
+      },
+      {
+        "title": "Hidden 0% Accelerated Brands",
+        "tag": "Excluded Tata Brands",
+        "description": "Air India flights, Tanishq Jewellery, Cult.fit, and Tata Play purchases are explicitly excluded from the additional 5% NeuPass pool. They cap out at the fixed 5% base card rate."
+      },
+      {
+        "title": "The Online Skill-Based Gaming Blacklist",
+        "tag": "0% + 1% Penalty",
+        "description": "HDFC has completely blacklisted online skill-based gaming platforms (fantasy sports apps, rummy platforms, and card games). These earn strictly 0% rewards. If spending exceeds ₹10,000 in a calendar month, HDFC levies a 1% transaction fee on the entire amount (capped at ₹4,999/month)."
+      },
+      {
+        "title": "The 1% Utility Transaction Surcharge",
+        "tag": "₹50,000 Limit",
+        "description": "HDFC allows up to ₹50,000 in monthly utility payments. The moment combined utility bills cross ₹50,000 in a single month, a 1% transaction charge is levied on the total utility spend for that month (insurance payments are exempt from this surcharge)."
+      },
+      {
+        "title": "The 1% Wallet Loading Penalty",
+        "tag": "₹10,000 Limit",
+        "description": "Wallet loading transactions (Paytm, MobiKwik, Freecharge, etc.) exceeding ₹10,000 per month automatically attract a 1% transaction fee applied to the entire loaded amount."
+      },
+      {
+        "title": "Third-Party Education Fee Trap",
+        "tag": "1% App Surcharge",
+        "description": "If you pay education, school, or college fees via third-party apps (CRED, PayZapp, Paytm), HDFC levies a 1% convenience fee. To avoid the fee, pay directly on the official school/college portal or at the physical POS machine at the institution."
+      }
+    ]
   },
   {
     "id": "hdfc-tata-neu-plus",
@@ -2108,31 +2264,33 @@
     "description": "Affordable Tata ecosystem card providing 2% + 5% NeuCoins on Tata Neu, 1% NeuCoins on UPI Scan & Pay transactions, and 4 domestic airport lounge visits per year.",
     "annualFee": 499,
     "joiningFee": 499,
-    "feeWaiver": "Waived on annual retail spends of ₹1,00,000.",
+    "feeWaiver": "Annual renewal fee is waived completely if total annual retail spends cross ₹1,00,000 in the preceding calendar year.",
     "apr": 43.2,
     "cashbackRate": 7,
     "rewardRate": 1,
     "loungeAccess": 4,
-    "rewardSummary": "2% NeuCoins on Tata Neu app (plus 5% extra via NeuPass, totaling 7%); 1% NeuCoins on UPI payments and non-Tata spends.",
+    "rewardSummary": "2% to 7% Value Back on Tata Brands (2% base NeuCoins on card + 5% via NeuPass on Tata Neu App/Website); 1% NeuCoins on UPI Transactions (split: 0.25% base on third-party UPI apps + 0.75% bonus on Tata Neu UPI ID); 1% NeuCoins on non-Tata spends. 1 NeuCoin = ₹1.",
     "rewardCategories": {
-      "tataEcosystem": "7% NeuCoins (2% card + 5% NeuPass)",
-      "upiTransactions": "1% NeuCoins",
-      "otherSpends": "1% NeuCoins"
+      "tataBrands7Pct": "2% base NeuCoins + 5% NeuPass bonus on Tata Neu App/Website (BigBasket, Croma, Tata 1mg, Westside)",
+      "upiTransactions1Pct": "1% NeuCoins via Tata Neu UPI ID (0.25% on third-party UPI apps like GPay/PhonePe)",
+      "nonTataSpends1Pct": "1% NeuCoins on all other eligible non-Tata retail spends",
+      "valuation": "1 NeuCoin = ₹1 (locked within Tata Neu ecosystem)"
     },
-    "rewardCaps": "UPI reward points capped at 500 NeuCoins per calendar month.",
+    "rewardCaps": "The UPI Ceiling: Total UPI rewards strictly capped at 500 NeuCoins per calendar month (spending beyond ₹50,000 via Tata Neu UPI drops to zero). The Grocery Cap: Accelerated 7% rewards on groceries (BigBasket) capped at 1,000 NeuCoins/month (limits 7% return to first ₹14,285 spent). Utility, Telecom, & Insurance Caps: Capped tightly at 2,000 NeuCoins per month per category.",
     "exclusions": "Fuel, wallet loads, rent, government transactions.",
     "benefits": [
-      "499 welcome NeuCoins upon card activation",
-      "Total 7% value back across Tata brands (BigBasket, Croma, 1mg, Westside)",
-      "1% NeuCoins on UPI Scan & Pay merchant transactions via RuPay network",
-      "4 complimentary domestic airport lounge visits per year (1 per quarter)",
-      "1 NeuCoin = ₹1 redeemable directly on Tata Neu"
+      "499 Welcome NeuCoins upon completing first eligible retail transaction within 30 days of issuance",
+      "Up to 7% value back across Tata ecosystem (2% card + 5% NeuPass membership via Tata Neu App/Website)",
+      "1% NeuCoins on UPI Scan & Pay merchant transactions via Tata Neu UPI ID (0.25% on third-party apps)",
+      "1% NeuCoins on non-Tata eligible retail spends",
+      "4 complimentary domestic airport lounge visits per year (spend-linked: ₹50,000 in preceding calendar quarter)",
+      "1% fuel surcharge waiver up to ₹250 per month across all fuel stations in India"
     ],
     "eligibility": "Indian resident aged 21-60 years.",
     "incomeRequirement": "₹25,000/month for salaried; ITR > ₹6 Lakhs for self-employed",
     "locationRestrictions": "Pan India.",
     "travelBenefits": "4 domestic lounge visits and NeuCoins on Air India tickets.",
-    "loungeBenefits": "4 domestic airport lounge visits per year (1 per calendar quarter).",
+    "loungeBenefits": "4 complimentary domestic airport lounge visits per year (1 visit per calendar quarter, unlocked by spending at least ₹50,000 in the preceding calendar quarter).",
     "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per month.",
     "diningBenefits": "Dining privileges at Taj/IHCL hotels via Tata NeuPass.",
     "forexBenefits": "Standard 3.5% foreign currency markup.",
@@ -2141,11 +2299,69 @@
     "officialSource": "HDFC Bank Official Portal",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active",
-    "goodFor": "Everyday grocery shoppers and entry-level UPI spenders",
+    "goodFor": "Everyday budget grocery shoppers and entry-level earners who want a cheap, low-threshold gateway to RuPay UPI cashback and basic domestic lounge perks.",
     "whoItFits": "Individuals looking for a low-cost card to earn 1% on daily UPI QR-code payments and 7% on BigBasket groceries.",
-    "whatToWatchOutFor": "Lounge access is limited to 1 visit per quarter; international lounge access is not included.",
+    "whatToWatchOutFor": [
+      "UPI rewards capped at 500 NeuCoins/month; third-party UPI apps only earn 0.25% (must use Tata Neu UPI for 1%).",
+      "Accelerated grocery return (7%) is capped at 1,000 NeuCoins/month (max ₹14,285 spend). For spends >₹15,000/mo, Tata Neu Infinity is recommended.",
+      "NeuCoins require active manual claiming in the Tata Neu app within 12 months or they expire.",
+      "₹99 + GST redemption fee charged by HDFC on every NeuCoins redemption order.",
+      "Domestic lounge access requires ₹50,000 minimum retail spend in the immediately preceding quarter.",
+      "P2PM small vendor QR codes (tea stalls, street vendors) earn 0% rewards.",
+      "Air India flights, Tanishq, Cult.fit, and Tata Play cap at 2% base rate without 5% NeuPass bonus.",
+      "Online gaming, wallet loads, and utility spends have strict fees and thresholds."
+    ],
     "whyCreditWiseRecommends": "For just ₹499 with an easy ₹1 Lakh fee waiver, it brings UPI cashback and airport lounge access within reach of everyday earners.",
-    "orientation": "horizontal"
+    "orientation": "vertical",
+    "feeDetails": "₹589 total first-year cost (₹499 base fee + 18% GST). Welcome Benefit: 499 welcome NeuCoins credited to user account upon completing the first eligible retail transaction within 30 days of issuance.",
+    "welcomeBenefits": "499 welcome NeuCoins credited upon completing the card's first eligible retail transaction within 30 days of issuance.",
+    "realWorldGotchas": [
+      {
+        "title": "The Manual \"Claim\" Rule",
+        "tag": "12-Month Expiry",
+        "description": "NeuCoins no longer drop automatically into a user's usable wallet balance. The primary cardholder must log into the Tata Neu App, go to NeuCard, and manually click \"Claim NeuCoins\" within 12 months of the statement date. If forgotten, the rewards expire permanently."
+      },
+      {
+        "title": "The UPI Split-App Trap",
+        "tag": "0.25% vs 1.0%",
+        "description": "Most users assume that \"1% on UPI Scan & Pay\" applies across any app. In reality, paying via third-party UPI apps (Google Pay, PhonePe, CRED) drops your return to a meager 0.25%. You must link and exclusively scan using the Tata Neu App's built-in UPI scanner to unlock the remaining 0.75% bonus reward (full 1%)."
+      },
+      {
+        "title": "The Small Merchant (P2PM) UPI Exclusion",
+        "tag": "0% at Small Stalls",
+        "description": "If a local street vendor, tea stall, or kirana QR code is registered under a P2PM (Peer-to-Peer Merchant) classification rather than a verified Commercial Merchant account, HDFC awards 0% rewards. Small-ticket UPI transactions under ₹50–₹100 rarely earn NeuCoins."
+      },
+      {
+        "title": "Lounge Access Spend Hurdles (The \"Preceding Quarter\" Rule)",
+        "tag": "₹50,000 / Quarter",
+        "description": "Domestic lounge access (4 visits per year, 1 per quarter) is not unconditionally free. HDFC enforces a strict milestone target: cardholders must spend at least ₹50,000 in a calendar quarter to unlock the lounge access voucher for the following quarter."
+      },
+      {
+        "title": "Ecosystem Lock & Redemption Taxes",
+        "tag": "₹99 + GST Fee",
+        "description": "1 NeuCoin = ₹1, but they are purely currency tokens locked within the Tata Neu app ecosystem. Furthermore, HDFC charges a ₹99 + GST reward redemption fee every single time a user pays for an order using their accumulated coins."
+      },
+      {
+        "title": "Hidden 0% Accelerated Brands",
+        "tag": "Excluded Tata Brands",
+        "description": "Air India flights, Tanishq Jewellery, Cult.fit, and Tata Play purchases are explicitly excluded from the additional 5% NeuPass pool. They cap out strictly at the fixed 2% base card rate."
+      },
+      {
+        "title": "The Mobile Number Lockout",
+        "tag": "Primary Account Lock",
+        "description": "The 5% NeuPass bonus reward will only trigger if the purchase is made using the Primary Cardholder's registered mobile number account. If a family member logs into their own Tata Neu app and uses the card, the reward drops down by half."
+      },
+      {
+        "title": "The Reversal & Refund Penalty Loop",
+        "tag": "Negative Balance Risk",
+        "description": "If you return an item or get a refund, HDFC subtracts those earned NeuCoins from next month's statement cycle. If you earned 500 NeuCoins on a purchase in October and return it in November after only earning 300 NeuCoins, your coin balance turns negative and you receive 0 NeuCoins until the deficit is repaid."
+      },
+      {
+        "title": "Unified Portfolio Devaluation Rules",
+        "tag": "1% Penalty Surcharges",
+        "description": "HDFC enforces unified category limits across its lineup: Online Gaming earns 0% and attracts a 1% fee if spending crosses ₹10,000/month; Wallet Loading attracts a 1% fee if total loads cross ₹10,000/month; and Utility bill payments cross ₹50,000/month attract a 1% fee on the entire utility spend."
+      }
+    ]
   },
   {
     "id": "hsbc-live-plus",
@@ -2166,43 +2382,96 @@
     "description": "Flagship everyday savings card offering 10% direct cashback on dining, grocery shopping, and food delivery platforms (Swiggy, Zomato, Blinkit, Zepto, supermarkets), plus 1.5% unlimited on other spends.",
     "annualFee": 999,
     "joiningFee": 999,
-    "feeWaiver": "Waived on annual spends of ₹2,00,000 in preceding year.",
+    "feeWaiver": "Annual renewal fee is waived completely if the user crosses ₹2,00,000 in total retail spends during the preceding calendar year.",
     "apr": 44.4,
     "cashbackRate": 10,
     "rewardRate": 1.5,
     "loungeAccess": 4,
-    "rewardSummary": "10% cashback on dining, food delivery, and grocery spends; 1.5% unlimited cashback on all other eligible retail transactions.",
+    "rewardSummary": "10% Accelerated Cashback on physical supermarket groceries, food delivery apps, restaurants/dining, and select standalone retail shopping (capped at ₹1,200/month); 1.5% uncapped base cashback on all other eligible retail transactions. Pure automatic statement credit.",
     "rewardCategories": {
-      "diningAndGroceries": "10% cashback",
-      "otherRetail": "1.5% unlimited cashback"
+      "accelerated10Pct": "10% cashback on supermarket groceries, dining, food delivery, and standalone retail (shared ₹1,200/month cap)",
+      "base1_5Pct": "1.5% completely uncapped cashback on all other eligible retail transactions",
+      "statementCredit": "Direct statement credit credited automatically within 45 days of cycle end date"
     },
-    "rewardCaps": "10% cashback capped at ₹1,000 per statement cycle (₹12,000/year).",
-    "exclusions": "Fuel, wallet loads, rent, utilities, government payments, and education.",
+    "rewardCaps": "The New Upgraded Cap: The 10% accelerated pool features a shared monthly limit of ₹1,200 per billing cycle (enabling maximum 10% optimized earnings on monthly spends up to ₹12,000). Base 1.5% cashback has no maximum cap.",
+    "exclusions": "Fuel, rent payments, wallet loading, insurance premiums, education fees, government services, cash advances, and balance transfers.",
     "benefits": [
       "₹1,000 cashback welcome benefit on spending ₹20,000 in first 30 days",
-      "10% cashback on all supermarket groceries, food delivery apps, and restaurants",
-      "1.5% uncapped cashback on all other retail transactions",
-      "4 complimentary domestic airport lounge visits per calendar year (1 per quarter)",
-      "Buy 1 Get 1 free movie ticket on BookMyShow on Saturdays (up to ₹250 discount)"
+      "10% accelerated cashback on physical supermarkets, dining, food delivery, and select retail (up to ₹1,200/month)",
+      "1.5% completely uncapped cashback on all other eligible retail spending",
+      "2 complimentary domestic lounge visits per year (1 every 6 months) + 1 international lounge visit (no quarterly spend hurdles)",
+      "1.99% low forex markup on international transactions",
+      "Pure automatic statement credit without catalogue traps or redemption fees",
+      "1% fuel surcharge waiver up to ₹250 per month"
     ],
     "eligibility": "Indian resident aged 18-65 years.",
-    "incomeRequirement": "₹4,00,000 per annum",
-    "locationRestrictions": "Major cities where HSBC operates (Mumbai, Delhi NCR, Bengaluru, Chennai, Hyderabad, Kolkata, Pune, Ahmedabad, etc.).",
+    "incomeRequirement": "₹6,00,000/annum for salaried; ITR > ₹12,00,000 for self-employed",
+    "locationRestrictions": "Strict branch-city whitelist: Mumbai, Delhi-NCR, Bengaluru, Chennai, Hyderabad, Kolkata, Pune, Ahmedabad, Jaipur, Chandigarh, Coimbatore, Kochi.",
     "travelBenefits": "4 domestic airport lounge visits per year.",
-    "loungeBenefits": "4 complimentary domestic airport lounge visits per calendar year.",
-    "fuelBenefits": "1% fuel surcharge waiver on transactions between ₹400 and ₹4,000.",
+    "loungeBenefits": "2 complimentary domestic airport lounge visits per year (max 1 visit every 6 months) PLUS 1 complimentary international lounge visit per calendar year (no rolling quarterly spend hurdle required).",
+    "fuelBenefits": "1% fuel surcharge waiver on transactions between ₹400 and ₹4,000, capped at ₹250 per month.",
     "diningBenefits": "10% cashback on dining bills and food delivery apps + up to 15% discount under HSBC Dining Privileges.",
-    "forexBenefits": "Standard 3.5% foreign currency markup.",
+    "forexBenefits": "Competitive 1.99% foreign currency markup on Visa Infinite variant.",
     "milestoneBenefits": "Fee waiver on reaching ₹2,00,000 annual spend.",
     "officialUrl": "https://www.hsbc.co.in/credit-cards/products/live-plus/",
     "officialSource": "HSBC India Official Website",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active",
-    "goodFor": "Household grocery spending, dining out, and food delivery",
+    "goodFor": "Heavy offline supermarket grocery spenders, frequent restaurant diners, and users looking for premium international and domestic travel perks bundled into a mid-tier card.",
     "whoItFits": "Anyone spending ₹10,000 a month on groceries (Blinkit, Zepto, offline supermarkets) and dining/delivery (Swiggy, Zomato).",
-    "whatToWatchOutFor": "10% category cashback is capped at ₹1,000 per month; card issuance restricted to HSBC branch cities.",
+    "whatToWatchOutFor": [
+      "Strict geo-fencing: applications from outside designated HSBC branch cities are auto-rejected.",
+      "The 10% accelerated cashback pool shares a monthly limit of ₹1,200 (optimized on ₹12,000 spend).",
+      "Cashback caps calculate strictly on settlement dates—charges settled late can collide with the next month's cap.",
+      "Wholesale grocery clubs (METRO Wholesale) and business hypermarkets code under wholesale MCCs and earn 0% to 1.5%.",
+      "Cashback credits within 45 days and does not deduct from the current month's Minimum Amount Due."
+    ],
     "whyCreditWiseRecommends": "It covers both online delivery apps and offline physical supermarkets with a massive 10% direct statement credit.",
-    "orientation": "vertical"
+    "orientation": "vertical",
+    "feeDetails": "₹1,179 total first-year cost (₹999 base fee + 18% GST). Welcome Benefit: ₹1,000 cashback upon spending a minimum of ₹20,000 within the first 30 days of card issuance.",
+    "welcomeBenefits": "₹1,000 cashback upon spending a minimum of ₹20,000 within the first 30 days of card issuance.",
+    "underwritingEligibility": {
+      "salaried": "Age 18 to 65 years with annual income baseline of ₹6,00,000 per annum",
+      "selfEmployed": "Age 25 to 65 years with audited annual ITR above ₹12,00,000",
+      "geography": "Must reside or work in approved branch cities: Mumbai, Delhi-NCR, Bengaluru, Chennai, Hyderabad, Kolkata, Pune, Ahmedabad, Jaipur, Chandigarh, Coimbatore, or Kochi."
+    },
+    "realWorldGotchas": [
+      {
+        "title": "The Hard Geo-Fencing Trap (Application Autodecline)",
+        "tag": "City Whitelist",
+        "description": "HSBC strictly operates a pin-code whitelist tied to branch presence. Applications from individuals residing or working outside designated Tier-1 cities (Mumbai, Delhi-NCR, Bengaluru, Chennai, Hyderabad, Kolkata, Pune, Ahmedabad, Jaipur, Chandigarh, Coimbatore, or Kochi) are automatically rejected by system algorithms regardless of high income or high credit score."
+      },
+      {
+        "title": "The Cycle Capping Disconnect (Calculated vs. Settled Spends)",
+        "tag": "Cap Collision",
+        "description": "Unlike banks that clamp caps based on the transaction swipe date, HSBC calculates caps strictly based on settled charges within a statement cycle. If you spend ₹12,000 on groceries late in the cycle and the merchant takes 3 days to settle, it rolls into the subsequent statement. A second ₹12,000 spend in that next cycle merges together and gets clamped by the single ₹1,200 cap, losing ₹1,200 in cashback."
+      },
+      {
+        "title": "The \"Wholesale Grocery\" Zeroing",
+        "tag": "Wholesale MCC 0%",
+        "description": "Buying groceries from cash-and-carry wholesale stores like METRO Wholesale or bulk hypermarket business outlets gets processed under wholesale merchant codes rather than retail supermarket codes. When this occurs, rewards drop from 10% to 1.5% or 0%."
+      },
+      {
+        "title": "The Utility Expansion Realization",
+        "tag": "Select 10% Utilities",
+        "description": "Direct utility payments for electricity, water, and broadband bills (via MCCs 4900 and 4814) qualify for the 10% accelerated cashback pool up to the monthly statement cap. However, DTH television recharges and FASTag wallet reloads are strictly excluded."
+      },
+      {
+        "title": "The Add-On Card Loophole",
+        "tag": "Independent Lounges",
+        "description": "International lounge access and complimentary international e-SIM benefits apply separately to authorized add-on cardholders. Up to 3 add-on cards can be issued for family members, and each card receives its own independent set of international lounge vouchers."
+      },
+      {
+        "title": "The 10% Smart Retail Shift",
+        "tag": "Apparel & Brand POS",
+        "description": "The 10% tier extends beyond dining and groceries to standalone brand retail stores (Zara, H&M, Marks & Spencer) when swiped directly at their official standalone store POS or purchased via their official brand websites, bypassing generic e-commerce platforms."
+      },
+      {
+        "title": "Delayed Bill Adjustment",
+        "tag": "Statement Accounting",
+        "description": "Cashback earned during a billing cycle does not reduce that cycle's Minimum Amount Due or Total Outstanding balance. You must pay the full statement balance out of pocket; the cashback automatically settles against the following month's statement ledger within 45 days."
+      }
+    ]
   },
   {
     "id": "hsbc-premier",
@@ -2224,43 +2493,144 @@
     "description": "Exclusive wealth banking card offering zero annual fees for HSBC Premier clients, ultra-low 0.99% forex markup, unlimited lounge access, and complimentary golf rounds.",
     "annualFee": 0,
     "joiningFee": 0,
-    "feeWaiver": "Nil fee as long as Premier banking relationship is maintained.",
+    "feeWaiver": "Lifetime Free for active HSBC Premier Banking clients (TRB ₹40 Lakhs or salary credit ₹3,00,000/month or home loan ₹1.15 Crore).",
     "apr": 36,
     "cashbackRate": 0,
     "rewardRate": 3,
     "loungeAccess": 99,
-    "rewardSummary": "3 reward points per ₹100 spent (6 points per ₹100 on international spends); 1:1 redemption ratio for air miles with Singapore Airlines, British Airways, and Taj vouchers.",
+    "rewardSummary": "3 reward points per ₹100 domestic retail spend; 6 reward points per ₹100 spent overseas (doubling velocity). 1:1 transfer ratio to global frequent flyer miles (Singapore KrisFlyer, British Airways, Etihad, Air India Flying Returns) and Taj Epicure/IHCL vouchers. Uncapped points with no expiry while relationship is active.",
     "rewardCategories": {
-      "internationalSpends": "6 points / ₹100",
-      "domesticSpends": "3 points / ₹100"
+      "internationalSpends6Pts": "6 points per ₹100 spent overseas in foreign currency (uncapped)",
+      "domesticSpends3Pts": "3 points per ₹100 spent domestically on eligible retail purchases",
+      "airMileTransfer": "1:1 transfer ratio to Singapore KrisFlyer, British Airways Executive Club, Etihad Guest, Taj Epicure",
+      "valuation": "1 Point = 1 Air Mile (worth ₹1.00 to ₹2.00+ on premium flights; drops to ₹0.25 on cash catalog)"
     },
-    "rewardCaps": "No cap on regular reward point accrual.",
-    "exclusions": "Fuel, wallet loads, rent, utilities, government payments.",
+    "rewardCaps": "No monthly cap on domestic or international reward point accrual.",
+    "exclusions": "Fuel, rent payments, insurance premiums, school/college education fees, wallet funding, government utilities, and tax payments earn 0 points and 0 milestone contribution.",
     "benefits": [
-      "Zero annual membership fee for eligible HSBC Premier customers",
-      "Ultra-low foreign currency markup fee of 0.99% on all overseas spending",
-      "Unlimited complimentary domestic airport lounge visits",
-      "6 complimentary international lounge visits per year with Priority Pass",
-      "2 complimentary golf games and lessons per month across premier clubs worldwide"
+      "Completely Lifetime Free (tethered to Premier banking status)",
+      "Industry-leading 0.99% + GST foreign currency markup fee on all overseas transactions",
+      "Unlimited complimentary domestic airport lounge visits across India",
+      "6 complimentary international lounge visits per calendar year via Priority Pass",
+      "3 points/₹100 domestic and 6 points/₹100 international with 1:1 air mile transfer ratio",
+      "1:1 transfers to Singapore KrisFlyer, British Airways, Etihad Guest, Air India, and Taj Epicure",
+      "Global Portability: Instant qualification if Premier status is held with HSBC in another country",
+      "1% fuel surcharge waiver up to ₹250 per month"
     ],
     "eligibility": "Must maintain HSBC Premier Banking Relationship (Total Relationship Balance of ₹40 Lakhs or salary credit of ₹3 Lakhs/month).",
-    "incomeRequirement": "HSBC Premier account holder (TRB ₹40 Lakhs or ₹3 Lakhs/month salary)",
+    "incomeRequirement": "HSBC Premier client: ₹3,00,000/month salary credit OR ₹40,00,000 TRB OR ₹1.15 Cr mortgage",
     "locationRestrictions": "HSBC branch presence cities.",
     "travelBenefits": "0.99% forex markup, global concierge, international emergency card replacement, and airport lounges.",
-    "loungeBenefits": "Unlimited domestic lounge access + 6 international visits per year.",
+    "loungeBenefits": "Unlimited complimentary domestic airport lounge visits across India (Visa Infinite/Mastercard World). 6 complimentary international lounge visits per calendar year (fixed Jan 1 to Dec 31 reset) via Priority Pass.",
     "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per month.",
     "diningBenefits": "Exclusive fine dining discounts and privileges via HSBC Premier Global Dining.",
-    "forexBenefits": "Industry-leading 0.99% foreign currency markup.",
+    "forexBenefits": "Industry-leading 0.99% + GST foreign currency markup fee on all overseas transactions.",
     "milestoneBenefits": "Complimentary luxury dining or shopping vouchers on annual spend milestones.",
     "officialUrl": "https://www.hsbc.co.in/credit-cards/products/premier/",
     "officialSource": "HSBC India Premier Portal",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active (for HSBC Premier Clients)",
-    "goodFor": "Premier wealth clients and frequent international travelers",
+    "goodFor": "High-earning corporate professionals, corporate executives, and affluent international travellers who want industry-leading low forex rates and unlimited airport lounge luxury.",
     "whoItFits": "High net-worth individuals who travel abroad regularly and already maintain a wealth relationship with HSBC.",
-    "whatToWatchOutFor": "Strictly tied to HSBC Premier banking status; dropping relationship criteria incurs banking account fees.",
+    "whatToWatchOutFor": [
+      "Poor value for cashback: redeeming for gift cards or merchandise collapses value to ₹0.25/point (0.75% return). Highly recommended strictly for luxury travel/air miles.",
+      "Tethered to Premier banking: falling below ₹40L TRB or ₹3L/mo salary credit triggers account maintenance charges.",
+      "Air mile transfers take 7 to 21 business days to credit into airline accounts.",
+      "Carrier fuel surcharges and taxes (₹40k–₹60k on long-haul flights) are payable in cash on award flights.",
+      "International lounge quota resets on fixed Calendar Year (Jan 1 to Dec 31), not card anniversary.",
+      "Priority Pass guest visits cost $35 USD + GST billed silently to statement."
+    ],
     "whyCreditWiseRecommends": "The 0.99% foreign exchange markup is one of the absolute lowest in India, beating almost every standalone travel card.",
-    "orientation": "horizontal"
+    "orientation": "vertical",
+    "feeDetails": "Lifetime Free: Completely ₹0 annual membership or renewal fee for the lifetime of the card. Tethered to an active HSBC Premier Banking Relationship (falling below baseline incurs a ₹2,000 + GST quarterly maintenance fee on the bank account).",
+    "underwritingEligibility": {
+      "salaryRoute": "Net verified corporate salary credit of at least ₹3,00,000 per month into an HSBC corporate salary account",
+      "wealthTRBRoute": "Total Relationship Balance (TRB) of at least ₹40,00,000 across savings, fixed deposits, insurance, and investments with HSBC India",
+      "mortgageRoute": "Active home loan with HSBC India with minimum disbursed or outstanding loan amount of ₹1.15 Crore",
+      "globalPortability": "Existing HSBC Premier status in another country (UK, USA, Singapore, UAE) automatically qualifies without local domestic asset or salary proof"
+    },
+    "realWorldGotchas": [
+      {
+        "title": "The Calendar Year Lounge Reset Trap",
+        "tag": "Jan 1st - Dec 31st",
+        "description": "While most Indian credit cards reset international lounge quotas based on the card anniversary year, HSBC operates strictly on a fixed Calendar Year (January 1st to December 31st). If you open the card in October, you must use your 6 international lounge visits by December 31st, or they vanish completely."
+      },
+      {
+        "title": "The Priority Pass \"Guest Fee\" Shock",
+        "tag": "$35 USD + GST Fee",
+        "description": "The 6 complimentary international lounge visits apply strictly to the primary cardholder. If you swipe your Priority Pass for an accompanying spouse, child, or guest, the swipe is approved at the desk without upfront payment, but HSBC will subsequently bill your statement $35 USD + 18% GST per guest per visit."
+      },
+      {
+        "title": "The Tax-Collected-at-Source (TCS) Reality",
+        "tag": "20% TCS Over ₹7L",
+        "description": "Due to the industry-leading 0.99% forex markup, users frequently route heavy overseas spends or foreign university tuition through this card. Under RBI/LRS rules, any foreign currency spending exceeding ₹7 Lakhs in a financial year automatically triggers a mandatory 20% TCS deduction by the bank, recoverable only during annual ITR filing."
+      },
+      {
+        "title": "The 3-to-4 Week Transfer Lag",
+        "tag": "7–21 Day Transfer",
+        "description": "Air mile conversions to Singapore KrisFlyer, British Airways, or Etihad are not instant. Transfers require 7 to 21 business days to reflect in your airline frequent flyer account. Waiting for points to land frequently results in award seat availability disappearing before booking."
+      },
+      {
+        "title": "The Minimum Transfer Threshold",
+        "tag": "5,000 Points Block",
+        "description": "HSBC enforces a strict minimum transfer block of 5,000 reward points per redemption request. Fractional balances below 5,000 points cannot be transferred to partner airlines or hotels."
+      },
+      {
+        "title": "The \"Fuel Surcharge & Tax\" Cash Shock",
+        "tag": "Carrier Cash Fees",
+        "description": "When redeeming 1:1 air miles for \"free flights\" on British Airways or Singapore Airlines, points cover only the base airfare. Government airport taxes and airline fuel surcharges must still be paid in cash out of pocket (often ₹40,000 to ₹60,000 for long-haul Business Class)."
+      },
+      {
+        "title": "The Taj Epicure Devaluation Loophole",
+        "tag": "Rack Rates Only",
+        "description": "While 1:1 conversion to Taj/IHCL vouchers is permitted, these vouchers cannot be combined with corporate discounts, promotional packages, or third-party rates. They can only be redeemed against published flexible \"Rack Rates\" on the official Taj website, which are typically significantly higher."
+      },
+      {
+        "title": "Account Downgrade Points Wipeout",
+        "tag": "3-Month Grace Period",
+        "description": "If you change employment or move assets below HSBC Premier thresholds, HSBC offers a 3-month grace period before downgrading your account. Upon downgrade, all 1:1 air mile transfer privileges are permanently revoked, and points convert to a low-value general merchandise catalog."
+      },
+      {
+        "title": "Strict Exclusion Engine & Milestone Burn",
+        "tag": "0% on Heavy Spends",
+        "description": "Spends on Fuel, Rent, Insurance premiums, School/College Education fees, Wallet funding, Government utilities, and Tax payments earn exactly 0 reward points. Crucially, these excluded spends also contribute 0 progress toward annual milestone luxury vouchers."
+      },
+      {
+        "title": "1% Chargeback on Disguised Rent & Commercial Spends",
+        "tag": "1% Surcharge Penalty",
+        "description": "HSBC deploys pattern detection on high-value transfers. Transactions routed through business gateways or flagged as disguised commercial/rental payments face 0 points and a retroactive 1% processing penalty."
+      },
+      {
+        "title": "Priority Pass Validity Loop",
+        "tag": "Separate Physical Expiry",
+        "description": "The physical Priority Pass card carries its own independent expiry date separate from the credit card. If not used frequently, HSBC does not auto-renew it, causing surprise gate rejections abroad unless manually renewed 14 days in advance."
+      },
+      {
+        "title": "The Global Portability Route",
+        "tag": "Global Premier Match",
+        "description": "Applicants who do not meet the ₹3L/month domestic salary or ₹40L TRB in India but already hold an active HSBC Premier account in another country (UK, USA, Singapore, UAE) automatically qualify for the HSBC Premier Credit Card in India with zero domestic asset or salary documentation."
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "The High-Earning Domestic Spender",
+        "scenario": "Monthly eligible domestic spend of ₹1,00,000 on dining, apparel, and retail.",
+        "pointsEarned": "3,000 HSBC Premier Points/month (36,000 Air Miles annually).",
+        "realWorldValue": "Sufficient for a free return Economy Class award ticket to Dubai or Singapore on Singapore Airlines or Air India (taxes/fees payable in cash)."
+      },
+      {
+        "title": "The Frequent International Jetsetter",
+        "scenario": "Monthly spend of ₹3,00,000 (₹1,50,000 domestic + ₹1,50,000 international flights, hotels, overseas dining).",
+        "pointsEarned": "13,500 Points/month (1,62,000 Air Miles annually at 6 pts/₹100 overseas rate).",
+        "realWorldValue": "Redeemable for a round-trip Business Class ticket to Europe or the USA on British Airways or Etihad, saving over ₹2,50,000 in cash."
+      },
+      {
+        "title": "The Low-Yield Everyday Baseline (Cash Out Trap)",
+        "scenario": "Annual spend of ₹5,00,000 redeemed for generic merchandise or Amazon/Flipkart e-gift cards.",
+        "pointsEarned": "15,000 Points.",
+        "realWorldValue": "Catalogue cash value collapses to ₹0.25/point, returning only ₹3,750 on ₹5,00,000 spend (a poor 0.75% return). Highly discouraged."
+      }
+    ]
   },
   {
     "id": "hsbc-rupay-cashback",
@@ -2281,43 +2651,91 @@
     "description": "Everyday UPI credit card issued on the RuPay Select tier, designed for direct merchant QR payments, grocery cashback, and dining privileges.",
     "annualFee": 499,
     "joiningFee": 499,
-    "feeWaiver": "Waived on annual retail spends of ₹2,00,000.",
+    "feeWaiver": "Annual renewal fee is waived completely if the user crosses ₹2,00,000 in total retail spends during the preceding calendar year.",
     "apr": 44.4,
     "cashbackRate": 5,
     "rewardRate": 1,
     "loungeAccess": 4,
-    "rewardSummary": "5% cashback on groceries and food delivery; 1.5% cashback on UPI Scan & Pay transactions and other eligible spends.",
+    "rewardSummary": "10% accelerated cashback on physical supermarket groceries, food delivery apps, and restaurant dining; flat 1% base cashback on all other eligible general retail transactions including merchant UPI Scan & Pay QR transactions. Pure statement credit.",
     "rewardCategories": {
-      "groceriesAndDining": "5% cashback",
-      "upiAndOther": "1.5% cashback"
+      "accelerated10Pct": "10% cashback on supermarket groceries, food delivery apps, and restaurant dining",
+      "baseUPI1Pct": "1% flat cashback on all other eligible general retail transactions and merchant UPI Scan & Pay QR payments",
+      "statementCredit": "Direct statement credit automatically applied each billing cycle"
     },
-    "rewardCaps": "Accelerated monthly cashback capped at ₹500 per billing cycle.",
-    "exclusions": "Fuel, wallet loads, rent, utility payments, and government transactions.",
+    "rewardCaps": "The Shared Monthly Cap: Total cashback across both the 10% accelerated pool and 1% base UPI pool is strictly bounded by a combined hard ceiling of ₹400 per billing cycle. Once ₹400 in total cashback is reached, all further spending—including basic UPI scans—earns 0% for the rest of that month.",
+    "exclusions": "Fuel, wallet loading, rent payments, property management fees, utility bills, insurance premiums, education fees, jewellery purchases, cash advances, and government transactions.",
     "benefits": [
-      "Seamless linking with UPI apps (Google Pay, PhonePe, Paytm, BHIM) for Scan & Pay",
-      "5% cashback on everyday groceries and food delivery platforms",
-      "1.5% cashback on merchant UPI QR-code payments",
-      "4 complimentary domestic airport lounge visits per year via RuPay Select network",
-      "RuPay Select lifestyle perks including annual health check-up and spa vouchers"
+      "₹250 Amazon eGift Card on video KYC + ₹500 cashback on ₹10k spend in first 30 days",
+      "2-month complimentary EazyDiner Prime membership",
+      "10% accelerated cashback on physical supermarkets, dining, and food delivery apps",
+      "1% flat cashback on all merchant UPI Scan & Pay QR transactions and general retail",
+      "4 complimentary domestic lounge visits/year (1/quarter) + 2 international lounge visits/year via JCB (no spend hurdles)",
+      "Promotional 0% foreign currency markup fee",
+      "Pure automatic statement credit reducing next month's out-of-pocket balance"
     ],
     "eligibility": "Indian resident aged 18-65 years.",
-    "incomeRequirement": "₹4,00,000 per annum",
-    "locationRestrictions": "HSBC serviceable cities.",
+    "incomeRequirement": "₹6,00,000/annum for salaried; ITR > ₹12,00,000 for self-employed",
+    "locationRestrictions": "Strict branch-city whitelist: Mumbai, Delhi-NCR, Bengaluru, Chennai, Hyderabad, Kolkata, Pune, Ahmedabad, Jaipur, Chandigarh, Coimbatore, Kochi.",
     "travelBenefits": "4 domestic airport lounge visits per year via RuPay Select.",
-    "loungeBenefits": "4 complimentary domestic airport lounge visits per year.",
-    "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per month.",
+    "loungeBenefits": "4 complimentary domestic lounge visits per year (1 per calendar quarter) PLUS 2 complimentary international airport lounge visits per calendar year (managed via the JCB international lounge partner program). Zero rolling quarterly spend milestone required.",
+    "fuelBenefits": "No waiver. HSBC explicitly excludes this specific card variant from the standard 1% fuel surcharge waiver program. All fuel purchases incur net handling fees.",
     "diningBenefits": "Exclusive dining discounts under HSBC Dining Privileges.",
-    "forexBenefits": "Standard 3.5% foreign currency markup.",
+    "forexBenefits": "Promotional 0% foreign currency markup valid for a limited window (routed via JCB network; foreign currency spends excluded from earning 1% cashback).",
     "milestoneBenefits": "Fee waiver on ₹2,00,000 annual spend.",
     "officialUrl": "https://www.hsbc.co.in/credit-cards/products/rupay-cashback/",
     "officialSource": "HSBC India Official Credit Cards Portal",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active",
-    "goodFor": "Everyday UPI Scan & Pay users wanting a multinational bank card",
+    "goodFor": "Everyday heavy UPI users who want premium multinational bank service quality, paired with massive cashbacks on groceries, and unexpected zero-cost international travel perks.",
     "whoItFits": "Individuals who prefer foreign-bank service quality while leveraging the ubiquitous Indian RuPay UPI network.",
-    "whatToWatchOutFor": "Monthly cashback cap of ₹500 on accelerated categories.",
+    "whatToWatchOutFor": [
+      "Tight combined cashback cap of ₹400/month across both 10% groceries and 1% UPI. Just ₹4,000 in grocery/dining spend completely exhausts the card's entire reward capacity.",
+      "For spends over ₹5,000/month on groceries/dining, upgrade to HSBC Live+ (₹1,200 cap + uncapped 1.5% base tier).",
+      "No fuel surcharge waiver: fuel purchases earn 0% and incur net handling fees.",
+      "International spends route through JCB network, which has spotty acceptance in Europe/North America.",
+      "Strict geo-fencing: applications outside HSBC branch cities are auto-declined."
+    ],
     "whyCreditWiseRecommends": "Brings foreign-bank fraud protection and customer support together with everyday RuPay UPI convenience and lounge perks.",
-    "orientation": "vertical"
+    "orientation": "vertical",
+    "feeDetails": "₹589 total first-year cost (₹499 base fee + 18% GST). Welcome Benefit: ₹250 Amazon eGift Card on completing video KYC, plus ₹500 statement cashback upon spending ₹10,000 within the first 30 days of card activation via the mobile app. Includes a 2-month complimentary EazyDiner Prime membership.",
+    "welcomeBenefits": "₹250 Amazon eGift Card on completing video KYC + ₹500 statement cashback upon spending ₹10,000 in first 30 days + 2-month complimentary EazyDiner Prime membership.",
+    "underwritingEligibility": {
+      "salaried": "Age 18 to 65 years with minimum annual income baseline of ₹6,00,000 per annum",
+      "selfEmployed": "Age 25 to 65 years with minimum audited annual ITR of ₹12,00,000",
+      "geography": "Strictly requires applicant to reside or work within designated Tier-1 metro branch cities"
+    },
+    "realWorldGotchas": [
+      {
+        "title": "The Hard ₹4,000 Accelerated Spending Wall",
+        "tag": "₹400 Shared Ceiling",
+        "description": "Because the monthly cashback cap is tightly restricted to a combined pool of ₹400 across both 10% accelerated spends and 1% base UPI scans, spending just ₹4,000 on groceries or dining out in a single month completely exhausts the card's entire cashback capacity. Any subsequent UPI transactions scanned at local merchants during the remainder of the month yield exactly 0% return."
+      },
+      {
+        "title": "The 5% Paytm Bill Utility Workaround",
+        "tag": "Utility Workaround",
+        "description": "While utility bills paid directly with the card earn 0% rewards, HSBC runs an official co-brand offer: users receive a 5% instant discount (up to ₹150) on mobile recharges, DTH, broadband, water, gas, FASTag, and electricity bills on transactions of ₹299 or more processed strictly through the Paytm mobile app."
+      },
+      {
+        "title": "The International JCB Acceptance Challenge",
+        "tag": "JCB Global Route",
+        "description": "While the card offers a promotional 0% forex markup and complimentary international lounge visits, it routes transactions overseas via the JCB Network rather than Visa or Mastercard. While JCB acceptance is solid across East Asia (Japan, Singapore, Thailand), it is spotty and frequently fails at POS terminals across Europe and North America."
+      },
+      {
+        "title": "The Double-Dipping Fuel Penalty",
+        "tag": "No Fuel Waiver",
+        "description": "Unlike most credit cards, this card is explicitly excluded from HSBC's standard 1% fuel surcharge waiver program. Scanning a UPI QR code at a petrol pump does not earn 1% cashback; instead, the fuel MCC strips the reward completely and passes the network transaction surcharge directly to your statement."
+      },
+      {
+        "title": "The Shared Credit Limit (Pooled Line) Philosophy",
+        "tag": "Pooled Bank Line",
+        "description": "Holding multiple credit cards with HSBC (e.g. holding both an HSBC Live+ and an HSBC RuPay Cashback card) does not grant independent credit lines. Both cards draw from a single pooled limit, meaning heavy spending on one card directly restricts the available limit of the other."
+      },
+      {
+        "title": "Digital App Fragmentation & Merchant Coding (MCC Roulette)",
+        "tag": "Gateway Coding",
+        "description": "Ordering food via in-app mini-programs or aggregator digital wallets can alter the underlying MCC from Food Delivery (5812/5814) to a generic digital wallet or wholesale code, stripping the 10% reward. Always check out directly on the primary native merchant checkout page to ensure the 10% cashback triggers."
+      }
+    ]
   },
   {
     "id": "hsbc-travel-one",
@@ -2338,43 +2756,116 @@
     "description": "Next-generation travel card designed for flexible global travelers, featuring instant in-app reward points transfer to major airline alliances and international lounge access.",
     "annualFee": 4999,
     "joiningFee": 4999,
-    "feeWaiver": "Waived on annual spends of ₹8,00,000 in preceding year.",
+    "feeWaiver": "Annual renewal fee of ₹5,899 is waived completely on annual retail spends of ₹8,00,000 in preceding year.",
     "apr": 42,
     "cashbackRate": 0,
     "rewardRate": 4,
-    "loungeAccess": 12,
-    "rewardSummary": "4 reward points per ₹100 on travel bookings and dining; 2 points per ₹100 on other retail spends; instant 1:1 or 2:1 point transfer to 16+ global airline and hotel loyalty programs.",
+    "loungeAccess": 10,
+    "rewardSummary": "4 Reward Points per ₹100 on flights, hotel aggregators (OTAs), and dining; 2 points per ₹100 on other eligible retail spends. Instant in-app transfer to 16+ airline and hotel partners (1:1 to Accor, Singapore Airlines, Air India, Marriott; 2:1 to United/Turkish; 5:1 to Shangri-La).",
     "rewardCategories": {
-      "travelAndDining": "4 reward points / ₹100",
-      "otherRetail": "2 reward points / ₹100"
+      "travelAndDining4X": "4 Reward Points / ₹100 on flights, hotel aggregators, and dining (4% base airline return or ~7.2% via Accor)",
+      "otherRetail2X": "2 Reward Points / ₹100 on all other eligible retail transactions",
+      "accorLiveLimitless": "1:1 transfer ratio to Accor Live Limitless (1 pt = €0.02 ~ ₹1.80–₹1.85)",
+      "devaluedPartners": "2:1 transfer ratio to United/Turkish; 5:1 transfer ratio to Shangri-La Circle"
     },
-    "rewardCaps": "No ceiling on points earned on travel expenditures.",
-    "exclusions": "Fuel, wallet loads, rent, government transactions, cash advances.",
+    "rewardCaps": "No monthly cap on points earned across travel and dining categories.",
+    "exclusions": "Fuel, wallet loads, rent, utilities, insurance, government payments, and cash advances.",
     "benefits": [
-      "Instant real-time points transfer to 16+ airline and hotel partners directly via mobile app",
-      "8 complimentary domestic airport lounge visits per year",
-      "4 complimentary international lounge visits per year via Mastercard Travel Pass",
-      "Comprehensive overseas travel and baggage delay insurance coverage",
-      "Special discounts on Agoda and global car rentals"
+      "Instant real-time points transfer to 16+ airline and hotel loyalty programs directly via mobile app",
+      "1:1 points transfer to Accor Live Limitless (ALL), yielding ~7.2% to 7.4% net value on 4X categories",
+      "4 Reward Points per ₹100 on airline tickets, hotel aggregators (OTAs), and dining",
+      "2 Reward Points per ₹100 on all other eligible retail spends",
+      "6 complimentary domestic airport lounge visits per year",
+      "4 complimentary international airport lounge visits per year via Mastercard Travel Pass",
+      "10,000 bonus reward points upon hitting the ₹12,00,000 annual spend milestone",
+      "Annual fee waiver upon reaching ₹8,00,000 in annual spending"
     ],
     "eligibility": "Indian resident aged 18-65 years.",
-    "incomeRequirement": "₹6,00,000 per annum for salaried; ₹12,00,000 for self-employed",
+    "incomeRequirement": "₹6,00,000/annum for salaried; ITR > ₹12,00,000 for self-employed",
     "locationRestrictions": "HSBC serviceable cities across India.",
     "travelBenefits": "Instant real-time transfer to Singapore Airlines KrisFlyer, Qatar Airways, Air France-KLM Flying Blue, Marriott Bonvoy, and IHG One Rewards.",
-    "loungeBenefits": "8 domestic + 4 international airport lounge visits per year.",
-    "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per month.",
+    "loungeBenefits": "6 complimentary domestic airport lounge visits per year + 4 complimentary international lounge visits per year via Mastercard Travel Pass.",
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per month on transactions between ₹400 and ₹4,000.",
     "diningBenefits": "Accelerated points on dining plus global dining program discounts.",
-    "forexBenefits": "Reduced 2.5% foreign currency markup.",
-    "milestoneBenefits": "Fee waiver on ₹8,00,000 annual spend.",
-    "officialUrl": "https://www.hsbc.bank.in/credit-cards/products/travelone/",
+    "forexBenefits": "3.5% + 18% GST foreign currency markup fee (~4.13% effective charge; earning 4X overseas is net negative).",
+    "milestoneBenefits": "10,000 bonus milestone reward points upon reaching ₹12,00,000 in annual card spends (note: fee waiver triggers at ₹8,00,000).",
+    "officialUrl": "https://www.hsbc.co.in/credit-cards/products/travelone/",
     "officialSource": "HSBC Official TravelOne Page",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active",
-    "goodFor": "Frequent flyers who want instant points transfer across diverse global airlines",
+    "goodFor": "Accor Hotel loyalists, frequent OTA flight bookers, and travelers wanting rapid app-based transfers to specific airline alliances.",
     "whoItFits": "Travelers who don't want to wait days for reward points to convert before booking award flights.",
-    "whatToWatchOutFor": "Higher annual fee (₹4,999) with an ₹8 Lakh spend hurdle for fee waiver.",
+    "whatToWatchOutFor": [
+      "Do NOT use overseas for 4X: the 3.5% + GST forex markup (~4.13% effective) wipes out the 4% reward, making foreign spending net negative.",
+      "1:1 transfer ratio does not apply to all partners: Shangri-La is 5:1; United, Turkish, and Hainan are 2:1.",
+      "Hopper-powered \"Travel with Points\" portal frequently inflates base fares by 2% to 10% over direct airline websites.",
+      "Milestone reward of 10,000 points requires ₹12,00,000 spend, whereas annual fee waives at ₹8,00,000.",
+      "Lounge entitlement updated to 6 domestic visits and 4 international visits per year."
+    ],
     "whyCreditWiseRecommends": "Its true instant points conversion eliminates the risk of award flight seats disappearing while waiting for traditional bank transfers.",
-    "orientation": "vertical"
+    "orientation": "vertical",
+    "feeDetails": "₹5,899 total first-year cost (₹4,999 base fee + 18% GST).",
+    "underwritingEligibility": {
+      "salaried": "Age 18 to 65 years with annual income baseline of ₹6,00,000 per annum",
+      "selfEmployed": "Age 25 to 65 years with audited annual ITR above ₹12,00,000",
+      "geography": "Strictly requires applicant to reside or work within designated Tier-1 metro branch cities"
+    },
+    "realWorldGotchas": [
+      {
+        "title": "The 'Instant' Transfer Matrix (True Instant vs. 48-Hour Lag)",
+        "tag": "Transfer Latency",
+        "description": "While marketed as instant app-based transfers, real-world speeds vary significantly by loyalty program: Accor Live Limitless, Marriott Bonvoy, Singapore Airlines KrisFlyer, British Airways Executive Club, and Etihad Guest transfer within minutes. In contrast, Air India Flying Returns, Qatar Airways Privilege Club, and IHG One Rewards typically take 1 to 2 business days to settle into member accounts. Always budget a 48-hour buffer before booking time-sensitive award seats."
+      },
+      {
+        "title": "The British Airways 'Avios' Bridge Hack",
+        "tag": "Avios Linking Hack",
+        "description": "If direct HSBC-to-Qatar Airways app transfers encounter batch delays, use the Avios bridge: transfer points 1:1 to British Airways Executive Club (which completes within minutes), then link your BA account to Qatar Airways Privilege Club or Finnair to move Avios instantly at a 1:1 ratio. This allows you to lock in high-demand Qatar Qsuite business class award seats before they disappear."
+      },
+      {
+        "title": "The 3.5% Forex Fee Trap (Negative Carry on Overseas Spends)",
+        "tag": "Net Negative Overseas",
+        "description": "The bank heavily markets '4X on international/foreign currency spends'. However, the card charges a steep 3.5% + 18% GST forex markup fee (~4.13% effective cash charge). Earning 4 Reward Points per ₹100 (worth ~4% on standard airlines) while paying 4.13% in out-of-pocket cash fees makes international spending net negative (-0.13% yield). Use a dedicated zero-forex card for foreign shopping instead."
+      },
+      {
+        "title": "The Accor Live Limitless (ALL) Goldmine",
+        "tag": "7.2%–7.4% Net Return",
+        "description": "While airline transfers are solid, the single highest valuation for this card is converting points 1:1 to Accor Live Limitless (ALL). Since 1 Accor point has a globally fixed redemption value of €0.02 (~₹1.80 to ₹1.85), earning 4 points per ₹100 on OTA flight bookings or dining yields an effective 7.2% to 7.4% net return against hotel stays at Sofitel, Novotel, Pullman, or Ibis worldwide."
+      },
+      {
+        "title": "The Hopper Portal \"Price Hike\" Trap",
+        "tag": "Inflated Base Fares",
+        "description": "The bank advertises up to 6X on flights and 12X on hotels through its in-app 'Travel with Points' platform (powered by Hopper). In practice, base fares on this portal are frequently inflated by 2% to 10% compared to direct airline and hotel websites. Always cross-check direct cash prices before chasing the 12X multiplier."
+      },
+      {
+        "title": "Devalued Partner Transfer Ratios",
+        "tag": "Non-1:1 Ratios",
+        "description": "The advertised 1:1 transfer ratio does not apply across all partners. While Accor, Marriott Bonvoy, Air India, Singapore Airlines, and British Airways convert at 1:1, Shangri-La Circle transfers at a punishing 5:1 ratio, and programs like United MileagePlus, Turkish Miles&Smiles, and Hainan Fortune Wings Club convert at 2:1."
+      },
+      {
+        "title": "The Milestone Spend Disconnect (₹8L vs ₹12L Thresholds)",
+        "tag": "Milestone Math",
+        "description": "The card waives its ₹4,999 annual fee at ₹8,00,000 of annual spend, but its 10,000 bonus points milestone only triggers at ₹12,00,000. If spending ₹12,00,000 on baseline 2X retail, you earn 24,000 base + 10,000 milestone = 34,000 points (2.83% effective return, or ~5.2% via Accor). If you cannot comfortably hit ₹12 Lakhs, stop spending the moment you reach the ₹8 Lakh fee waiver mark."
+      },
+      {
+        "title": "3-Year Reward Point Expiry Rule",
+        "tag": "3-Year Validity",
+        "description": "Reward points earned on HSBC TravelOne are valid for exactly 3 years from the date of accrual. Unlike premium relationship cards where points never expire, TravelOne points must be actively converted into airline miles or hotel points before their 36-month rolling window lapses."
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "The Ultimate Profit Blueprint: Singapore Airlines & Accor Bali Vacation",
+        "scenario": "Targeted annual spend of ₹6,00,000 entirely in 4X categories (domestic business flights, OTA bookings, and family dining) earning 24,000 HSBC points.",
+        "pointsEarned": "24,000 HSBC Reward Points.",
+        "realWorldValue": "Step 1: Transfer 15,000 points 1:1 to Singapore Airlines KrisFlyer to book a Mumbai-to-Bali Saver award during Spontaneous Escapes promo for 12,950 miles + ₹3,500 tax (saving ₹20,500 over the ₹24,000 cash ticket, yielding ₹1.58/pt). Step 2: Transfer remaining 9,000 points 1:1 to Accor Live Limitless for €180 (~₹16,500) off a 2-night stay at Grand Mercure Bali Seminyak. Total realized value: ₹37,000 in pure travel value on ₹6,00,000 spend—a massive 6.16% net return."
+      },
+      {
+        "title": "The Absolute Value Trap: The Star Alliance & Multiplier Blunder",
+        "scenario": "Spending ₹1,00,000 on the Hopper portal chasing 12X hotel points, followed by transferring to a non-1:1 Star Alliance partner for a Europe flight.",
+        "pointsEarned": "12,000 HSBC Points earned, but overpaid ₹8,000 in cold cash due to Hopper portal markups.",
+        "realWorldValue": "Transferring 12,000 points to United MileagePlus at its 2:1 ratio cuts the stash down to just 6,000 United miles. Since a flight to Europe requires 40,000+ miles, the 6,000 miles become orphaned and unredeemable. The user overpaid ₹8,000 in cash and ended up with points worth less than ₹1,500."
+      }
+    ]
   },
   {
     "id": "idfc-first-power-plus",
@@ -2396,32 +2887,35 @@
     "description": "High-value co-branded fuel card offering up to 6.5% savings on fuel transactions at HPCL, 5% on groceries and utility payments, and 3X rewards on other spends with zero-expiry rewards.",
     "annualFee": 499,
     "joiningFee": 499,
-    "feeWaiver": "Waived on annual spends of ₹1,50,000 in preceding year.",
+    "feeWaiver": "Annual renewal fee is waived completely if the user spends ₹1,50,000 or more in the preceding calendar year.",
     "apr": 36,
     "cashbackRate": 6.5,
     "rewardRate": 1,
-    "loungeAccess": 0,
-    "rewardSummary": "Up to 6.5% value-back on HPCL fuel spends (4% reward points + 1.5% HP Pay app cashback + 1% surcharge waiver); 5% on grocery and utility bills; 3X rewards on other retail.",
+    "loungeAccess": 4,
+    "rewardSummary": "Up to 6.5% value-back on HPCL fuel spends (4% reward points + 1.5% Happy Coins via HP Pay app + 1% surcharge waiver); 5% on grocery and utility bills (capped at ₹2,000 spend/mo); 5% on IDFC FASTag recharges (capped at ₹1,000 spend/mo); 3X rewards on other retail (1 pt = ₹0.25).",
     "rewardCategories": {
-      "hpclFuel": "Up to 6.5% savings",
-      "groceryAndUtility": "5% savings",
-      "otherRetail": "3X reward points"
+      "hpclFuel6_5Pct": "Up to 6.5% savings on HPCL petrol/diesel via HP Pay app (max ₹10,000/month spend)",
+      "groceryAndUtility5Pct": "5% savings on groceries and utility bills (strictly capped at ₹2,000 spend per statement cycle)",
+      "fastag5Pct": "5% savings on IDFC FIRST FASTag via mobile app (capped at ₹1,000 spend/month)",
+      "otherRetail3X": "3X reward points on other eligible retail (1 pt = ₹0.25; effective 0.5%–0.75% value)"
     },
-    "rewardCaps": "Fuel savings capped at transactions up to ₹10,000 per month; grocery and utility savings capped at ₹400 per statement cycle.",
-    "exclusions": "Wallet reloads, rent payments, education, and cash advances.",
+    "rewardCaps": "Fuel savings capped at transactions up to ₹10,000 per month; grocery and utility 5% savings strictly capped at ₹2,000 spend per statement cycle (max 400 points = ₹100 value); FASTag capped at ₹1,000 spend/month.",
+    "exclusions": "Non-HPCL fuel, fuel payments via direct UPI, wallet reloads, rent payments, education, and cash advances.",
     "benefits": [
       "Welcome voucher worth ₹500 on first HPCL fuel transaction of ₹500+",
-      "Up to 6.5% value-back on HPCL petrol/diesel purchases via HP Pay app",
-      "5% value-back on grocery and utility bill payments",
-      "Reward points never expire and have zero redemption fees",
-      "RuPay variant supports UPI payments for everyday Scan & Pay"
+      "Up to 6.5% value-back on HPCL petrol and diesel purchases via HP Pay app",
+      "5% value-back on grocery and utility bill payments (up to ₹2,000 monthly spend)",
+      "5% value-back on IDFC FIRST FASTag recharges (up to ₹1,000 monthly spend)",
+      "1 complimentary domestic airport lounge visit per quarter (unlocked on ₹20,000 spend in preceding month)",
+      "25% discount on movie tickets via Paytm (up to ₹100/month)",
+      "RuPay network variant enables UPI merchant QR Scan & Pay"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
     "incomeRequirement": "₹3,00,000 per annum",
     "locationRestrictions": "Pan India.",
     "travelBenefits": "None.",
-    "loungeBenefits": "None.",
-    "fuelBenefits": "6.5% value-back on HPCL fuel up to ₹10,000 monthly spend + 1% fuel surcharge waiver.",
+    "loungeBenefits": "1 complimentary domestic airport lounge visit per calendar quarter, unlocked by spending at least ₹20,000 in the preceding calendar month (note: chasing this spend is mathematically discouraged).",
+    "fuelBenefits": "6.5% value-back on HPCL fuel up to ₹10,000 monthly spend (via HP Pay app) + 1% fuel surcharge waiver on transactions between ₹400 and ₹5,000.",
     "diningBenefits": "25% discount on movie tickets on Paytm (up to ₹100 once a month).",
     "forexBenefits": "Standard 3.5% foreign currency markup.",
     "milestoneBenefits": "Fee waiver on ₹1,50,000 annual spend.",
@@ -2429,16 +2923,74 @@
     "officialSource": "IDFC FIRST Bank Official Website",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active",
-    "goodFor": "Commuters, daily car owners, and household utility spenders",
+    "goodFor": "Commuters, daily car owners, and household utility spenders spending ₹4,000 to ₹10,000/month on HPCL fuel.",
     "whoItFits": "Car and motorcycle owners who fill petrol at HPCL and want 5% savings on groceries and electricity bills.",
-    "whatToWatchOutFor": "Full 6.5% fuel savings requires paying through the HP Pay app.",
+    "whatToWatchOutFor": [
+      "Fuel via UPI earns 0% accelerated rewards: you must pay through the HP Pay app selecting the credit card.",
+      "Grocery and utility 5% accelerator has a tight ₹2,000 monthly spend ceiling (max ₹100 value); excess spend drops to 0.5%.",
+      "Bank charges a ₹99 + GST redemption fee every time points are claimed for cashback or vouchers (hoard 4,000+ points before redeeming).",
+      "Lounge access requires spending ₹20,000 in preceding month—forcing spending into 0.5% base categories.",
+      "Non-HPCL fuel earns zero points and incurs net surcharges; rent incurs 1% fee (min ₹249 + GST)."
+    ],
     "whyCreditWiseRecommends": "Unlike single-purpose fuel cards, it also rewards monthly grocery and electricity bills at a generous 5% rate.",
-    "orientation": "horizontal"
+    "orientation": "horizontal",
+    "feeDetails": "₹589 total first-year cost (₹499 base fee + 18% GST). Welcome voucher worth ₹500 on first HPCL fuel transaction of ₹500+ within 30 days.",
+    "welcomeBenefits": "Welcome voucher worth ₹500 on first HPCL fuel transaction of ₹500+ within 30 days of card issuance.",
+    "underwritingEligibility": {
+      "salaried": "Minimum age 21 to 65 years with annual income baseline of ₹3,00,000 per annum",
+      "selfEmployed": "Minimum age 21 to 65 years with regular annual ITR filings"
+    },
+    "realWorldGotchas": [
+      {
+        "title": "Never Use UPI for Fuel Payments",
+        "tag": "HP Pay QR Only",
+        "description": "The card awards 5% fuel rewards (30 Reward Points per ₹150) plus 1.5% Happy Coins only when paying through the HP Pay app. According to IDFC FIRST Bank criteria, fuel transactions made via direct UPI apps (even if linked to this RuPay card) are strictly excluded from the 5% fuel rewards and earn zero accelerated value."
+      },
+      {
+        "title": "Halt Grocery & Utility Spends at Exactly ₹2,000",
+        "tag": "₹2,000 Spend Ceiling",
+        "description": "While advertised as 5% value-back on groceries and utility bills, the accelerated tier is capped at just ₹2,000 of combined spending per statement cycle (earning a maximum of 400 Reward Points, worth exactly ₹100 in cash). Every rupee spent beyond ₹2,000 drops down to the standard 3X base rate, yielding a meager 0.5% to 0.75% return."
+      },
+      {
+        "title": "The Hard-to-Reward FASTag Loophole",
+        "tag": "5% on FASTag",
+        "description": "Most Indian credit cards completely exclude FASTag recharges. The Power+ card offers a genuine 5% return on IDFC FIRST FASTag recharges, provided the recharge is executed strictly inside the IDFC FIRST Mobile Banking or FIRST Forward App. The spend is capped at ₹1,000 per month (yielding ₹50 in value)."
+      },
+      {
+        "title": "The ₹99 + GST Point Redemption Fee",
+        "tag": "₹99 Redemption Tax",
+        "description": "While IDFC points do not have an expiration date, the bank levies a standard ₹99 + GST processing fee on every redemption request for cashback or vouchers. Never redeem in small batches; always accumulate at least 4,000 points (worth ₹1,000) before claiming to avoid surrendering 10%+ of your earnings to the bank."
+      },
+      {
+        "title": "The Lounge Access Spending Hurdle",
+        "tag": "₹20,000 Monthly Hurdle",
+        "description": "The card offers 1 complimentary domestic airport lounge visit per calendar quarter, but it is gated by a strict milestone: you must spend a minimum of ₹20,000 in the immediately preceding calendar month to unlock the visit for the following month. Because spending ₹20,000 forces you into the low-yielding 0.5% base tier once category caps are exhausted, chasing lounge access on this card is mathematically counterproductive."
+      },
+      {
+        "title": "Non-HPCL Fuel & Rent Penalties",
+        "tag": "Strict Surcharges",
+        "description": "Swiping at non-HPCL fuel pumps earns 0 points and incurs full fuel surcharges without waiver. Paying rent triggers zero points plus a mandatory 1% processing fee (minimum ₹249 + GST)."
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "title": "The \"Good\" Profit Example: Dedicated Commuter Checklist",
+        "scenario": "Targeted monthly spend of ₹9,000: ₹6,000 HPCL fuel via HP Pay app + ₹2,000 electricity bill + ₹1,000 IDFC FASTag recharge.",
+        "pointsEarned": "Fuel: 1,200 IDFC points (₹300) + 360 Happy Coins (₹90) + 1% surcharge waiver (₹60) = ₹450 value. Utility & FASTag: 400 points (₹100) + 200 points (₹50) = ₹150 value.",
+        "realWorldValue": "Total monthly return is ₹540 on ₹9,000 spend (~6.0% net return), generating over ₹6,400 in annual savings and easily beating the ₹589 card fee even without the ₹1.5L waiver."
+      },
+      {
+        "title": "The \"Bad\" Value Trap: The All-in-One Household Blunder",
+        "scenario": "Using this as a primary card: ₹25,000 house rent + ₹8,000 supermarket groceries + ₹6,000 summer electricity + ₹4,000 non-HPCL fuel.",
+        "pointsEarned": "Rent earns 0 points and incurs ₹295 penalty (1% + GST). Groceries & Utilities hit the ₹2,000 cap (earning ₹100), with the excess ₹12,000 dropping to base rate (earning ₹60). Non-HPCL fuel earns 0 points with extra surcharges.",
+        "realWorldValue": "Total spend of ₹43,000 generated ₹295 in rental cash penalties against only ₹160 in points value—resulting in a net cash loss by misusing category caps."
+      }
+    ]
   },
   {
     "id": "indusind-eazydiner",
     "slug": "indusind-eazydiner",
-    "name": "EazyDiner IndusInd Bank Credit Card",
+    "name": "EazyDiner IndusInd Bank Credit Card (Visa Signature)",
     "issuer": "IndusInd Bank",
     "bank": "IndusInd Bank",
     "network": "Visa",
@@ -2454,31 +3006,32 @@
     "description": "India's premier dedicated restaurant card giving cardholders an extra 25% off (up to ₹1,000) every time they dine out via PayEazy, complimentary EazyDiner Prime, and 2 domestic lounge visits per quarter.",
     "annualFee": 1999,
     "joiningFee": 1999,
-    "feeWaiver": "No spend-based waiver; renewed with complimentary 1-year EazyDiner Prime membership.",
+    "feeWaiver": "No spend-based waiver; each annual renewal automatically grants a fresh 1-year EazyDiner Prime membership (₹2,495) plus 2,000 bonus reward points (₹400).",
     "apr": 46,
     "cashbackRate": 0,
-    "rewardRate": 3.3,
+    "rewardRate": 2,
     "loungeAccess": 8,
-    "rewardSummary": "Flat 25% instant discount up to ₹1,000 on PayEazy dining bills; 10 reward points per ₹100 on dining, shopping, and entertainment (3.3% return); 4 points per ₹100 on other retail.",
+    "rewardSummary": "Instant 25% discount up to ₹1,000 per bill on PayEazy (dining out and food delivery); 10 Reward Points per ₹100 on dining, shopping, and entertainment (2.0% net return at ₹0.20/point); 4 Reward Points per ₹100 on other retail (0.8% net return). Points can be burned instantly at checkout on PayEazy.",
     "rewardCategories": {
-      "eazyDinerDining": "25% instant discount up to ₹1,000",
-      "diningEntertainment": "10 reward points / ₹100",
-      "otherRetail": "4 reward points / ₹100"
+      "payEazyDining": "25% instant discount up to ₹1,000 per transaction (baseline ₹2,000 monthly cap)",
+      "diningShoppingEntertainment": "10 Reward Points / ₹100 (2.0% return at ₹0.20/pt)",
+      "otherRetail": "4 Reward Points / ₹100 (0.8% return at ₹0.20/pt)"
     },
-    "rewardCaps": "Discount applicable unlimited times per month with minimum billing interval.",
-    "exclusions": "Fuel, wallet loads, rent, government transactions.",
+    "rewardCaps": "PayEazy 25% discount capped at ₹1,000 per transaction with a ₹2,000 monthly cumulative baseline cap; unlocked to ₹5,000 monthly cap with ₹30,000 non-dining spend in previous cycle. 2-hour cooling period per restaurant.",
+    "exclusions": "Fuel, wallet loads, rent, and government transactions earn zero reward points. Dining transactions are strictly excluded from quarterly non-dining milestone progress.",
     "benefits": [
-      "Complimentary 1-year EazyDiner Prime membership (guaranteed 25-50% off at 2,000+ top restaurants)",
-      "Additional 25% instant discount (up to ₹1,000) on restaurant bills paid through PayEazy",
-      "2 complimentary domestic airport lounge visits per calendar quarter (8 per year)",
-      "2 complimentary movie tickets on BookMyShow every month (up to ₹200 per ticket)",
-      "2,000 welcome bonus reward points + ₹1,000 Postcard Hotel voucher on card activation"
+      "Complimentary 1-year EazyDiner Prime membership (guaranteed 25%–50% off at partner restaurants)",
+      "Additional 25% instant discount up to ₹1,000 on restaurant bills and food delivery via PayEazy",
+      "8 complimentary domestic airport lounge visits per year (2 per quarter) with no monthly spend hurdle",
+      "Buy 1 Get 1 free movie tickets on BookMyShow twice a month (up to ₹200 off per free ticket, up to ₹4,800/yr value)",
+      "2,000 welcome & renewal bonus reward points (worth ₹400) + ₹1,000 Postcard Hotel voucher",
+      "Real-time point redemption on PayEazy at 1 point = ₹0.20 directly against live dining bills"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
     "incomeRequirement": "₹6,00,000 per annum",
     "locationRestrictions": "Cities with EazyDiner presence (Delhi NCR, Mumbai, Bengaluru, Kolkata, Chennai, Hyderabad, Goa, etc.).",
-    "travelBenefits": "8 domestic airport lounge visits per year.",
-    "loungeBenefits": "8 complimentary domestic airport lounge visits per year (2 per quarter).",
+    "travelBenefits": "8 domestic airport lounge visits per year (2 per quarter) with no spend criteria.",
+    "loungeBenefits": "8 complimentary domestic airport lounge visits per year (2 per calendar quarter) with zero spend hurdle.",
     "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per month.",
     "diningBenefits": "Unrivaled dining perks: EazyDiner Prime + 25% instant discount on PayEazy + 10x reward points.",
     "forexBenefits": "Standard 3.5% foreign currency markup.",
@@ -2487,11 +3040,84 @@
     "officialSource": "IndusInd Bank Official Portal",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active",
-    "goodFor": "Frequent diners, foodies, and social weekenders",
-    "whoItFits": "Anyone who dines out at cafes, bistros, and upscale restaurants at least once or twice a month.",
-    "whatToWatchOutFor": "Most valuable in metropolitan cities where EazyDiner has widespread partner restaurant density.",
-    "whyCreditWiseRecommends": "Just two dinners a month using the 25% discount easily yields ₹10,000+ in annual savings, obliterating the ₹1,999 card fee.",
-    "orientation": "horizontal"
+    "goodFor": "Metro food lovers, restaurant regulars, and weekend diners in Tier-1 cities",
+    "whoItFits": "Diners in Delhi-NCR, Mumbai, Bengaluru, Pune, Chennai, Kolkata, and Hyderabad who eat out or order via EazyDiner at least twice a month.",
+    "whatToWatchOutFor": [
+      "Cumulative ₹2,000 monthly discount baseline cap (requires ₹30k non-dining spend to unlock ₹5k cap).",
+      "Point redemption value is ₹0.20 (not 3.3%).",
+      "Dining spend excluded from quarterly milestones.",
+      "Severe value drain in Tier-2/3 cities."
+    ],
+    "whyCreditWiseRecommends": "Dining out just 2 to 3 times a month yields over ₹27,000 in combined annual savings via the Prime + PayEazy double dip, completely eclipsing the ₹2,359 annual fee.",
+    "orientation": "horizontal",
+    "feeDetails": "₹2,359 total first-year cost (₹1,999 base fee + 18% GST). Welcome & renewal benefits include a 1-year complimentary EazyDiner Prime membership (market value ₹2,495) plus 2,000 bonus reward points (worth ₹400 in direct bill burn).",
+    "underwritingEligibility": "Indian residents aged 21-65 with verified salaried or self-employed income of ₹6,00,000+ per year, primarily residing in metro cities with EazyDiner partner presence.",
+    "realWorldGotchas": [
+      {
+        "title": "The Invisible PayEazy Cap Matrix",
+        "tag": "₹2,000 Baseline Cap",
+        "description": "While advertised as 'no monthly cap on transaction count', the fine print enforces a cumulative baseline discount cap of ₹2,000 per calendar month with zero spend criteria. Unlocking an additional ₹3,000 discount (taking the monthly ceiling to ₹5,000) requires spending ₹30,000 on non-dining categories in the preceding billing cycle. Do not force non-dining retail spend onto this card just to unlock the higher cap; its 0.8% base reward rate is easily beaten by basic cashback cards."
+      },
+      {
+        "title": "The 2026 Disparity Trap (Visa Signature vs RuPay Platinum)",
+        "tag": "Visa vs RuPay LTF",
+        "description": "IndusInd offers two co-branded EazyDiner variants: the premium Visa Signature (₹1,999 + GST fee) and the Lifetime Free (LTF) RuPay Platinum. Do not accept a downgrade to RuPay if you are a high-volume diner; the LTF card slashes point valuation from ₹0.20 down to a meager ₹0.10 per point and enforces drastically lower instant discount limits."
+      },
+      {
+        "title": "The Non-Dining Milestone Trap",
+        "tag": "Dining Excluded",
+        "description": "The card offers a milestone bonus of 2,000 bonus reward points (worth ₹400) upon spending ₹30,000 every 90 days. However, bank terms explicitly exclude all dining expenditures from this calculation. A ₹40,000 celebration dinner contributes zero progress toward the ₹30,000 quarterly milestone."
+      },
+      {
+        "title": "Real-Time PayEazy Burn Loophole",
+        "tag": "1 Pt = ₹0.20 Live Offset",
+        "description": "IndusInd eliminated 'orphaned points' on this card by allowing cardholders to burn accumulated reward points directly at checkout on the PayEazy payment screen. Points retain their full cash-equivalent value of 1 point = ₹0.20, instantly knocking cash off the live restaurant bill."
+      },
+      {
+        "title": "BookMyShow Strict BOGO Condition",
+        "tag": "Strict 2-Ticket Minimum",
+        "description": "The card provides 2 free BookMyShow tickets per month (capped at ₹200 per free ticket, offering up to ₹4,800 in annual savings). Unlike premium cards offering flat solo discounts, this is an uncompromising Buy 1 Get 1 Free offer requiring a minimum purchase of 2 tickets in a single booking."
+      },
+      {
+        "title": "The Geographic Powerhouse Reality",
+        "tag": "Tier-1 Metro Only",
+        "description": "This card is custom-built for residents of Delhi-NCR, Mumbai, Bengaluru, Pune, Chennai, Kolkata, and Hyderabad where EazyDiner has widespread partner restaurant density. In Tier-2/3 cities or for users loyal to Swiggy/Zomato, the card is an operational cash drain."
+      },
+      {
+        "title": "The Double-Dip Stacking Formula & 2-Hour Cooldown",
+        "tag": "Double-Dip Stacking",
+        "description": "Peak value requires stacking: first reserve a Prime partner restaurant offering 25%–50% base discount, then pay via PayEazy on the app for an extra 25% off (up to ₹1,000). Group bill splits must respect the mandatory 2-hour cooling period between consecutive PayEazy transactions at the same restaurant."
+      },
+      {
+        "title": "Zero-Spend-Hurdle Domestic Lounge Access",
+        "tag": "No Spend Hurdle",
+        "description": "Enjoy 8 complimentary domestic airport lounge visits per year (2 per quarter) with zero spend hurdle. Unlike ICICI or IDFC FIRST cards that mandate ₹10,000 to ₹20,000 in monthly spends, this card provides reliable, condition-free lounge access."
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "partner": "EazyDiner PayEazy",
+        "title": "The Metro Socialite (Good Profit Blueprint)",
+        "realizedValuePerPoint": "₹0.20 (Direct Bill Offset)",
+        "scenario": "A resident in Bengaluru dines out 3 times a month with an average bill of ₹4,000 per meal, booking via EazyDiner Prime (25% off) and paying via PayEazy with the card (additional 25% off).",
+        "cashPrice": "₹12,000 / month (₹1,44,000 / year)",
+        "pointsRequired": "0 points required upfront",
+        "taxesAndFees": "₹2,359 annual fee",
+        "netCashSaved": "₹27,000 dining cash savings + ₹3,500 points value",
+        "bottomLine": "Saving ₹2,250 every month wipes out the entire annual fee in under 35 days. Over a full year, the user pockets ₹27,000 in net dining discounts plus ~17,500 reward points (worth ₹3,500), achieving a net annual profit exceeding ₹28,000."
+      },
+      {
+        "partner": "General Retail Trap",
+        "title": "The Casual Small-Town Diner (Bad Value Trap)",
+        "realizedValuePerPoint": "₹0.20 (Vouchers / Statement Credit)",
+        "scenario": "A cardholder in a town with minimal EazyDiner presence visits a local cafe once a month (₹1,200 bill) and puts ₹1,50,000 in general retail shopping onto the card, expecting high returns.",
+        "cashPrice": "₹1,64,400 total annual spend",
+        "pointsRequired": "6,000 points earned on retail (at 4 pts/₹100)",
+        "taxesAndFees": "₹2,359 annual fee",
+        "netCashSaved": "₹3,600 cafe savings + ₹1,200 points value",
+        "bottomLine": "Total gross return of ₹4,800 minus the ₹2,359 fee leaves a meager annual profit of just ₹2,441 for an entire year of card management. The 0.8% base retail earn rate significantly lags standard cashback cards."
+      }
+    ]
   },
   {
     "id": "indusind-tiger",
@@ -2518,25 +3144,30 @@
     "cashbackRate": 0,
     "rewardRate": 2.4,
     "loungeAccess": 8,
-    "rewardSummary": "Up to 6X accelerated reward points on tiered spending; 1 reward point = ₹0.40 cash credit or 1:1 air miles conversion.",
+    "rewardSummary": "Anniversary-year slab rewards: 1X (0.4%) up to ₹1L, 2X (0.8%) from ₹1L–₹2.5L, 4X (1.6%) from ₹2.5L–₹5L, and 6X (2.4%) above ₹5L. 1 Reward Point = ₹0.40 statement cash credit or 1:1 Air India Flying Returns (Maharaja Club) air miles. Low 1.5% forex markup.",
     "rewardCategories": {
-      "acceleratedTiers": "Up to 6X reward points",
-      "baseSpends": "1 to 2 reward points / ₹100"
+      "spendsAbove5L": "6 Reward Points / ₹100 (2.4% return / 1:1 air miles)",
+      "spends2.5Lto5L": "4 Reward Points / ₹100 (1.6% return)",
+      "spends1Lto2.5L": "2 Reward Points / ₹100 (0.8% return)",
+      "spendsUpTo1L": "1 Reward Point / ₹100 (0.4% return)"
     },
-    "rewardCaps": "Standard monthly category limits apply on specific MCCs.",
-    "exclusions": "Fuel, wallet loads, rent, and government transactions.",
+    "rewardCaps": "Cash credit redemptions capped at 5,000 points per calendar month. ₹149 + 18% GST (₹176) fee per cash redemption. Education spends earn points only up to ₹25,000/statement cycle. 1% fee on utilities exceeding ₹25,000/month; 1% fee on wallet loads exceeding ₹20,000/month.",
+    "exclusions": "Fuel, insurance premiums, wallet loads, rent, and government transactions earn zero reward points and are excluded from milestone slab calculations.",
     "benefits": [
       "Lifetime Free credit card with zero joining fee and zero annual renewal fee",
-      "Discounted 1.5% foreign currency transaction markup on international spends",
-      "2 complimentary domestic airport lounge visits per calendar quarter (8 per year)",
-      "2 complimentary international lounge visits per year with Priority Pass",
-      "1 complimentary movie ticket up to ₹500 every six months on BookMyShow"
+      "Discounted 1.5% foreign currency transaction markup (effective 1.77% with GST)",
+      "Up to 6 Reward Points per ₹100 on annual spend slabs (2.4% return / 1:1 air miles)",
+      "1:1 Air Miles transfer to Air India Maharaja Club (including unified Vistara aircraft routes)",
+      "8 complimentary domestic airport lounge visits per year (2 per quarter) with zero spend hurdle",
+      "2 complimentary international airport lounge visits per year via Priority Pass",
+      "Buy 1 Get 1 free movie ticket up to ₹500 once every 6 months on BookMyShow (twice a year)",
+      "1% fuel surcharge waiver up to ₹250 per statement cycle on transactions between ₹400 and ₹4,000"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
     "incomeRequirement": "₹5,00,000 per annum",
     "locationRestrictions": "Pan India.",
-    "travelBenefits": "Low 1.5% forex markup, 8 domestic lounges, 2 international lounges, and air miles redemption.",
-    "loungeBenefits": "8 complimentary domestic airport lounge visits/year (2 per calendar quarter) + 2 international visits/year via Priority Pass.",
+    "travelBenefits": "Discounted 1.5% forex markup (effective ~1.77% with GST), 8 domestic airport lounge visits/year, 2 international lounge visits/year via Priority Pass, and 1:1 Air India Maharaja Club transfers.",
+    "loungeBenefits": "8 complimentary domestic lounge visits per year (2 per calendar quarter) + 2 complimentary international lounge visits per year via Priority Pass. 100% unconditional with zero monthly spend hurdles.",
     "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per statement cycle.",
     "diningBenefits": "Dining discount privileges via IndusMoments.",
     "forexBenefits": "Discounted 1.5% foreign currency markup.",
@@ -2545,11 +3176,84 @@
     "officialSource": "IndusInd Bank Official Cards Directory",
     "lastVerified": "2026-10-23",
     "applicationAvailability": "Active",
-    "goodFor": "International travelers and online shoppers making foreign currency purchases",
-    "whoItFits": "Travelers seeking low foreign exchange fees and airport lounge access without paying any recurring annual membership fee.",
-    "whatToWatchOutFor": "Movie ticket offer is semi-annual rather than monthly.",
-    "whyCreditWiseRecommends": "Finding a completely lifetime-free card that offers both domestic & international lounges and a 1.5% forex rate is remarkably rare.",
-    "orientation": "vertical"
+    "goodFor": "International travellers, cross-border online spenders, and frequent airport lounge visitors",
+    "whoItFits": "Spenders who can funnel ₹5 Lakhs+ annually onto the card (especially overseas) or anyone seeking an unconditional zero-fee domestic and international lounge card.",
+    "whatToWatchOutFor": [
+      "Progressive slab system punishes low spenders (<₹2.5L yields 0.4%–0.8%).",
+      "Cash redemptions capped at 5,000 points/month with a ₹149+GST redemption fee.",
+      "Priority Pass guest visits are charged at ~$35.",
+      "Semi-annual BookMyShow limit."
+    ],
+    "whyCreditWiseRecommends": "An uncommon combination of Lifetime Free status, 1.5% forex markup (+0.63% net positive in the 6X slab), 1:1 Air India Maharaja Club miles, and 10 condition-free airport lounge visits annually.",
+    "orientation": "vertical",
+    "feeDetails": "Lifetime Free (₹0 joining fee and ₹0 annual renewal fee) with zero spend conditions or maintenance charges.",
+    "underwritingEligibility": "Indian residents aged 21-65 with verified salaried or self-employed income of ₹5,00,000+ per year. Approved applicants receive a physical Lifetime Free Visa Signature/Platinum card alongside a complimentary Priority Pass.",
+    "realWorldGotchas": [
+      {
+        "title": "The Slab-Based Anniversary Cliff (Hit ₹5L or Don't Spend)",
+        "tag": "Tiered Multipliers",
+        "description": "The card's advertised 6X rate is strictly back-loaded based on anniversary-year spend: ₹0–₹1L earns 1 pt/₹100 (0.4%), ₹1L–₹2.5L earns 2 pts/₹100 (0.8%), ₹2.5L–₹5L earns 4 pts/₹100 (1.6%), and only spends above ₹5L unlock 6 pts/₹100 (2.4%). Spending under ₹2.5 Lakhs yields substandard returns easily beaten by basic 1% cashback cards."
+      },
+      {
+        "title": "The 1.5% Forex Arbitrage (+0.63% Net Positive)",
+        "tag": "1.5% Forex Markup",
+        "description": "Standard cards charge 3.5% + GST (~4.13%) forex markup. The Tiger card slashes this to 1.5% + GST (~1.77%). When spending in the peak 6X slab (>₹5L), you earn a 2.4% reward rate while paying a 1.77% forex fee, generating a net profit of +0.63% on overseas transactions."
+      },
+      {
+        "title": "The Priority Pass Hidden Charge Trap",
+        "tag": "$35 Guest Fee",
+        "description": "The card includes 2 free international visits per year via Priority Pass. However, guest entries are never complimentary. If you bring a spouse or companion into an international lounge in Dubai or London, Priority Pass automatically charges ~$32–$35 (~₹3,000) directly to your credit card statement."
+      },
+      {
+        "title": "Cash Redemption Monthly Ceiling & ₹149 Fee",
+        "tag": "5,000 Pts/Mo Cap",
+        "description": "Cash credit redemptions are strictly capped at 5,000 reward points per calendar month. Additionally, IndusInd levies a flat redemption fee of ₹149 + 18% GST (₹176) per cash payout. For small balances (e.g., 800 pts = ₹320), this fee destroys over 55% of the earned rewards."
+      },
+      {
+        "title": "The 1:1 Air India & Vistara Fusion Advantage",
+        "tag": "1:1 Maharaja Club",
+        "description": "Points transfer 1:1 to Air India Flying Returns (now merged with Vistara into Maharaja Club). Following the fleet and route consolidation, 1:1 transfers unlock upgraded Vistara aircraft, retrofitted cabins, and premium product classes under unified Air India flight codes, yielding up to ₹0.75–₹1.50 per point on award flights."
+      },
+      {
+        "title": "Insurance & Government Slabs Loophole Plugged",
+        "tag": "0 Pts on Insurance/Govt",
+        "description": "Previously, cardholders farmed the ₹5 Lakh milestone by routing tax and insurance payments. IndusInd has completely closed this route: insurance premiums and government/tax payments earn zero points and do not count toward the annual slab thresholds."
+      },
+      {
+        "title": "BookMyShow Semi-Annual Restriction",
+        "tag": "Once Every 6 Months",
+        "description": "The Buy 1 Get 1 free movie ticket offer (up to ₹500 off) via BookMyShow is limited to twice per calendar year (strictly once every 6 months). Reserve this perk for premium IMAX or Director's Cut weekend screenings rather than low-priced weekday tickets."
+      },
+      {
+        "title": "Zero-Spend Unconditional Lounge Access",
+        "tag": "No Spend Hurdle",
+        "description": "While most competing cards in India now demand ₹10,000 to ₹35,000 in monthly spends to unlock airport lounges, Tiger cardholders receive 8 domestic lounge visits (2/quarter) and 2 international lounge visits per year with zero spend hurdles."
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "partner": "Air India Maharaja Club",
+        "title": "The High-Value International Spender (Good Profit Blueprint)",
+        "realizedValuePerPoint": "₹0.75 (Flight Award Yield)",
+        "scenario": "A cardholder spends ₹6,00,000 across their anniversary year on international travel, luxury electronics, and family vacations, passing the ₹5 Lakh cliff.",
+        "cashPrice": "₹6,00,000 annual spend",
+        "pointsRequired": "20,000 points earned across slabs",
+        "taxesAndFees": "₹10,620 (1.77% forex fee) + ₹0 annual fee",
+        "netCashSaved": "₹15,000 flight ticket + ₹6,000 lounge value = ₹21,000",
+        "bottomLine": "Earning 20,000 points across the tiered slabs and transferring them 1:1 to Air India Maharaja Club yields an award flight worth ₹15,000 (such as a one-way domestic business class or Dubai economy seat). Combined with lounge access, total realized value is ₹21,000 against ₹10,620 in forex fees, delivering ~₹10,380 in net profit on a Lifetime Free card."
+      },
+      {
+        "partner": "Statement Cashback",
+        "title": "The Casual Low-Spender Clutter (Bad Value Trap)",
+        "realizedValuePerPoint": "₹0.18 (Post-Fee Net Yield)",
+        "scenario": "A user holds the card casually as a 'free' card and spends ₹80,000 across the entire year on minor weekend outings.",
+        "cashPrice": "₹80,000 annual spend",
+        "pointsRequired": "800 points earned (stuck in Slab 1 at 1 pt/₹100)",
+        "taxesAndFees": "₹176 (₹149 + GST redemption fee)",
+        "netCashSaved": "₹144 net profit",
+        "bottomLine": "Trapped in Slab 1, ₹80,000 spend generates only 800 points (gross value ₹320). After subtracting the ₹176 cash redemption fee, the user nets a paltry ₹144—an effective return of just 0.18%. For low spends, the card should only be retained as a passive lounge backup, never as a primary spender."
+      }
+    ]
   },
   {
     "id": "kiwi-yes-bank",
@@ -2570,30 +3274,31 @@
     "description": "Fintech-powered lifetime-free RuPay credit card issued by YES BANK via the Kiwi app, giving instant cashback on everyday UPI QR payments at local merchants.",
     "annualFee": 0,
     "joiningFee": 0,
-    "feeWaiver": "Lifetime Free with no annual fees.",
+    "feeWaiver": "Lifetime Free with no annual fees or minimum spend conditions.",
     "apr": 42,
     "cashbackRate": 1.5,
-    "rewardRate": 0.5,
+    "rewardRate": 1.5,
     "loungeAccess": 0,
-    "rewardSummary": "1.5% flat cashback (Kiwi's 'Kiwi Points') on all merchant UPI Scan & Pay transactions; 0.5% cashback on online e-commerce transactions.",
+    "rewardSummary": "1.5% cashback (6 Kiwi Points per ₹100) on merchant UPI Scan & Pay via the Kiwi App; 1 Kiwi Point = ₹0.25 cash deposited directly into your bank account. Flat 0% on transactions under ₹100. 0.5% on third-party UPI apps or online e-commerce.",
     "rewardCategories": {
-      "upiScanAndPay": "1.5% cashback (up to 5% with Neon)",
-      "onlinePurchases": "0.5% cashback"
+      "kiwiAppUpiScan": "1.5% cashback (6 Kiwi Points / ₹100, on multiples of ₹100)",
+      "thirdPartyUpiOrOnline": "0.5% cashback (2 Kiwi Points / ₹100)",
+      "transactionsUnder100": "0% cashback (0 points awarded)"
     },
-    "rewardCaps": "Standard monthly UPI fair usage caps apply as per Kiwi app terms.",
-    "exclusions": "Peer-to-peer transfers, fuel, rent, wallet reloads, and cash withdrawals.",
+    "rewardCaps": "Monthly cashback strictly capped at 1% of total allocated credit limit. Minimum cash redemption threshold of 500 Kiwi Points (₹125), redeemable only in blocks of 500 points.",
+    "exclusions": "Transactions under ₹100, P2PM (peer-to-peer merchant) QR codes, peer-to-peer transfers, insurance premiums, education fees, fuel, rent, wallet loads, and government taxes earn zero points.",
     "benefits": [
-      "100% Lifetime Free credit card with instant digital issuance in the Kiwi app",
-      "1.5% guaranteed cashback on merchant UPI QR code payments",
-      "Enhanced cashback up to 5% on UPI for Kiwi Neon subscribers",
-      "Direct instant redemption of Kiwi Points straight to your savings account",
-      "Zero physical card maintenance hassle — native mobile-first experience"
+      "100% Lifetime Free virtual RuPay credit card issued instantly via the Kiwi app",
+      "1.5% cashback (6 Kiwi Points per ₹100) on merchant UPI QR payments of ₹100+ via Kiwi app",
+      "1 Kiwi Point = ₹0.25 real cash deposited directly into your linked bank account",
+      "Zero physical card clutter — 100% digital onboarding and virtual card management",
+      "1% fuel surcharge waiver on transactions between ₹400 and ₹5,000"
     ],
     "eligibility": "Indian resident aged 21-60 years with a good CIBIL score.",
     "incomeRequirement": "₹25,000/month for salaried",
     "locationRestrictions": "Pan India (app-based).",
-    "travelBenefits": "None.",
-    "loungeBenefits": "None.",
+    "travelBenefits": "None on the standard free card. Kiwi Neon subscribers (₹999 + GST) unlock up to 3 domestic lounge visits gatekept behind ₹50k, ₹1L, and ₹1.5L spend milestones.",
+    "loungeBenefits": "Zero complimentary lounge access on the standard card. Optional Kiwi Neon subscription unlocks 3 domestic lounge visits tied to annual milestone spend hurdles.",
     "fuelBenefits": "1% fuel surcharge waiver on transactions between ₹400 and ₹5,000.",
     "diningBenefits": "1.5% cashback on local cafe and restaurant UPI QR payments.",
     "forexBenefits": "Standard 3.5% foreign currency markup.",
@@ -2602,11 +3307,86 @@
     "officialSource": "Kiwi & YES BANK Official Partnership Portal",
     "lastVerified": "2026-10-23",
     "applicationAvailability": "Active (via Kiwi App)",
-    "goodFor": "Daily micro-transactions, chai, street food, and local groceries via UPI",
-    "whoItFits": "Anyone whose daily spending consists largely of scanning QR codes at local neighborhood shops.",
-    "whatToWatchOutFor": "Virtual card only; does not come with a physical plastic card for POS swiping or lounge visits.",
-    "whyCreditWiseRecommends": "It turns every mundane UPI scan into guaranteed cash deposited directly into your bank account.",
-    "orientation": "horizontal"
+    "goodFor": "Mid-sized merchant UPI QR payments (₹100+) at local supermarkets, retail stores, and restaurants via Kiwi app",
+    "whoItFits": "Spenders who regularly scan merchant UPI QR codes for grocery runs, pharmacy bills, and retail purchases of ₹100 or higher and want direct cash to their bank account.",
+    "whatToWatchOutFor": [
+      "Transactions under ₹100 earn flat zero points.",
+      "Monthly cashback capped at 1% of credit limit.",
+      "3rd-party UPI apps drop return to 0.5%.",
+      "P2PM merchant codes earn 0%.",
+      "500-point minimum redemption hurdle.",
+      "100% virtual card (no physical card)."
+    ],
+    "whyCreditWiseRecommends": "A clean Lifetime Free virtual RuPay card that converts mid-sized merchant UPI QR scans into real cash deposited straight into your bank account at 1.5% net value.",
+    "orientation": "horizontal",
+    "feeDetails": "Lifetime Free (₹0 joining fee and ₹0 annual renewal fee) with zero recurring maintenance charges.",
+    "underwritingEligibility": "Indian residents aged 21-60 with a valid PAN, Aadhaar, and clean credit history. Card is issued exclusively in digital virtual format through the Kiwi mobile app with credit lines underwritten by YES BANK.",
+    "realWorldGotchas": [
+      {
+        "title": "The Under-₹100 Transaction Trap (0% Return)",
+        "tag": "0% Below ₹100",
+        "description": "Cashback is strictly calculated on transaction amounts in clean multiples of ₹100. If you scan for a ₹99 grocery item or a ₹40 snack, you receive a flat zero points (0% return). Even on a ₹190 scan, you only earn rewards on the first ₹100. Daily micro-spends generate zero value."
+      },
+      {
+        "title": "The 1% Credit Limit Monthly Cap Trap",
+        "tag": "1% of Credit Limit Cap",
+        "description": "Total monthly cashback is strictly capped at 1% of your assigned credit limit. If YES BANK approves you with a beginner credit limit of ₹30,000, your maximum possible cashback is capped at just ₹300 per month, regardless of how many times you repay the balance and reuse the limit."
+      },
+      {
+        "title": "Kiwi App Lock-in (0.5% Drop on GPay/PhonePe)",
+        "tag": "Kiwi App Only",
+        "description": "The advertised 1.5% cashback applies strictly when scanning merchant QR codes inside the proprietary Kiwi App. If you link this RuPay card to Google Pay, PhonePe, or Paytm and scan from there, transactions default to standard online rates, slashing your return to an uncompetitive 0.5%."
+      },
+      {
+        "title": "The Small Merchant / P2PM 0% Blackout",
+        "tag": "P2PM Codes Excluded",
+        "description": "Many small street vendors, vegetable stalls, and neighborhood kiosks use personal Peer-to-Peer Merchant (P2PM) QR codes to avoid merchant fees. Kiwi's algorithm automatically identifies P2PM codes and pays zero rewards. If the QR code displays an individual's name rather than a registered trade business, you earn 0%."
+      },
+      {
+        "title": "The 500-Point Minimum Redemption Hurdle",
+        "tag": "500-Point Blocks",
+        "description": "1 Kiwi Point equals ₹0.25 in cash. However, Kiwi enforces a strict minimum cash-out threshold of 500 points (worth ₹125), and you can only redeem in clean blocks of 500 points. Casual or low-volume spenders often find their earned points stranded indefinitely inside the app."
+      },
+      {
+        "title": "The Kiwi Neon Subscription Milestone Trap",
+        "tag": "Neon Milestone Trap",
+        "description": "The app heavily promotes the Kiwi Neon upgrade for ₹999 + GST to unlock 'up to 5% cashback'. However, Neon only bumps the base rate from 1.5% to 2.0%; the 5% tier activates only after crossing ₹1,50,000 in cumulative UPI spending. Unless you reliably spend over ₹1.5 Lakhs annually on merchant UPI, Neon is a net loss."
+      },
+      {
+        "title": "Merchant Terminal Surcharge / RuPay Decline Barrier",
+        "tag": "MDR Card Declines",
+        "description": "To avoid Merchant Discount Rate (MDR) costs, many small offline merchants manually disable credit card transactions on their soundboxes and QR terminals for transactions under ₹200 to ₹500, forcing you to fall back to a direct bank account UPI transfer."
+      },
+      {
+        "title": "100% Virtual Card Risk & Refund Penalty",
+        "tag": "Virtual Card Only",
+        "description": "The card has no physical plastic card. If you lose your phone or experience an app login lockout, your card is completely frozen. Furthermore, if you return an item after cashing out rewards, Kiwi applies a negative point balance, freezing all future cashback until cleared."
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "partner": "Direct Savings Account Deposit",
+        "title": "The Strategic Grocery & Retail UPI Purchaser (Good Profit Blueprint)",
+        "realizedValuePerPoint": "₹0.25 (Direct Bank Cash)",
+        "scenario": "A user utilizes the card strictly for buying monthly family groceries, electronics, and apparel at local supermarkets using UPI QR codes, making 4 transactions of ₹4,000 each per month (₹16,000/mo spend).",
+        "cashPrice": "₹16,000 / month (₹1,92,000 / year)",
+        "pointsRequired": "960 Kiwi Points earned monthly (6 pts/₹100)",
+        "taxesAndFees": "₹0 annual card fee",
+        "netCashSaved": "₹240/month (₹2,880/year pure cash)",
+        "bottomLine": "Because each ₹4,000 payment is a clean multiple of ₹100, the user earns 960 points monthly. At 1 point = ₹0.25, this converts to ₹240 monthly deposited straight into their linked bank account, netting ₹2,880 annually with zero fees or maintenance."
+      },
+      {
+        "partner": "Micro-Merchant QR Trap",
+        "title": "The Micro-Chai Hawker Blunder (Bad Value Trap)",
+        "realizedValuePerPoint": "₹0.00 (Rounded Down to Zero)",
+        "scenario": "A user treats the card as a daily wallet replacement, scanning 120 times in a month for ₹40 chai, snacks, and ₹60 auto fares, totaling ₹7,200 in monthly spend.",
+        "cashPrice": "₹7,200 / month spend",
+        "pointsRequired": "0 points earned (every transaction sits under ₹100 cliff)",
+        "taxesAndFees": "₹0 annual card fee",
+        "netCashSaved": "₹0 cash back",
+        "bottomLine": "Despite making 120 transactions and spending ₹7,200, the user receives exactly 0 Kiwi Points because every individual transaction was under the ₹100 minimum threshold. Any previous points remain locked under the 500-point cash-out minimum, resulting in zero return on effort."
+      }
+    ]
   },
   {
     "id": "rbl-indianoil-xtra",
@@ -2627,31 +3407,33 @@
     "description": "High-yield co-branded fuel card offering 8.5% value-back on IndianOil fuel purchases, 1% fuel surcharge waiver, and 2 reward points per ₹100 on everyday spends.",
     "annualFee": 1500,
     "joiningFee": 1500,
-    "feeWaiver": "Waived on annual retail spends of ₹2,75,000 in preceding year.",
+    "feeWaiver": "Waived on annual retail spends of ₹2,75,000 in preceding year (excludes rent, utilities, insurance, education, and wallet loads).",
     "apr": 47.88,
     "cashbackRate": 8.5,
-    "rewardRate": 1,
+    "rewardRate": 8.5,
     "loungeAccess": 0,
-    "rewardSummary": "Up to 8.5% value-back at IndianOil fuel pumps (earned as 15 Fuel Points per ₹100, where 1 Fuel Point = ₹0.50); 2 reward points per ₹100 on other retail.",
+    "rewardSummary": "Up to 8.5% value-back at IndianOil pumps (15 Fuel Points per ₹100, where 1 Fuel Point = ₹0.50 fuel value + 1% surcharge waiver). 2 Fuel Points per ₹100 on other retail (1% return). Quarterly bonus of 1,000 Fuel Points on ₹75,000 retail spend.",
     "rewardCategories": {
-      "indianOilFuel": "8.5% value-back (15 Fuel Points / ₹100)",
-      "otherRetail": "2 reward points / ₹100"
+      "indianOilFuel": "8.5% value-back (15 Fuel Points / ₹100 + 1% surcharge waiver, capped at 2,000 points / ₹13,333 spend per cycle)",
+      "otherRetail": "2 Fuel Points / ₹100 (1.0% return at ₹0.50/pt)",
+      "quarterlyMilestone": "1,000 bonus Fuel Points (₹500 value) per calendar quarter on ₹75,000 retail spend"
     },
-    "rewardCaps": "Fuel points on IndianOil capped at 1,000 Fuel Points per statement cycle.",
-    "exclusions": "Wallet loads, rent payments, utilities, and cash advances.",
+    "rewardCaps": "Accelerated fuel points capped at 2,000 Fuel Points per statement cycle (maxed at ₹13,333 spend). 1% fuel surcharge waiver valid between ₹500 and ₹4,000 (capped at ₹200/month; GST non-refundable). Offline UPI under ₹2,000 at small merchants earns 0 points.",
+    "exclusions": "Utilities, insurance, rent, education fees, wallet loads, government taxes, and cash advances earn zero points, do not count toward quarterly milestones, and are excluded from the ₹2,75,000 fee waiver threshold.",
     "benefits": [
-      "3,000 Fuel Points (worth ₹1,500) welcome gift upon card fee payment",
-      "Up to 8.5% value-back at authorized IndianOil petrol bunks",
-      "Redeem Fuel Points directly for free petrol at IndianOil stations via XTRA Rewards",
-      "1% fuel surcharge waiver across IndianOil pumps nationwide",
-      "10% discount on movie tickets on BookMyShow (up to ₹100 per transaction, 15 times a year)"
+      "3,000 Fuel Points welcome bonus (worth ₹1,500 in free fuel) upon paying the joining fee",
+      "15 Fuel Points per ₹100 at authorized IndianOil pumps (7.5% reward return at ₹0.50/pt)",
+      "1% fuel surcharge waiver on transactions between ₹500 and ₹4,000 (up to ₹200/month)",
+      "1,000 bonus Fuel Points every calendar quarter on spending ₹75,000 in retail",
+      "10% discount on BookMyShow movie tickets (up to ₹100 per transaction, 15 times a year)",
+      "Seamless digital redemption via IndianOil ONE app or direct POS terminal swipe at IOCL stations"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
     "incomeRequirement": "₹3,00,000 per annum",
     "locationRestrictions": "Pan India.",
     "travelBenefits": "None.",
     "loungeBenefits": "None.",
-    "fuelBenefits": "8.5% value-back at IndianOil pumps + 1% fuel surcharge waiver up to ₹100/month.",
+    "fuelBenefits": "8.5% value-back at IndianOil fuel stations (15 Fuel Points/₹100 + 1% surcharge waiver, capped at 2,000 points/month). Free fuel redemption at pump or via IndianOil ONE app.",
     "diningBenefits": "Standard RBL dining program offers.",
     "forexBenefits": "Standard 3.5% foreign currency markup.",
     "milestoneBenefits": "Fee waiver on ₹2,75,000 annual spend.",
@@ -2659,11 +3441,86 @@
     "officialSource": "RBL Bank Official Portal",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active",
-    "goodFor": "Heavy commuters and long-distance drivers fueling at IndianOil",
-    "whoItFits": "Car owners who spend ₹5,000 to ₹10,000 a month on fuel and prefer IndianOil outlets.",
-    "whatToWatchOutFor": "Monthly cap of 1,000 Fuel Points on fuel spends; fuel points must be redeemed at IndianOil outlets.",
-    "whyCreditWiseRecommends": "With an effective 8.5% return, it offers one of the highest petrol savings percentages on the market.",
-    "orientation": "vertical"
+    "goodFor": "Heavy commuters, intercity road travelers, and commercial drivers spending ₹8,000 to ₹13,000 monthly at IndianOil stations",
+    "whoItFits": "Vehicle owners who spend at least ₹5,000–₹13,000 a month on petrol/diesel and intentionally refuel exclusively at authorized IndianOil outlets.",
+    "whatToWatchOutFor": [
+      "₹1,770 annual cost with steep ₹2.75L waiver threshold.",
+      "Points drop from ₹0.50 to ₹0.10 if redeemed in online catalogue.",
+      "2,000 monthly point cap (maxed at ₹13,333 spend).",
+      "Un-waivable 1% surcharge at non-IOCL stations.",
+      "GST on surcharge non-refundable.",
+      "Offline UPI under ₹2,000 at small merchants earns 0%."
+    ],
+    "whyCreditWiseRecommends": "Delivers an unmatched 7.5% base reward rate plus 1% surcharge waiver on up to ₹13,333 of monthly fuel spend at IndianOil stations, with points redeemable 1:1 for free fuel.",
+    "orientation": "vertical",
+    "feeDetails": "₹1,770 total first-year and renewal cost (₹1,500 base fee + 18% GST). Welcome benefit: 3,000 Fuel Points (worth ₹1,500 in free fuel) credited upon paying the fee within 30 days.",
+    "underwritingEligibility": "Indian residents aged 21-65 with verified salaried or self-employed income of ₹3,00,000+ per year. Available in Visa and RuPay variants.",
+    "realWorldGotchas": [
+      {
+        "title": "Hit the ₹13,333 Fuel Spend Ceiling and Freeze",
+        "tag": "₹13,333 Spend Ceiling",
+        "description": "Accelerated fuel points are officially capped at 2,000 Fuel Points per statement cycle, reached at exactly ₹13,333 of monthly fuel spending. Any fuel spend beyond ₹13,333 drops to the standard base rate of 2 Fuel Points per ₹100 (a meager 1% return)."
+      },
+      {
+        "title": "The Catalogue Point Value Collapse (₹0.50 vs ₹0.10)",
+        "tag": "₹0.50 Fuel vs ₹0.10 Vouchers",
+        "description": "1 Fuel Point = ₹0.50 only when converted into fuel at IndianOil stations (3 Fuel Points = 5 XTRAREWARDS Points). If a cardholder redeems points through the RBL online catalogue for shopping vouchers or statement credit, point valuation collapses to just ₹0.10 each (an 80% loss in value)."
+      },
+      {
+        "title": "The 2026 IndianOil ONE App Digital Hack",
+        "tag": "App Digital Redemption",
+        "description": "Historically, redeeming points required asking pump attendants to process POS 'Instant Redeem', which often failed due to network glitches or untrained staff. You can now link the card inside the IndianOil ONE mobile app and redeem points digitally at the pump, ensuring the full ₹0.50/point value triggers smoothly."
+      },
+      {
+        "title": "The Non-IOCL Surcharge Penalty Trap",
+        "tag": "Strict 1% Surcharge",
+        "description": "Swiping this card at non-IndianOil stations (HPCL, BPCL, Shell) earns zero reward points and triggers a 1% fuel surcharge that RBL strictly refuses to waive. Always use an alternate card or cash if fueling at competitor bunks."
+      },
+      {
+        "title": "The Small Merchant RuPay UPI 0% Devaluation",
+        "tag": "0% on UPI < ₹2,000",
+        "description": "On the RuPay variant, offline UPI payments under ₹2,000 made at small merchants (annual turnover < ₹20 Lakhs) earn flat zero points and do not count toward quarterly milestones or the ₹2,75,000 fee waiver threshold. Avoid scanning for small street food or tea vendors."
+      },
+      {
+        "title": "The Fuel Surcharge GST Leakage",
+        "tag": "GST Non-Refundable",
+        "description": "While the 1% fuel surcharge is waived on transactions between ₹500 and ₹4,000, the 18% GST levied on that surcharge is non-refundable by RBL Bank. On a ₹4,000 fuel swipe, ~₹7.20 in un-waived GST permanently leaks back to the bank. Transactions under ₹500 attract full surcharges with zero waiver."
+      },
+      {
+        "title": "The Quarterly Milestone Hurdle Matrix",
+        "tag": "₹75k Quarterly Chunks",
+        "description": "The card awards 1,000 bonus Fuel Points (worth ₹500) per calendar quarter upon crossing ₹75,000 in retail spending. Manage spending in clean ₹75,000 quarterly blocks to secure the full 4,000 bonus points (₹2,000 annual value) and offset the annual fee."
+      },
+      {
+        "title": "Extensive Milestone & Waiver Blackout Sheet",
+        "tag": "Major Category Blackout",
+        "description": "Utilities, insurance, rent, education fees, wallet loads, and government services earn zero points, do not count toward quarterly milestones, and are excluded from the ₹2,75,000 annual spend waiver calculation."
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "partner": "IndianOil XTRAREWARDS Fuel",
+        "title": "The Long-Distance Daily Commuter (Good Profit Blueprint)",
+        "realizedValuePerPoint": "₹0.50 (Free Fuel Yield)",
+        "scenario": "A professional spends ₹10,000 a month on petrol at authorized IndianOil stations (₹1,20,000/year) and puts ₹75,000 per quarter (₹3,00,000/year) of general retail spends onto the card.",
+        "cashPrice": "₹4,20,000 total annual spend",
+        "pointsRequired": "31,000 Fuel Points earned across fuel, milestones, and retail",
+        "taxesAndFees": "₹0 (₹2.75L waiver achieved, next year's fee waived)",
+        "netCashSaved": "₹15,500 in pure free fuel",
+        "bottomLine": "Earning 18,000 points on fuel, 3,000 welcome points, 4,000 quarterly milestone points, and 6,000 retail points yields 31,000 points. Converted at ₹0.50 via IOCL POS or app, this nets ₹15,500 in free fuel. Total spend crosses the ₹2,75,000 threshold, waiving the annual fee and locking in an effective 5.16% blended return across all expenses."
+      },
+      {
+        "partner": "Online Shopping Voucher Trap",
+        "title": "The Low-Spend Catalogue Disaster (Bad Value Trap)",
+        "realizedValuePerPoint": "₹0.10 (Catalogue Devaluation)",
+        "scenario": "A user spends only ₹2,000 a month on fuel (₹24,000/year) and ₹56,000 on general retail across the entire year (total spend: ₹80,000), then redeems earned points for online gift vouchers.",
+        "cashPrice": "₹80,000 annual spend",
+        "pointsRequired": "4,720 Fuel Points earned",
+        "taxesAndFees": "₹1,770 annual renewal fee",
+        "netCashSaved": "₹472 gift voucher",
+        "bottomLine": "Redeeming 4,720 points through the RBL online catalogue slashes value from ₹0.50 down to ₹0.10 per point, yielding a meager ₹472 voucher. Because annual spend missed the ₹2,75,000 waiver hurdle, RBL charged the ₹1,770 renewal fee, turning the card into a net financial loss of -₹1,298."
+      }
+    ]
   },
   {
     "id": "sbi-bpcl-octane",
@@ -2685,44 +3542,122 @@
     "description": "SBI Card's premium fuel product delivering 7.25% value-back (25 reward points per ₹100) at Bharat Petroleum pumps, 10X points on groceries and dining, and domestic lounge access.",
     "annualFee": 1499,
     "joiningFee": 1499,
-    "feeWaiver": "Waived on annual spends of ₹2,00,000 in preceding year.",
+    "feeWaiver": "Waived on annual retail spends of ₹2,00,000 in preceding year.",
     "apr": 42,
     "cashbackRate": 7.25,
-    "rewardRate": 2.5,
+    "rewardRate": 7.25,
     "loungeAccess": 4,
-    "rewardSummary": "25 reward points per ₹100 on BPCL fuel, lubricants, and Bharatgas (6.25% value + 1% surcharge waiver = 7.25% total return); 10 points per ₹100 on groceries, departmental stores, and dining (2.5% return); 1 point per ₹100 on other retail.",
+    "rewardSummary": "25 Reward Points per ₹100 on BPCL petrol, diesel, lubricants, and Bharatgas domestic LPG (6.25% value-back + 1% surcharge waiver = 7.25% total return); 10 Reward Points per ₹100 on groceries, departmental stores, dining, and movies (2.5% return); 1 point per ₹100 on other retail (0.25% return).",
     "rewardCategories": {
-      "bpclFuel": "7.25% value-back (25 pts / ₹100)",
-      "groceriesAndDining": "10 points / ₹100 (2.5%)",
-      "otherRetail": "1 point / ₹100"
+      "bpclFuelAndLubricants": "7.25% value-back (25 pts / ₹100 + 1% surcharge waiver, capped at 2,500 pts / ₹10,000 spend per cycle)",
+      "bharatgasDomesticLpg": "6.25% value-back (25 pts / ₹100, independent cap of 500 pts / ₹2,000 spend per cycle)",
+      "groceriesDiningMovies": "10 Reward Points / ₹100 (2.5% return, capped at 7,500 pts / ₹75,000 spend per month)",
+      "otherRetail": "1 Reward Point / ₹100 (0.25% return)"
     },
-    "rewardCaps": "Fuel reward points capped at 2,500 points per billing cycle (₹10,000 spend).",
-    "exclusions": "Wallet loads, rent payments, education, and cash advances.",
+    "rewardCaps": "Fuel rewards capped at 2,500 points/billing cycle (₹10,000 spend). Bharatgas capped at 500 points/billing cycle (₹2,000 spend). 10X category capped at 7,500 points/month. Annual cash statement credit redemptions capped at 60,000 points (₹15,000 value). Surcharge waiver capped at ₹100/cycle.",
+    "exclusions": "Fuel payments made via UPI, non-BPCL fuel pumps, rent payments, wallet loads, education fees, government services, and cash advances earn zero reward points.",
     "benefits": [
-      "6,000 bonus reward points (worth ₹1,500) upon payment of joining fee",
-      "7.25% value back on BPCL petrol, diesel, and lubricants",
-      "10X reward points on grocery, departmental store, and dining spends",
-      "4 complimentary domestic airport lounge visits per calendar year (1 per quarter)",
-      "1% fuel surcharge waiver up to ₹100 per statement cycle"
+      "6,000 bonus reward points (worth ₹1,500) upon paying the joining fee within 30 days",
+      "7.25% value-back on BPCL fuel and lubricants (25 points/₹100 + 1% surcharge waiver)",
+      "6.25% value-back on Bharatgas domestic LPG cylinder bookings (up to ₹2,000/month)",
+      "10X reward points (2.5% return) on groceries, supermarkets, dining, and movies",
+      "4 domestic airport lounge visits per year (1 per quarter, requires ₹50k quarterly spend)",
+      "₹2,000 brand e-gift voucher upon reaching ₹3,00,000 in annual spending",
+      "Annual fee waiver on ₹2,00,000 annual retail spend"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
     "incomeRequirement": "₹30,000/month for salaried; ITR > ₹4.5 Lakhs for self-employed",
     "locationRestrictions": "Pan India.",
-    "travelBenefits": "4 domestic airport lounge visits per year.",
-    "loungeBenefits": "4 complimentary domestic airport lounge visits per year.",
-    "fuelBenefits": "7.25% value back on BPCL fuel up to ₹10,000/month + 1% surcharge waiver.",
-    "diningBenefits": "10X reward points on dining and food deliveries.",
+    "travelBenefits": "4 complimentary domestic airport lounge visits per calendar year (1 per quarter), subject to a quarterly retail spend hurdle of ₹50,000.",
+    "loungeBenefits": "4 domestic airport lounge visits/year (1 per quarter). Unlocked only upon spending ₹50,000 in the preceding calendar quarter.",
+    "fuelBenefits": "7.25% value-back on BPCL fuel and lubricants up to ₹10,000/month + 6.25% on Bharatgas LPG cylinders up to ₹2,000/month + 1% fuel surcharge waiver up to ₹100/month.",
+    "diningBenefits": "10 Reward Points per ₹100 on dining and food deliveries (2.5% value-back).",
     "forexBenefits": "Standard 3.5% foreign currency markup.",
     "milestoneBenefits": "e-Gift voucher worth ₹2,000 on annual spend of ₹3,00,000; renewal fee waiver on ₹2 Lakhs spend.",
     "officialUrl": "https://www.sbicard.com/en/personal/credit-cards/travel/bpcl-sbi-card-octane.page",
     "officialSource": "SBI Card Official Website",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active",
-    "goodFor": "Commuters who fuel at Bharat Petroleum and want grocery rewards + lounge access",
-    "whoItFits": "Car owners who want more than just a bare-bones fuel card, combining high petrol cashback with domestic lounge access.",
-    "whatToWatchOutFor": "Reward points on fuel are capped at ₹10,000 monthly spend; only valid at BPCL pumps.",
-    "whyCreditWiseRecommends": "It delivers instant joining fee recovery with 6,000 welcome points, while 7.25% fuel savings and lounge visits make it an outstanding all-rounder.",
-    "orientation": "horizontal"
+    "goodFor": "Urban commuters spending ₹5,000 to ₹10,000 monthly on BPCL fuel, domestic Bharatgas LPG users, and heavy grocery spenders",
+    "whoItFits": "Car owners who refuel exclusively at Bharat Petroleum stations and want to consolidate their family fuel and supermarket grocery expenses onto a single high-yield card.",
+    "whatToWatchOutFor": [
+      "Fuel rewards strictly disabled on UPI.",
+      "Swiping on non-SBI POS machines at BPCL pumps drops rate to 0.25%.",
+      "2,500 monthly fuel point cap.",
+      "Lounge access requires ₹50k quarterly spend.",
+      "60k annual statement cash limit.",
+      "Points expire after 24 months."
+    ],
+    "whyCreditWiseRecommends": "Combines 7.25% fuel savings on up to ₹10,000/month with 6.25% on Bharatgas LPG cylinders and 2.5% on groceries, easily recovering its fee and generating substantial annual surplus.",
+    "orientation": "horizontal",
+    "feeDetails": "₹1,769 total first-year and renewal cost (₹1,499 base fee + 18% GST). Welcome benefit: 6,000 bonus Reward Points (worth ₹1,500 in fuel or statement credit) upon paying the joining fee within 30 days.",
+    "underwritingEligibility": "Indian residents aged 21-65 with verified salaried or self-employed income meeting SBI Card credit criteria. Issued in Visa and RuPay variants.",
+    "realWorldGotchas": [
+      {
+        "title": "Never Use RuPay UPI at the BPCL Terminal",
+        "tag": "UPI Fuel Excluded",
+        "description": "SBI Card terms strictly disable accelerated fuel reward points on transactions made via the UPI mechanism, even on the RuPay variant. To secure the 7.25% return, you must physically dip or swipe the plastic card on the merchant POS terminal."
+      },
+      {
+        "title": "The 2026 BPCL 'Third-Party Terminal' Trap",
+        "tag": "Swipe on SBI POS Only",
+        "description": "Many Bharat Petroleum stations lease POS terminals from Axis, HDFC, or ICICI Bank. If a pump attendant swipes your Octane card on an Axis or HDFC terminal, the SBI backend fails to recognize the transaction as a BPCL pump, slashing your return to 0.25% (1 pt/₹100) and incurring an un-waived surcharge. Always command the attendant to swipe only on an SBI POS machine."
+      },
+      {
+        "title": "Domestic Lounge Spend Hurdle (₹50k/Quarter)",
+        "tag": "₹50k Spend Hurdle",
+        "description": "Complimentary domestic lounge access (1 visit per quarter) is no longer unconditional. Cardholders must spend at least ₹50,000 in the preceding calendar quarter to unlock the next quarter's lounge access. Since fuel is capped at ₹10,000/month, you must route grocery and retail spending onto the card to maintain lounge eligibility."
+      },
+      {
+        "title": "The Independent Bharatgas LPG Sub-Engine",
+        "tag": "6.25% on LPG Cylinders",
+        "description": "Unlike other cards that classify domestic LPG recharges under standard zero-reward utilities, the Octane card awards the full 25 points per ₹100 (6.25% return) on Bharatgas bookings via the official BPCL portal or app, backed by its own independent cap of 500 points (₹2,000 spend) per cycle."
+      },
+      {
+        "title": "Annual 60,000 Cash Point Ceiling & ₹99 Fee",
+        "tag": "60k Annual Cash Cap",
+        "description": "SBI Card enforces a strict annual ceiling of 60,000 Reward Points (worth ₹15,000) for statement cash credit redemptions (in multiples of 4,000 points). Accumulations exceeding 60,000 points must be redeemed at BPCL pumps. Each redemption request also incurs a ₹99 + 18% GST (₹117) processing fee."
+      },
+      {
+        "title": "Strict 24-Month Point Expiry Deadline",
+        "tag": "24-Month Expiry",
+        "description": "Octane reward points do not last indefinitely; they carry a strict 2-year rolling validity from the date of credit. Unused points quietly expire every month. Set a calendar reminder to redeem your point balance at least once every 12 months."
+      },
+      {
+        "title": "The Non-BPCL Fuel Surcharge Penalty",
+        "tag": "Strict 1% Surcharge",
+        "description": "Swiping at IndianOil, HPCL, or Shell pumps earns zero points and incurs a 1% fuel surcharge that SBI Card will not waive. If fueling at competitor bunks, use a zero-surcharge debit card or cash."
+      },
+      {
+        "title": "Surcharge GST Leakage & ₹500 Threshold",
+        "tag": "GST Non-Refundable",
+        "description": "The 1% fuel surcharge waiver applies strictly to transactions between ₹500 and ₹4,000 (capped at ₹100/cycle). Transactions below ₹500 leak full surcharges, and the 18% GST on the surcharge is non-refundable by government mandate."
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "partner": "BPCL Fuel & Family Groceries",
+        "title": "The Heavy Urban Commuter (Good Profit Blueprint)",
+        "realizedValuePerPoint": "₹0.25 (Fuel / Statement Cash)",
+        "scenario": "A driver spends ₹8,000 a month on petrol at authorized BPCL stations, ₹10,000 a month on family groceries (Blinkit/Zepto/supermarkets), and ₹2,000 a month on dining.",
+        "cashPrice": "₹2,40,000 total annual spend",
+        "pointsRequired": "38,400 Reward Points earned (24,000 on fuel + 14,400 on groceries/dining)",
+        "taxesAndFees": "₹0 (Annual spend clears ₹2,00,000 waiver hurdle)",
+        "netCashSaved": "₹9,600 fuel/cash value + ₹1,769 fee waived + ₹2,000 voucher at ₹3L = ₹11,600+",
+        "bottomLine": "Earning 2,000 points/month on fuel and 1,200 points/month on groceries/dining yields 38,400 points annually (worth ₹9,600 in fuel). Spending crosses ₹2,00,000 to waive the annual fee, delivering an exceptional net surplus on essential everyday expenses."
+      },
+      {
+        "partner": "Misallocated Retail & Non-BPCL Pumps",
+        "title": "The Non-BPCL / Small-Ticket Blunder (Bad Value Trap)",
+        "realizedValuePerPoint": "₹0.08 (Post-Fee Net Yield)",
+        "scenario": "A cardholder pays the ₹1,769 joining fee, refuels casually at IndianOil and Shell stations (₹7,000/month), and puts ₹30,000 of school fees and wallet reloads onto the card.",
+        "cashPrice": "₹1,14,000 total annual spend",
+        "pointsRequired": "Minimal points earned on blacklisted categories",
+        "taxesAndFees": "₹1,769 annual fee + un-waived fuel surcharges + ₹117 redemption fee",
+        "netCashSaved": "Less than ₹600 in net rewards",
+        "bottomLine": "Non-BPCL fuel earns 0 points and attracts un-waived surcharges. Education and wallet loads are hit with a 1% processing fee and earn 0 points. The ₹117 redemption fee further erodes the meager points balance, turning the card into a severe net financial loss."
+      }
+    ]
   },
   {
     "id": "sbi-cashback",
@@ -2743,43 +3678,118 @@
     "description": "India's benchmark online cashback card delivering 5% automated statement cashback on almost all online merchant transactions without being locked into any single e-commerce portal.",
     "annualFee": 999,
     "joiningFee": 999,
-    "feeWaiver": "Waived on annual online/offline spends of ₹2,00,000.",
+    "feeWaiver": "Waived on annual online and offline retail spending of ₹2,00,000 in preceding year.",
     "apr": 42,
     "cashbackRate": 5,
-    "rewardRate": 1,
+    "rewardRate": 5,
     "loungeAccess": 0,
-    "rewardSummary": "5% cashback on online retail spends across e-commerce platforms; 1% cashback on offline retail transactions. Cashback auto-credited to card account statement within 2 days of next statement generation.",
+    "rewardSummary": "5% automated statement cashback on online retail spends (capped at ₹2,000 per statement cycle / ₹40,000 spend); 1% cashback on offline retail (capped at ₹2,000 per cycle). Combined hard ceiling of ₹4,000 per cycle. Cashback automatically credited to statement within 2 days of cycle close.",
     "rewardCategories": {
-      "onlineShopping": "5% cashback",
-      "offlineRetail": "1% cashback"
+      "onlineRetail": "5% cashback (capped at ₹2,000 per statement cycle / ₹40,000 spend)",
+      "offlineRetail": "1% cashback (capped at ₹2,000 per statement cycle / ₹2,00,000 spend)",
+      "combinedMonthlyCeiling": "₹4,000 total combined cashback per statement cycle"
     },
-    "rewardCaps": "5% online cashback capped at ₹5,000 per statement cycle (up to ₹1,00,000 monthly spend).",
-    "exclusions": "Rent, fuel, wallet reloads, school/education fees, utilities, insurance, government payments, and jewelry.",
+    "rewardCaps": "5% online cashback capped at ₹2,000 per statement cycle (reached at ₹40,000 spend). 1% offline cashback capped at ₹2,000 per statement cycle. Tracked strictly by statement billing cycle dates.",
+    "exclusions": "Merchant EMI / Flexipay conversions, digital gaming (MCC 7993/7994/5816), highway tolls (MCC 4784), government taxes and challans (MCC 9222/9311/9402), fuel, rent, wallet loads, education, utilities, insurance, jewelry, and railways earn 0% cashback.",
     "benefits": [
-      "5% cashback on almost all online platforms (Amazon, Flipkart, Myntra, BookMyShow, Nykaa, etc.)",
-      "No merchant lock-in — applies across thousands of online shopping portals",
-      "Automated statement credit without needing manual points redemption",
-      "1% fuel surcharge waiver across all petrol pumps in India",
-      "Fee waiver on achieving ₹2 Lakhs in annual spending"
+      "5% automated cashback across almost all e-commerce platforms (Amazon, Flipkart, Myntra, Swiggy, Zomato, etc.)",
+      "Universal merchant eligibility with zero single-platform lock-in",
+      "Direct statement auto-credit within 2 days of statement generation — zero points to convert",
+      "1% cashback on offline retail transactions (capped at ₹2,000/cycle)",
+      "Annual renewal fee waiver upon reaching ₹2,00,000 in yearly retail spends"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
     "incomeRequirement": "₹30,000/month for salaried; ITR > ₹6 Lakhs for self-employed",
     "locationRestrictions": "Pan India.",
-    "travelBenefits": "5% cashback on online airline and hotel bookings when booked directly on merchant portals.",
-    "loungeBenefits": "Domestic lounge access discontinued.",
-    "fuelBenefits": "1% fuel surcharge waiver on transactions between ₹500 and ₹3,000 (up to ₹100/month).",
-    "diningBenefits": "5% cashback on online food delivery orders via Swiggy, Zomato, and restaurant websites.",
+    "travelBenefits": "5% cashback on online airline and hotel bookings when booked directly on merchant e-commerce portals (subject to the ₹2,000 cycle cap). Zero airport lounge access.",
+    "loungeBenefits": "Zero complimentary domestic or international airport lounge access (discontinued).",
+    "fuelBenefits": "1% fuel surcharge waiver on transactions between ₹500 and ₹3,000 (up to ₹100 per statement cycle). Fuel transactions earn 0% cashback.",
+    "diningBenefits": "5% cashback on online food delivery orders via Swiggy, Zomato, and restaurant websites (subject to online monthly cap).",
     "forexBenefits": "Standard 3.5% foreign currency markup.",
     "milestoneBenefits": "Fee waiver on ₹2,00,000 annual spend.",
     "officialUrl": "https://www.sbicard.com/en/personal/credit-cards/rewards/cashback-sbi-card.page",
     "officialSource": "SBI Card Official Website",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active",
-    "goodFor": "Anyone who does the majority of their shopping and bill purchases on the internet",
-    "whoItFits": "Online shoppers who want simple, direct, automated cashback without managing coupons, merchant vouchers, or reward catalogs.",
-    "whatToWatchOutFor": "No airport lounge access; utility, rent, and insurance payments are excluded from the 5% rate.",
-    "whyCreditWiseRecommends": "With a huge ₹5,000 monthly cashback ceiling and open merchant eligibility, it is universally the easiest card to earn substantial cash savings with.",
-    "orientation": "vertical"
+    "goodFor": "Moderate-spend online shoppers spending ₹30,000 to ₹40,000 a month across multiple e-commerce websites",
+    "whoItFits": "Online shoppers who want simple, direct, automated cashback without managing coupons, merchant vouchers, or complex airline reward catalogs.",
+    "whatToWatchOutFor": [
+      "5% online cashback is strictly capped at ₹2,000 per statement cycle (maxed at ₹40,000 spend).",
+      "EMI conversions forfeit all cashback.",
+      "Gaming, tolls, and government spends earn 0%.",
+      "Zero airport lounge visits.",
+      "Physical cash payments at SBI branches incur ₹250 + GST fee."
+    ],
+    "whyCreditWiseRecommends": "The simplest and most consistent 5% online shopping cashback engine in India, returning up to ₹24,000 annually with automatic statement deduction.",
+    "orientation": "vertical",
+    "feeDetails": "₹1,179 total first-year and renewal cost (₹999 base fee + 18% GST). Reversal of renewal fee on annual retail spending of ₹2,00,000.",
+    "underwritingEligibility": "Indian residents aged 21-65 with verified salaried or self-employed income meeting SBI Card credit standards.",
+    "realWorldGotchas": [
+      {
+        "title": "Hit the ₹40,000 Online Spend Ceiling and Stop",
+        "tag": "₹2,000 Online Cap",
+        "description": "SBI Card enforces a strict cap on 5% online cashback at ₹2,000 per statement cycle, reached at exactly ₹40,000 of online spending. Any online spends beyond ₹40,000 drop to base rate or earn zero. Switch to a secondary cashback card once you hit ₹40,000."
+      },
+      {
+        "title": "The Dual Capping Structure (₹2,000 Online + ₹2,000 Offline)",
+        "tag": "₹4,000 Combined Ceiling",
+        "description": "Cashback is bifurcated: 5% online is capped at ₹2,000 per cycle, while 1% offline is separately capped at ₹2,000 per cycle (requiring ₹2,00,000 in offline swipes). Total combined cashback across both categories is hard-capped at ₹4,000 per statement cycle."
+      },
+      {
+        "title": "The Instant EMI / Flexipay Cashback Clawback",
+        "tag": "0% on All EMIs",
+        "description": "Availing of a Merchant EMI (including No-Cost EMI promotions) or converting a transaction into installments via SBI Card Flexipay instantly strips all cashback. Transactions converted to EMI yield flat zero rewards."
+      },
+      {
+        "title": "The Amazon Pay Gift Card Utility Arbitrage Loophole",
+        "tag": "5% Utility Arbitrage",
+        "description": "Utilities and insurance are blacklisted from cashback, but purchasing Amazon Pay Gift Cards directly on Amazon triggers the full 5% cashback (Amazon is registered as general e-commerce). Loading these vouchers into your Amazon Pay wallet allows you to settle electricity bills and insurance premiums at an effective 5% discount."
+      },
+      {
+        "title": "Expanded Blacklist (Gaming, Tolls, and Govt Spends)",
+        "tag": "Zero on Taxes & Tolls",
+        "description": "Beyond legacy exclusions (utilities, insurance, fuel, rent, wallet loads, education, jewelry, railways), SBI Card strictly excludes Digital Gaming Platforms (MCC 7993/7994/5816), Tolls (MCC 4784), and Government/Tax Transactions (MCC 9222/9311/9402) from earning any cashback."
+      },
+      {
+        "title": "Statement Cycle vs Calendar Month Date Trap",
+        "tag": "Billing Cycle Tracking",
+        "description": "Cashback caps reset strictly based on your individual statement generation date, not the calendar month. If your statement generates on the 15th, spending ₹35,000 on the 10th and ₹20,000 on the 14th will breach your ₹2,000 cycle cap and forfeit rewards on the excess."
+      },
+      {
+        "title": "Zero Airport Lounge Access",
+        "tag": "0 Lounge Visits",
+        "description": "Both domestic and international airport lounge access have been completely discontinued on the Cashback SBI Card (0 visits per year). Treat this purely as an e-commerce checkout tool."
+      },
+      {
+        "title": "Branch Cash Payment Penalty Fee",
+        "tag": "₹250 Branch Cash Fee",
+        "description": "Paying your credit card bill with physical cash at an SBI bank branch counter attracts a steep penalty fee of ₹250 + GST. Always settle statements online via UPI, NetBanking, or third-party bill payment apps."
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "partner": "Universal E-Commerce",
+        "title": "The Balanced E-Commerce Shopper (Good Profit Blueprint)",
+        "realizedValuePerPoint": "₹1.00 (Statement Cash)",
+        "scenario": "A cardholder routes regular family online spending—quick commerce groceries (Blinkit/Zepto), apparel on Myntra, and Swiggy orders—totaling ₹35,000 online per billing cycle, plus ₹5,000 in offline local retail.",
+        "cashPrice": "₹40,000 / month (₹4,80,000 / year)",
+        "pointsRequired": "Auto-credited as direct cash",
+        "taxesAndFees": "₹0 (Annual spend clears ₹2,00,000 waiver hurdle)",
+        "netCashSaved": "₹1,800/month (₹21,600/year in pure cash credit)",
+        "bottomLine": "At ₹35,000 online spend (5% = ₹1,750) and ₹5,000 offline spend (1% = ₹50), the user earns ₹1,800 monthly, staying safely within the ₹2,000 online cap. Total annual cashback reaches ₹21,600, and annual spending easily waives the renewal fee for completely free automated savings."
+      },
+      {
+        "partner": "Uncapped Heavy Spender Trap",
+        "title": "The Unaware High-Spend Heavyweight (Bad Value Trap)",
+        "realizedValuePerPoint": "₹0.32 (Blended Realized Rate)",
+        "scenario": "A user buys a ₹1,00,000 appliance on Amazon in a single month and pays a ₹25,000 government tax/challan using the card, expecting 5% across the entire bill.",
+        "cashPrice": "₹1,25,000 outlay",
+        "pointsRequired": "Earns flat ₹2,000 cashback",
+        "taxesAndFees": "₹0 annual fee impact",
+        "netCashSaved": "₹2,000 cashback",
+        "bottomLine": "The 5% online rate stops dead at ₹40,000 (hitting the ₹2,000 monthly cap), leaving the remaining ₹60,000 online spend unrewarded. The ₹25,000 tax payment earns ₹0 due to the government MCC exclusion. On a ₹1,25,000 outlay, the user received just ₹2,000—a disappointing aggregate return of 1.6%."
+      }
+    ]
   },
   {
     "id": "sbi-phonepe-black",
@@ -2804,41 +3814,119 @@
     "feeWaiver": "Waived on annual retail spends of ₹3,00,000 in preceding year.",
     "apr": 42,
     "cashbackRate": 10,
-    "rewardRate": 1,
+    "rewardRate": 10,
     "loungeAccess": 4,
-    "rewardSummary": "Up to 10% reward points on PhonePe app spends (mobile recharge, electricity, broadband, insurance, flight/hotel bookings); up to 5% on top online brands; 1% on Scan & Pay and other retail.",
+    "rewardSummary": "10% value-back (10 Reward Points per ₹100, where 1 RP = ₹1) on PhonePe app utility, recharge, insurance, and travel spends (capped at 2,000 points / ₹20,000 spend/cycle; 500-point sub-cap on insurance); 5% on top online brands (capped at 1,000 points / ₹20,000 spend/cycle); 1% on Scan & Pay and other retail.",
     "rewardCategories": {
-      "phonePeApp": "Up to 10% reward points",
-      "topOnlineBrands": "Up to 5% reward points",
-      "upiScanAndPay": "1% reward points"
+      "phonePeAppSpends": "10% value-back (10 pts / ₹100, capped at 2,000 pts / ₹20,000 spend per cycle)",
+      "insuranceSubCap": "10% value-back (subject to a strict sub-cap of 500 pts / ₹5,000 spend per cycle)",
+      "topOnlineBrands": "5% value-back (5 pts / ₹100, capped at 1,000 pts / ₹20,000 spend per cycle)",
+      "scanAndPayOtherRetail": "1% value-back (1 pt / ₹100)"
     },
-    "rewardCaps": "10% category points capped at 2,000 reward points per statement cycle.",
-    "exclusions": "Fuel, wallet loads, rent, government transactions, cash advances.",
+    "rewardCaps": "10% PhonePe app rewards capped at 2,000 points per cycle (₹20,000 spend). Insurance sub-capped at 500 points per cycle. 5% general online rewards capped at 1,000 points per cycle (₹20,000 spend). Tracked strictly by billing cycle.",
+    "exclusions": "Utilities, insurance, and UPI executed outside PhonePe app earn 0 points. Tolls and bridges, education fees, gift/souvenir shops, jewelry, fuel, rent, wallet loads, government taxes, and cash advances earn 0 points and are excluded from milestone spends.",
     "benefits": [
-      "₹1,500 worth PhonePe vouchers or gift points on card activation",
-      "Up to 10% reward return on all bills, recharges, and bookings inside PhonePe",
-      "Seamless linking to PhonePe for UPI Scan & Pay across all merchants",
+      "₹1,500 PhonePe e-Gift Card welcome gift upon payment of joining fee within 30 days",
+      "10% value-back (10 Reward Points per ₹100) on bills, recharges, and bookings inside PhonePe app",
+      "5% value-back on top online brands (up to ₹20,000 spend per cycle)",
+      "1 Reward Point = ₹1 real value, redeemable directly as statement credit or cash vouchers",
       "4 complimentary domestic airport lounge visits per year (1 per quarter)",
-      "Complimentary 2-year Priority Pass membership for international travelers"
+      "Complimentary 2-year Priority Pass membership (lounge entry fees apply)",
+      "₹5,000 Yatra travel voucher on reaching ₹5,00,000 in annual spending",
+      "Annual renewal fee waiver upon reaching ₹3,00,000 in yearly retail spends"
     ],
     "eligibility": "Indian resident aged 21-65 years.",
     "incomeRequirement": "₹35,000/month for salaried; ITR > ₹6 Lakhs for self-employed",
     "locationRestrictions": "Pan India (apply directly in PhonePe App).",
-    "travelBenefits": "4 domestic airport lounge visits + Priority Pass membership.",
-    "loungeBenefits": "4 complimentary domestic airport lounge visits per calendar year.",
-    "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per statement cycle.",
-    "diningBenefits": "Standard SBI Card dining tie-ups.",
+    "travelBenefits": "4 complimentary domestic airport lounge visits per calendar year (1 per quarter) + 2-year complimentary Priority Pass membership.",
+    "loungeBenefits": "4 complimentary domestic airport lounge visits per calendar year (1 per quarter).",
+    "fuelBenefits": "1% fuel surcharge waiver on transactions between ₹500 and ₹4,000 (up to ₹250 per statement cycle). Fuel transactions earn 0 points.",
+    "diningBenefits": "Standard dining offers via SBI Card partner network.",
     "forexBenefits": "Standard 3.5% foreign currency markup.",
     "milestoneBenefits": "Travel voucher worth ₹5,00,0 on reaching annual spend of ₹5,00,000.",
     "officialUrl": "https://www.sbicard.com/en/personal/credit-cards/rewards/phonepe-sbi-card-select-black.page",
     "officialSource": "SBI Card & PhonePe Official Partnership Page",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active (via PhonePe App)",
-    "goodFor": "Households managing multiple utility bills, recharges, and UPI QR payments",
-    "whoItFits": "Individuals who use PhonePe as their primary app for electricity bills, mobile recharges, insurance, and local merchant UPI payments.",
-    "whatToWatchOutFor": "Maximum 10% rewards are realized when transactions are routed inside the PhonePe ecosystem.",
-    "whyCreditWiseRecommends": "Unlike most cards that completely exclude electricity and utility bills from rewards, this card rewards them at up to 10%.",
-    "orientation": "vertical"
+    "goodFor": "Households spending ₹15,000 to ₹20,000 a month on utility bills, mobile recharges, and health/car insurance inside the PhonePe app",
+    "whoItFits": "Individuals who already route their family's monthly electricity, piped gas, mobile recharges, and insurance policies through PhonePe and want automated 10% value-back.",
+    "whatToWatchOutFor": [
+      "10% PhonePe rewards capped at 2,000 points/month (max ₹20,000 spend).",
+      "Insurance capped at 500 points (max ₹5,000 spend).",
+      "5% online shopping capped at 1,000 points (max ₹20,000 spend).",
+      "Utilities/insurance paid outside PhonePe earn 0%.",
+      "Tolls, education, and jewelry blacklisted."
+    ],
+    "whyCreditWiseRecommends": "Unlocks an unprecedented 10% return on recurring household utilities and insurance up to ₹20,000 monthly, converting non-discretionary expenses into substantial cash credits.",
+    "orientation": "vertical",
+    "feeDetails": "₹1,769 total first-year and renewal cost (₹1,499 base fee + 18% GST). Welcome benefit: ₹1,500 PhonePe e-Gift Card upon paying joining fee within 30 days.",
+    "underwritingEligibility": "Indian residents aged 21-65 with verified salaried or self-employed income meeting SBI Card credit criteria. Issued on the RuPay network.",
+    "realWorldGotchas": [
+      {
+        "title": "Stop PhonePe Spends at Exactly ₹20,000 per Month",
+        "tag": "2,000 Point App Cap",
+        "description": "The advertised 10% reward rate (10 Reward Points per ₹100, where 1 RP = ₹1) is subject to a hard monthly cap of 2,000 points per billing cycle on PhonePe app spends. This means the 10% accelerator maxes out at exactly ₹20,000 of monthly in-app billing. Spending beyond ₹20,000 yields zero additional accelerated points."
+      },
+      {
+        "title": "The ₹500 Insurance Sub-Cap Trap",
+        "tag": "500 Point Insurance Cap",
+        "description": "SBI Card enforces a strict sub-cap on insurance premium payments inside PhonePe: maximum 500 Reward Points (worth ₹500) per statement cycle. If you clear a ₹90,000 annual family health or car insurance premium in one shot, you will receive only 500 points on the first ₹5,000; the remaining ₹85,000 earns flat zero."
+      },
+      {
+        "title": "The Slashed 5% Online Shopping Ceiling (₹20,000 Cliff)",
+        "tag": "1,000 Point Online Cap",
+        "description": "The 5% value-back on online shopping outside PhonePe is hard-capped at 1,000 Reward Points per statement cycle. The 5% rate terminates the moment you cross ₹20,000 in monthly online transactions. For online shopping beyond ₹20,000, divert spends to a dedicated card like Cashback SBI."
+      },
+      {
+        "title": "Total Zero on Spends Outside PhonePe App",
+        "tag": "App Lock-in",
+        "description": "Utilities, insurance, and UPI transactions executed outside the PhonePe app yield flat 0% rewards. Paying an insurance premium directly on the insurer's portal (like LIC or HDFC Life) or linking this card to Google Pay or Paytm for UPI earns zero points. All bills must be cleared natively inside PhonePe."
+      },
+      {
+        "title": "The PhonePe Switch / Embedded Mini-App Trap",
+        "tag": "Mini-App Gateway Trap",
+        "description": "Third-party services embedded inside PhonePe (such as travel aggregators or external brand stores) that redirect checkout to an external bank payment gateway fail to trigger the 10% multiplier. Only transactions processed natively through PhonePe's in-house bill payment desk qualify for 10%."
+      },
+      {
+        "title": "Expanded Blacklist (Tolls, Education, and Jewelry)",
+        "tag": "Excluded Categories",
+        "description": "Tolls and bridges, educational institutions, gift/souvenir shops, and jewelry stores earn zero points and are completely excluded from the ₹3,00,000 annual fee waiver and milestone calculations, alongside standard exclusions like fuel, rent, and wallet loads."
+      },
+      {
+        "title": "Merchant QR Scan-and-Pay False Expectations",
+        "tag": "Scan & Pay Classification",
+        "description": "Scanning offline merchant QR codes or small-vendor BharatQRs often gets categorized under excluded cash-equivalent or wallet-load MCCs by the payment network, yielding zero points. Treat this card as a bill-payment and recharge tool rather than a street-side QR scanner."
+      },
+      {
+        "title": "Tokenization & E-Mandate Bounced Payment Risk",
+        "tag": "Auto-Pay Failure Penalty",
+        "description": "Revoking card tokens or having pre-set auto-pay mandates fail on utility or insurance due dates can lead to provider late-payment penalties and negative CIBIL credit marks, erasing months of cashback gains."
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "partner": "PhonePe App Utility & Bill Pay",
+        "title": "The Household Bill Optimizer (Good Profit Blueprint)",
+        "realizedValuePerPoint": "₹1.00 (Statement Cash / Voucher)",
+        "scenario": "A household utilizes the card strictly to clear domestic bills inside the PhonePe app: a ₹12,000 health insurance premium, ₹5,000 electricity bill, and ₹3,000 in mobile recharges (Total: ₹20,000). They also spend ₹15,000 online on apparel.",
+        "cashPrice": "₹35,000 / month (₹4,20,000 / year)",
+        "pointsRequired": "2,750 points earned monthly",
+        "taxesAndFees": "₹0 (Annual spend clears ₹3,00,000 waiver hurdle)",
+        "netCashSaved": "₹2,750/month (₹33,000/year) + ₹5,000 Yatra voucher at ₹5L",
+        "bottomLine": "Earning 2,000 points on PhonePe spends (maxing the 10% cap) and 750 points on online shopping (under the 1,000 cap) yields 2,750 points monthly (worth ₹2,750). Annual spending clears ₹3,00,000 to waive the annual fee, generating over ₹33,000 in net surplus value on routine living expenses."
+      },
+      {
+        "partner": "Big-Ticket Lump-Sum Insurance",
+        "title": "The Big-Ticket Insurance Blunder (Bad Value Trap)",
+        "realizedValuePerPoint": "₹0.005 (Severe Sub-Cap Truncation)",
+        "scenario": "A cardholder pays their family's annual car and life insurance premiums totaling ₹90,000 in a single transaction on the PhonePe app, expecting a 10% payout of ₹9,000.",
+        "cashPrice": "₹90,000 outlay",
+        "pointsRequired": "500 points earned (hits insurance sub-cap)",
+        "taxesAndFees": "₹1,769 annual fee",
+        "netCashSaved": "₹500 in reward value",
+        "bottomLine": "Because insurance is capped at 500 Reward Points per cycle, the entire ₹90,000 payment earns only 500 points (worth ₹500). Subtracting the ₹1,769 annual fee leaves the user with a net loss of -₹1,269. High-ticket insurance should be split across cycles or paid via cards with uncapped base returns."
+      }
+    ]
   },
   {
     "id": "bobcard-scapia",
@@ -2860,42 +3948,121 @@
     "description": "Co-branded travel card issued by BOBCARD in partnership with Scapia, featuring zero foreign exchange fees worldwide, 10% Scapia Coins on everyday spends, and unlimited airport lounge visits on meeting monthly spend.",
     "annualFee": 0,
     "joiningFee": 0,
-    "feeWaiver": "Lifetime Free with zero joining fee and zero annual maintenance fee.",
+    "feeWaiver": "Lifetime Free with no annual fees or minimum spend conditions.",
     "apr": 41.88,
     "cashbackRate": 0,
     "rewardRate": 2,
     "loungeAccess": 99,
-    "rewardSummary": "10% Scapia Coins on all eligible online and offline retail spending (2% value back); 20% Scapia Coins on travel bookings made via the Scapia app (4% value back); 5 Scapia Coins = ₹1.",
+    "rewardSummary": "True 0.0% foreign currency markup on international transactions. 10% Scapia Coins on everyday domestic and overseas retail (2.0% value-back); 20% Scapia Coins on flights and hotels booked via the Scapia app (4.0% value-back). 5 Scapia Coins = ₹1 for closed-loop in-app travel redemptions.",
     "rewardCategories": {
-      "scapiaTravel": "20% Scapia Coins (4% return)",
-      "generalRetail": "10% Scapia Coins (2% return)"
+      "forexMarkup": "0.0% zero foreign currency transaction markup",
+      "scapiaAppTravel": "20% Scapia Coins (4.0% return on Scapia travel portal)",
+      "eligibleRetail": "10% Scapia Coins (2.0% return on general retail)",
+      "partPaymentCashPortion": "0% Scapia Coins on cash portion of mixed coin-and-card bookings"
     },
-    "rewardCaps": "No maximum cap on Scapia Coins earned.",
-    "exclusions": "Fuel, wallet top-ups, rent, education, government services, cash advances.",
+    "rewardCaps": "No maximum cap on Scapia Coins earned. Coins expire after a rolling 36-month window. Coins redeemable strictly inside the Scapia app on flights and hotels.",
+    "exclusions": "Fuel, wallet top-ups, rent payments, education fees, government services, cash advances, and international ATM withdrawals earn zero Scapia Coins.",
     "benefits": [
-      "100% Lifetime Free credit card with no joining or renewal charges",
-      "Zero forex markup on all international transactions worldwide (saving 3.5% to 4%)",
-      "Unlimited domestic airport lounge access upon spending ₹20,000 in previous billing cycle",
-      "Coins redeemable instantly with 1-click on flights and hotels in Scapia app",
-      "Instant in-app customer service and virtual card activation"
+      "100% Lifetime Free credit card with zero joining fee and zero annual renewal fee",
+      "True 0.0% foreign currency markup worldwide (saving ~4.13% in fees and GST on overseas spend)",
+      "Unlimited domestic airport lounge access on spending ₹20,000 in preceding billing cycle",
+      "10% Scapia Coins on all everyday retail spending (2% return for in-app travel)",
+      "20% Scapia Coins on flights and hotel stays booked inside the Scapia app (4% return)",
+      "Coins redeemable with 1-click at 5 Coins = ₹1 on Scapia travel bookings",
+      "1% fuel surcharge waiver up to ₹250 per billing cycle on ₹400–₹5,000 transactions"
     ],
     "eligibility": "Indian resident aged 23-60 years with good credit history.",
-    "incomeRequirement": "₹30,000/month for salaried",
+    "incomeRequirement": "₹30,000/month for salaried; ITR > ₹4.5 Lakhs for self-employed",
     "locationRestrictions": "Pan India (via Scapia App).",
-    "travelBenefits": "Zero forex markup fee worldwide, unlimited domestic lounge access, and 20% coins on flight/hotel bookings.",
-    "loungeBenefits": "Unlimited domestic airport lounge visits (unlocked by spending ₹20,000 in preceding billing cycle).",
-    "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per billing cycle.",
+    "travelBenefits": "True 0.0% forex markup worldwide, unlimited domestic airport lounge access (upon spending ₹20,000 in preceding cycle), and closed-loop travel coin redemption.",
+    "loungeBenefits": "Unlimited domestic airport lounge access across India, unlocked by spending ₹20,000 in the preceding billing cycle.",
+    "fuelBenefits": "1% fuel surcharge waiver up to ₹250 per billing cycle. Fuel spends earn zero Scapia Coins.",
     "diningBenefits": "10% Scapia Coins on all dining and food delivery spends.",
-    "forexBenefits": "0.0% zero foreign currency transaction markup fee.",
+    "forexBenefits": "True 0.0% foreign currency transaction markup on international purchases.",
     "milestoneBenefits": "None (zero-annual-fee continuous rewards structure).",
-    "officialUrl": "https://www.bobcard.co.in/scapia",
+    "officialUrl": "https://www.scapia.cards/",
     "officialSource": "BOBCARD & Scapia Official Portal",
     "lastVerified": "2026-09-20",
     "applicationAvailability": "Active (via Scapia App)",
-    "goodFor": "International holidaymakers, foreign study expenses, and frequent domestic flyers",
-    "whoItFits": "Anyone traveling abroad or making foreign currency online payments who wants to eliminate the 3.5% bank forex penalty.",
-    "whatToWatchOutFor": "Lounge access requires spending ₹20,000 in the previous statement cycle; Scapia Coins can only be redeemed on flights and hotels in the Scapia app.",
-    "whyCreditWiseRecommends": "Completely lifetime free with 0% forex markup, saving travelers thousands of rupees on international hotel and flight bookings.",
-    "orientation": "vertical"
+    "goodFor": "International travelers, overseas vacationers, foreign currency online shoppers, and USD SaaS subscribers",
+    "whoItFits": "Anyone spending in foreign currency who wants to bypass the standard 3.5% + GST bank forex markup with a zero-maintenance secondary card.",
+    "whatToWatchOutFor": [
+      "Coins are strictly closed-loop (cannot convert to statement cash or air miles).",
+      "In-app travel pricing is often inflated 3%–12% over open market.",
+      "Lounge access requires ₹20,000 monthly spend.",
+      "90-day inactivity risk.",
+      "0% rewards on cash portion of part-payment bookings.",
+      "One-card rule for BOBCARD holders."
+    ],
+    "whyCreditWiseRecommends": "An indispensable secondary card that eliminates the 4.13% bank forex fee on foreign spends with zero annual cost and unlocks unlimited domestic lounges with planned spending.",
+    "orientation": "vertical",
+    "feeDetails": "Lifetime Free (₹0 joining fee and ₹0 annual renewal fee) with zero recurring maintenance charges.",
+    "underwritingEligibility": "Indian residents aged 23-60 with a clean CIBIL track record. Strict underwriting filters: automated rejection if you already hold an active core BOBCARD credit card or have more than 3-4 credit inquiries in the last 90 days.",
+    "realWorldGotchas": [
+      {
+        "title": "Use Only as a Foreign Currency Swipe Tool",
+        "tag": "True 0.0% Forex",
+        "description": "The card's primary value is its true 0.0% foreign exchange markup. On a ₹1,00,000 overseas transaction, standard bank cards levy 3.5% + 18% GST (costing ₹1,04,130), while Scapia bills exactly ₹1,00,000, pocketing ₹4,130 in immediate cash savings. Use it exclusively for international transactions."
+      },
+      {
+        "title": "The Closed-Loop App Portal & Price Inflation Trap",
+        "tag": "Closed-Loop Portal",
+        "description": "Scapia Coins cannot be transferred to air miles, hotel programs, or statement cash; they can only be burned inside the Scapia app. Flight and hotel inventories in the app frequently feature base fares marked up 3% to 12% over open-market aggregators (like Booking.com or airline direct), eroding the nominal 2%–4% reward rate."
+      },
+      {
+        "title": "Time the ₹20,000 Lounge Hurdle Strategically",
+        "tag": "₹20,000 Spend Hurdle",
+        "description": "Unlimited domestic lounge access is unlocked only if you spend ₹20,000 in the preceding billing cycle. If traveling in October, route exactly ₹20,000 of standard domestic expenses onto Scapia in September to unlock transit lounge access, then freeze domestic spending."
+      },
+      {
+        "title": "The One-Card-Per-Issuer Bureau Rule",
+        "tag": "BOBCARD Multi-Card Ban",
+        "description": "BOBCARD's underwriting policy strictly enforces a one-card limit. If you already hold an active core BOBCARD product (such as BOB Premier or BOB Eternal), Scapia's automated system will automatically reject your application on day one."
+      },
+      {
+        "title": "The CIBIL Inquiry Spike Underwriting Trap",
+        "tag": "Inquiry Freeze Required",
+        "description": "Scapia's automated onboarding algorithm instantly rejects applicants who have more than 3 to 4 credit bureau inquiries in the preceding 90 days, or who recently opened co-branded cards with Federal Bank or BOBCARD (like OneCard or Fi). Maintain a 3- to 6-month credit inquiry freeze before applying."
+      },
+      {
+        "title": "Zero Rewards on Part-Payments with Points",
+        "tag": "0% on Co-Payment Cash",
+        "description": "If you pay for a flight or hotel using a combination of accumulated Scapia Coins and card balance, the cash portion of the transaction earns flat zero Scapia Coins. Always aim to pay bookings fully in cash to farm coins, or fully with coins to clear the bill."
+      },
+      {
+        "title": "90-Day Inactivity Risk & Limit Reduction",
+        "tag": "90-Day Inactivity Block",
+        "description": "Because Scapia absorbs 100% of forex fees and lounge costs on an LTF card, accounts left completely unused for 90 days are prone to automated credit limit reductions or temporary international transaction blocks. Put a small recurring domestic bill (like a ₹100 mobile recharge) on the card to keep it active."
+      },
+      {
+        "title": "International ATM Cash Advance Trap",
+        "tag": "Overseas Cash Penalty",
+        "description": "The 0.0% forex fee applies strictly to retail POS and online card checkouts. Withdrawing cash at an overseas ATM incurs a flat fee of ₹250 + GST, and interest starts accruing immediately at ~41.88% per annum from the exact second the cash is dispensed."
+      }
+    ],
+    "redemptionSweetSpots": [
+      {
+        "partner": "International Checkout Savings",
+        "title": "The Smart Overseas Vacationer (Good Profit Blueprint)",
+        "realizedValuePerPoint": "₹0.20 (Direct Travel Credit)",
+        "scenario": "A traveler spends ₹2,50,000 on a 10-day trip abroad across direct hotel checkouts, dining, and train tickets, paying entirely in foreign currency.",
+        "cashPrice": "₹2,50,000 foreign spend",
+        "pointsRequired": "25,000 Scapia Coins earned (10% earn rate)",
+        "taxesAndFees": "₹0 annual card fee + ₹0 forex markup",
+        "netCashSaved": "₹10,325 in saved forex fees + ₹5,000 flight credit = ₹15,325 total value",
+        "bottomLine": "Compared to standard cards charging a 4.13% effective forex fee (₹10,325), the user pays ₹0 in fees. The 25,000 earned coins convert into ₹5,000 travel credit used to book a domestic flight at par market price, delivering ₹15,325 in pure financial gain on a card that costs ₹0 to hold."
+      },
+      {
+        "partner": "In-App Marked-Up Portal Trap",
+        "title": "The 'All-In' Household Accumulator (Bad Value Trap)",
+        "realizedValuePerPoint": "₹0.12 (Post-Inflation Realized Value)",
+        "scenario": "A user makes Scapia their primary daily card in India, spending ₹3,00,000 on domestic retail to accumulate 30,000 Scapia Coins (nominal ₹6,000 value), then tries to book a weekend hotel stay in the app.",
+        "cashPrice": "₹3,00,000 domestic spend",
+        "pointsRequired": "30,000 Scapia Coins burned",
+        "taxesAndFees": "₹3,500 cash co-payment (earns 0 points)",
+        "netCashSaved": "Less than ₹3,500 real value vs open market",
+        "bottomLine": "The boutique hotel is listed in the Scapia app at ₹9,500, while the exact same room is available on Booking.com for ₹8,100. Burning ₹6,000 in coins requires an extra ₹3,500 in cash, wiping out nearly half the reward value due to portal markup. A basic 2% cashback card would have yielded ₹6,000 in pure cash to spend at open-market prices."
+      }
+    ]
   }
 ]

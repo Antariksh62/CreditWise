@@ -239,6 +239,7 @@ export default function OnboardingFlow() {
 
   // Restore saved profile or user on mount
   useEffect(() => {
+    router.prefetch("/results");
     try {
       const rawUser = window.localStorage.getItem("cardwise:user");
       if (rawUser) {
@@ -271,7 +272,7 @@ export default function OnboardingFlow() {
     } catch {
       // ignore
     }
-  }, []);
+  }, [router]);
 
   const totalMonthlySpend = Object.values(formData.spending).reduce(
     (acc, val) => acc + (Number(val) || 0),
@@ -355,9 +356,7 @@ export default function OnboardingFlow() {
       // ignore
     }
 
-    window.setTimeout(() => {
-      router.push("/results");
-    }, 850);
+    router.push("/results");
   }
 
   const filteredCards = cardsData.filter(
@@ -391,7 +390,7 @@ export default function OnboardingFlow() {
       </div>
 
       {/* Main Container Card */}
-      <div className="rounded-2xl border border-neutral-200/80 bg-white p-6 sm:p-10 shadow-sm">
+      <div className="rounded-2xl border border-neutral-200/80 bg-white p-5 sm:p-8 md:p-10 shadow-sm">
         {/* ================= STEP 1: ABOUT YOU ================= */}
         {step === 1 && (
           <div>

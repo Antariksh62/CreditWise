@@ -34,6 +34,16 @@ export default function HeroDotCanvas() {
     const baseRadius = 1.15;
     const maxRadius = 3.2;
     const eventHorizonRadius = 240;
+    const innerHoleRadius = 40; // Dedicated circular clearing for currency symbols
+
+    // Currency symbols and smooth transition state
+    const SYMBOLS = ["₹", "$", "€"];
+    let symbolProgress = 0;
+    let targetSymbolProgress = 0;
+    let distanceMoved = 0;
+    let symbolAlpha = 0;
+    let lastX = -1000;
+    let lastY = -1000;
 
     // Mouse / touch coordinates relative to canvas with smooth fluid inertia
     const mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000 };
@@ -67,9 +77,25 @@ export default function HeroDotCanvas() {
       if (x >= -150 && x <= width + 150 && y >= -150 && y <= height + 150) {
         mouse.targetX = x;
         mouse.targetY = y;
+
+        if (lastX > -500 && lastY > -500) {
+          const d = Math.hypot(x - lastX, y - lastY);
+          if (d > 0.5 && d < 250) {
+            distanceMoved += d;
+            // Every ~170px of accumulated cursor travel smoothly cycles to next currency
+            if (distanceMoved >= 170) {
+              targetSymbolProgress += 1;
+              distanceMoved = 0;
+            }
+          }
+        }
+        lastX = x;
+        lastY = y;
       } else {
         mouse.targetX = -1000;
         mouse.targetY = -1000;
+        lastX = -1000;
+        lastY = -1000;
       }
     };
 
@@ -80,6 +106,8 @@ export default function HeroDotCanvas() {
     const handleMouseLeave = () => {
       mouse.targetX = -1000;
       mouse.targetY = -1000;
+      lastX = -1000;
+      lastY = -1000;
     };
 
     // Touch event handlers for mobile & tablet
@@ -98,6 +126,8 @@ export default function HeroDotCanvas() {
     const handleTouchEnd = () => {
       mouse.targetX = -1000;
       mouse.targetY = -1000;
+      lastX = -1000;
+      lastY = -1000;
     };
 
     // Visibility change handler to pause render loop when tab is backgrounded
@@ -152,6 +182,11 @@ export default function HeroDotCanvas() {
       mouse.x += (mouse.targetX - mouse.x) * 0.12;
       mouse.y += (mouse.targetY - mouse.y) * 0.12;
 
+      // Symbol progress interpolation & smooth entry/exit alpha
+      symbolProgress += (targetSymbolProgress - symbolProgress) * 0.08;
+      const isInteracting = mouse.targetX > -500 && mouse.x > -200 && mouse.x < width + 200 && mouse.y > -200 && mouse.y < height + 200;
+      symbolAlpha += ((isInteracting ? 1 : 0) - symbolAlpha) * 0.12;
+
       ctx.clearRect(0, 0, width, height);
 
       const cols = Math.ceil(width / gap) + 1;
@@ -201,6 +236,15 @@ export default function HeroDotCanvas() {
 
                   radius = baseRadius + (maxRadius - baseRadius) * pullFactor;
                   alpha = 0.11 + 0.65 * pullFactor;
+
+                  // Clear inner circular zone for currency symbol
+                  if (dist < innerHoleRadius) {
+                    const clearFactor = dist / innerHoleRadius; // 0 at center, 1 at boundary
+                    alpha *= Math.pow(clearFactor, 2.2); // Fades completely to 0 at center
+                    const push = (1 - clearFactor) * 14;
+                    renderX -= ux * push;
+                    renderY -= uy * push;
+                  }
                 }
               }
             } else {
@@ -229,6 +273,45 @@ export default function HeroDotCanvas() {
           ctx.fillStyle = `rgba(0, 0, 0, ${alpha})`;
           ctx.fill();
         }
+      }
+
+      // Render the currency symbol inside the circular clearing
+      if (symbolAlpha > 0.01 && hasInteraction && !prefersReducedMotion) {
+        const curIdx = Math.floor(symbolProgress) % 3;
+        const nextIdx = (curIdx + 1) % 3;
+        const rawT = symbolProgress - Math.floor(symbolProgress);
+        // Smooth Hermite interpolation (smoothstep)
+        const t = rawT * rawT * (3 - 2 * rawT);
+
+        const fontSize = width < 640 ? 25 : 29;
+        ctx.save();
+        ctx.font = `600 ${fontSize}px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+        // Current Symbol
+        if (1 - t > 0.005) {
+          ctx.save();
+          ctx.translate(mouse.x, mouse.y);
+          const s = 1.0 - t * 0.12;
+          ctx.scale(s, s);
+          ctx.fillStyle = `rgba(18, 18, 18, ${(1 - t) * symbolAlpha * 0.9})`;
+          ctx.fillText(SYMBOLS[curIdx], 0, 1);
+          ctx.restore();
+        }
+
+        // Next Symbol
+        if (t > 0.005) {
+          ctx.save();
+          ctx.translate(mouse.x, mouse.y);
+          const s = 0.88 + t * 0.12;
+          ctx.scale(s, s);
+          ctx.fillStyle = `rgba(18, 18, 18, ${t * symbolAlpha * 0.9})`;
+          ctx.fillText(SYMBOLS[nextIdx], 0, 1);
+          ctx.restore();
+        }
+
+        ctx.restore();
       }
 
       if (!prefersReducedMotion) {

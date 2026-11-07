@@ -8,10 +8,7 @@ export const metadata = {
     "Explore verified credit cards across cashback, travel, rewards, dining, fuel, and lifetime-free options.",
 };
 
-export default async function CardsPage({ searchParams }) {
-  const resolvedSearchParams = await searchParams;
-  const initialCategory = resolvedSearchParams?.category || "all";
-
+export default function CardsPage() {
   return (
     <div className="cw-rail min-h-screen bg-[#FBFBFB]">
       <div className="cw-container py-12 md:py-16 max-w-6xl mx-auto px-4 sm:px-6">
@@ -28,7 +25,7 @@ export default async function CardsPage({ searchParams }) {
             </div>
           }
         >
-          <CardCatalog initialCards={cards} initialCategory={initialCategory} />
+          <CardCatalog initialCards={cards} initialCategory="all" />
         </Suspense>
       </div>
     </div>

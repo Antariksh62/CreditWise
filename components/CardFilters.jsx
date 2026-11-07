@@ -36,7 +36,7 @@ export default function CardFilters() {
             key={filter.key}
             href={href}
             aria-current={isActive ? "page" : undefined}
-            className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all ${
+            className={`rounded-full px-4 py-1.5 min-h-[36px] inline-flex items-center text-xs font-semibold transition-all ${
               isActive
                 ? "bg-black text-white shadow-sm"
                 : "border border-neutral-200 bg-white text-neutral-600 hover:border-neutral-400 hover:text-black"

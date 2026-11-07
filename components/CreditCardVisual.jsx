@@ -22,15 +22,15 @@ const MAX_X = 10; // Maximum tilt degrees along X axis
 const MAX_Y = 12; // Maximum tilt degrees along Y axis
 
 const HORIZONTAL_SIZES = {
-  sm: "w-[240px]",
-  md: "w-[320px]",
-  lg: "w-[380px]",
+  sm: "w-[220px] sm:w-[240px]",
+  md: "w-[280px] sm:w-[320px]",
+  lg: "w-full max-w-[380px]",
 };
 
 const VERTICAL_SIZES = {
-  sm: "h-[185px] w-auto",
-  md: "h-[240px] w-auto",
-  lg: "h-[300px] w-auto",
+  sm: "h-[175px] sm:h-[185px] w-auto",
+  md: "h-[220px] sm:h-[240px] w-auto",
+  lg: "h-[250px] sm:h-[300px] w-auto",
 };
 
 export default function CreditCardVisual({
