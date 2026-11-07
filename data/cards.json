@@ -1746,6 +1746,7 @@
     "exclusions": "Fuel purchases (1% surcharge waiver only), wallet loading transactions & digital reloads, rental payments & property management, government transactions & tax payments, insurance premium payments, EasyEMI conversions, merchant EMIs, cash advances, and bank interest charges.",
     "benefits": [
       "Welcome Benefit: ₹2,500 brand gift voucher credited upon payment of joining fee, neutralizing the base card fee",
+      "Boarding Edge Program: 2 complimentary destination perks per quarter (Uber ₹750 voucher, luxury dining/buffet at ITC, spa session, or room upgrade) upon uploading boarding pass on SmartBuy",
       "12 complimentary domestic airport lounge visits per calendar year (unlocked on ₹60,000 spend in preceding quarter)",
       "6 complimentary international airport lounge visits per year via bundled Priority Pass with zero spend conditions",
       "Accelerated Retail: 5X Reward Points (20 RP per ₹150) at Marks & Spencer, Myntra, Nykaa, and Reliance Digital",
@@ -1758,7 +1759,7 @@
     "eligibility": "Indian resident aged 21-60 years.",
     "incomeRequirement": "₹1,00,000/month for salaried; ITR > ₹12 Lakhs for self-employed",
     "locationRestrictions": "Pan India.",
-    "travelBenefits": "18 total lounge visits (12 domestic + 6 unconditional international via Priority Pass), 1:0.5 air miles transfer, and 1 RP = ₹0.50 on SmartBuy flights/hotels.",
+    "travelBenefits": "18 total lounge visits (12 domestic + 6 unconditional international via Priority Pass), 1:0.5 air miles transfer, 1 RP = ₹0.50 on SmartBuy flights/hotels, and the Boarding Edge Program offering 2 complimentary destination benefits per quarter (Uber ₹750 voucher, luxury dining, spa session, or room upgrade).",
     "loungeBenefits": "12 domestic airport lounge visits per year (3 per quarter, unlocked strictly upon spending ₹60,000 in the preceding calendar quarter) + 6 international lounge visits per year via Priority Pass with zero spend requirements.",
     "fuelBenefits": "1% fuel surcharge waiver up to ₹400 per statement cycle on transactions between ₹400 and ₹5,000 (no reward points on fuel).",
     "diningBenefits": "Exclusive dining discounts under Good Food Trail via Swiggy Dineout.",
@@ -1801,6 +1802,10 @@
       {
         "title": "Batch Redemption Strategy (Avoiding the ₹99 Fee)",
         "description": "HDFC levies a flat ₹99 + 18% GST fee every single time you submit a reward redemption request on the portal. Cardholders should accumulate points and redeem them in large single batches rather than frequent small redemptions."
+      },
+      {
+        "title": "Boarding Edge Program (2 Complimentary Destination Perks Per Quarter)",
+        "description": "Primary and add-on cardholders can claim 2 complimentary benefits per calendar quarter to use at their destination city by uploading an airline boarding pass on HDFC SmartBuy. Available perks include: (1) Complimentary Uber Airport Transfer (₹750 voucher), (2) Complimentary Spa Session at participating wellness centers like Tatva Spa or Mega Wellness, (3) Complimentary Meal/Buffet at participating luxury partner hotels like ITC group hotels, and (4) Complimentary Room Upgrade at partner hotels. Boarding pass upload is valid from 3 days before up to 6 days after travel. The name on the pass must match the credit card, and perks are valid only in the printed arrival city."
       }
     ],
     "exclusionCategories": [
@@ -1851,7 +1856,37 @@
         "realizedValuePerPoint": "₹0.50 (Travel) vs ₹0.35 (Apple) vs ₹0.25 (Vouchers) vs ₹0.20 (Statement Credit)",
         "bottomLine": "Using 10,000 points on travel saves ₹5,000. Cashing it out against your credit card bill yields just ₹2,000, destroying ₹3,000 (60%) of your earned monetary purchasing power."
       }
-    ]
+    ],
+    "boardingEdgeProgram": {
+      "title": "The Boarding Edge Program",
+      "summary": "The Boarding Edge Program is a travel perk for HDFC Bank Regalia Gold Credit Card holders. By uploading an airline boarding pass to the portal, primary and add-on cardholders can claim 2 complimentary benefits per calendar quarter to use at their destination city.",
+      "availableBenefits": [
+        {
+          "name": "Complimentary Uber Airport Transfer",
+          "details": "An Uber ride voucher worth ₹750 for travel in your destination city."
+        },
+        {
+          "name": "Complimentary Spa Session",
+          "details": "Access at participating wellness centers (such as Tatva Spa or Mega Wellness)."
+        },
+        {
+          "name": "Complimentary Meal / Buffet",
+          "details": "Dining access at participating luxury hotels like ITC group hotels."
+        },
+        {
+          "name": "Complimentary Room Upgrade",
+          "details": "Upgrades at participating partner hotels."
+        }
+      ],
+      "howToAccess": [
+        "Log in to the HDFC SmartBuy Portal.",
+        "Navigate to Regalia Gold Benefits -> Boarding Edge.",
+        "Select your desired benefit and destination city.",
+        "Upload your boarding pass (can be a physical photo, screenshot, or DigiYatra QR code; valid from 3 days before up to 6 days after your travel date).",
+        "Receive your voucher code and QR code via email and SMS for redemption at the arrival city."
+      ],
+      "note": "The name on the boarding pass must match the name on your credit card, and benefits are valid only in the destination city printed on the pass."
+    }
   },
   {
     "id": "hdfc-swiggy-blck",

@@ -34,7 +34,6 @@ export default function HeroDotCanvas() {
     const baseRadius = 1.15;
     const maxRadius = 3.2;
     const eventHorizonRadius = 240;
-    const innerHoleRadius = 40; // Dedicated circular clearing for currency symbols
 
     // Currency symbols and smooth transition state
     const SYMBOLS = ["₹", "$", "€"];
@@ -75,6 +74,12 @@ export default function HeroDotCanvas() {
       const y = clientY - rect.top;
 
       if (x >= -150 && x <= width + 150 && y >= -150 && y <= height + 150) {
+        if (mouse.targetX < -500 || mouse.x < -500) {
+          mouse.x = x;
+          mouse.y = y;
+          lastX = x;
+          lastY = y;
+        }
         mouse.targetX = x;
         mouse.targetY = y;
 
@@ -162,6 +167,14 @@ export default function HeroDotCanvas() {
     );
     observer.observe(canvas);
 
+    let resizeObserver = null;
+    if (typeof ResizeObserver !== "undefined" && canvas.parentElement) {
+      resizeObserver = new ResizeObserver(() => {
+        handleResize();
+      });
+      resizeObserver.observe(canvas.parentElement);
+    }
+
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave);
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
@@ -237,13 +250,10 @@ export default function HeroDotCanvas() {
                   radius = baseRadius + (maxRadius - baseRadius) * pullFactor;
                   alpha = 0.11 + 0.65 * pullFactor;
 
-                  // Clear inner circular zone for currency symbol
-                  if (dist < innerHoleRadius) {
-                    const clearFactor = dist / innerHoleRadius; // 0 at center, 1 at boundary
-                    alpha *= Math.pow(clearFactor, 2.2); // Fades completely to 0 at center
-                    const push = (1 - clearFactor) * 14;
-                    renderX -= ux * push;
-                    renderY -= uy * push;
+                  // Softly fade dots directly behind the glyph without clamping or creating any border
+                  const dCenter = Math.hypot(renderX - mouse.x, renderY - mouse.y);
+                  if (dCenter < 24) {
+                    alpha *= Math.pow(dCenter / 24, 2);
                   }
                 }
               }
@@ -285,7 +295,7 @@ export default function HeroDotCanvas() {
 
         const fontSize = width < 640 ? 25 : 29;
         ctx.save();
-        ctx.font = `600 ${fontSize}px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif`;
+        ctx.font = `600 ${fontSize}px "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
 
@@ -295,8 +305,8 @@ export default function HeroDotCanvas() {
           ctx.translate(mouse.x, mouse.y);
           const s = 1.0 - t * 0.12;
           ctx.scale(s, s);
-          ctx.fillStyle = `rgba(18, 18, 18, ${(1 - t) * symbolAlpha * 0.9})`;
-          ctx.fillText(SYMBOLS[curIdx], 0, 1);
+          ctx.fillStyle = `rgba(18, 18, 18, ${(1 - t) * symbolAlpha * 0.92})`;
+          ctx.fillText(SYMBOLS[curIdx], 0, 1.5);
           ctx.restore();
         }
 
@@ -306,8 +316,8 @@ export default function HeroDotCanvas() {
           ctx.translate(mouse.x, mouse.y);
           const s = 0.88 + t * 0.12;
           ctx.scale(s, s);
-          ctx.fillStyle = `rgba(18, 18, 18, ${t * symbolAlpha * 0.9})`;
-          ctx.fillText(SYMBOLS[nextIdx], 0, 1);
+          ctx.fillStyle = `rgba(18, 18, 18, ${t * symbolAlpha * 0.92})`;
+          ctx.fillText(SYMBOLS[nextIdx], 0, 1.5);
           ctx.restore();
         }
 
@@ -323,6 +333,9 @@ export default function HeroDotCanvas() {
 
     return () => {
       observer.disconnect();
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
       window.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
       window.removeEventListener("touchstart", handleTouchStart);

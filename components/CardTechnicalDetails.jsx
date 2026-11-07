@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronUp, ShieldCheck, FileText, Check, ExternalLink, AlertTriangle, Sparkles, TrendingUp } from "lucide-react";
+import { ChevronDown, ChevronUp, ShieldCheck, FileText, Check, ExternalLink, AlertTriangle, Sparkles, TrendingUp, Plane } from "lucide-react";
 
 export default function CardTechnicalDetails({ card }) {
   const [isOpen, setIsOpen] = useState(true);
@@ -195,6 +195,68 @@ export default function CardTechnicalDetails({ card }) {
                     ))}
                   </ul>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* Boarding Edge Program (Regalia Gold) */}
+          {card.boardingEdgeProgram && (
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 mb-3 flex items-center gap-2">
+                <Plane className="h-3.5 w-3.5 text-neutral-900" />
+                {card.boardingEdgeProgram.title || "The Boarding Edge Program"}
+              </h3>
+              <div className="rounded-xl border border-neutral-200/90 bg-white p-5 sm:p-6 space-y-4">
+                <p className="text-xs text-neutral-700 leading-relaxed font-medium">
+                  {card.boardingEdgeProgram.summary}
+                </p>
+
+                {/* Available Perks */}
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-2">
+                    Available Benefits (Choose Any Combination of Two Per Calendar Quarter)
+                  </span>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {card.boardingEdgeProgram.availableBenefits.map((perk, idx) => (
+                      <div
+                        key={idx}
+                        className="rounded-lg border border-neutral-100 bg-[#F9F9F9] p-3.5 space-y-1"
+                      >
+                        <span className="text-xs font-bold text-neutral-900 block">
+                          {perk.name}
+                        </span>
+                        <p className="text-[11px] text-neutral-600 leading-relaxed">
+                          {perk.details}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* How to Access & Redeem */}
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-2">
+                    How to Access & Redeem
+                  </span>
+                  <ol className="space-y-1.5 text-xs text-neutral-700">
+                    {card.boardingEdgeProgram.howToAccess.map((step, idx) => (
+                      <li key={idx} className="flex items-start gap-2.5 leading-relaxed">
+                        <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-[10px] font-bold text-white mt-0.5">
+                          {idx + 1}
+                        </span>
+                        <span>{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+
+                {/* Note */}
+                {card.boardingEdgeProgram.note && (
+                  <div className="rounded-lg border border-amber-200/80 bg-amber-50/50 p-3 text-xs text-amber-900 leading-relaxed">
+                    <strong>Note: </strong>
+                    {card.boardingEdgeProgram.note}
+                  </div>
+                )}
               </div>
             </div>
           )}
