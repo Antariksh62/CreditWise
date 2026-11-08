@@ -60,3 +60,11 @@ graphify-out/
 scratch/
 scratch_*
 test_results.json
+
+.tmp_chrome*
+/*_inspect.png
+/*_clip.png
+/*_desktop.png
+/*_mobile.png
+/*_trans.png
+

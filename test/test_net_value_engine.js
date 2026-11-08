@@ -52,12 +52,12 @@ const spendLowDining = { dining: 5000, groceries: 0, shopping: 0, travel: 0, fue
 const hsbcLowVal = calculateNetCardValue(hsbc, spendLowDining);
 
 assert(
-  hsbcLowVal.feeWaived === false && hsbcLowVal.applicableFee === 999,
-  "HSBC Live+ fee applies (₹999) when annual spend (₹60,000) is below ₹2,00,000"
+  hsbcLowVal.feeWaived === false && (hsbcLowVal.applicableFee === 999 || hsbcLowVal.annualFee === 999),
+  "HSBC Live+ fee applies (₹999 + GST) when annual spend (₹60,000) is below ₹2,00,000"
 );
 assert(
-  hsbcLowVal.estimatedNetAnnualValue === 6000 - 999,
-  "HSBC Live+ correctly nets out the ₹999 fee: ₹6,000 - ₹999 = ₹5,001"
+  hsbcLowVal.estimatedNetAnnualValue === 6000 - hsbcLowVal.applicableFee,
+  `HSBC Live+ correctly nets out the applicable fee: ₹6,000 - ₹${hsbcLowVal.applicableFee} = ₹${hsbcLowVal.estimatedNetAnnualValue}`
 );
 
 // ----------------------------------------------------

@@ -105,6 +105,13 @@ async function inspectDotMatrix() {
   fs.writeFileSync("dot_matrix_inspect.png", Buffer.from(screenshot1.data, "base64"));
   console.log("Captured dot_matrix_inspect.png");
 
+  const clipScreenshot = await client.send("Page.captureScreenshot", {
+    format: "png",
+    clip: { x: 500, y: 260, width: 280, height: 280, scale: 1 }
+  });
+  fs.writeFileSync("dot_matrix_clip.png", Buffer.from(clipScreenshot.data, "base64"));
+  console.log("Captured dot_matrix_clip.png");
+
   await client.close();
   chromeProc.kill();
   try {

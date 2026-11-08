@@ -15,7 +15,6 @@ import {
   Sparkles,
   Info,
 } from "lucide-react";
-import cardsData from "../data/cards.json";
 
 // ================= CONSTANTS & DEFINITIONS =================
 
@@ -131,6 +130,20 @@ const PRIORITIES = [
   { id: "Simple rewards", label: "Simple Rewards", desc: "No complex conversion math or expiring portals" },
 ];
 
+export const PREFERRED_REWARD_TYPES = [
+  { id: "Cashback", label: "Cashback", desc: "Direct statement credits automatically applied to your bill" },
+  { id: "Reward Points", label: "Reward Points", desc: "Flexible points for vouchers, gifts, and catalog redemption" },
+  { id: "Travel Benefits", label: "Travel Benefits", desc: "Air miles, airline partner transfers, hotels, and airport lounge access" },
+  { id: "No Preference", label: "No Preference", desc: "Open to whichever structure yields the highest net monetary return" },
+];
+
+export const PREFERRED_CARD_CHARACTERISTICS = [
+  { id: "Low Annual Fee", label: "Low / No Annual Fee", desc: "Lifetime free or easily waivable with everyday spending" },
+  { id: "Premium Benefits", label: "Premium Benefits", desc: "Comprehensive airport lounge access, concierge, and luxury perks" },
+  { id: "Simplicity", label: "Simplicity", desc: "Single-rate earning without portal multipliers or expiration tracking" },
+  { id: "Maximum Rewards", label: "Maximum Rewards", desc: "High category multipliers, milestone vouchers, and transfer bonuses" },
+];
+
 const FEE_PREFERENCES = [
   {
     id: "no-fee",
@@ -215,7 +228,9 @@ export default function OnboardingFlow() {
       other: 3000,
     },
 
-    // Step 3: What Matters To You
+    // Step 3: What Matters To You & Preferences
+    preferredRewardType: "Cashback",
+    preferredCardCharacteristics: "Simplicity",
     priorities: ["Cashback", "Dining", "Shopping"],
 
     // Step 4: Fee Preference
@@ -224,9 +239,8 @@ export default function OnboardingFlow() {
     // Step 5: Reward Complexity
     rewardStyle: "balanced",
 
-    // Step 6: Existing Cards
-    hasExistingCards: false,
-    existingCards: [],
+    // Step 6: Target Setup (Card Count)
+    cardCount: 1,
 
     // Step 7: Optional Information
     travelFrequency: "Sometimes (2–4 trips/year)",
@@ -234,7 +248,10 @@ export default function OnboardingFlow() {
     creditScoreRange: "750+ (Excellent)",
   });
 
-  const [cardSearch, setCardSearch] = useState("");
+  const [inputMode, setInputMode] = useState("manual"); // "manual" | "ai"
+  const [naturalLanguageInput, setNaturalLanguageInput] = useState("");
+  const [isParsingNL, setIsParsingNL] = useState(false);
+  const [nlFeedbackMessage, setNlFeedbackMessage] = useState(null);
   const [finishing, setFinishing] = useState(false);
 
   // Restore saved profile or user on mount
@@ -259,11 +276,12 @@ export default function OnboardingFlow() {
           incomeRange: profile.profile?.incomeRange || prev.incomeRange,
           city: profile.profile?.city || prev.city,
           spending: { ...prev.spending, ...(profile.spending?.categories || {}) },
+          preferredRewardType: profile.preferences?.preferredRewardType || prev.preferredRewardType,
+          preferredCardCharacteristics: profile.preferences?.preferredCardCharacteristics || prev.preferredCardCharacteristics,
           priorities: profile.preferences?.priorities || prev.priorities,
           feeTolerance: profile.preferences?.feeTolerance || prev.feeTolerance,
           rewardStyle: profile.preferences?.rewardStyle || prev.rewardStyle,
-          existingCards: profile.existingCards || prev.existingCards,
-          hasExistingCards: (profile.existingCards || []).length > 0,
+          cardCount: Number(profile.preferences?.cardCount || profile.cardCount) || prev.cardCount,
           travelFrequency: profile.preferences?.travelFrequency || prev.travelFrequency,
           internationalSpend: profile.preferences?.internationalSpend || prev.internationalSpend,
           creditScoreRange: profile.preferences?.creditScoreRange || prev.creditScoreRange,
@@ -287,6 +305,80 @@ export default function OnboardingFlow() {
     }));
   }
 
+  async function handleAutoFillWithAI() {
+    if (!naturalLanguageInput.trim()) return;
+    setIsParsingNL(true);
+    setNlFeedbackMessage(null);
+    try {
+      const res = await fetch("/api/parse-spending", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: naturalLanguageInput }),
+      });
+      const data = await res.json();
+
+      if (data.aiUnavailable) {
+        // Fallback: Gemini API unavailable (rate limits, 503, timeout, config error)
+        // Automatically switch interface to manual mode without losing previously entered numbers
+        setInputMode("manual");
+        if (data.categories) {
+          const updates = {};
+          Object.entries(data.categories).forEach(([k, v]) => {
+            if (v > 0) updates[k] = v;
+          });
+          if (Object.keys(updates).length > 0) {
+            setFormData((prev) => ({
+              ...prev,
+              spending: { ...prev.spending, ...updates },
+            }));
+          }
+        }
+        setNlFeedbackMessage({
+          type: "fallback",
+          text: data.message || "AI-assisted onboarding is temporarily unavailable. No worries — you can complete your profile manually.",
+        });
+        return;
+      }
+
+      if (data.success && data.categories && Object.keys(data.categories).length > 0) {
+        const updates = {};
+        Object.entries(data.categories).forEach(([k, v]) => {
+          if (v > 0) updates[k] = v;
+        });
+        setFormData((prev) => ({
+          ...prev,
+          spending: {
+            ...prev.spending,
+            ...updates,
+          },
+          preferredRewardType: data.preferences?.preferredRewardType || prev.preferredRewardType,
+          preferredCardCharacteristics: data.preferences?.preferredCardCharacteristics || prev.preferredCardCharacteristics,
+        }));
+        const count = Object.keys(updates).length;
+        setNlFeedbackMessage({
+          type: "success",
+          text: `Auto-filled ${count > 0 ? `${count} categories` : "numbers"} from your description. Review and adjust any values below.`,
+        });
+        // Switch to manual mode view so the user can immediately review & adjust
+        setInputMode("manual");
+      } else {
+        setNlFeedbackMessage({
+          type: "error",
+          text: data.error || "Could not detect specific category amounts. Try: '₹12,000 groceries, ₹5,000 dining, ₹4,000 fuel'.",
+        });
+      }
+    } catch {
+      // Network or unexpected failure: automatically fallback to manual mode
+      setInputMode("manual");
+      setNlFeedbackMessage({
+        type: "fallback",
+        text: "AI-assisted onboarding is temporarily unavailable. No worries — you can complete your profile manually.",
+      });
+    } finally {
+      setIsParsingNL(false);
+    }
+  }
+
   function togglePriority(priorityId) {
     setFormData((prev) => {
       const exists = prev.priorities.includes(priorityId);
@@ -294,16 +386,6 @@ export default function OnboardingFlow() {
         ? prev.priorities.filter((p) => p !== priorityId)
         : [...prev.priorities, priorityId];
       return { ...prev, priorities: next };
-    });
-  }
-
-  function toggleExistingCard(slug) {
-    setFormData((prev) => {
-      const exists = prev.existingCards.includes(slug);
-      const next = exists
-        ? prev.existingCards.filter((s) => s !== slug)
-        : [...prev.existingCards, slug];
-      return { ...prev, existingCards: next };
     });
   }
 
@@ -319,6 +401,7 @@ export default function OnboardingFlow() {
     }
 
     const structuredProfile = {
+      cardCount: Number(formData.cardCount) || 1,
       account: {
         fullName: activeUser.fullName,
         email: activeUser.email,
@@ -336,6 +419,9 @@ export default function OnboardingFlow() {
         categories: formData.spending,
       },
       preferences: {
+        cardCount: Number(formData.cardCount) || 1,
+        preferredRewardType: formData.preferredRewardType,
+        preferredCardCharacteristics: formData.preferredCardCharacteristics,
         priorities: formData.priorities,
         rewardStyle: formData.rewardStyle,
         feeTolerance: formData.feeTolerance,
@@ -343,7 +429,7 @@ export default function OnboardingFlow() {
         internationalSpend: formData.internationalSpend,
         creditScoreRange: formData.creditScoreRange,
       },
-      existingCards: formData.hasExistingCards ? formData.existingCards : [],
+      existingCards: [],
     };
 
     try {
@@ -359,12 +445,6 @@ export default function OnboardingFlow() {
     router.push("/results");
   }
 
-  const filteredCards = cardsData.filter(
-    (c) =>
-      c.name.toLowerCase().includes(cardSearch.toLowerCase()) ||
-      c.issuer.toLowerCase().includes(cardSearch.toLowerCase())
-  );
-
   return (
     <div className="w-full max-w-3xl mx-auto">
       {/* Top Header & Progress */}
@@ -377,7 +457,7 @@ export default function OnboardingFlow() {
             {step === 3 && "What Matters To You"}
             {step === 4 && "Fee Preference"}
             {step === 5 && "Reward Complexity"}
-            {step === 6 && "Existing Cards"}
+            {step === 6 && "Desired Setup"}
             {step === 7 && "Review & Complete"}
           </span>
         </div>
@@ -552,6 +632,162 @@ export default function OnboardingFlow() {
               </div>
             </div>
 
+            {/* Input Mode Selector: Manual vs AI */}
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-neutral-100 pb-3">
+              <div className="inline-flex rounded-lg bg-neutral-100 p-0.5">
+                <button
+                  type="button"
+                  onClick={() => setInputMode("manual")}
+                  className={`rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
+                    inputMode === "manual"
+                      ? "bg-white text-black shadow-xs"
+                      : "text-neutral-500 hover:text-black"
+                  }`}
+                >
+                  Manual Questionnaire (Standard)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setInputMode("ai")}
+                  className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
+                    inputMode === "ai"
+                      ? "bg-white text-black shadow-xs"
+                      : "text-neutral-500 hover:text-black"
+                  }`}
+                >
+                  <Sparkles className="h-3 w-3 text-neutral-800" />
+                  AI-Assisted (Optional)
+                </button>
+              </div>
+
+              {inputMode === "ai" && (
+                <button
+                  type="button"
+                  onClick={() => setInputMode("manual")}
+                  className="text-[11px] font-semibold text-neutral-500 hover:text-black transition-colors"
+                >
+                  Switch to Manual Mode →
+                </button>
+              )}
+            </div>
+
+            {/* AI Assistant Panel (when inputMode === 'ai') */}
+            {inputMode === "ai" && (
+              <div className="mb-6 rounded-xl border border-neutral-200/90 bg-neutral-50/70 p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Sparkles className="h-4 w-4 text-neutral-800 shrink-0" />
+                  <label
+                    htmlFor="nl-spend-input"
+                    className="text-xs font-bold text-neutral-900"
+                  >
+                    AI-Assisted Spend Parsing
+                  </label>
+                </div>
+                <p className="text-[11px] text-neutral-500 mb-2.5 leading-relaxed">
+                  Describe your regular monthly expenses in plain words (e.g. &ldquo;₹12,000 groceries, ₹5,000 dining out, ₹3,500 fuel, ₹8,000 shopping&rdquo;). We will distribute them to the fields below.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <input
+                    id="nl-spend-input"
+                    type="text"
+                    value={naturalLanguageInput}
+                    onChange={(e) => setNaturalLanguageInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        handleAutoFillWithAI();
+                      }
+                    }}
+                    placeholder="e.g. ₹10,000 groceries, ₹6,000 dining, ₹4,000 fuel and ₹15,000 online shopping"
+                    className="flex-1 rounded-lg border border-neutral-200 bg-white px-3 py-2 text-xs text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black"
+                  />
+                  <button
+                    type="button"
+                    disabled={isParsingNL || !naturalLanguageInput.trim()}
+                    onClick={handleAutoFillWithAI}
+                    className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-black px-4 py-2 text-xs font-bold text-white transition-all hover:bg-neutral-800 disabled:opacity-50 shrink-0"
+                  >
+                    {isParsingNL ? (
+                      <>
+                        <div className="h-3 w-3 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+                        <span>Parsing…</span>
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="h-3 w-3 text-[#DDF247]" />
+                        <span>Auto-fill with AI</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                <div className="mt-2.5 flex items-center justify-between text-[11px]">
+                  <span className="text-neutral-400">
+                    Gemini AI extraction is optional. You can review and adjust every amount.
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setInputMode("manual")}
+                    className="font-semibold text-neutral-600 hover:text-black"
+                  >
+                    Complete manually instead
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Subtle Fallback Notification Banner */}
+            {nlFeedbackMessage && nlFeedbackMessage.type === "fallback" && (
+              <div className="mb-6 rounded-xl border border-amber-200/80 bg-amber-50/60 p-4 text-xs text-amber-900 flex items-start justify-between gap-3">
+                <div className="flex items-start gap-2.5">
+                  <Info className="h-4 w-4 text-amber-700 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold block">
+                      AI-assisted onboarding is temporarily unavailable. No worries — you can complete your profile manually.
+                    </span>
+                    <span className="text-[11px] text-amber-800/80 block mt-0.5">
+                      All your inputs are preserved below. Review the categories and adjust as needed.
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setInputMode("manual");
+                        setNlFeedbackMessage(null);
+                      }}
+                      className="mt-2 inline-flex items-center gap-1 rounded bg-black px-3 py-1.5 text-[11px] font-bold text-white hover:bg-neutral-800 transition-colors"
+                    >
+                      Continue Manually
+                      <ArrowRight className="h-3 w-3" />
+                    </button>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setNlFeedbackMessage(null)}
+                  className="text-amber-700 hover:text-amber-950 text-xs font-semibold shrink-0"
+                >
+                  Dismiss
+                </button>
+              </div>
+            )}
+
+            {/* Success message */}
+            {nlFeedbackMessage && nlFeedbackMessage.type === "success" && (
+              <div className="mb-6 rounded-xl border border-emerald-200 bg-emerald-50/60 p-3.5 text-xs text-emerald-900 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
+                  <span>{nlFeedbackMessage.text}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setNlFeedbackMessage(null)}
+                  className="text-emerald-700 hover:text-emerald-950 text-xs font-semibold"
+                >
+                  Dismiss
+                </button>
+              </div>
+            )}
+
             <div className="space-y-4">
               {SPEND_CATEGORIES.map((cat) => {
                 const val = formData.spending[cat.key] || 0;
@@ -618,48 +854,134 @@ export default function OnboardingFlow() {
           <div>
             <div className="mb-6">
               <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-                Reward Priorities
+                Reward Preferences & Characteristics
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-black mt-1">
-                What matters most to you?
+                What reward structure works best for you?
               </h2>
               <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 leading-relaxed max-w-xl">
-                Select the benefits that actually make a difference to your daily routine. We will weight verified cards accordingly:
+                Choose your preferred reward type and card style. CreditWise optimizes across verified terms to suit your everyday habits.
               </p>
             </div>
 
-            <div className="grid gap-2.5 sm:grid-cols-2">
-              {PRIORITIES.map((p) => {
-                const isSelected = formData.priorities.includes(p.id);
-                return (
-                  <button
-                    key={p.id}
-                    type="button"
-                    onClick={() => togglePriority(p.id)}
-                    className={`text-left p-3.5 rounded-xl border transition-all ${
-                      isSelected
-                        ? "border-black bg-neutral-900 text-white shadow-sm"
-                        : "border-neutral-200 bg-white text-neutral-800 hover:border-neutral-400"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <p className="text-xs font-bold">{p.label}</p>
-                      <div
-                        className={`h-4 w-4 rounded-full border flex items-center justify-center shrink-0 ${
-                          isSelected
-                            ? "bg-[#DDF247] border-[#DDF247] text-black"
-                            : "border-neutral-300"
-                        }`}
-                      >
-                        {isSelected && <Check className="h-2.5 w-2.5" strokeWidth={3} />}
+            {/* Section A: Preferred Reward Type */}
+            <div className="mb-6">
+              <label className="text-xs font-bold uppercase tracking-wider text-neutral-800 block mb-2">
+                Preferred Reward Type
+              </label>
+              <div className="grid gap-2.5 sm:grid-cols-2">
+                {PREFERRED_REWARD_TYPES.map((rt) => {
+                  const isSelected = formData.preferredRewardType === rt.id;
+                  return (
+                    <button
+                      key={rt.id}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, preferredRewardType: rt.id })}
+                      className={`text-left p-3.5 rounded-xl border transition-all ${
+                        isSelected
+                          ? "border-black bg-neutral-900 text-white shadow-sm"
+                          : "border-neutral-200 bg-white text-neutral-800 hover:border-neutral-400"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <p className="text-xs font-bold">{rt.label}</p>
+                        <div
+                          className={`h-4 w-4 rounded-full border flex items-center justify-center shrink-0 ${
+                            isSelected
+                              ? "bg-[#DDF247] border-[#DDF247] text-black"
+                              : "border-neutral-300"
+                          }`}
+                        >
+                          {isSelected && <Check className="h-2.5 w-2.5" strokeWidth={3} />}
+                        </div>
                       </div>
-                    </div>
-                    <p className={`text-[11px] mt-1 leading-snug ${isSelected ? "text-neutral-300" : "text-neutral-500"}`}>
-                      {p.desc}
-                    </p>
-                  </button>
-                );
-              })}
+                      <p className={`text-[11px] mt-1 leading-snug ${isSelected ? "text-neutral-300" : "text-neutral-500"}`}>
+                        {rt.desc}
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Section B: Preferred Card Characteristics */}
+            <div className="mb-6">
+              <label className="text-xs font-bold uppercase tracking-wider text-neutral-800 block mb-2">
+                Preferred Card Characteristics
+              </label>
+              <div className="grid gap-2.5 sm:grid-cols-2">
+                {PREFERRED_CARD_CHARACTERISTICS.map((pc) => {
+                  const isSelected = formData.preferredCardCharacteristics === pc.id;
+                  return (
+                    <button
+                      key={pc.id}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, preferredCardCharacteristics: pc.id })}
+                      className={`text-left p-3.5 rounded-xl border transition-all ${
+                        isSelected
+                          ? "border-black bg-neutral-900 text-white shadow-sm"
+                          : "border-neutral-200 bg-white text-neutral-800 hover:border-neutral-400"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <p className="text-xs font-bold">{pc.label}</p>
+                        <div
+                          className={`h-4 w-4 rounded-full border flex items-center justify-center shrink-0 ${
+                            isSelected
+                              ? "bg-[#DDF247] border-[#DDF247] text-black"
+                              : "border-neutral-300"
+                          }`}
+                        >
+                          {isSelected && <Check className="h-2.5 w-2.5" strokeWidth={3} />}
+                        </div>
+                      </div>
+                      <p className={`text-[11px] mt-1 leading-snug ${isSelected ? "text-neutral-300" : "text-neutral-500"}`}>
+                        {pc.desc}
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Section C: Key Benefits / Everyday Categories */}
+            <div>
+              <label className="text-xs font-bold uppercase tracking-wider text-neutral-800 block mb-2">
+                Everyday Category Priorities (Select all that apply)
+              </label>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {PRIORITIES.map((p) => {
+                  const isSelected = formData.priorities.includes(p.id);
+                  return (
+                    <button
+                      key={p.id}
+                      type="button"
+                      onClick={() => togglePriority(p.id)}
+                      className={`text-left p-3 rounded-xl border transition-all ${
+                        isSelected
+                          ? "border-black bg-neutral-900 text-white shadow-sm"
+                          : "border-neutral-200 bg-white text-neutral-800 hover:border-neutral-400"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <p className="text-xs font-bold">{p.label}</p>
+                        <div
+                          className={`h-4 w-4 rounded-full border flex items-center justify-center shrink-0 ${
+                            isSelected
+                              ? "bg-[#DDF247] border-[#DDF247] text-black"
+                              : "border-neutral-300"
+                          }`}
+                        >
+                          {isSelected && <Check className="h-2.5 w-2.5" strokeWidth={3} />}
+                        </div>
+                      </div>
+                      <p className={`text-[10.5px] mt-0.5 leading-snug ${isSelected ? "text-neutral-300" : "text-neutral-500"}`}>
+                        {p.desc}
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}
@@ -754,106 +1076,106 @@ export default function OnboardingFlow() {
           </div>
         )}
 
-        {/* ================= STEP 6: EXISTING CARDS ================= */}
+        {/* ================= STEP 6: TARGET SETUP (CARD COUNT) ================= */}
         {step === 6 && (
           <div>
             <div className="mb-6">
               <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-                Current Wallet
+                Wallet Architecture
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-black mt-1">
-                Do you already hold any credit cards?
+                How many credit cards do you want?
               </h2>
               <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 leading-relaxed max-w-xl">
-                Helps us recommend complementary cards without suggesting duplicates you already carry.
+                Choose the target number of cards you want in your wallet. Our engine will calculate the mathematically optimal setup for exactly this number.
               </p>
             </div>
 
-            {/* Strict Privacy Callout */}
-            <div className="mb-6 rounded-xl border border-emerald-200 bg-emerald-50/50 p-4 text-xs text-neutral-700 flex items-start gap-3">
-              <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
-              <div>
-                <strong className="text-emerald-950 font-bold block mb-0.5">Strict Privacy Guarantee</strong>
-                We only record product names. We NEVER ask for card numbers, CVVs, expiry dates, PINs, or banking credentials.
+            {/* TransUnion CIBIL Context Insight */}
+            <div className="mb-6 rounded-xl border border-neutral-200/80 bg-neutral-50/80 p-4 text-xs text-neutral-700 flex items-start gap-3">
+              <Info className="h-4 w-4 text-neutral-600 shrink-0 mt-0.5" />
+              <div className="leading-relaxed">
+                <span className="font-bold text-neutral-900 block mb-0.5">
+                  Did you know? Indian credit-card consumers hold approximately 2.1 live credit cards on average.
+                </span>
+                <span className="text-neutral-500 text-[11px] block mt-0.5">
+                  Source: TransUnion CIBIL, Beyond the Swipe, March 2026. The figure is calculated from approximately 10.7 crore live cards across roughly 5.2 crore active credit-card consumers. Around 22% of active cardholders hold three or more cards.
+                </span>
               </div>
             </div>
 
-            <div className="flex gap-3 mb-6">
-              <button
-                type="button"
-                onClick={() => setFormData({ ...formData, hasExistingCards: false, existingCards: [] })}
-                className={`flex-1 py-3 rounded-xl text-xs font-bold transition-all ${
-                  !formData.hasExistingCards
-                    ? "bg-black text-white shadow-sm"
-                    : "border border-neutral-200 bg-white text-neutral-700 hover:border-neutral-400"
-                }`}
-              >
-                No, looking for my first card
-              </button>
-              <button
-                type="button"
-                onClick={() => setFormData({ ...formData, hasExistingCards: true })}
-                className={`flex-1 py-3 rounded-xl text-xs font-bold transition-all ${
-                  formData.hasExistingCards
-                    ? "bg-black text-white shadow-sm"
-                    : "border border-neutral-200 bg-white text-neutral-700 hover:border-neutral-400"
-                }`}
-              >
-                Yes, I hold cards already
-              </button>
-            </div>
-
-            {formData.hasExistingCards && (
-              <div className="space-y-3 pt-2">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-neutral-400" />
-                  <input
-                    type="text"
-                    placeholder="Search verified card database (e.g. Amazon Pay, Millennia, Infinia)..."
-                    value={cardSearch}
-                    onChange={(e) => setCardSearch(e.target.value)}
-                    className="w-full rounded-lg border border-neutral-200 bg-neutral-50/50 pl-9 pr-3 py-2 text-xs text-black focus:outline-none focus:ring-2 focus:ring-black"
-                  />
-                </div>
-
-                <div className="max-h-60 overflow-y-auto space-y-2 pr-1">
-                  {filteredCards.map((card) => {
-                    const isSelected = formData.existingCards.includes(card.slug);
-                    return (
-                      <button
-                        key={card.slug}
-                        type="button"
-                        onClick={() => toggleExistingCard(card.slug)}
-                        className={`w-full text-left p-3 rounded-xl border flex items-center justify-between transition-all ${
-                          isSelected
-                            ? "border-black bg-neutral-900 text-white"
-                            : "border-neutral-200 bg-white text-neutral-800 hover:border-neutral-400"
-                        }`}
-                      >
-                        <div>
-                          <p className="text-xs font-bold leading-snug">{card.name}</p>
-                          <p className={`text-[10px] mt-0.5 uppercase tracking-wider ${isSelected ? "text-neutral-400" : "text-neutral-500"}`}>
-                            {card.issuer} · {card.network}
-                          </p>
-                        </div>
-                        <div
-                          className={`h-5 w-5 rounded-full border flex items-center justify-center shrink-0 ${
-                            isSelected ? "bg-[#DDF247] border-[#DDF247] text-black" : "border-neutral-300"
+            {/* 3 Count Options */}
+            <div className="space-y-3">
+              {[
+                {
+                  count: 1,
+                  title: "1 Credit Card",
+                  badge: "Simplicity",
+                  desc: "Single-card simplicity. One card for all your spending with zero wallet juggling or multiple statement tracking.",
+                  fit: "Best if you prefer an effortless setup with zero complexity.",
+                },
+                {
+                  count: 2,
+                  title: "2 Credit Cards",
+                  badge: "Strategic Pairing",
+                  desc: "Strategic pairing. A versatile primary card for core everyday spends combined with a category specialist for elevated returns.",
+                  fit: "Best balance between maximized earnings and manageable administration.",
+                },
+                {
+                  count: 3,
+                  title: "3 Credit Cards",
+                  badge: "Full Optimization",
+                  desc: "Optimized portfolio. Comprehensive category coverage ensuring high returns across groceries, dining, travel, and online purchases.",
+                  fit: "Best if you want to extract the highest net monetary value across every spend area.",
+                },
+              ].map((opt) => {
+                const isSelected = formData.cardCount === opt.count;
+                return (
+                  <button
+                    key={opt.count}
+                    type="button"
+                    onClick={() => setFormData({ ...formData, cardCount: opt.count })}
+                    className={`w-full text-left p-5 rounded-xl border transition-all ${
+                      isSelected
+                        ? "border-black bg-neutral-900 text-white shadow-sm"
+                        : "border-neutral-200 bg-white text-neutral-800 hover:border-neutral-400"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <p className="text-sm font-bold">{opt.title}</p>
+                        <span
+                          className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                            isSelected
+                              ? "bg-neutral-800 text-neutral-300"
+                              : "bg-neutral-100 text-neutral-600"
                           }`}
                         >
-                          {isSelected && <Check className="h-3 w-3" strokeWidth={3} />}
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-                {formData.existingCards.length > 0 && (
-                  <p className="text-xs text-neutral-600 pt-1">
-                    Selected: <strong>{formData.existingCards.length} cards</strong>
-                  </p>
-                )}
-              </div>
-            )}
+                          {opt.badge}
+                        </span>
+                      </div>
+                      {isSelected && (
+                        <Check className="h-4 w-4 text-[#DDF247]" strokeWidth={3} />
+                      )}
+                    </div>
+                    <p
+                      className={`text-xs mt-1.5 leading-relaxed ${
+                        isSelected ? "text-neutral-300" : "text-neutral-500"
+                      }`}
+                    >
+                      {opt.desc}
+                    </p>
+                    <p
+                      className={`text-[11px] mt-2 font-medium ${
+                        isSelected ? "text-neutral-400" : "text-neutral-500"
+                      }`}
+                    >
+                      {opt.fit}
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         )}
 
@@ -1019,15 +1341,13 @@ export default function OnboardingFlow() {
                 {/* Step 3 summary */}
                 <div className="rounded-lg border border-neutral-200/70 bg-white p-3 flex justify-between items-start">
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-neutral-400 block">Priorities</span>
+                    <span className="text-[10px] uppercase font-bold text-neutral-400 block">Rewards & Characteristics</span>
                     <p className="font-semibold text-neutral-900 mt-0.5">
-                      {formData.priorities.length > 0 ? formData.priorities.slice(0, 3).join(", ") : "None chosen"}
+                      {formData.preferredRewardType} · {formData.preferredCardCharacteristics}
                     </p>
-                    {formData.priorities.length > 3 && (
-                      <p className="text-neutral-500 text-[11px]">
-                        +{formData.priorities.length - 3} more priorities
-                      </p>
-                    )}
+                    <p className="text-neutral-500 text-[11px]">
+                      {formData.priorities.length > 0 ? formData.priorities.slice(0, 3).join(", ") : "Balanced categories"}
+                    </p>
                   </div>
                   <button
                     type="button"
@@ -1063,11 +1383,12 @@ export default function OnboardingFlow() {
                 {/* Step 6 summary */}
                 <div className="rounded-lg border border-neutral-200/70 bg-white p-3 flex justify-between items-start sm:col-span-2">
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-neutral-400 block">Existing Cards</span>
+                    <span className="text-[10px] uppercase font-bold text-neutral-400 block">Desired Setup</span>
                     <p className="font-semibold text-neutral-900 mt-0.5">
-                      {formData.hasExistingCards && formData.existingCards.length > 0
-                        ? `${formData.existingCards.length} verified cards registered`
-                        : "No existing cards selected (looking for first card)"}
+                      {formData.cardCount} {formData.cardCount === 1 ? "Credit Card (Simplicity)" : formData.cardCount === 2 ? "Credit Cards (Strategic Pairing)" : "Credit Cards (Optimized Portfolio)"}
+                    </p>
+                    <p className="text-neutral-500 text-[11px]">
+                      The recommendation engine will identify the best combination of exactly {formData.cardCount} cards.
                     </p>
                   </div>
                   <button

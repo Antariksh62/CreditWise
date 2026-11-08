@@ -90,7 +90,18 @@ export default function RecommendationQuiz() {
       {/* ---------- Question ---------- */}
       <fieldset key={question.id} className="animate-cw-fade">
         <legend className="cw-h3 mb-1">{question.question}</legend>
-        <p className="mb-6 text-[0.875rem] text-muted">{question.help}</p>
+        <p className="mb-4 text-[0.875rem] text-muted">{question.help}</p>
+
+        {question.id === "cardCount" && (
+          <div className="mb-5 rounded-xl border border-border bg-neutral-50/70 p-4 text-xs text-muted leading-relaxed">
+            <strong className="block text-foreground font-semibold mb-1">
+              Did you know? Indian credit-card consumers hold approximately 2.1 live credit cards on average.
+            </strong>
+            <p className="text-[11px] text-muted">
+              Source: TransUnion CIBIL, Beyond the Swipe, March 2026. Calculated from approximately 10.7 crore live cards across roughly 5.2 crore active consumers. Around 22% of active cardholders hold three or more cards.
+            </p>
+          </div>
+        )}
 
         <div className="grid gap-2">
           {question.options.map((option) => {

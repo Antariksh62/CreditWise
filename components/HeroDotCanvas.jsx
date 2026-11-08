@@ -250,10 +250,17 @@ export default function HeroDotCanvas() {
                   radius = baseRadius + (maxRadius - baseRadius) * pullFactor;
                   alpha = 0.11 + 0.65 * pullFactor;
 
-                  // Softly fade dots directly behind the glyph without clamping or creating any border
+                  // Natural black-hole event horizon: dots entering the central void are absorbed
+                  // cleanly so the currency symbol sits unhindered inside the black hole without
+                  // any artificial dot circumference border or push clustering.
                   const dCenter = Math.hypot(renderX - mouse.x, renderY - mouse.y);
-                  if (dCenter < 24) {
-                    alpha *= Math.pow(dCenter / 24, 2);
+                  const innerHole = 32;
+                  const featherZone = 14;
+                  if (dCenter < innerHole) {
+                    alpha = 0;
+                  } else if (dCenter < innerHole + featherZone) {
+                    const t = (dCenter - innerHole) / featherZone;
+                    alpha *= t * t * (3 - 2 * t); // Smooth Hermite fade into the black hole
                   }
                 }
               }
