@@ -250,17 +250,16 @@ export default function HeroDotCanvas() {
                   radius = baseRadius + (maxRadius - baseRadius) * pullFactor;
                   alpha = 0.11 + 0.65 * pullFactor;
 
-                  // Natural black-hole event horizon: dots entering the central void are absorbed
-                  // cleanly so the currency symbol sits unhindered inside the black hole without
-                  // any artificial dot circumference border or push clustering.
+                  // Smoothly fade dots entering the small transparent circle around the symbol
+                  // so the currency symbol is crisp and unhindered, without creating any large empty white void.
                   const dCenter = Math.hypot(renderX - mouse.x, renderY - mouse.y);
-                  const innerHole = 32;
-                  const featherZone = 14;
-                  if (dCenter < innerHole) {
+                  const circleRadius = width < 640 ? 17 : 19;
+                  const feather = 5;
+                  if (dCenter < circleRadius - feather) {
                     alpha = 0;
-                  } else if (dCenter < innerHole + featherZone) {
-                    const t = (dCenter - innerHole) / featherZone;
-                    alpha *= t * t * (3 - 2 * t); // Smooth Hermite fade into the black hole
+                  } else if (dCenter < circleRadius + feather) {
+                    const t = (dCenter - (circleRadius - feather)) / (feather * 2);
+                    alpha *= t * t * (3 - 2 * t);
                   }
                 }
               }
@@ -292,7 +291,7 @@ export default function HeroDotCanvas() {
         }
       }
 
-      // Render the currency symbol inside the circular clearing
+      // Render the transparent small circle and currency symbol
       if (symbolAlpha > 0.01 && hasInteraction && !prefersReducedMotion) {
         const curIdx = Math.floor(symbolProgress) % 3;
         const nextIdx = (curIdx + 1) % 3;
@@ -300,8 +299,21 @@ export default function HeroDotCanvas() {
         // Smooth Hermite interpolation (smoothstep)
         const t = rawT * rawT * (3 - 2 * rawT);
 
-        const fontSize = width < 640 ? 25 : 29;
+        const circleRadius = width < 640 ? 17 : 19;
+        const fontSize = width < 640 ? 21 : 23;
+
         ctx.save();
+        ctx.translate(mouse.x, mouse.y);
+
+        // Transparent small circle around the currency symbol (no white big circle)
+        ctx.beginPath();
+        ctx.arc(0, 0, circleRadius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 0, 0, ${0.03 * symbolAlpha})`;
+        ctx.strokeStyle = `rgba(0, 0, 0, ${0.16 * symbolAlpha})`;
+        ctx.lineWidth = 1;
+        ctx.fill();
+        ctx.stroke();
+
         ctx.font = `600 ${fontSize}px "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
@@ -309,22 +321,20 @@ export default function HeroDotCanvas() {
         // Current Symbol
         if (1 - t > 0.005) {
           ctx.save();
-          ctx.translate(mouse.x, mouse.y);
           const s = 1.0 - t * 0.12;
           ctx.scale(s, s);
-          ctx.fillStyle = `rgba(18, 18, 18, ${(1 - t) * symbolAlpha * 0.92})`;
-          ctx.fillText(SYMBOLS[curIdx], 0, 1.5);
+          ctx.fillStyle = `rgba(18, 18, 18, ${(1 - t) * symbolAlpha * 0.94})`;
+          ctx.fillText(SYMBOLS[curIdx], 0, 1);
           ctx.restore();
         }
 
         // Next Symbol
         if (t > 0.005) {
           ctx.save();
-          ctx.translate(mouse.x, mouse.y);
           const s = 0.88 + t * 0.12;
           ctx.scale(s, s);
-          ctx.fillStyle = `rgba(18, 18, 18, ${t * symbolAlpha * 0.92})`;
-          ctx.fillText(SYMBOLS[nextIdx], 0, 1.5);
+          ctx.fillStyle = `rgba(18, 18, 18, ${t * symbolAlpha * 0.94})`;
+          ctx.fillText(SYMBOLS[nextIdx], 0, 1);
           ctx.restore();
         }
 
