@@ -331,7 +331,14 @@ export default function CardTechnicalDetails({ card }) {
             <dl className="grid gap-px overflow-hidden rounded-xl border border-neutral-200/80 bg-neutral-200 sm:grid-cols-2 lg:grid-cols-4 text-xs">
               <div className="bg-white p-4">
                 <dt className="font-bold text-neutral-400 uppercase text-[10px] mb-1">Airport Lounges</dt>
-                <dd className="font-semibold text-neutral-900">{card.loungeBenefits || "None"}</dd>
+                <dd className="font-semibold text-neutral-900 leading-relaxed">
+                  {card.loungeBenefits || (card.loungeAccess > 0 ? `${card.loungeAccess} visits per year` : "None")}
+                  {(card.loungeBenefits || "").toLowerCase().match(/preceding|previous|spend|quarterly hurdle|crossing/) && (
+                    <span className="mt-2 block text-[10px] font-medium text-amber-800 bg-amber-50 border border-amber-200/80 rounded px-2 py-1">
+                      ⚠️ Spend-Linked: Eligibility requires meeting the issuer&apos;s prior spend threshold.
+                    </span>
+                  )}
+                </dd>
               </div>
               <div className="bg-white p-4">
                 <dt className="font-bold text-neutral-400 uppercase text-[10px] mb-1">Fuel Surcharge</dt>

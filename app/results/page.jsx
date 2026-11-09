@@ -13,6 +13,12 @@ import {
   Scale,
   Sparkles,
   CheckCircle2,
+  SlidersHorizontal,
+  Printer,
+  X,
+  Layers,
+  FileText,
+  Clock,
 } from "lucide-react";
 import cards from "../../data/cards.json";
 import { getProfileRecommendations, getRecommendations, isComplete } from "../../lib/recommendation";
@@ -35,6 +41,13 @@ export default function ResultsPage() {
   // AI Explanation State
   const [aiExplanation, setAiExplanation] = useState(null);
   const [isExplaining, setIsExplaining] = useState(false);
+
+  // What-If Spend Adjuster State
+  const [adjustedSpend, setAdjustedSpend] = useState(null);
+  const [showAdjuster, setShowAdjuster] = useState(false);
+
+  // Strategy Sheet Modal State
+  const [showStrategySheet, setShowStrategySheet] = useState(false);
 
   // Feedback State
   const [feedbackSatisfaction, setFeedbackSatisfaction] = useState(null);
@@ -97,11 +110,58 @@ export default function ResultsPage() {
     setReady(true);
   }, []);
 
+  const baseSpend = profile?.spending?.categories || (quizAnswers ? {
+    dining: quizAnswers.spendArea === "dining" ? 15000 : 4000,
+    shopping: quizAnswers.spendArea === "online" ? 20000 : 5000,
+    fuel: quizAnswers.spendArea === "fuel" ? 10000 : 2000,
+    travel: quizAnswers.spendArea === "travel" ? 20000 : 3000,
+    groceries: quizAnswers.spendArea === "online" ? 8000 : 6000,
+    utilities: 3000,
+  } : {
+    dining: 5000,
+    shopping: 8000,
+    fuel: 3000,
+    travel: 5000,
+    groceries: 6000,
+    utilities: 3000,
+  });
+
+  const activeSpend = adjustedSpend || baseSpend;
+  const totalActiveMonthlySpend = Object.values(activeSpend).reduce((sum, v) => sum + (Number(v) || 0), 0);
+
+  const effectiveProfile = {
+    ...(profile || {
+      cardCount: selectedCardCount,
+      profile: {
+        age: 25,
+        incomeRange: quizAnswers?.monthlySpend === "over100k" ? "₹25L – ₹50L" : quizAnswers?.monthlySpend === "50to100k" ? "₹12L – ₹25L" : "₹6L – ₹12L",
+        employment: "salaried",
+      },
+      preferences: {
+        cardCount: selectedCardCount,
+        priorities: [
+          quizAnswers?.priority === "cashback" ? "Cashback" : "",
+          quizAnswers?.priority === "travel" ? "Airport lounge access" : "",
+          quizAnswers?.priority === "rewards" ? "Shopping" : "",
+          quizAnswers?.priority === "lowfees" ? "Low/no annual fee" : "",
+          quizAnswers?.priority === "fuel" ? "Fuel savings" : "",
+          quizAnswers?.spendArea === "dining" ? "Dining" : "",
+        ].filter(Boolean),
+        rewardStyle: quizAnswers?.priority === "cashback" ? "simple" : quizAnswers?.priority === "travel" ? "optimizer" : "balanced",
+        feeTolerance: quizAnswers?.feeSensitivity === "very" ? "no-fee" : quizAnswers?.feeSensitivity === "no" ? "high-fee" : "moderate-fee",
+        travelFrequency: quizAnswers?.travelFrequency === "frequently" ? "Frequently" : quizAnswers?.travelFrequency === "rarely" ? "Rarely" : "Sometimes",
+      },
+    }),
+    spending: {
+      ...(profile?.spending || {}),
+      categories: activeSpend,
+      totalMonthly: totalActiveMonthlySpend,
+    },
+  };
+
   // Compute recommendations
-  const recResult = ready && activeSource === "profile" && profile
-    ? getProfileRecommendations(cards, profile, selectedCardCount)
-    : ready && activeSource === "quiz" && quizAnswers
-    ? getRecommendations(cards, quizAnswers, selectedCardCount)
+  const recResult = ready && activeSource
+    ? getProfileRecommendations(cards, effectiveProfile, selectedCardCount)
     : { recommended: [], combination: null, allCountOptions: {}, meaningfulDifferences: [], existingOverlap: [], noFitReason: null, noFitDetails: null };
 
   const { noFitReason, noFitDetails } = recResult;
@@ -117,6 +177,24 @@ export default function ResultsPage() {
     (recResult.recommended || []).map((r) => r.card || r);
   const allSlugs = currentCards.map((c) => c.slug).join(",");
 
+  const soloCombo = recResult.allCountOptions?.[1]?.best || recResult.allCountOptions?.[1];
+  const soloNet = Math.max(0, soloCombo?.netValue ?? 0);
+  const currentNet = Math.max(0, currentCombo?.netValue ?? 0);
+  const incrementalGain = Math.max(0, currentNet - soloNet);
+  const soloCard = soloCombo?.cards?.[0]?.card || soloCombo?.cards?.[0];
+  const soloCardName = soloCard?.name || "a single all-rounder card";
+
+  function handleSpendSliderChange(category, val) {
+    setAdjustedSpend((prev) => ({
+      ...(prev || baseSpend),
+      [category]: Number(val),
+    }));
+  }
+
+  function handleResetSpend() {
+    setAdjustedSpend(null);
+  }
+
   // Log recommendation session pseudonymously
   useEffect(() => {
     if (!ready || !sessionId || !currentCombo || currentCards.length === 0) return;
@@ -128,7 +206,7 @@ export default function ResultsPage() {
           action: "record_session",
           sessionId,
           cardCountSelected: selectedCardCount,
-          spendingSummary: profile?.spending?.categories || {},
+          spendingSummary: activeSpend,
           recommendedCardSlugs: currentCards.map((c) => c.slug),
           totalGrossRewards: currentCombo.grossRewards || 0,
           totalAnnualFees: currentCombo.totalFees || 0,
@@ -138,7 +216,7 @@ export default function ResultsPage() {
     } catch {
       // non-blocking
     }
-  }, [ready, sessionId, selectedCardCount, allSlugs, currentCombo]);
+  }, [ready, sessionId, selectedCardCount, allSlugs, currentCombo, activeSpend, currentCards]);
 
   // Fetch AI explanation layer for the active combination
   useEffect(() => {
@@ -147,13 +225,7 @@ export default function ResultsPage() {
     let isMounted = true;
     setIsExplaining(true);
 
-    const spendObj = profile?.spending?.categories || (quizAnswers ? {
-      dining: quizAnswers.spendArea === "dining" ? 15000 : 4000,
-      shopping: quizAnswers.spendArea === "online" ? 20000 : 5000,
-      fuel: quizAnswers.spendArea === "fuel" ? 10000 : 2000,
-      travel: quizAnswers.spendArea === "travel" ? 20000 : 3000,
-      groceries: 8000,
-    } : {});
+    const spendObj = activeSpend;
 
     fetch("/api/explain-recommendation", {
       method: "POST",
@@ -180,7 +252,7 @@ export default function ResultsPage() {
     return () => {
       isMounted = false;
     };
-  }, [ready, selectedCardCount, allSlugs, currentCombo]);
+  }, [ready, selectedCardCount, allSlugs, currentCombo, activeSpend, currentCards]);
 
   async function handleFeedbackSubmit(e) {
     e.preventDefault();
@@ -354,7 +426,7 @@ export default function ResultsPage() {
           </div>
         </header>
 
-        {/* Card Count Selection Tabs */}
+        {/* Card Count Selection Tabs & What-If Live Spend Adjuster */}
         <div className="mb-8 rounded-2xl border border-neutral-200/80 bg-white p-4 sm:p-5 shadow-xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
             <div>
@@ -365,9 +437,25 @@ export default function ResultsPage() {
                 Compare optimal combinations across 1, 2, or 3 cards:
               </p>
             </div>
-            <span className="text-[11px] text-neutral-400">
-              Instant optimization recalculation
-            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setShowAdjuster(!showAdjuster)}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+                  showAdjuster || adjustedSpend
+                    ? "bg-black text-white border-black"
+                    : "bg-white text-neutral-700 border-neutral-200 hover:border-black hover:text-black"
+                }`}
+              >
+                <SlidersHorizontal className="h-3.5 w-3.5" />
+                <span>What-If Spend Adjuster</span>
+                {adjustedSpend && (
+                  <span className="ml-1 px-1.5 py-0.2 bg-[#DDF247] text-black text-[9px] font-mono font-bold rounded">
+                    Adjusted
+                  </span>
+                )}
+              </button>
+            </div>
           </div>
 
           <div className="grid grid-cols-3 gap-2">
@@ -408,6 +496,88 @@ export default function ResultsPage() {
               );
             })}
           </div>
+
+          {/* What-If Live Spend Adjuster Drawer / Panel */}
+          {showAdjuster && (
+            <div className="mt-4 pt-4 border-t border-neutral-100 animate-in fade-in duration-200">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded">
+                      Live Spend Simulator
+                    </span>
+                    {adjustedSpend && (
+                      <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                        Active Custom Values
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-neutral-500 mt-1">
+                    Nudge monthly spending across categories. The optimal combination, category routing, and net reward recalculate dynamically.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-3 shrink-0">
+                  <div className="text-right">
+                    <span className="text-[10px] text-neutral-400 uppercase font-semibold block">Total Monthly Spend</span>
+                    <span className="text-sm font-mono font-bold text-neutral-900">
+                      ₹{totalActiveMonthlySpend.toLocaleString("en-IN")}/mo
+                    </span>
+                  </div>
+                  {adjustedSpend && (
+                    <button
+                      type="button"
+                      onClick={handleResetSpend}
+                      className="inline-flex items-center gap-1 text-[11px] font-medium text-neutral-600 hover:text-black border border-neutral-200 bg-white px-2.5 py-1.5 rounded-lg transition-colors shadow-2xs"
+                    >
+                      <RotateCcw className="h-3 w-3" />
+                      Reset to profile
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Sliders Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 bg-neutral-50/70 p-4 rounded-xl border border-neutral-200/80">
+                {[
+                  { key: "dining", label: "Dining & Food Delivery", max: 40000, step: 500 },
+                  { key: "shopping", label: "Online & Retail Shopping", max: 80000, step: 1000 },
+                  { key: "travel", label: "Travel, Flights & Hotels", max: 80000, step: 1000 },
+                  { key: "groceries", label: "Groceries & Supermarket", max: 30000, step: 500 },
+                  { key: "fuel", label: "Fuel & EV Charging", max: 20000, step: 500 },
+                  { key: "utilities", label: "Utilities, Bills & Recharge", max: 20000, step: 500 },
+                ].map((slider) => {
+                  const val = activeSpend[slider.key] || 0;
+                  return (
+                    <div key={slider.key} className="bg-white p-3 rounded-lg border border-neutral-200/70 space-y-1.5">
+                      <div className="flex items-center justify-between text-xs">
+                        <label htmlFor={`slider-${slider.key}`} className="font-semibold text-neutral-800">
+                          {slider.label}
+                        </label>
+                        <span className="font-mono font-bold text-neutral-900 text-xs">
+                          ₹{val.toLocaleString("en-IN")}
+                        </span>
+                      </div>
+                      <input
+                        id={`slider-${slider.key}`}
+                        type="range"
+                        min={0}
+                        max={slider.max}
+                        step={slider.step}
+                        value={val}
+                        onChange={(e) => handleSpendSliderChange(slider.key, e.target.value)}
+                        className="w-full accent-black cursor-pointer h-1.5 bg-neutral-200 rounded-lg"
+                      />
+                      <div className="flex justify-between text-[10px] text-neutral-400 font-mono">
+                        <span>₹0</span>
+                        <span>₹{slider.max.toLocaleString("en-IN")}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Portfolio Summary Card */}
@@ -435,6 +605,14 @@ export default function ResultsPage() {
                   <Scale className="h-3 w-3" />
                   Compare {currentCards.length}
                 </Link>
+                <button
+                  type="button"
+                  onClick={() => setShowStrategySheet(true)}
+                  className="inline-flex items-center gap-1 text-[11px] font-semibold text-neutral-700 hover:text-black border border-neutral-200 bg-white px-2.5 py-1 rounded-full transition-colors"
+                >
+                  <FileText className="h-3 w-3" />
+                  Strategy Sheet
+                </button>
               </div>
             </div>
 
@@ -488,6 +666,59 @@ export default function ResultsPage() {
                 </span>
               </div>
             </div>
+
+            {/* Card Synergy Breakdown Widget (When 2 or 3 cards are selected) */}
+            {selectedCardCount > 1 && soloNet > 0 && (
+              <div className="mb-6 rounded-xl border border-neutral-200/90 bg-neutral-50/80 p-4 sm:p-5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-neutral-200/60 mb-3">
+                  <div className="flex items-center gap-2">
+                    <Layers className="h-4 w-4 text-neutral-800 shrink-0" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-900">
+                      Card Synergy Advantage ({selectedCardCount}-Card Setup vs. Single Card)
+                    </h3>
+                  </div>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 self-start sm:self-auto">
+                    +₹{incrementalGain.toLocaleString("en-IN")}/yr Net Gain
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-3">
+                  <div className="bg-white p-3 rounded-lg border border-neutral-200/70">
+                    <span className="text-[10px] uppercase font-bold text-neutral-400 block">Solo Card Baseline</span>
+                    <span className="text-sm sm:text-base font-extrabold text-neutral-800 font-mono block mt-0.5">
+                      ₹{soloNet.toLocaleString("en-IN")}/yr
+                    </span>
+                    <span className="text-[10px] text-neutral-500 block truncate mt-0.5" title={soloCardName}>
+                      Holding {soloCardName} alone
+                    </span>
+                  </div>
+
+                  <div className="bg-white p-3 rounded-lg border border-neutral-200/70">
+                    <span className="text-[10px] uppercase font-bold text-neutral-400 block">This {selectedCardCount}-Card Setup</span>
+                    <span className="text-sm sm:text-base font-extrabold text-neutral-950 font-mono block mt-0.5">
+                      ₹{currentNet.toLocaleString("en-IN")}/yr
+                    </span>
+                    <span className="text-[10px] text-neutral-500 block mt-0.5">
+                      Optimal category spend routing
+                    </span>
+                  </div>
+
+                  <div className="bg-emerald-50/70 p-3 rounded-lg border border-emerald-200/80">
+                    <span className="text-[10px] uppercase font-bold text-emerald-700 block">Synergy Bonus</span>
+                    <span className="text-sm sm:text-base font-extrabold text-emerald-800 font-mono block mt-0.5">
+                      +₹{incrementalGain.toLocaleString("en-IN")}/yr
+                    </span>
+                    <span className="text-[10px] text-emerald-600 block mt-0.5">
+                      Gain from specialization
+                    </span>
+                  </div>
+                </div>
+
+                <p className="text-xs text-neutral-600 leading-relaxed">
+                  Carrying {selectedCardCount} cards yields <strong className="text-neutral-900 font-semibold">₹{incrementalGain.toLocaleString("en-IN")}/yr more</strong> net return compared to relying on a single all-rounder card. By splitting spend across specialist cards, you capture higher reward rates (5%–10%) and bypass monthly category caps without double-spending.
+                </p>
+              </div>
+            )}
 
             {/* AI Explanation & Synergy Notes */}
             <div className="rounded-xl border border-neutral-200/90 bg-neutral-50/60 p-4 sm:p-5">
@@ -735,6 +966,17 @@ export default function ResultsPage() {
                       </ul>
                     </div>
 
+                    {/* Spend-Linked Lounge Notice */}
+                    {card.loungeBenefits && /(preceding|previous|spend hurdle|crossing|billing cycle)/i.test(card.loungeBenefits) && (
+                      <div className="mb-4 flex items-start gap-2 rounded-lg border border-amber-200/90 bg-amber-50/70 p-2.5 text-xs text-amber-900">
+                        <Clock className="h-3.5 w-3.5 text-amber-700 shrink-0 mt-0.5" />
+                        <div className="leading-snug">
+                          <span className="font-bold">Spend-Linked Lounge Rule: </span>
+                          <span className="text-amber-800">{card.loungeBenefits}</span>
+                        </div>
+                      </div>
+                    )}
+
                     {/* Allocated Performance for this Card */}
                     {breakdown && (
                       <div className="rounded-xl border border-neutral-200/80 bg-neutral-50/70 p-4 mb-4 text-xs">
@@ -942,10 +1184,209 @@ export default function ResultsPage() {
           <p className="mb-2">
             • <strong>Issuer Authority:</strong> Final card approval, credit line assignment, and interest rates are determined exclusively by the issuing bank based on their proprietary underwriting criteria and credit bureau records.
           </p>
+          <p className="mb-2">
+            • <strong>Non-Intermediary Notice:</strong> CreditWise is an independent financial education and decision-support tool. We are not a bank, NBFC, or credit broker, and do not issue credit cards or solicit applications.
+          </p>
           <p>
             • <strong>Verified Terms:</strong> Bank reward structures, caps, and lounge quotas are audited regularly. Always review the canonical schedule on the official issuer website prior to applying.
           </p>
         </section>
+
+        {/* Editorial 1-Page Strategy Sheet Modal */}
+        {showStrategySheet && currentCombo && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150">
+            <div className="relative w-full max-w-3xl max-h-[92vh] flex flex-col bg-white rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden">
+              {/* Modal Actions Bar (hidden when printing) */}
+              <div className="no-print flex items-center justify-between px-6 py-4 border-b border-neutral-200 bg-neutral-50/90 shrink-0">
+                <div className="flex items-center gap-2">
+                  <FileText className="h-4 w-4 text-black" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-neutral-900">
+                    Editorial 1-Page Strategy Sheet
+                  </span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => window.print()}
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-black px-4 py-2 text-xs font-semibold text-white hover:bg-neutral-800 transition-colors shadow-xs"
+                  >
+                    <Printer className="h-3.5 w-3.5" />
+                    Print / Save PDF
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowStrategySheet(false)}
+                    className="rounded-lg p-2 text-neutral-400 hover:text-black hover:bg-neutral-200/60 transition-colors"
+                    aria-label="Close strategy sheet"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Printable Sheet Body */}
+              <div id="cw-printable-strategy-sheet" className="p-6 sm:p-8 overflow-y-auto space-y-6 text-neutral-900 bg-white">
+                {/* Print Header */}
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-4 border-b-2 border-black">
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-1">
+                      CreditWise • Personalized Portfolio Strategy
+                    </span>
+                    <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-950">
+                      {selectedCountText(selectedCardCount)}
+                    </h2>
+                    <p className="text-xs text-neutral-600 mt-1 max-w-md">
+                      Spend routing cheat sheet based on verified bank terms and your natural spending profile.
+                    </p>
+                  </div>
+                  <div className="text-left sm:text-right shrink-0">
+                    <span className="text-[10px] text-neutral-400 font-mono block">MONTHLY SPEND</span>
+                    <span className="text-xl font-extrabold font-mono text-black">
+                      ₹{totalActiveMonthlySpend.toLocaleString("en-IN")}/mo
+                    </span>
+                    <span className="text-[11px] font-mono text-emerald-700 font-bold block mt-0.5">
+                      Net Value: ₹{Math.max(0, currentCombo.netValue || 0).toLocaleString("en-IN")}/yr
+                    </span>
+                  </div>
+                </div>
+
+                {/* 1. Spend Routing Table */}
+                {currentCombo.allocations && (
+                  <div>
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-900 mb-2.5 flex items-center gap-1.5">
+                      <span>1. Which Card to Swipe Where (Spend Routing)</span>
+                    </h3>
+                    <div className="overflow-x-auto rounded-lg border border-neutral-200">
+                      <table className="w-full text-left text-xs border-collapse">
+                        <thead>
+                          <tr className="bg-neutral-100 text-neutral-600 font-bold uppercase text-[10px] tracking-wider border-b border-neutral-200">
+                            <th className="py-2 px-3">Expense Category</th>
+                            <th className="py-2 px-3">Your Spend</th>
+                            <th className="py-2 px-3">Primary Card to Swipe</th>
+                            <th className="py-2 px-3 text-right">Verified Rate</th>
+                            <th className="py-2 px-3 text-right">Est. Earn/Mo</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-neutral-100">
+                          {Object.entries(currentCombo.allocations).map(([catKey, alloc]) => {
+                            const label = formatCategoryLabel(catKey);
+                            const spendVal = alloc.monthlySpend ?? alloc.spend ?? 0;
+                            const rateVal = alloc.effectiveRate ?? alloc.rate ?? 0;
+                            const earnVal = alloc.monthlyRewards ?? alloc.monthlyEarn ?? 0;
+                            return (
+                              <tr key={catKey} className="even:bg-neutral-50/50">
+                                <td className="py-2 px-3 font-semibold text-neutral-900">{label}</td>
+                                <td className="py-2 px-3 font-mono text-neutral-600">₹{spendVal.toLocaleString("en-IN")}</td>
+                                <td className="py-2 px-3 font-medium text-neutral-900">{alloc.cardName}</td>
+                                <td className="py-2 px-3 text-right font-mono font-bold text-neutral-800">
+                                  {rateVal > 1 ? `${rateVal.toFixed(1)}%` : `${(rateVal * 100).toFixed(1)}%`}
+                                </td>
+                                <td className="py-2 px-3 text-right font-mono font-extrabold text-black">
+                                  ₹{Math.round(earnVal).toLocaleString("en-IN")}
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+
+                {/* 2. Portfolio Holdings & Fee Waiver Targets */}
+                <div>
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-900 mb-2.5">
+                    2. Card Portfolio & Fee Waiver Spend Targets
+                  </h3>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {currentCards.map((card, cIdx) => {
+                      const breakdown = currentCombo?.cards?.find((b) => b.slug === card.slug);
+                      return (
+                        <div key={card.slug} className="p-3.5 rounded-lg border border-neutral-200 bg-neutral-50/50 space-y-1.5 text-xs">
+                          <div className="flex items-center justify-between font-bold text-neutral-950">
+                            <span>{cIdx + 1}. {card.name}</span>
+                            <span className="font-mono text-[11px] text-neutral-600">
+                              {card.annualFee === 0 ? "Lifetime Free" : `₹${card.annualFee} + 18% GST`}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-neutral-600">
+                            <strong>Issuer:</strong> {card.issuer} • <strong>Network:</strong> {card.network || "Mastercard / Visa / RuPay"}
+                          </p>
+                          <p className="text-[11px] text-neutral-700">
+                            <strong>Fee Waiver Target:</strong> {card.feeWaiver || "None (Lifetime Free)"}
+                          </p>
+                          {breakdown && (
+                            <p className={`text-[11px] font-semibold ${breakdown.feeWaived ? "text-emerald-700" : "text-neutral-600"}`}>
+                              {breakdown.waiverNote}
+                            </p>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 3. Spend-Linked Lounge & Key Rules */}
+                <div>
+                  <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-900 mb-2">
+                    3. Airport Lounge Access & Essential Restrictions
+                  </h3>
+                  <div className="space-y-2 text-xs">
+                    {currentCards.map((card) => (
+                      <div key={card.slug} className="p-3 rounded-lg border border-neutral-200 bg-white">
+                        <span className="font-bold text-neutral-950 block mb-0.5">{card.name}</span>
+                        <p className="text-neutral-700">
+                          <strong>Lounge visits:</strong> {card.loungeBenefits || (card.loungeAccess > 0 ? `${card.loungeAccess} visits/yr` : "None included")}
+                        </p>
+                        {card.limitations && card.limitations.length > 0 && (
+                          <p className="text-[11px] text-neutral-500 mt-1">
+                            <strong>Watch for:</strong> {card.limitations[0]}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Strategy Sheet Footer & Compliance */}
+                <div className="pt-4 border-t border-neutral-200 text-[10px] text-neutral-500 space-y-1">
+                  <p>
+                    <strong>CreditWise Non-Intermediary Notice:</strong> CreditWise is an independent financial education and decision-support tool. We are not a bank, NBFC, or credit broker, and do not issue credit cards or solicit applications. Card approvals and credit lines are at the sole discretion of issuing banks.
+                  </p>
+                  <p className="font-mono text-neutral-400">
+                    Generated on {new Date().toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })} • Verified issuer catalogue.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <style jsx global>{`
+          @media print {
+            body * {
+              visibility: hidden;
+            }
+            #cw-printable-strategy-sheet, #cw-printable-strategy-sheet * {
+              visibility: visible;
+            }
+            #cw-printable-strategy-sheet {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              margin: 0;
+              padding: 20px;
+              background: white !important;
+              color: black !important;
+              overflow: visible !important;
+              max-height: none !important;
+            }
+            .no-print {
+              display: none !important;
+            }
+          }
+        `}</style>
       </div>
     </div>
   );

@@ -26,11 +26,34 @@ export async function generateMetadata({ params }) {
   const card = cards.find((c) => c.slug === resolvedParams.slug);
   if (!card) return { title: "Card not found" };
 
+  const title = `${card.name} — Verified Rewards, Fees & Gotchas | CreditWise`;
+  const description = card.shortDescription || card.description || `Independent reward calculations and analysis for ${card.name}.`;
+  const feeLabel = (card.annualFee ?? 0) === 0 ? "Lifetime Free" : `₹${Math.round((card.annualFee || 0) * 1.18).toLocaleString("en-IN")}/yr total`;
+
   return {
-    title: `${card.name} — Review & Benefits | CreditWise`,
-    description: card.goodFor
-      ? `Good for ${card.goodFor}. ${card.shortDescription || card.description}`
-      : card.shortDescription || card.description,
+    title,
+    description,
+    openGraph: {
+      title,
+      description: `${description} | Annual Fee: ${feeLabel}. Verified independent terms.`,
+      url: `/cards/${card.slug}`,
+      siteName: "CreditWise",
+      images: [
+        {
+          url: card.image,
+          width: 1200,
+          height: 630,
+          alt: `${card.issuer || card.bank} ${card.name} Credit Card`,
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: `${description} | Fee: ${feeLabel}.`,
+      images: [card.image],
+    },
   };
 }
 

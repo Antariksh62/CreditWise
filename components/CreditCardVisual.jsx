@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import Image from "next/image";
 
 /**
  * CreditCardVisual
@@ -150,12 +151,13 @@ export default function CreditCardVisual({
       >
         {/* Layer 1: Verified Real Card Image */}
         {image ? (
-          <img
+          <Image
             src={image}
             alt={`${issuer} ${name} Credit Card`}
-            className="cw-card-3d__img"
-            loading={priority ? "eager" : "lazy"}
-            decoding="async"
+            fill
+            sizes="(max-width: 640px) 260px, (max-width: 1024px) 320px, 380px"
+            priority={priority}
+            className="cw-card-3d__img object-contain"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center p-4 text-center text-xs font-semibold text-neutral-300">

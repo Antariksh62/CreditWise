@@ -93,9 +93,16 @@ const CORE_ROWS = [
   {
     label: "Airport lounges",
     render: (c) => (
-      <p className="text-xs text-neutral-800">
-        {c.loungeBenefits || (c.loungeAccess > 0 ? `${c.loungeAccess} visits per year` : "None")}
-      </p>
+      <div>
+        <p className="text-xs text-neutral-800 leading-snug">
+          {c.loungeBenefits || (c.loungeAccess > 0 ? `${c.loungeAccess} visits per year` : "None")}
+        </p>
+        {(c.loungeBenefits || "").toLowerCase().match(/preceding|previous|spend|quarterly hurdle|crossing/) && (
+          <span className="mt-1 inline-block text-[10px] font-medium text-amber-800 bg-amber-50 border border-amber-200/70 rounded px-1.5 py-0.5">
+            Spend-linked
+          </span>
+        )}
+      </div>
     ),
   },
   {

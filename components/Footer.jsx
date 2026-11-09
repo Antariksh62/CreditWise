@@ -87,6 +87,11 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-neutral-200 pt-6">
+        <div className="cw-container mb-4">
+          <p className="text-[11px] leading-relaxed text-neutral-400 bg-neutral-50 border border-neutral-200/60 rounded-lg p-3">
+            <strong>Regulatory & Independence Notice:</strong> CreditWise is an independent financial education and decision-support tool. We are not a bank, NBFC, or credit broker, and do not issue credit cards or solicit applications.
+          </p>
+        </div>
         <div className="cw-container flex flex-col gap-2 text-xs text-neutral-400 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} CreditWise. Independent credit-card intelligence platform.</p>
           <div className="flex flex-wrap gap-4 text-xs">
