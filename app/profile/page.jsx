@@ -20,12 +20,14 @@ import {
   Sparkles,
   Info,
   CheckCircle2,
+  Search,
 } from "lucide-react";
 import cards from "../../data/cards.json";
 import CreditCardVisual from "../../components/CreditCardVisual";
 import CardGrid from "../../components/CardGrid";
 import { readSaved } from "../../components/SaveCardButton";
 import { getProfileRecommendations } from "../../lib/recommendation";
+import { isCardMatchingQuery } from "../../lib/cardUtils";
 
 const SPEND_CATEGORIES_CONFIG = [
   { key: "groceries", label: "Groceries & Supermarket", defaultVal: 6000 },
@@ -644,51 +646,82 @@ export default function ProfilePage() {
             </div>
 
             {/* Filter Search */}
-            <div className="mb-6">
-              <input
-                type="text"
-                placeholder="Search verified cards by name or issuer…"
-                value={cardSearchQuery}
-                onChange={(e) => setCardSearchQuery(e.target.value)}
-                className="w-full rounded-xl border border-neutral-300 bg-white px-4 py-2.5 text-xs font-semibold text-neutral-900 placeholder:text-neutral-400 focus:border-black focus:outline-none"
-              />
+            <div className="mb-6 max-w-md">
+              <div className="relative flex items-center">
+                <Search className="absolute left-3.5 h-3.5 w-3.5 text-neutral-400 pointer-events-none" />
+                <input
+                  type="text"
+                  placeholder="Search verified cards by name, bank, or perks…"
+                  value={cardSearchQuery}
+                  onChange={(e) => setCardSearchQuery(e.target.value)}
+                  className="w-full rounded-xl border border-neutral-300 bg-white py-2 pl-9 pr-8 text-xs font-semibold text-neutral-900 placeholder:text-neutral-400 focus:border-black focus:outline-none"
+                />
+                {cardSearchQuery && (
+                  <button
+                    type="button"
+                    onClick={() => setCardSearchQuery("")}
+                    className="absolute right-2.5 p-1 text-neutral-400 hover:text-black"
+                    aria-label="Clear card search"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                )}
+              </div>
             </div>
 
             {/* Verified Cards Selection Matrix */}
-            <div className="grid gap-3 sm:grid-cols-2 max-h-[460px] overflow-y-auto pr-2">
-              {cards
-                .filter(
-                  (c) =>
-                    !cardSearchQuery ||
-                    c.name.toLowerCase().includes(cardSearchQuery.toLowerCase()) ||
-                    c.issuer.toLowerCase().includes(cardSearchQuery.toLowerCase())
-                )
-                .map((c) => {
-                  const isSelected = editExistingCards.includes(c.slug);
-                  return (
+            {(() => {
+              const matchedCards = cards.filter((c) => isCardMatchingQuery(c, cardSearchQuery));
+              if (matchedCards.length === 0) {
+                return (
+                  <div className="p-8 rounded-xl border border-neutral-200 bg-[#FAFAFA] text-center max-w-lg mx-auto">
+                    <p className="text-xs font-bold text-neutral-900">
+                      We couldn&apos;t find this card in our catalogue.
+                    </p>
+                    <p className="text-[11px] text-neutral-500 mt-1.5 leading-relaxed">
+                      CreditWise currently features a curated selection of credit cards that meet our listing and information standards. This card may not be part of our current catalogue.
+                    </p>
                     <button
-                      key={c.slug}
                       type="button"
-                      onClick={() => handleToggleCard(c.slug)}
-                      className={`flex items-center justify-between p-3.5 rounded-xl border text-left transition-all ${
-                        isSelected
-                          ? "border-black bg-neutral-900 text-white"
-                          : "border-neutral-200 bg-[#FAFAFA] text-neutral-900 hover:border-neutral-300"
-                      }`}
+                      onClick={() => setCardSearchQuery("")}
+                      className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-neutral-800 hover:text-black underline underline-offset-2"
                     >
-                      <div className="pr-3">
-                        <p className="text-xs font-bold leading-snug">{c.name}</p>
-                        <p className={`text-[10px] uppercase font-semibold mt-0.5 ${isSelected ? "text-neutral-400" : "text-neutral-500"}`}>
-                          {c.issuer} · {c.network}
-                        </p>
-                      </div>
-                      <div className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${isSelected ? "border-[#DDF247] bg-[#DDF247] text-black" : "border-neutral-300 bg-white"}`}>
-                        {isSelected && <Check className="h-3 w-3 stroke-[3]" />}
-                      </div>
+                      Clear search
                     </button>
-                  );
-                })}
-            </div>
+                  </div>
+                );
+              }
+
+              return (
+                <div className="grid gap-3 sm:grid-cols-2 max-h-[460px] overflow-y-auto pr-2">
+                  {matchedCards.map((c) => {
+                    const isSelected = editExistingCards.includes(c.slug);
+                    return (
+                      <button
+                        key={c.slug}
+                        type="button"
+                        onClick={() => handleToggleCard(c.slug)}
+                        className={`flex items-center justify-between p-3.5 rounded-xl border text-left transition-all ${
+                          isSelected
+                            ? "border-black bg-neutral-900 text-white"
+                            : "border-neutral-200 bg-[#FAFAFA] text-neutral-900 hover:border-neutral-300"
+                        }`}
+                      >
+                        <div className="pr-3">
+                          <p className="text-xs font-bold leading-snug">{c.name}</p>
+                          <p className={`text-[10px] uppercase font-semibold mt-0.5 ${isSelected ? "text-neutral-400" : "text-neutral-500"}`}>
+                            {c.issuer} · {c.network}
+                          </p>
+                        </div>
+                        <div className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${isSelected ? "border-[#DDF247] bg-[#DDF247] text-black" : "border-neutral-300 bg-white"}`}>
+                          {isSelected && <Check className="h-3 w-3 stroke-[3]" />}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              );
+            })()}
           </div>
         )}
 

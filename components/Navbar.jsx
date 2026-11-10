@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+import { Search, X, ArrowRight, RotateCcw } from "lucide-react";
 import cards from "../data/cards.json";
+import { searchCards } from "../lib/cardUtils";
 
 export default function Navbar() {
   const router = useRouter();
@@ -12,6 +14,10 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [mounted, setMounted] = useState(false);
+
+  // Global Card Search State
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const [globalSearchQuery, setGlobalSearchQuery] = useState("");
 
   const headerRef = useRef(null);
   const closeTimeoutRef = useRef(null);
@@ -110,7 +116,31 @@ export default function Navbar() {
   // Close menus on route navigation
   useEffect(() => {
     closeMenuImmediately();
+    setSearchModalOpen(false);
   }, [pathname, closeMenuImmediately]);
+
+  // Global keyboard shortcut (Cmd+K / Ctrl+K / '/') to open search
+  useEffect(() => {
+    const handleGlobalSearchKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchModalOpen((prev) => !prev);
+      } else if (
+        e.key === "/" &&
+        !["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName) &&
+        !document.activeElement?.isContentEditable
+      ) {
+        e.preventDefault();
+        setSearchModalOpen(true);
+      } else if (e.key === "Escape") {
+        setSearchModalOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleGlobalSearchKey);
+    return () => window.removeEventListener("keydown", handleGlobalSearchKey);
+  }, []);
+
+  const matchedGlobalCards = searchCards(cards, globalSearchQuery, "all").slice(0, 8);
 
   const handleSignOut = () => {
     try {
@@ -266,6 +296,23 @@ export default function Navbar() {
 
           {/* RIGHT: ACTION BUTTONS MATCHING RAMP SPECS */}
           <div className="hidden md:flex items-center gap-2 lg:gap-3">
+            {/* GLOBAL SEARCH TRIGGER */}
+            <button
+              type="button"
+              onClick={() => {
+                closeMenuImmediately();
+                setSearchModalOpen(true);
+              }}
+              aria-label="Search all credit cards (Cmd+K)"
+              className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-50 px-2.5 py-1.5 text-xs text-neutral-500 hover:border-neutral-400 hover:text-black transition-colors"
+            >
+              <Search className="h-3.5 w-3.5 text-neutral-400" />
+              <span>Search cards…</span>
+              <kbd className="hidden lg:inline rounded border border-neutral-200 bg-white px-1.5 py-0.5 text-[10px] font-mono text-neutral-400">
+                ⌘K
+              </kbd>
+            </button>
+
             {mounted && user ? (
               <>
                 <Link
@@ -319,22 +366,35 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* MOBILE HAMBURGER BUTTON */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center p-2 text-neutral-700 hover:text-black rounded-lg"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
+          {/* MOBILE SEARCH & HAMBURGER BUTTONS */}
+          <div className="flex md:hidden items-center gap-1">
+            <button
+              type="button"
+              onClick={() => {
+                closeMenuImmediately();
+                setSearchModalOpen(true);
+              }}
+              className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 text-neutral-700 hover:text-black rounded-lg"
+              aria-label="Search all cards"
+            >
+              <Search className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="min-h-[44px] min-w-[44px] flex items-center justify-center p-2 text-neutral-700 hover:text-black rounded-lg"
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? (
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -788,6 +848,144 @@ export default function Navbar() {
                 </Link>
               </>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* GLOBAL QUICK CARD SEARCH MODAL */}
+      {searchModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Global credit card search"
+          className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-150"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setSearchModalOpen(false);
+          }}
+        >
+          <div className="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden">
+            {/* Search Input Bar */}
+            <div className="flex items-center px-4 py-3.5 border-b border-neutral-200 bg-white">
+              <Search className="h-4 w-4 text-neutral-400 shrink-0 mr-3" />
+              <input
+                type="text"
+                autoFocus
+                value={globalSearchQuery}
+                onChange={(e) => setGlobalSearchQuery(e.target.value)}
+                placeholder="Search 31 verified cards by name, bank (HDFC, SBI, Axis...), or perks..."
+                className="w-full text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 bg-transparent focus:outline-none"
+              />
+              {globalSearchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setGlobalSearchQuery("")}
+                  className="p-1 text-neutral-400 hover:text-black rounded"
+                  aria-label="Clear search input"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={() => setSearchModalOpen(false)}
+                className="ml-2 text-[11px] font-semibold text-neutral-500 hover:text-black border border-neutral-200 rounded px-2 py-1"
+              >
+                ESC
+              </button>
+            </div>
+
+            {/* Results List */}
+            <div className="max-h-[60vh] overflow-y-auto divide-y divide-neutral-100 p-2">
+              {matchedGlobalCards.length > 0 ? (
+                matchedGlobalCards.map((card) => (
+                  <div
+                    key={card.slug}
+                    className="flex items-center justify-between p-3 rounded-xl hover:bg-neutral-50 transition-colors group"
+                  >
+                    <Link
+                      href={`/cards/${card.slug}`}
+                      onClick={() => setSearchModalOpen(false)}
+                      className="flex items-center gap-3 min-w-0 flex-1 pr-3"
+                    >
+                      <div className="h-8 w-12 rounded bg-neutral-100 border border-neutral-200/80 overflow-hidden flex items-center justify-center shrink-0">
+                        <span className="text-[9px] font-bold text-neutral-600 uppercase font-mono">
+                          {card.issuer.split(" ")[0]}
+                        </span>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs sm:text-sm font-semibold text-neutral-900 group-hover:underline truncate">
+                          {card.name}
+                        </p>
+                        <p className="text-[10px] text-neutral-500 mt-0.5 truncate">
+                          {card.issuer} • {card.annualFee === 0 ? "Lifetime Free" : `₹${card.annualFee}/yr`} • {card.goodFor || card.shortDescription}
+                        </p>
+                      </div>
+                    </Link>
+
+                    <div className="flex items-center gap-2 shrink-0">
+                      <Link
+                        href={`/compare?cards=${card.slug}`}
+                        onClick={() => setSearchModalOpen(false)}
+                        className="hidden sm:inline-flex text-[11px] font-medium text-neutral-500 hover:text-black border border-neutral-200 rounded-md px-2 py-1"
+                      >
+                        Compare
+                      </Link>
+                      <Link
+                        href={`/cards/${card.slug}`}
+                        onClick={() => setSearchModalOpen(false)}
+                        className="text-neutral-400 group-hover:text-black p-1"
+                        aria-label={`View ${card.name}`}
+                      >
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="p-8 text-center">
+                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100 mb-3 text-neutral-500">
+                    <Search className="h-4 w-4" />
+                  </div>
+                  <h3 className="text-sm font-bold text-neutral-900">
+                    We couldn&apos;t find this card in our catalogue.
+                  </h3>
+                  <p className="text-xs text-neutral-500 mt-2 max-w-sm mx-auto leading-relaxed">
+                    CreditWise currently features a curated selection of credit cards that meet our listing and information standards. This card may not be part of our current catalogue.
+                  </p>
+                  <div className="mt-4 flex flex-col sm:flex-row justify-center gap-2">
+                    {globalSearchQuery && (
+                      <button
+                        type="button"
+                        onClick={() => setGlobalSearchQuery("")}
+                        className="inline-flex items-center justify-center gap-1 text-xs font-semibold text-neutral-700 border border-neutral-200 rounded-lg px-3 py-1.5 hover:border-black hover:text-black"
+                      >
+                        Clear search
+                      </button>
+                    )}
+                    <Link
+                      href="/cards"
+                      onClick={() => setSearchModalOpen(false)}
+                      className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-black px-4 py-1.5 text-xs font-semibold text-white hover:bg-neutral-800 transition-colors"
+                    >
+                      Explore all 31 verified cards
+                      <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-4 py-2.5 border-t border-neutral-100 bg-neutral-50 flex items-center justify-between text-[11px] text-neutral-400">
+              <span>Verified catalogue of 31 Indian credit cards</span>
+              <Link
+                href="/cards"
+                onClick={() => setSearchModalOpen(false)}
+                className="font-medium text-neutral-600 hover:text-black"
+              >
+                View all cards →
+              </Link>
+            </div>
           </div>
         </div>
       )}

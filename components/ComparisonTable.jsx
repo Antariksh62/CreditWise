@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { X, ChevronDown, ChevronUp, ExternalLink, ArrowRight, ShieldCheck, Plus } from "lucide-react";
+import { X, ChevronDown, ChevronUp, ExternalLink, ArrowRight, ShieldCheck, Plus, Search } from "lucide-react";
 import cards from "../data/cards.json";
 import CreditCardVisual from "./CreditCardVisual";
 import { TINT_BY_CATEGORY } from "./CreditCard";
+import { isCardMatchingQuery, searchCards } from "../lib/cardUtils";
 
 /**
  * ComparisonTable (Refined Editorial Decision Tool)
@@ -234,6 +235,19 @@ export default function ComparisonTable({ initialSlugs = [] }) {
   }, [searchParams]);
 
   const [showTechnical, setShowTechnical] = useState(false);
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
+  const [pickerQuery, setPickerQuery] = useState("");
+  const pickerRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (pickerRef.current && !pickerRef.current.contains(e.target)) {
+        setIsPickerOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const chosen = selected
     .map((slug) => cards.find((c) => c.slug === slug))
@@ -249,6 +263,7 @@ export default function ComparisonTable({ initialSlugs = [] }) {
   }
 
   const available = cards.filter((c) => !selected.includes(c.slug));
+  const filteredAvailable = searchCards(available, pickerQuery, "all");
 
   return (
     <div>
@@ -272,23 +287,80 @@ export default function ComparisonTable({ initialSlugs = [] }) {
         ))}
 
         {selected.length < MAX && (
-          <div className="flex items-center gap-2">
-            <label htmlFor="add-card-select" className="sr-only">
-              Add card to compare
-            </label>
-            <select
-              id="add-card-select"
-              className="rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-xs font-medium text-neutral-800 hover:border-neutral-400 focus:outline-none shadow-2xs"
-              value=""
-              onChange={(e) => add(e.target.value)}
+          <div ref={pickerRef} className="relative">
+            <button
+              type="button"
+              onClick={() => {
+                setIsPickerOpen(!isPickerOpen);
+                setPickerQuery("");
+              }}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-neutral-300 bg-white px-3 py-1.5 text-xs font-semibold text-neutral-700 hover:border-black hover:text-black transition-colors shadow-2xs"
             >
-              <option value="">+ Add a card to compare…</option>
-              {available.map((card) => (
-                <option key={card.slug} value={card.slug}>
-                  {card.issuer} — {card.name}
-                </option>
-              ))}
-            </select>
+              <Plus className="h-3.5 w-3.5" />
+              <span>Add card ({available.length} available)</span>
+            </button>
+
+            {isPickerOpen && (
+              <div className="absolute left-0 top-full mt-1.5 z-40 w-72 sm:w-80 rounded-xl border border-neutral-200 bg-white p-2.5 shadow-xl animate-in fade-in duration-100">
+                {/* Search Bar inside popover */}
+                <div className="relative mb-2">
+                  <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-neutral-400 pointer-events-none" />
+                  <input
+                    type="text"
+                    autoFocus
+                    placeholder="Search by name or bank…"
+                    value={pickerQuery}
+                    onChange={(e) => setPickerQuery(e.target.value)}
+                    className="w-full rounded-lg border border-neutral-200 bg-neutral-50/70 py-1.5 pl-8 pr-7 text-xs text-neutral-900 placeholder:text-neutral-400 focus:bg-white focus:border-black focus:outline-none"
+                  />
+                  {pickerQuery && (
+                    <button
+                      type="button"
+                      onClick={() => setPickerQuery("")}
+                      className="absolute right-2 top-2 text-neutral-400 hover:text-black"
+                      aria-label="Clear card search"
+                    >
+                      <X className="h-3.5 w-3.5" />
+                    </button>
+                  )}
+                </div>
+
+                {/* Cards List */}
+                <div className="max-h-56 overflow-y-auto divide-y divide-neutral-100 text-xs">
+                  {filteredAvailable.length > 0 ? (
+                    filteredAvailable.map((card) => (
+                      <button
+                        key={card.slug}
+                        type="button"
+                        onClick={() => {
+                          add(card.slug);
+                          setIsPickerOpen(false);
+                          setPickerQuery("");
+                        }}
+                        className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-neutral-50 transition-colors text-left"
+                      >
+                        <div className="pr-2 min-w-0">
+                          <p className="font-semibold text-neutral-900 truncate">{card.name}</p>
+                          <p className="text-[10px] text-neutral-500 uppercase tracking-wider">
+                            {card.issuer} • {card.annualFee === 0 ? "Lifetime Free" : `₹${card.annualFee}/yr`}
+                          </p>
+                        </div>
+                        <Plus className="h-3.5 w-3.5 text-neutral-400 shrink-0" />
+                      </button>
+                    ))
+                  ) : (
+                    <div className="p-3 text-center text-neutral-500">
+                      <p className="text-xs font-semibold text-neutral-800">
+                        We couldn&apos;t find this card in our catalogue.
+                      </p>
+                      <p className="text-[11px] text-neutral-500 mt-1 leading-relaxed">
+                        CreditWise features a curated selection of cards that meet our standards.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
