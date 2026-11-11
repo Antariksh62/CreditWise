@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   ArrowRight,
   RotateCcw,
@@ -32,11 +33,13 @@ function formatFee(fee) {
 }
 
 export default function ResultsPage() {
+  const router = useRouter();
   const [profile, setProfile] = useState(null);
   const [quizAnswers, setQuizAnswers] = useState(null);
   const [activeSource, setActiveSource] = useState(null);
   const [ready, setReady] = useState(false);
   const [selectedCardCount, setSelectedCardCount] = useState(1);
+  const [user, setUser] = useState(null);
 
   // AI Explanation State
   const [aiExplanation, setAiExplanation] = useState(null);
@@ -69,6 +72,19 @@ export default function ResultsPage() {
       }
       setSessionId(storedSessionId);
 
+      // Check stored user session
+      try {
+        const rawUser = window.localStorage.getItem("cardwise:user");
+        const parsedUser = rawUser ? JSON.parse(rawUser) : null;
+        if (parsedUser && (parsedUser.email || parsedUser.username || parsedUser.fullName)) {
+          setUser(parsedUser);
+        } else {
+          setUser(null);
+        }
+      } catch {
+        setUser(null);
+      }
+
       const searchParams = new URLSearchParams(window.location.search);
       const requestedSource = searchParams.get("source");
 
@@ -79,23 +95,30 @@ export default function ResultsPage() {
       const parsedAnswers = rawAnswers ? JSON.parse(rawAnswers) : null;
       const answersComplete = Boolean(parsedAnswers && isComplete(parsedAnswers));
 
+      // Read previously chosen card count if persisted
+      const savedCardCount = window.localStorage.getItem("cardwise:selected_card_count");
+      const storedCount = Number(savedCardCount);
+
       if (requestedSource === "quiz" && answersComplete) {
         setQuizAnswers(parsedAnswers);
         setProfile(null);
         setActiveSource("quiz");
-        const count = Number(parsedAnswers.cardCount) || 1;
+        const defaultCount = Number(parsedAnswers.cardCount) || 1;
+        const count = storedCount >= 1 && storedCount <= 3 ? storedCount : defaultCount;
         setSelectedCardCount(Math.min(3, Math.max(1, count)));
       } else if (parsedProfile) {
         setProfile(parsedProfile);
         setQuizAnswers(null);
         setActiveSource("profile");
-        const count = Number(parsedProfile.preferences?.cardCount || parsedProfile.cardCount) || 1;
+        const defaultCount = Number(parsedProfile.preferences?.cardCount || parsedProfile.cardCount) || 1;
+        const count = storedCount >= 1 && storedCount <= 3 ? storedCount : defaultCount;
         setSelectedCardCount(Math.min(3, Math.max(1, count)));
       } else if (answersComplete) {
         setQuizAnswers(parsedAnswers);
         setProfile(null);
         setActiveSource("quiz");
-        const count = Number(parsedAnswers.cardCount) || 1;
+        const defaultCount = Number(parsedAnswers.cardCount) || 1;
+        const count = storedCount >= 1 && storedCount <= 3 ? storedCount : defaultCount;
         setSelectedCardCount(Math.min(3, Math.max(1, count)));
       } else {
         setProfile(null);
@@ -109,6 +132,45 @@ export default function ResultsPage() {
     }
     setReady(true);
   }, []);
+
+  function handleSelectCardCount(count) {
+    const clamped = Math.min(3, Math.max(1, Number(count) || 1));
+    setSelectedCardCount(clamped);
+    try {
+      window.localStorage.setItem("cardwise:selected_card_count", String(clamped));
+      if (profile) {
+        const updated = {
+          ...profile,
+          cardCount: clamped,
+          preferences: { ...(profile.preferences || {}), cardCount: clamped },
+        };
+        setProfile(updated);
+        window.localStorage.setItem("cardwise:profile", JSON.stringify(updated));
+      }
+      if (quizAnswers) {
+        const updatedAnswers = { ...quizAnswers, cardCount: clamped };
+        setQuizAnswers(updatedAnswers);
+        window.localStorage.setItem("cardwise:answers", JSON.stringify(updatedAnswers));
+      }
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("storage"));
+      }
+    } catch {}
+  }
+
+  function handleRestart() {
+    try {
+      window.localStorage.removeItem("cardwise:profile");
+      window.localStorage.removeItem("cardwise:answers");
+      window.localStorage.removeItem("cardwise:onboarding_draft");
+      window.localStorage.removeItem("cardwise:quiz_draft");
+      window.localStorage.removeItem("cardwise:selected_card_count");
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("storage"));
+      }
+    } catch {}
+    router.push(activeSource === "quiz" ? "/recommend" : "/onboarding");
+  }
 
   const baseSpend = profile?.spending?.categories || (quizAnswers ? {
     dining: quizAnswers.spendArea === "dining" ? 15000 : 4000,
@@ -404,18 +466,28 @@ export default function ResultsPage() {
                 Cards that fit how you spend
               </h1>
             </div>
-            <Link
-              href={activeSource === "quiz" ? "/recommend" : "/onboarding"}
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-lg border border-neutral-200 bg-white px-3.5 py-1.5 text-xs font-medium text-neutral-600 hover:border-black hover:text-black transition-colors shrink-0"
-            >
-              <RotateCcw className="h-3 w-3" />
-              {activeSource === "quiz" ? "Retake quiz" : "Adjust profile"}
-            </Link>
+            <div className="hidden sm:flex items-center gap-2 shrink-0">
+              <Link
+                href={activeSource === "quiz" ? "/recommend" : "/onboarding"}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-neutral-200 bg-white px-3.5 py-1.5 text-xs font-medium text-neutral-600 hover:border-black hover:text-black transition-colors"
+              >
+                <RotateCcw className="h-3 w-3" />
+                {activeSource === "quiz" ? "Retake quiz" : "Adjust profile"}
+              </Link>
+              <button
+                type="button"
+                onClick={handleRestart}
+                className="inline-flex items-center gap-1 rounded-lg border border-neutral-200/80 bg-neutral-50 px-2.5 py-1.5 text-xs font-medium text-neutral-500 hover:text-red-700 hover:border-red-200 transition-colors"
+                title="Clear current profile and start fresh"
+              >
+                Restart
+              </button>
+            </div>
           </div>
           <p className="mt-2.5 text-sm sm:text-base text-neutral-500 max-w-2xl leading-relaxed">
             Every recommendation is calculated from verified bank reward terms and your natural expenses. Spending is routed across cards to maximize net value without double-counting.
           </p>
-          <div className="mt-3 sm:hidden">
+          <div className="mt-3 flex items-center gap-2 sm:hidden">
             <Link
               href={activeSource === "quiz" ? "/recommend" : "/onboarding"}
               className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-600 hover:text-black"
@@ -423,6 +495,14 @@ export default function ResultsPage() {
               <RotateCcw className="h-3 w-3" />
               {activeSource === "quiz" ? "Retake quiz" : "Adjust profile"}
             </Link>
+            <span className="text-neutral-300">•</span>
+            <button
+              type="button"
+              onClick={handleRestart}
+              className="text-xs font-medium text-neutral-500 hover:text-red-700 underline"
+            >
+              Restart
+            </button>
           </div>
         </header>
 
@@ -473,7 +553,7 @@ export default function ResultsPage() {
                 <button
                   key={tab.count}
                   type="button"
-                  onClick={() => setSelectedCardCount(tab.count)}
+                  onClick={() => handleSelectCardCount(tab.count)}
                   className={`text-left p-3 rounded-xl border transition-all ${
                     isActive
                       ? "border-black bg-black text-white shadow-sm ring-1 ring-black"
@@ -1171,6 +1251,35 @@ export default function ResultsPage() {
             )}
           </div>
         </section>
+
+        {/* Optional Guest Save Prompt */}
+        {!user && (
+          <section className="mb-8 rounded-2xl border border-neutral-200/80 bg-white p-6 sm:p-8 text-center shadow-xs">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">
+              Guest Session Active
+            </span>
+            <h3 className="text-base sm:text-lg font-bold text-neutral-900">
+              Want to save your card recommendations across devices?
+            </h3>
+            <p className="mt-1.5 text-xs sm:text-sm text-neutral-500 max-w-md mx-auto leading-relaxed">
+              Your profile is currently saved locally in this browser. Create an optional demo account to keep your preferences and recommendations synced.
+            </p>
+            <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                href="/signup"
+                className="w-full sm:w-auto rounded-lg bg-black px-5 py-2.5 text-xs font-bold text-white hover:bg-neutral-800 transition-colors shadow-2xs"
+              >
+                Save profile with free account
+              </Link>
+              <Link
+                href="/login"
+                className="w-full sm:w-auto rounded-lg border border-neutral-200 bg-white px-5 py-2.5 text-xs font-semibold text-neutral-700 hover:border-black hover:text-black transition-colors"
+              >
+                Sign in
+              </Link>
+            </div>
+          </section>
+        )}
 
         {/* Transparency Notice */}
         <section className="rounded-2xl border border-neutral-200/80 bg-white p-6 sm:p-8 text-xs text-neutral-500 leading-relaxed shadow-xs">

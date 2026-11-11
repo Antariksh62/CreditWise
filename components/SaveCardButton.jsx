@@ -48,8 +48,6 @@ export default function SaveCardButton({ slug, name }) {
       ? current.filter((s) => s !== slug)
       : [...current, slug];
 
-    cachedSaved = next;
-    lastReadTime = Date.now();
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
     setSaved(next.includes(slug));
   }

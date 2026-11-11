@@ -18,6 +18,7 @@ import { QUESTIONS, isComplete } from "../lib/recommendation";
  */
 
 export const ANSWERS_KEY = "cardwise:answers";
+export const QUIZ_DRAFT_KEY = "cardwise:quiz_draft";
 
 export default function RecommendationQuiz() {
   const router = useRouter();
@@ -28,6 +29,22 @@ export default function RecommendationQuiz() {
     router.prefetch("/results?source=quiz");
     router.prefetch("/results");
     try {
+      // 1. Restore active in-progress draft first if available
+      const rawDraft = window.localStorage.getItem(QUIZ_DRAFT_KEY);
+      if (rawDraft) {
+        const draft = JSON.parse(rawDraft);
+        if (draft && typeof draft === "object") {
+          if (typeof draft.step === "number") {
+            setStep(Math.min(QUESTIONS.length - 1, Math.max(0, draft.step)));
+          }
+          if (draft.answers && typeof draft.answers === "object") {
+            setAnswers(draft.answers);
+          }
+          return;
+        }
+      }
+
+      // 2. Otherwise restore previously completed answers
       const raw = window.localStorage.getItem(ANSWERS_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
@@ -37,6 +54,13 @@ export default function RecommendationQuiz() {
       }
     } catch {}
   }, [router]);
+
+  // Persist draft on every answer / step change so guest progress is not lost
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(QUIZ_DRAFT_KEY, JSON.stringify({ step, answers }));
+    } catch {}
+  }, [step, answers]);
 
   const question = QUESTIONS[step];
   const isLast = step === QUESTIONS.length - 1;
@@ -53,9 +77,26 @@ export default function RecommendationQuiz() {
     }
   }
 
+  function restartQuiz() {
+    try {
+      window.localStorage.removeItem(QUIZ_DRAFT_KEY);
+      window.localStorage.removeItem(ANSWERS_KEY);
+      window.localStorage.removeItem("cardwise:selected_card_count");
+    } catch {}
+    setStep(0);
+    setAnswers({});
+  }
+
   function submit() {
     if (!isComplete(answers)) return;
-    window.localStorage.setItem(ANSWERS_KEY, JSON.stringify(answers));
+    try {
+      window.localStorage.setItem(ANSWERS_KEY, JSON.stringify(answers));
+      window.localStorage.setItem("cardwise:selected_card_count", String(answers.cardCount || 1));
+      window.localStorage.removeItem(QUIZ_DRAFT_KEY);
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("storage"));
+      }
+    } catch {}
     router.push("/results?source=quiz");
   }
 
@@ -64,9 +105,21 @@ export default function RecommendationQuiz() {
       {/* ---------- Progress ---------- */}
       <div className="mb-8">
         <div className="mb-3 flex items-center justify-between">
-          <span className="cw-eyebrow">
-            Question {step + 1} of {QUESTIONS.length}
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="cw-eyebrow">
+              Question {step + 1} of {QUESTIONS.length}
+            </span>
+            {(step > 0 || Object.keys(answers).length > 0) && (
+              <button
+                type="button"
+                onClick={restartQuiz}
+                className="text-[11px] font-medium text-muted hover:text-foreground underline transition-colors"
+                title="Restart quiz from Question 1"
+              >
+                Restart quiz
+              </button>
+            )}
+          </div>
           <span className="cw-numeric text-[0.8125rem] text-muted">
             {Math.round(progress)}%
           </span>

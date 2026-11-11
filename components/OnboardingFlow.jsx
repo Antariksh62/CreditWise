@@ -202,51 +202,55 @@ const CREDIT_SCORE_OPTIONS = [
   "Prefer not to say",
 ];
 
+export const ONBOARDING_DRAFT_KEY = "cardwise:onboarding_draft";
+
+const INITIAL_FORM_DATA = {
+  // Step 1: About You
+  age: "26",
+  employment: "salaried",
+  incomeRange: "₹6L – ₹12L",
+  city: "Bengaluru",
+
+  // Step 2: Spending
+  spending: {
+    groceries: 6000,
+    dining: 5000,
+    fuel: 3500,
+    travel: 4000,
+    shopping: 6000,
+    utilities: 3000,
+    entertainment: 2000,
+    subscriptions: 1200,
+    other: 3000,
+  },
+
+  // Step 3: What Matters To You & Preferences
+  preferredRewardType: "Cashback",
+  preferredCardCharacteristics: "Simplicity",
+  priorities: ["Cashback", "Dining", "Shopping"],
+
+  // Step 4: Fee Preference
+  feeTolerance: "moderate-fee",
+
+  // Step 5: Reward Complexity
+  rewardStyle: "balanced",
+
+  // Step 6: Target Setup (Card Count)
+  cardCount: 1,
+
+  // Step 7: Optional Information
+  travelFrequency: "Sometimes (2–4 trips/year)",
+  internationalSpend: "Occasionally (online or travel)",
+  creditScoreRange: "750+ (Excellent)",
+};
+
 export default function OnboardingFlow() {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const totalSteps = 7;
 
   // Form State
-  const [formData, setFormData] = useState({
-    // Step 1: About You
-    age: "26",
-    employment: "salaried",
-    incomeRange: "₹6L – ₹12L",
-    city: "Bengaluru",
-
-    // Step 2: Spending
-    spending: {
-      groceries: 6000,
-      dining: 5000,
-      fuel: 3500,
-      travel: 4000,
-      shopping: 6000,
-      utilities: 3000,
-      entertainment: 2000,
-      subscriptions: 1200,
-      other: 3000,
-    },
-
-    // Step 3: What Matters To You & Preferences
-    preferredRewardType: "Cashback",
-    preferredCardCharacteristics: "Simplicity",
-    priorities: ["Cashback", "Dining", "Shopping"],
-
-    // Step 4: Fee Preference
-    feeTolerance: "moderate-fee",
-
-    // Step 5: Reward Complexity
-    rewardStyle: "balanced",
-
-    // Step 6: Target Setup (Card Count)
-    cardCount: 1,
-
-    // Step 7: Optional Information
-    travelFrequency: "Sometimes (2–4 trips/year)",
-    internationalSpend: "Occasionally (online or travel)",
-    creditScoreRange: "750+ (Excellent)",
-  });
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
   const [inputMode, setInputMode] = useState("manual"); // "manual" | "ai"
   const [naturalLanguageInput, setNaturalLanguageInput] = useState("");
@@ -254,18 +258,24 @@ export default function OnboardingFlow() {
   const [nlFeedbackMessage, setNlFeedbackMessage] = useState(null);
   const [finishing, setFinishing] = useState(false);
 
-  // Restore saved profile or user on mount
+  // Restore saved draft or profile on mount
   useEffect(() => {
     router.prefetch("/results");
     try {
-      const rawUser = window.localStorage.getItem("cardwise:user");
-      if (rawUser) {
-        const user = JSON.parse(rawUser);
-        if (user.age) {
-          setFormData((prev) => ({ ...prev, age: String(user.age) }));
+      // 1. Check for in-progress draft first to preserve navigation/refresh progress
+      const rawDraft = window.localStorage.getItem(ONBOARDING_DRAFT_KEY);
+      if (rawDraft) {
+        const draft = JSON.parse(rawDraft);
+        if (draft && typeof draft === "object") {
+          if (draft.step) setStep(Math.min(totalSteps, Math.max(1, Number(draft.step) || 1)));
+          if (draft.formData) setFormData((prev) => ({ ...prev, ...draft.formData }));
+          if (draft.inputMode) setInputMode(draft.inputMode);
+          if (draft.naturalLanguageInput) setNaturalLanguageInput(draft.naturalLanguageInput);
+          return;
         }
       }
 
+      // 2. Otherwise restore from saved profile if available
       const rawProfile = window.localStorage.getItem("cardwise:profile");
       if (rawProfile) {
         const profile = JSON.parse(rawProfile);
@@ -287,10 +297,31 @@ export default function OnboardingFlow() {
           creditScoreRange: profile.preferences?.creditScoreRange || prev.creditScoreRange,
         }));
       }
+
+      const rawUser = window.localStorage.getItem("cardwise:user");
+      if (rawUser) {
+        const user = JSON.parse(rawUser);
+        if (user.age) {
+          setFormData((prev) => ({ ...prev, age: String(user.age) }));
+        }
+      }
     } catch {
       // ignore
     }
   }, [router]);
+
+  // Persist draft on every change so guest progress is never lost across navigation or refresh
+  useEffect(() => {
+    if (finishing) return;
+    try {
+      window.localStorage.setItem(
+        ONBOARDING_DRAFT_KEY,
+        JSON.stringify({ step, formData, inputMode, naturalLanguageInput })
+      );
+    } catch {
+      // ignore
+    }
+  }, [step, formData, inputMode, naturalLanguageInput, finishing]);
 
   const totalMonthlySpend = Object.values(formData.spending).reduce(
     (acc, val) => acc + (Number(val) || 0),
@@ -389,13 +420,33 @@ export default function OnboardingFlow() {
     });
   }
 
+  function handleRestartOnboarding() {
+    try {
+      window.localStorage.removeItem(ONBOARDING_DRAFT_KEY);
+      window.localStorage.removeItem("cardwise:profile");
+      window.localStorage.removeItem("cardwise:selected_card_count");
+    } catch {
+      // ignore
+    }
+    setStep(1);
+    setInputMode("manual");
+    setNaturalLanguageInput("");
+    setNlFeedbackMessage(null);
+    setFormData(INITIAL_FORM_DATA);
+  }
+
   function handleFinish() {
     setFinishing(true);
 
-    let activeUser = { fullName: "User", email: "user@example.com" };
+    let activeUser = null;
     try {
       const rawUser = window.localStorage.getItem("cardwise:user");
-      if (rawUser) activeUser = JSON.parse(rawUser);
+      if (rawUser) {
+        const u = JSON.parse(rawUser);
+        if (u && (u.email || u.fullName)) {
+          activeUser = u;
+        }
+      }
     } catch {
       // fallback
     }
@@ -403,8 +454,9 @@ export default function OnboardingFlow() {
     const structuredProfile = {
       cardCount: Number(formData.cardCount) || 1,
       account: {
-        fullName: activeUser.fullName,
-        email: activeUser.email,
+        fullName: activeUser ? activeUser.fullName : "Guest User",
+        email: activeUser ? activeUser.email : "guest@creditwise.local",
+        isGuest: !activeUser,
         age: Number(formData.age) || 25,
         updatedAt: new Date().toISOString(),
       },
@@ -434,10 +486,18 @@ export default function OnboardingFlow() {
 
     try {
       window.localStorage.setItem("cardwise:profile", JSON.stringify(structuredProfile));
-      window.localStorage.setItem(
-        "cardwise:user",
-        JSON.stringify({ ...activeUser, age: Number(formData.age) || 25 })
-      );
+      window.localStorage.setItem("cardwise:selected_card_count", String(formData.cardCount || 1));
+      window.localStorage.removeItem(ONBOARDING_DRAFT_KEY);
+
+      if (activeUser) {
+        window.localStorage.setItem(
+          "cardwise:user",
+          JSON.stringify({ ...activeUser, age: Number(formData.age) || 25 })
+        );
+      }
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("storage"));
+      }
     } catch {
       // ignore
     }
@@ -450,7 +510,17 @@ export default function OnboardingFlow() {
       {/* Top Header & Progress */}
       <div className="mb-8">
         <div className="flex items-center justify-between text-xs text-neutral-500 font-semibold mb-2.5">
-          <span className="uppercase tracking-wider">Step {step} of {totalSteps}</span>
+          <div className="flex items-center gap-3">
+            <span className="uppercase tracking-wider">Step {step} of {totalSteps}</span>
+            <button
+              type="button"
+              onClick={handleRestartOnboarding}
+              className="text-[11px] font-medium text-neutral-400 hover:text-black underline transition-colors"
+              title="Clear saved draft and restart onboarding from step 1"
+            >
+              Restart onboarding
+            </button>
+          </div>
           <span className="text-black font-bold">
             {step === 1 && "About You"}
             {step === 2 && "Your Spending"}

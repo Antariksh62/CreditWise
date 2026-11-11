@@ -21,12 +21,13 @@ import {
   Info,
   CheckCircle2,
   Search,
+  RotateCcw,
 } from "lucide-react";
 import cards from "../../data/cards.json";
 import CreditCardVisual from "../../components/CreditCardVisual";
 import CardGrid from "../../components/CardGrid";
 import { readSaved } from "../../components/SaveCardButton";
-import { getProfileRecommendations } from "../../lib/recommendation";
+import { getProfileRecommendations, isComplete } from "../../lib/recommendation";
 import { isCardMatchingQuery } from "../../lib/cardUtils";
 
 const SPEND_CATEGORIES_CONFIG = [
@@ -72,16 +73,94 @@ export default function ProfilePage() {
     try {
       const rawUser = window.localStorage.getItem("cardwise:user");
       const parsedUser = rawUser ? JSON.parse(rawUser) : null;
-      setUser(parsedUser);
+      if (parsedUser && (parsedUser.email || parsedUser.username || parsedUser.fullName)) {
+        setUser(parsedUser);
+      } else {
+        setUser(null);
+      }
 
       const rawProfile = window.localStorage.getItem("cardwise:profile");
       const parsedProfile = rawProfile ? JSON.parse(rawProfile) : null;
-      setProfile(parsedProfile);
+
+      const rawAnswers = window.localStorage.getItem("cardwise:answers");
+      const parsedAnswers = rawAnswers ? JSON.parse(rawAnswers) : null;
+      const answersComplete = Boolean(parsedAnswers && isComplete(parsedAnswers));
 
       if (parsedProfile) {
+        setProfile(parsedProfile);
         setEditSpending(parsedProfile.spending?.categories || {});
         setEditPreferences(parsedProfile.preferences || {});
         setEditExistingCards(parsedProfile.existingCards || []);
+      } else if (answersComplete) {
+        // Construct canonical profile from completed quiz answers
+        const baseSpend = {
+          dining: parsedAnswers.spendArea === "dining" ? 15000 : 4000,
+          shopping: parsedAnswers.spendArea === "online" ? 20000 : 5000,
+          fuel: parsedAnswers.spendArea === "fuel" ? 10000 : 2000,
+          travel: parsedAnswers.spendArea === "travel" ? 20000 : 3000,
+          groceries: parsedAnswers.spendArea === "online" ? 8000 : 6000,
+          utilities: 3000,
+        };
+        const totalMonthly = Object.values(baseSpend).reduce((s, v) => s + v, 0);
+        const synthProfile = {
+          cardCount: Number(parsedAnswers.cardCount) || 1,
+          account: {
+            fullName: "Guest User",
+            email: "guest@creditwise.local",
+            isGuest: true,
+            updatedAt: new Date().toISOString(),
+          },
+          profile: {
+            age: 25,
+            incomeRange:
+              parsedAnswers.monthlySpend === "over100k"
+                ? "₹25L – ₹50L"
+                : parsedAnswers.monthlySpend === "50to100k"
+                ? "₹12L – ₹25L"
+                : "₹6L – ₹12L",
+            employment: "salaried",
+          },
+          spending: {
+            totalMonthly,
+            categories: baseSpend,
+          },
+          preferences: {
+            cardCount: Number(parsedAnswers.cardCount) || 1,
+            priorities: [
+              parsedAnswers.priority === "cashback" ? "Cashback" : "",
+              parsedAnswers.priority === "travel" ? "Airport lounge access" : "",
+              parsedAnswers.priority === "rewards" ? "Shopping" : "",
+              parsedAnswers.priority === "lowfees" ? "Low/no annual fee" : "",
+              parsedAnswers.priority === "fuel" ? "Fuel savings" : "",
+              parsedAnswers.spendArea === "dining" ? "Dining" : "",
+            ].filter(Boolean),
+            rewardStyle:
+              parsedAnswers.priority === "cashback"
+                ? "simple"
+                : parsedAnswers.priority === "travel"
+                ? "optimizer"
+                : "balanced",
+            feeTolerance:
+              parsedAnswers.feeSensitivity === "very"
+                ? "no-fee"
+                : parsedAnswers.feeSensitivity === "no"
+                ? "high-fee"
+                : "moderate-fee",
+            travelFrequency:
+              parsedAnswers.travelFrequency === "frequently"
+                ? "Frequently"
+                : parsedAnswers.travelFrequency === "rarely"
+                ? "Rarely"
+                : "Sometimes",
+          },
+          existingCards: [],
+        };
+        setProfile(synthProfile);
+        setEditSpending(baseSpend);
+        setEditPreferences(synthProfile.preferences);
+        setEditExistingCards([]);
+      } else {
+        setProfile(null);
       }
     } catch {
       setUser(null);
@@ -100,6 +179,23 @@ export default function ProfilePage() {
     router.push("/login");
   }
 
+  function resetGuestProfile() {
+    try {
+      window.localStorage.removeItem("cardwise:profile");
+      window.localStorage.removeItem("cardwise:answers");
+      window.localStorage.removeItem("cardwise:onboarding_draft");
+      window.localStorage.removeItem("cardwise:quiz_draft");
+      window.localStorage.removeItem("cardwise:selected_card_count");
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new Event("storage"));
+      }
+    } catch {
+      // ignore
+    }
+    setProfile(null);
+    router.push("/");
+  }
+
   function deleteAccount() {
     try {
       const activeUser = user;
@@ -107,6 +203,9 @@ export default function ProfilePage() {
       window.localStorage.removeItem("cardwise:profile");
       window.localStorage.removeItem("cardwise:saved");
       window.localStorage.removeItem("cardwise:answers");
+      window.localStorage.removeItem("cardwise:onboarding_draft");
+      window.localStorage.removeItem("cardwise:quiz_draft");
+      window.localStorage.removeItem("cardwise:selected_card_count");
 
       // Purge registered user from local users directory if present
       const rawUsers = window.localStorage.getItem("cardwise:users");
@@ -207,32 +306,38 @@ export default function ProfilePage() {
     );
   }
 
-  // ---------------- Signed Out State ----------------
-  if (!user) {
+  // ---------------- No Profile & Signed Out State ----------------
+  if (!user && !profile) {
     return (
       <div className="cw-rail min-h-[75vh] flex items-center justify-center bg-[#FBFBFB]">
         <div className="cw-container py-20">
           <div className="rounded-2xl border border-neutral-200/80 bg-white p-8 sm:p-12 text-center max-w-lg mx-auto shadow-xs">
             <span className="text-[10px] font-bold uppercase tracking-wider bg-neutral-100 text-neutral-600 px-2.5 py-1 rounded-full">
-              Demo Profile Session
+              Card Intelligence Profile
             </span>
-            <h1 className="text-2xl font-extrabold text-black mt-3">You are not signed in</h1>
+            <h1 className="text-2xl font-extrabold text-black mt-3">No active profile found</h1>
             <p className="text-xs sm:text-sm text-neutral-500 mt-2 max-w-sm mx-auto leading-relaxed">
-              Sign in or create a demo account to manage your spending profile and personalized recommendations.
+              Complete our guided questionnaire or quick quiz to evaluate verified card combinations tailored to your natural expenses, or sign in if you already have an account.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
               <Link
-                href="/login"
+                href="/recommend"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-black px-6 py-2.5 text-xs sm:text-sm font-bold text-white hover:bg-neutral-800 transition-colors"
               >
-                Sign in
+                Take 1-Minute Quiz
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
               <Link
-                href="/signup"
+                href="/onboarding"
                 className="inline-flex items-center justify-center rounded-lg border border-neutral-200 bg-white px-6 py-2.5 text-xs sm:text-sm font-semibold text-neutral-800 hover:bg-neutral-50 transition-colors"
               >
-                Create account
+                Full Onboarding
+              </Link>
+              <Link
+                href="/login"
+                className="inline-flex items-center justify-center rounded-lg border border-neutral-200 bg-white px-6 py-2.5 text-xs sm:text-sm font-semibold text-neutral-800 hover:bg-neutral-50 transition-colors"
+              >
+                Sign in
               </Link>
             </div>
           </div>
@@ -260,18 +365,24 @@ export default function ProfilePage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider bg-[#DDF247] text-black px-2.5 py-0.5 rounded-full">
-                  Verified Local Session
+                <span
+                  className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${
+                    user ? "bg-[#DDF247] text-black" : "bg-neutral-100 text-neutral-700"
+                  }`}
+                >
+                  {user ? "Verified Account Session" : "Guest Browser Session"}
                 </span>
                 <span className="text-[10px] font-medium text-neutral-400">
-                  Client-side storage only
+                  Client-side storage
                 </span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-extrabold text-black">
-                {user.fullName}
+                {user ? user.fullName : "Your Spending Profile"}
               </h1>
               <p className="text-xs sm:text-sm text-neutral-500 mt-1">
-                {user.email} {profile?.profile?.city ? `· ${profile.profile.city}` : ""}
+                {user
+                  ? `${user.email} ${profile?.profile?.city ? `· ${profile.profile.city}` : ""}`
+                  : "Local guest session · Data stays on this device"}
               </p>
             </div>
 
@@ -293,16 +404,49 @@ export default function ProfilePage() {
                   Complete Personalization
                 </Link>
               )}
-              <button
-                type="button"
-                onClick={signOut}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-neutral-200 bg-white px-3.5 py-2 text-xs font-semibold text-neutral-700 hover:border-black hover:text-black transition-colors"
-              >
-                <LogOut className="h-3.5 w-3.5" />
-                Sign out
-              </button>
+              {user ? (
+                <button
+                  type="button"
+                  onClick={signOut}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-neutral-200 bg-white px-3.5 py-2 text-xs font-semibold text-neutral-700 hover:border-black hover:text-black transition-colors"
+                >
+                  <LogOut className="h-3.5 w-3.5" />
+                  Sign out
+                </button>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Link
+                    href="/login"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-neutral-200 bg-white px-3.5 py-2 text-xs font-semibold text-neutral-700 hover:border-black hover:text-black transition-colors"
+                  >
+                    Sign in to sync
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={resetGuestProfile}
+                    className="inline-flex items-center gap-1 rounded-lg border border-neutral-200/80 bg-neutral-50 px-2.5 py-2 text-xs font-medium text-neutral-500 hover:text-red-700 hover:border-red-200 transition-colors"
+                    title="Clear current profile and start fresh"
+                  >
+                    <RotateCcw className="h-3 w-3" />
+                    Reset
+                  </button>
+                </div>
+              )}
             </div>
           </div>
+
+          {!user && (
+            <div className="mt-5 rounded-xl border border-neutral-200/80 bg-neutral-50/70 p-4 text-xs text-neutral-600 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <span>
+                <strong>Guest Mode:</strong> Your spending numbers and card preferences are active in this browser. To keep them synced across devices, you can create a free account.
+              </span>
+              <div className="flex items-center gap-2 shrink-0">
+                <Link href="/signup" className="font-bold text-black underline underline-offset-2 hover:text-neutral-700">
+                  Create account →
+                </Link>
+              </div>
+            </div>
+          )}
 
           {/* Navigation Sub-Tabs */}
           <div className="mt-8 flex flex-nowrap overflow-x-auto pb-2 scrollbar-none sm:flex-wrap sm:pb-0 gap-2 border-t border-neutral-100 pt-6">
@@ -810,7 +954,7 @@ export default function ProfilePage() {
                 className="inline-flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50/50 px-4 py-2 text-xs font-bold text-red-700 hover:bg-red-100 transition-colors shrink-0"
               >
                 <Trash2 className="h-3.5 w-3.5" />
-                Delete Account & Clear All Data
+                {user ? "Delete Account & Clear All Data" : "Clear Guest Profile & Reset Data"}
               </button>
             </div>
           </div>

@@ -102,6 +102,7 @@ export default function SignupForm() {
       savedCards: [],
     };
 
+    let hasExistingProfile = false;
     try {
       window.localStorage.setItem("cardwise:user", JSON.stringify(newUser));
       window.dispatchEvent(new Event("storage"));
@@ -112,13 +113,35 @@ export default function SignupForm() {
       usersList.push(newUser);
       window.localStorage.setItem("cardwise:users", JSON.stringify(usersList));
 
-      // Clear any stale onboarding profile so user gets a clean personalized recommendation
-      window.localStorage.removeItem("cardwise:profile");
+      // Preserve existing recommendation profile and link it to the new account
+      const rawProfile = window.localStorage.getItem("cardwise:profile");
+      if (rawProfile) {
+        try {
+          const profileObj = JSON.parse(rawProfile);
+          if (profileObj && typeof profileObj === "object") {
+            profileObj.account = {
+              fullName: newUser.fullName,
+              email: newUser.email,
+              age: newUser.age,
+              isGuest: false,
+              updatedAt: new Date().toISOString(),
+            };
+            window.localStorage.setItem("cardwise:profile", JSON.stringify(profileObj));
+            hasExistingProfile = true;
+          }
+        } catch {
+          // ignore
+        }
+      }
     } catch {
       // ignore storage quota issues in demo
     }
 
-    router.push("/onboarding");
+    if (hasExistingProfile) {
+      router.push("/results");
+    } else {
+      router.push("/onboarding");
+    }
   }
 
   return (

@@ -109,12 +109,25 @@ export default function LoginForm() {
       // ignore quota issues
     }
 
-    // Direct user to onboarding if profile is incomplete, or results/profile
+    // If a guest profile exists, link it to the authenticated account and go to results
     const existingProfile = window.localStorage.getItem("cardwise:profile");
-    if (!existingProfile) {
-      router.push("/onboarding");
+    if (existingProfile) {
+      try {
+        const parsed = JSON.parse(existingProfile);
+        parsed.account = {
+          fullName: sessionUser.fullName,
+          email: sessionUser.email,
+          age: sessionUser.age,
+          isGuest: false,
+          updatedAt: new Date().toISOString(),
+        };
+        window.localStorage.setItem("cardwise:profile", JSON.stringify(parsed));
+      } catch {
+        // ignore
+      }
+      router.push("/results");
     } else {
-      router.push("/profile");
+      router.push("/onboarding");
     }
   }
 

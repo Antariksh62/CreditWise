@@ -13,6 +13,7 @@ export default function Navbar() {
   const [activeMegaMenu, setActiveMegaMenu] = useState(null); // 'cards' | 'tools' | null
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [hasGuestProfile, setHasGuestProfile] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   // Global Card Search State
@@ -64,6 +65,10 @@ export default function Navbar() {
     function readUser() {
       if (typeof window === "undefined") return;
       try {
+        const rawProfile = window.localStorage.getItem("cardwise:profile");
+        const rawAnswers = window.localStorage.getItem("cardwise:answers");
+        setHasGuestProfile(Boolean(rawProfile || rawAnswers));
+
         const raw = window.localStorage.getItem("cardwise:user");
         if (!raw) {
           setUser(null);
@@ -82,6 +87,7 @@ export default function Navbar() {
         }
       } catch {
         setUser(null);
+        setHasGuestProfile(false);
       }
     }
 
@@ -339,14 +345,27 @@ export default function Navbar() {
                 </button>
               </>
             ) : (
-              <Link
-                href="/login"
-                prefetch={true}
-                onClick={closeMenuImmediately}
-                className="text-sm font-medium text-neutral-700 hover:text-black px-3 py-2 transition-colors"
-              >
-                Sign in
-              </Link>
+              <>
+                {mounted && hasGuestProfile && (
+                  <Link
+                    href="/profile"
+                    prefetch={true}
+                    onClick={closeMenuImmediately}
+                    className="text-xs font-semibold text-neutral-700 hover:text-black px-2.5 py-1.5 transition-colors rounded-[6px] hover:bg-neutral-100"
+                    title="View your guest spending profile"
+                  >
+                    Profile
+                  </Link>
+                )}
+                <Link
+                  href="/login"
+                  prefetch={true}
+                  onClick={closeMenuImmediately}
+                  className="text-sm font-medium text-neutral-700 hover:text-black px-3 py-2 transition-colors"
+                >
+                  Sign in
+                </Link>
+              </>
             )}
             <Link
               href="/compare"
@@ -825,6 +844,15 @@ export default function Navbar() {
               </>
             ) : (
               <>
+                {mounted && hasGuestProfile && (
+                  <Link
+                    href="/profile"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-center font-semibold text-sm text-neutral-900 py-2"
+                  >
+                    Your Profile
+                  </Link>
+                )}
                 <Link
                   href="/login"
                   onClick={() => setMobileMenuOpen(false)}
