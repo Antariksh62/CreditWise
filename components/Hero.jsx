@@ -1,20 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ArrowRight, Compass } from "lucide-react";
 import HeroDotCanvas from "./HeroDotCanvas";
 
 export default function Hero() {
-  const router = useRouter();
-  const [email, setEmail] = useState("");
-
-  const handleEmailSubmit = (e) => {
-    e.preventDefault();
-    if (!email) return;
-    router.push(`/recommend?email=${encodeURIComponent(email)}`);
-  };
-
   return (
     <section className="relative pt-12 lg:pt-16 bg-white overflow-hidden">
       {/* 1. HERO TOP EDITORIAL HEADER */}
@@ -27,57 +17,68 @@ export default function Hero() {
 
           {/* MAIN HEADLINE */}
           <h1 className="text-4xl sm:text-6xl lg:text-[3.5rem] font-normal sm:font-medium tracking-tight text-neutral-950 leading-[1.05] max-w-3xl">
-            What if your expenses could{" "}
+            Find credit cards that{" "}
             <span className="text-neutral-400 block sm:inline font-normal">
-              earn rewards too?
+              reward the way you spend.
             </span>
           </h1>
         </div>
       </div>
 
       {/* 2. CONTINUOUS DOTTED MATRIX ENVIRONMENT */}
-      {/* Starts directly at the supporting text line and extends comfortably below */}
       <div className="relative w-full min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] pt-4 pb-20">
         {/* INTERACTIVE CANVAS EXTENDING ACROSS THE ENTIRE CONTINUOUS FIELD */}
         <HeroDotCanvas />
 
         <div className="cw-container relative z-10">
-          {/* SUPPORTING TEXT — DOTTED FIELD CONTINUES NATURALLY FROM / BEHIND THIS LINE */}
-          <p className="text-neutral-600 text-base sm:text-lg font-normal tracking-normal max-w-2xl leading-snug mb-6">
-            Cards, rewards, lounge access, and cashback* – matched to your spending.
+          {/* SUPPORTING TEXT */}
+          <p className="text-neutral-600 text-base sm:text-lg font-normal tracking-normal max-w-2xl leading-relaxed mb-8">
+            Tell us where your money goes. We&apos;ll help you discover credit cards that could give you better returns on the spending you already do.
           </p>
 
-          {/* EMAIL INPUT BOX & DIRECT QUIZ CTA */}
-          <div className="mb-0 pb-2">
-            <form
-              onSubmit={handleEmailSubmit}
-              className="flex flex-col sm:flex-row items-center gap-2 bg-white/95 backdrop-blur-sm border border-neutral-200/90 rounded-[8px] p-1.5 max-w-md w-full shadow-sm"
-            >
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="What's your email address?"
-                className="w-full bg-transparent px-3 py-2 text-sm text-black placeholder:text-neutral-400 focus:outline-none"
-                required
-              />
-              <button
-                type="submit"
-                className="w-full sm:w-auto shrink-0 rounded-[6px] bg-[#e4f222] px-5 py-2.5 text-sm font-medium text-black hover:bg-[#cee723] transition-colors whitespace-nowrap shadow-sm"
-              >
-                Find my card
-              </button>
-            </form>
-            <div className="mt-3 flex items-center gap-2 text-xs text-neutral-500">
-              <span>Prefer not to share email?</span>
+          {/* DUAL ACTION CTAs: PRIMARY RECOMMENDATION & SECONDARY CATALOGUE */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-4 sm:gap-5 max-w-2xl">
+            {/* PRIMARY CTA */}
+            <div className="flex-1 max-w-md">
               <Link
-                href="/recommend"
+                href="/onboarding"
                 prefetch={true}
-                className="font-medium text-neutral-900 underline underline-offset-4 hover:text-black transition-colors"
+                className="group flex items-center justify-between sm:justify-center gap-3 rounded-xl bg-black px-6 py-4 text-sm sm:text-base font-bold text-white transition-all hover:bg-neutral-800 shadow-md hover:shadow-lg"
               >
-                Take the 1-minute quiz directly →
+                <span>Find cards that fit my spending</span>
+                <ArrowRight className="h-4 w-4 text-[#DDF247] transition-transform group-hover:translate-x-1 shrink-0" />
               </Link>
+              <p className="mt-2.5 text-xs text-neutral-500 font-medium sm:text-left leading-normal">
+                Get personalized recommendations based on your spending habits.
+              </p>
             </div>
+
+            {/* SECONDARY CTA */}
+            <div className="shrink-0">
+              <Link
+                href="/cards"
+                prefetch={true}
+                className="flex items-center justify-center gap-2 rounded-xl border border-neutral-300 bg-white/95 backdrop-blur-xs px-5 py-4 text-sm sm:text-base font-semibold text-neutral-900 transition-colors hover:border-black hover:bg-white shadow-2xs"
+              >
+                <Compass className="h-4 w-4 text-neutral-500 shrink-0" />
+                <span>Explore all 31 cards</span>
+              </Link>
+              <p className="mt-2.5 text-xs text-neutral-400 font-normal sm:text-center leading-normal">
+                Curated catalogue · Verified terms
+              </p>
+            </div>
+          </div>
+
+          {/* TRANSPARENT TRUST BADGES */}
+          <div className="mt-10 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-neutral-500">
+            <span className="flex items-center gap-1.5 font-medium text-neutral-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              No account required
+            </span>
+            <span className="text-neutral-300">•</span>
+            <span>Optimizes existing spend</span>
+            <span className="text-neutral-300">•</span>
+            <span>Zero sponsored rankings</span>
           </div>
         </div>
       </div>

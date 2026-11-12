@@ -278,13 +278,13 @@ export default function Navbar() {
               </Link>
 
               <Link
-                href="/recommend"
+                href="/onboarding"
                 prefetch={true}
                 onMouseEnter={handleMouseLeave}
                 onClick={closeMenuImmediately}
                 className="px-3 py-2 text-sm font-medium text-neutral-700 hover:text-black hover:bg-neutral-100/60 rounded-[6px] transition-colors"
               >
-                Find your card
+                Find my card
               </Link>
 
               <Link
@@ -375,12 +375,13 @@ export default function Navbar() {
               Compare cards
             </Link>
             <Link
-              href="/recommend"
+              href="/onboarding"
               prefetch={true}
               onClick={closeMenuImmediately}
-              className="rounded-[6px] bg-black px-4 py-2 text-sm font-medium text-white hover:bg-neutral-800 transition-colors whitespace-nowrap"
+              className="rounded-[6px] bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800 transition-colors whitespace-nowrap inline-flex items-center gap-1.5 shadow-xs"
             >
-              Get started
+              <span>Find my card</span>
+              <span className="text-[#DDF247]">→</span>
             </Link>
           </div>
 
@@ -710,11 +711,11 @@ export default function Navbar() {
 
                   <div className="space-y-2 pt-3 border-t border-neutral-200/80">
                     <Link
-                      href="/recommend"
+                      href="/onboarding"
                       onClick={closeMenuImmediately}
                       className="flex items-center justify-between w-full px-4 py-2.5 text-xs font-bold text-black bg-[#e4f222] hover:bg-[#cee723] rounded-[6px] transition-colors group shadow-sm"
                     >
-                      <span>Take 1-minute quiz</span>
+                      <span>Find cards that fit your spending</span>
                       <span className="group-hover:translate-x-0.5 transition-transform">→</span>
                     </Link>
                     <Link
@@ -794,11 +795,11 @@ export default function Navbar() {
             Compare Cards
           </Link>
           <Link
-            href="/recommend"
+            href="/onboarding"
             onClick={() => setMobileMenuOpen(false)}
             className="block text-base font-semibold text-black"
           >
-            Find Your Card
+            Find my card
           </Link>
           <Link
             href="/blog"
@@ -834,11 +835,11 @@ export default function Navbar() {
                   Compare cards
                 </Link>
                 <Link
-                  href="/recommend"
+                  href="/onboarding"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-center font-medium text-sm bg-black text-white py-2.5 rounded-[6px]"
+                  className="text-center font-semibold text-sm bg-black text-white py-2.5 rounded-[6px]"
                 >
-                  Get started
+                  Find my card
                 </Link>
               </>
             ) : (
@@ -867,11 +868,11 @@ export default function Navbar() {
                   Compare cards
                 </Link>
                 <Link
-                  href="/recommend"
+                  href="/onboarding"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-center font-medium text-sm bg-black text-white py-2.5 rounded-[6px]"
+                  className="text-center font-semibold text-sm bg-black text-white py-2.5 rounded-[6px]"
                 >
-                  Get started
+                  Find my card
                 </Link>
               </>
             )}

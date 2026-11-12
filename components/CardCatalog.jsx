@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Search, X, RotateCcw } from "lucide-react";
+import { Search, X, RotateCcw, Sparkles, ArrowRight } from "lucide-react";
 import CardGrid from "./CardGrid";
 import { searchCards } from "../lib/cardUtils";
 
@@ -101,6 +102,37 @@ export default function CardCatalog({ initialCards = [], initialCategory = "all"
             ? `Compare all ${initialCards.length} verified credit cards across top Indian issuers with officially verified fees, reward structures, lounge access, and direct bank links.`
             : `Showing ${filteredCards.length} verified ${activeLabel?.toLowerCase() || "cards"}${searchQuery.trim() ? ` matching "${searchQuery.trim()}"` : ""} based on issuer documentation.`}
         </p>
+      </div>
+
+      {/* Helpful Discovery Prompt for Unsure Users */}
+      <div className="mb-8 rounded-2xl border border-neutral-200/90 bg-gradient-to-r from-neutral-50 via-white to-neutral-50/80 p-5 sm:p-6 shadow-2xs">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="max-w-xl">
+            <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1">
+              <Sparkles className="h-3 w-3 text-neutral-900" />
+              Personalized Spending Match
+            </span>
+            <h2 className="text-base sm:text-lg font-bold text-neutral-900">
+              Not sure which card is right for you?
+            </h2>
+            <p className="mt-1 text-xs sm:text-sm text-neutral-600 leading-relaxed">
+              Tell us about your spending habits and discover which cards from our catalogue could reward you better.
+            </p>
+          </div>
+          <div className="shrink-0 flex flex-col sm:flex-row md:flex-col items-start sm:items-center md:items-end gap-1.5">
+            <Link
+              href="/onboarding"
+              prefetch={true}
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-black px-4 py-2.5 text-xs sm:text-sm font-semibold text-white transition-all hover:bg-neutral-800 shadow-xs"
+            >
+              <span>Get personalized recommendations</span>
+              <ArrowRight className="h-3.5 w-3.5 text-[#DDF247]" />
+            </Link>
+            <span className="text-[11px] text-neutral-400 font-normal">
+              Takes ~2 minutes • No account required
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Prominent Search Input */}
@@ -228,11 +260,19 @@ export default function CardCatalog({ initialCards = [], initialCategory = "all"
             <button
               type="button"
               onClick={handleResetAll}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-lg bg-black px-5 py-2 text-xs font-semibold text-white hover:bg-neutral-800 transition-colors shadow-xs"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-lg border border-neutral-200 bg-white px-5 py-2 text-xs font-semibold text-neutral-700 hover:border-black hover:text-black transition-colors shadow-2xs"
             >
               <RotateCcw className="h-3.5 w-3.5" />
               Explore all {initialCards.length} verified cards
             </button>
+            <Link
+              href="/onboarding"
+              prefetch={true}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-lg bg-black px-5 py-2 text-xs font-semibold text-white hover:bg-neutral-800 transition-colors shadow-xs"
+            >
+              <span>Get personalized recommendations</span>
+              <ArrowRight className="h-3.5 w-3.5 text-[#DDF247]" />
+            </Link>
           </div>
         </div>
       )}

@@ -1,4 +1,6 @@
 import { Suspense } from "react";
+import Link from "next/link";
+import { Sparkles, ArrowRight } from "lucide-react";
 import ComparisonTable from "../../components/ComparisonTable";
 import RewardCalculator from "../../components/RewardCalculator";
 
@@ -33,6 +35,17 @@ export default function ComparePage() {
           <p className="text-sm sm:text-base text-neutral-500 mt-2.5 leading-relaxed">
             Inspect fees, reward models, and limitations side by side. We explain the functional differences so you can decide which option fits your everyday spending.
           </p>
+          <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-neutral-600 bg-neutral-50 border border-neutral-200/80 rounded-lg p-2.5">
+            <Sparkles className="h-3.5 w-3.5 text-neutral-800 shrink-0" />
+            <span>Want automated matching instead of comparing manually?</span>
+            <Link
+              href="/onboarding"
+              className="font-bold text-black underline underline-offset-4 hover:text-neutral-700 transition-colors inline-flex items-center gap-1"
+            >
+              <span>Find cards that fit my spending</span>
+              <ArrowRight className="h-3 w-3" />
+            </Link>
+          </div>
         </header>
 
         <Suspense

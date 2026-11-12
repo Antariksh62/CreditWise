@@ -16,6 +16,7 @@ import CreditCardVisual from "../../../components/CreditCardVisual";
 import SaveCardButton from "../../../components/SaveCardButton";
 import CardTechnicalDetails from "../../../components/CardTechnicalDetails";
 import CardInteractiveInsights from "../../../components/CardInteractiveInsights";
+import CardFitPrompt from "../../../components/CardFitPrompt";
 
 export function generateStaticParams() {
   return cards.map((card) => ({ slug: card.slug }));
@@ -225,6 +226,12 @@ export default async function CardDetailPage({ params }) {
             </div>
           </div>
         </div>
+
+        {/* ==================================================
+            CONTEXTUAL RECOMMENDATION ACTION
+            (Check My Card Fit vs User's Existing Spending)
+        ================================================== */}
+        <CardFitPrompt card={card} />
 
         {/* ==================================================
             INTERACTIVE CARD INSIGHTS & REDEMPTION DISCOVERY

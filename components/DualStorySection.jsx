@@ -44,7 +44,7 @@ export default function DualStorySection() {
             <VisualCard
               titlePart1="What if your expenses"
               titlePart2="could earn too?"
-              href="/recommend"
+              href="/onboarding"
               ariaLabel="Explore expense matching"
             >
               <ExpenseStreamVisual />

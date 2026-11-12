@@ -246,10 +246,10 @@ export default function PersonalStorySection() {
                 Matches ₹25,000/mo spend
               </span>
               <Link
-                href="/recommend"
+                href="/onboarding"
                 className="inline-flex items-center gap-1 sm:gap-1.5 text-xs font-semibold text-neutral-950 hover:underline"
               >
-                <span>Find your match</span>
+                <span>Find cards that fit your spending</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
