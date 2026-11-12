@@ -29,7 +29,7 @@ import CardGrid from "../../components/CardGrid";
 import { readSaved } from "../../components/SaveCardButton";
 import { getProfileRecommendations, isComplete } from "../../lib/recommendation";
 import { isCardMatchingQuery } from "../../lib/cardUtils";
-import { handleSecureSignOut, saveAccountProfile } from "../../lib/profileStorage";
+import { handleSecureSignOut, saveAccountProfile, deleteAccountProfile } from "../../lib/profileStorage";
 
 const SPEND_CATEGORIES_CONFIG = [
   { key: "groceries", label: "Groceries & Supermarket", defaultVal: 6000 },
@@ -205,6 +205,11 @@ export default function ProfilePage() {
       window.localStorage.removeItem("cardwise:onboarding_draft");
       window.localStorage.removeItem("cardwise:quiz_draft");
       window.localStorage.removeItem("cardwise:selected_card_count");
+      window.localStorage.removeItem("cardwise:session_id");
+
+      if (activeUser?.email) {
+        deleteAccountProfile(activeUser.email);
+      }
 
       // Purge registered user from local users directory if present
       const rawUsers = window.localStorage.getItem("cardwise:users");

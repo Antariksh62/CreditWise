@@ -9,6 +9,7 @@ import {
   migrateGuestToAccount,
   clearTemporaryGuestData,
   SELECTED_COUNT_KEY,
+  hashPassword,
 } from "../lib/profileStorage";
 
 export default function SignupForm() {
@@ -91,7 +92,7 @@ export default function SignupForm() {
     return next;
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const found = validate();
     setErrors(found);
@@ -122,6 +123,11 @@ export default function SignupForm() {
       return;
     }
 
+    let passwordHash = "";
+    try {
+      passwordHash = await hashPassword(values.email, values.password);
+    } catch {}
+
     const newUser = {
       fullName: values.fullName.trim(),
       email: values.email.trim(),
@@ -129,6 +135,7 @@ export default function SignupForm() {
       age: Number(values.age),
       createdAt: new Date().toISOString(),
       savedCards: [],
+      passwordHash,
     };
 
     try {

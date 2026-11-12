@@ -12,3 +12,4 @@ for (const card of cards) {
   console.log(`[${card.slug}] type=${rule.rewardType}, ptValue=${rule.pointValue}`);
   console.log(`   rates:`, JSON.stringify(rule.rates));
 }
+

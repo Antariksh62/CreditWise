@@ -42,3 +42,4 @@ for (const spend of testSpends) {
 
 console.log(`\nCalculation consistency results: ${passed} passed, ${failed} failed.`);
 if (failed > 0) process.exit(1);
+

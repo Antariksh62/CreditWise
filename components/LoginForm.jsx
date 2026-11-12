@@ -25,6 +25,7 @@ import {
   PENDING_MIGRATION_KEY,
   SELECTED_COUNT_KEY,
   clearTemporaryGuestData,
+  hashPassword,
 } from "../lib/profileStorage";
 
 export default function LoginForm() {
@@ -92,7 +93,7 @@ export default function LoginForm() {
     return nextErrors;
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const found = validate();
     setErrors(found);
@@ -135,6 +136,29 @@ export default function LoginForm() {
         form: "No account found with this email. You can create a new account or select a quick demo user below.",
       });
       return;
+    }
+
+    // Verify password for registered local users
+    if (localUser && localUser.passwordHash) {
+      const enteredHash = await hashPassword(matchedUser.email, values.password);
+      if (enteredHash !== localUser.passwordHash) {
+        setLoading(false);
+        setErrors({
+          password: "The password you entered is incorrect. Please try again.",
+        });
+        return;
+      }
+    } else if (localUser && !localUser.passwordHash) {
+      // Auto-upgrade legacy local account with hashed password
+      try {
+        const enteredHash = await hashPassword(matchedUser.email, values.password);
+        localUser.passwordHash = enteredHash;
+        const idx = storedUsers.findIndex((u) => u.email?.toLowerCase() === inputLower);
+        if (idx !== -1) {
+          storedUsers[idx].passwordHash = enteredHash;
+          window.localStorage.setItem("cardwise:users", JSON.stringify(storedUsers));
+        }
+      } catch {}
     }
 
     // Save active user session

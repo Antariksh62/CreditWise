@@ -30,3 +30,4 @@ const cardData = cards.map(c => {
 
 fs.writeFileSync("./test/card_financials_dump.json", JSON.stringify(cardData, null, 2));
 console.log(`Dumped ${cardData.length} cards.`);
+
