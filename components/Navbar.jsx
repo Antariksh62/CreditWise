@@ -308,14 +308,11 @@ export default function Navbar() {
                 closeMenuImmediately();
                 setSearchModalOpen(true);
               }}
-              aria-label="Search all credit cards (Cmd+K)"
+              aria-label="Search all credit cards"
               className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-50 px-2.5 py-1.5 text-xs text-neutral-500 hover:border-neutral-400 hover:text-black transition-colors"
             >
               <Search className="h-3.5 w-3.5 text-neutral-400" />
               <span>Search cards…</span>
-              <kbd className="hidden lg:inline rounded border border-neutral-200 bg-white px-1.5 py-0.5 text-[10px] font-mono text-neutral-400">
-                ⌘K
-              </kbd>
             </button>
 
             {mounted && user ? (

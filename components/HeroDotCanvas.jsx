@@ -305,15 +305,7 @@ export default function HeroDotCanvas() {
         ctx.save();
         ctx.translate(mouse.x, mouse.y);
 
-        // Transparent small circle around the currency symbol (no white big circle)
-        ctx.beginPath();
-        ctx.arc(0, 0, circleRadius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 0, 0, ${0.03 * symbolAlpha})`;
-        ctx.strokeStyle = `rgba(0, 0, 0, ${0.16 * symbolAlpha})`;
-        ctx.lineWidth = 1;
-        ctx.fill();
-        ctx.stroke();
-
+        // Currency symbol cleanly integrated without enclosing circular border or stroke
         ctx.font = `600 ${fontSize}px "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
@@ -373,9 +365,9 @@ export default function HeroDotCanvas() {
       className="absolute inset-0 pointer-events-none z-0"
       style={{
         maskImage:
-          "linear-gradient(to bottom, transparent 0px, black 15px, black calc(100% - 180px), transparent 100%)",
+          "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.03) 6%, rgba(0,0,0,0.12) 16%, rgba(0,0,0,0.35) 28%, rgba(0,0,0,0.72) 42%, black 56%, black calc(100% - 150px), transparent 100%)",
         WebkitMaskImage:
-          "linear-gradient(to bottom, transparent 0px, black 15px, black calc(100% - 180px), transparent 100%)",
+          "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.03) 6%, rgba(0,0,0,0.12) 16%, rgba(0,0,0,0.35) 28%, rgba(0,0,0,0.72) 42%, black 56%, black calc(100% - 150px), transparent 100%)",
       }}
       aria-hidden="true"
     />

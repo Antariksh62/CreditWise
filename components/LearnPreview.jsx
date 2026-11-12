@@ -141,7 +141,7 @@ export default function LearnPreview() {
             5 in-depth guides and counting
           </p>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-neutral-950 leading-[1.1] sm:leading-[1.08]">
+          <h2 className="font-sans text-2xl sm:text-4xl lg:text-[42px] font-normal sm:font-medium tracking-tight text-neutral-950 leading-[1.15] sm:leading-[1.12]">
             Guides and Credit Card Insights.
           </h2>
 

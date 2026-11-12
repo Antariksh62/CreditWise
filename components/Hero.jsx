@@ -7,6 +7,9 @@ import HeroDotCanvas from "./HeroDotCanvas";
 export default function Hero() {
   return (
     <section className="relative pt-12 lg:pt-16 bg-white overflow-hidden">
+      {/* CONTINUOUS INTERACTIVE CANVAS SPANNING THE HERO SECTION */}
+      <HeroDotCanvas />
+
       {/* 1. HERO TOP EDITORIAL HEADER */}
       <div className="cw-container relative z-10">
         <div className="max-w-4xl text-left space-y-4">
@@ -27,9 +30,6 @@ export default function Hero() {
 
       {/* 2. CONTINUOUS DOTTED MATRIX ENVIRONMENT */}
       <div className="relative w-full min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] pt-4 pb-20">
-        {/* INTERACTIVE CANVAS EXTENDING ACROSS THE ENTIRE CONTINUOUS FIELD */}
-        <HeroDotCanvas />
-
         <div className="cw-container relative z-10">
           {/* SUPPORTING TEXT */}
           <p className="text-neutral-600 text-base sm:text-lg font-normal tracking-normal max-w-2xl leading-relaxed mb-8">
@@ -43,7 +43,7 @@ export default function Hero() {
               <Link
                 href="/onboarding"
                 prefetch={true}
-                className="group flex items-center justify-between sm:justify-center gap-3 rounded-xl bg-black px-6 py-4 text-sm sm:text-base font-bold text-white transition-all hover:bg-neutral-800 shadow-md hover:shadow-lg"
+                className="group flex items-center justify-between sm:justify-center gap-3 rounded-xl bg-black px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-white transition-all hover:bg-neutral-800 shadow-md hover:shadow-lg"
               >
                 <span>Find cards that fit my spending</span>
                 <ArrowRight className="h-4 w-4 text-[#DDF247] transition-transform group-hover:translate-x-1 shrink-0" />
@@ -58,7 +58,7 @@ export default function Hero() {
               <Link
                 href="/cards"
                 prefetch={true}
-                className="flex items-center justify-center gap-2 rounded-xl border border-neutral-300 bg-white/95 backdrop-blur-xs px-5 py-4 text-sm sm:text-base font-semibold text-neutral-900 transition-colors hover:border-black hover:bg-white shadow-2xs"
+                className="flex items-center justify-center gap-2 rounded-xl border border-neutral-300 bg-white/95 backdrop-blur-xs px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold text-neutral-900 transition-colors hover:border-black hover:bg-white shadow-2xs"
               >
                 <Compass className="h-4 w-4 text-neutral-500 shrink-0" />
                 <span>Explore all 31 cards</span>
