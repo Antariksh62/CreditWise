@@ -98,6 +98,36 @@ function parseNaturalLanguageSpending(text) {
     ],
   };
 
+  const merchants = {};
+  const MERCHANT_REGEXES = {
+    amazon: [/(?:amazon|amzn)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:amazon|amzn)/i],
+    flipkart: [/(?:flipkart)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:flipkart)/i],
+    bigbasket: [/(?:bigbasket|bb)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:bigbasket|bb)/i],
+    croma: [/(?:croma)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:croma)/i],
+    tatacliq: [/(?:tata\s*cliq|cliq)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:tata\s*cliq|cliq)/i],
+    swiggy: [/(?:swiggy)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:swiggy)/i],
+    zomato: [/(?:zomato)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:zomato)/i],
+    blinkit: [/(?:blinkit)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:blinkit)/i],
+    zepto: [/(?:zepto)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:zepto)/i],
+    dmart: [/(?:dmart)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:dmart)/i],
+    bpcl: [/(?:bpcl|bharat\s*petroleum)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:bpcl|bharat\s*petroleum)/i],
+    iocl: [/(?:iocl|indian\s*oil)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:iocl|indian\s*oil)/i],
+    hpcl: [/(?:hpcl|hindustan\s*petroleum)\s*(?:around|of|approx|is|about|roughly|expense|spend)?\s*(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)/i, /(?:₹|rs\.?)?\s*(\d+(?:,\d+)*(?:\s*k|\s*l)?)\s*(?:on|for|at)?\s*(?:hpcl|hindustan\s*petroleum)/i],
+  };
+
+  Object.entries(MERCHANT_REGEXES).forEach(([mId, patterns]) => {
+    for (const p of patterns) {
+      const m = clean.match(p);
+      if (m && m[1]) {
+        const val = parseNum(m[1]);
+        if (val > 0) {
+          merchants[mId] = val;
+          break;
+        }
+      }
+    }
+  });
+
   let anyCategoryMatched = false;
   Object.entries(CAT_REGEXES).forEach(([catKey, patterns]) => {
     for (const pattern of patterns) {
@@ -145,6 +175,7 @@ function parseNaturalLanguageSpending(text) {
   return {
     spending,
     categories: spending,
+    merchants,
     extractedTotal,
     totalMonthlySpend: totalMonthlySpend || extractedTotal,
     preferences: {

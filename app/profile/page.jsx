@@ -29,6 +29,7 @@ import CardGrid from "../../components/CardGrid";
 import { readSaved } from "../../components/SaveCardButton";
 import { getProfileRecommendations, isComplete } from "../../lib/recommendation";
 import { isCardMatchingQuery } from "../../lib/cardUtils";
+import { handleSecureSignOut, saveAccountProfile } from "../../lib/profileStorage";
 
 const SPEND_CATEGORIES_CONFIG = [
   { key: "groceries", label: "Groceries & Supermarket", defaultVal: 6000 },
@@ -172,10 +173,8 @@ export default function ProfilePage() {
   }, []);
 
   function signOut() {
-    window.localStorage.removeItem("cardwise:user");
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(new Event("storage"));
-    }
+    handleSecureSignOut();
+    setUser(null);
     router.push("/login");
   }
 
@@ -247,6 +246,9 @@ export default function ProfilePage() {
 
     setProfile(updated);
     window.localStorage.setItem("cardwise:profile", JSON.stringify(updated));
+    if (user && user.email) {
+      saveAccountProfile(user.email, updated);
+    }
     showToast("Spending preferences updated.");
   }
 
@@ -262,6 +264,9 @@ export default function ProfilePage() {
 
     setProfile(updated);
     window.localStorage.setItem("cardwise:profile", JSON.stringify(updated));
+    if (user && user.email) {
+      saveAccountProfile(user.email, updated);
+    }
     showToast("Reward & fee preferences updated.");
   }
 
@@ -280,6 +285,9 @@ export default function ProfilePage() {
     };
     setProfile(updated);
     window.localStorage.setItem("cardwise:profile", JSON.stringify(updated));
+    if (user && user.email) {
+      saveAccountProfile(user.email, updated);
+    }
     showToast(exists ? "Card removed from portfolio." : "Card added to portfolio.");
   }
 

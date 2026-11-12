@@ -3,8 +3,29 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff, AlertCircle, HelpCircle, X, ArrowRight } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  AlertCircle,
+  HelpCircle,
+  X,
+  ArrowRight,
+  ShieldCheck,
+  CheckCircle2,
+  Clock,
+  Sparkles,
+} from "lucide-react";
 import demoUsers from "../data/users.json";
+import {
+  getAccountProfile,
+  getActiveGuestProfile,
+  hasMeaningfulConflict,
+  migrateGuestToAccount,
+  activateAccountProfile,
+  PENDING_MIGRATION_KEY,
+  SELECTED_COUNT_KEY,
+  clearTemporaryGuestData,
+} from "../lib/profileStorage";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -13,10 +34,29 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showForgotModal, setShowForgotModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [hasGuestData, setHasGuestData] = useState(false);
+
+  // Conflict Resolution State
+  const [pendingMigration, setPendingMigration] = useState(null);
 
   useEffect(() => {
     router.prefetch("/onboarding");
     router.prefetch("/profile");
+    router.prefetch("/results");
+
+    // Check if there is an in-flight conflict resolution state (e.g. from page refresh)
+    try {
+      const rawPending = window.localStorage.getItem(PENDING_MIGRATION_KEY);
+      if (rawPending) {
+        const parsed = JSON.parse(rawPending);
+        if (parsed && parsed.accountProfile && parsed.guestProfile && parsed.user) {
+          setPendingMigration(parsed);
+        }
+      }
+
+      const guest = getActiveGuestProfile();
+      setHasGuestData(Boolean(guest));
+    } catch {}
   }, [router]);
 
   function handleChange(field, value) {
@@ -35,7 +75,11 @@ export default function LoginForm() {
 
     if (!emailTrimmed) {
       nextErrors.email = "Email address is required.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed) && !emailTrimmed.includes("aarav") && !emailTrimmed.includes("rohanm")) {
+    } else if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed) &&
+      !emailTrimmed.includes("aarav") &&
+      !emailTrimmed.includes("rohanm")
+    ) {
       nextErrors.email = "Please enter a valid email address.";
     }
 
@@ -102,33 +146,93 @@ export default function LoginForm() {
       savedCards: matchedUser.savedCards || [],
     };
 
+    // Check for existing account profile and active guest profile
+    const existingAccountProfile = getAccountProfile(sessionUser.email);
+    const currentGuestProfile = getActiveGuestProfile();
+
+    const rawCount = window.localStorage.getItem(SELECTED_COUNT_KEY);
+    const chosenCount = Number(rawCount) || currentGuestProfile?.cardCount || 1;
+
+    // Detect profile conflict: both exist and differ meaningfully
+    if (
+      existingAccountProfile &&
+      currentGuestProfile &&
+      hasMeaningfulConflict(existingAccountProfile, currentGuestProfile)
+    ) {
+      const pendingData = {
+        user: sessionUser,
+        accountProfile: existingAccountProfile,
+        guestProfile: currentGuestProfile,
+        selectedCardCount: chosenCount,
+        timestamp: Date.now(),
+      };
+
+      try {
+        window.localStorage.setItem(PENDING_MIGRATION_KEY, JSON.stringify(pendingData));
+      } catch {}
+
+      setPendingMigration(pendingData);
+      setLoading(false);
+      return;
+    }
+
+    // No conflict: execute immediate clean transition
     try {
       window.localStorage.setItem("cardwise:user", JSON.stringify(sessionUser));
       window.dispatchEvent(new Event("storage"));
-    } catch {
-      // ignore quota issues
-    }
 
-    // If a guest profile exists, link it to the authenticated account and go to results
-    const existingProfile = window.localStorage.getItem("cardwise:profile");
-    if (existingProfile) {
-      try {
-        const parsed = JSON.parse(existingProfile);
-        parsed.account = {
-          fullName: sessionUser.fullName,
-          email: sessionUser.email,
-          age: sessionUser.age,
-          isGuest: false,
-          updatedAt: new Date().toISOString(),
-        };
-        window.localStorage.setItem("cardwise:profile", JSON.stringify(parsed));
-      } catch {
-        // ignore
+      if (currentGuestProfile) {
+        migrateGuestToAccount(sessionUser, currentGuestProfile, chosenCount);
+        router.push("/results");
+      } else if (existingAccountProfile) {
+        activateAccountProfile(sessionUser, existingAccountProfile);
+        router.push("/results");
+      } else {
+        clearTemporaryGuestData();
+        router.push("/onboarding");
       }
+    } catch {
       router.push("/results");
-    } else {
-      router.push("/onboarding");
     }
+  }
+
+  // Conflict Resolution Handlers
+  function handleKeepAccountProfile() {
+    if (!pendingMigration) return;
+    const { user, accountProfile } = pendingMigration;
+    try {
+      window.localStorage.setItem("cardwise:user", JSON.stringify(user));
+      activateAccountProfile(user, accountProfile);
+      clearTemporaryGuestData();
+      window.dispatchEvent(new Event("storage"));
+      setPendingMigration(null);
+      router.push("/results");
+    } catch {
+      router.push("/results");
+    }
+  }
+
+  function handleUseCurrentSessionProfile() {
+    if (!pendingMigration) return;
+    const { user, guestProfile, selectedCardCount } = pendingMigration;
+    try {
+      window.localStorage.setItem("cardwise:user", JSON.stringify(user));
+      migrateGuestToAccount(user, guestProfile, selectedCardCount);
+      clearTemporaryGuestData();
+      window.dispatchEvent(new Event("storage"));
+      setPendingMigration(null);
+      router.push("/results");
+    } catch {
+      router.push("/results");
+    }
+  }
+
+  function handleCancelConflict() {
+    try {
+      window.localStorage.removeItem(PENDING_MIGRATION_KEY);
+    } catch {}
+    setPendingMigration(null);
+    router.push("/results");
   }
 
   function fillDemoUser(email) {
@@ -136,6 +240,159 @@ export default function LoginForm() {
     setErrors({});
   }
 
+  // ================= CONFLICT RESOLUTION VIEW =================
+  if (pendingMigration) {
+    const { user, accountProfile, guestProfile } = pendingMigration;
+
+    const accountSpend = accountProfile.spending?.categories || {};
+    const accountTotal =
+      Number(accountProfile.spending?.totalMonthly) ||
+      Object.values(accountSpend).reduce((s, v) => s + (Number(v) || 0), 0);
+    const accountCardCount = Number(accountProfile.cardCount || accountProfile.preferences?.cardCount) || 1;
+
+    const guestSpend = guestProfile.spending?.categories || {};
+    const guestTotal =
+      Number(guestProfile.spending?.totalMonthly) ||
+      Object.values(guestSpend).reduce((s, v) => s + (Number(v) || 0), 0);
+    const guestCardCount = Number(guestProfile.cardCount || guestProfile.preferences?.cardCount) || 1;
+
+    return (
+      <div className="rounded-2xl border border-neutral-200/90 bg-white p-5 sm:p-8 md:p-9 shadow-sm">
+        <div className="mb-6">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
+            Profile Synchronization
+          </span>
+          <h2 className="text-2xl font-extrabold text-black">
+            Choose which profile to use
+          </h2>
+          <p className="text-xs sm:text-sm text-neutral-500 mt-1.5 leading-relaxed max-w-xl">
+            Your account (<strong>{user.email}</strong>) has a previously saved profile, and you also entered spending details during this browsing session. Choose which one to keep:
+          </p>
+        </div>
+
+        <div className="grid gap-5 sm:grid-cols-2 mb-6">
+          {/* Option A: Existing Account Profile */}
+          <div className="rounded-xl border border-neutral-200 bg-neutral-50/50 p-5 flex flex-col justify-between hover:border-neutral-400 transition-colors">
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-3">
+                <span className="inline-flex items-center gap-1 rounded bg-neutral-200/80 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-neutral-700">
+                  <Clock className="h-3 w-3" />
+                  Saved on Account
+                </span>
+                <span className="text-[11px] text-neutral-400 font-medium">
+                  {accountCardCount} {accountCardCount === 1 ? "Card" : "Cards"}
+                </span>
+              </div>
+
+              <h3 className="text-base font-bold text-black mb-1">
+                Existing Account Profile
+              </h3>
+              <p className="text-xs text-neutral-500 mb-4">
+                Saved from your previous session
+              </p>
+
+              <div className="space-y-2 text-xs mb-5">
+                <div className="flex justify-between py-1 border-b border-neutral-200/60">
+                  <span className="text-neutral-500">Monthly spend:</span>
+                  <span className="font-bold text-black cw-numeric">
+                    ₹{accountTotal.toLocaleString("en-IN")}
+                  </span>
+                </div>
+                <div className="flex justify-between py-1 border-b border-neutral-200/60">
+                  <span className="text-neutral-500">Annual estimate:</span>
+                  <span className="font-semibold text-neutral-700 cw-numeric">
+                    ₹{(accountTotal * 12).toLocaleString("en-IN")}
+                  </span>
+                </div>
+                <div className="flex justify-between py-1 border-b border-neutral-200/60">
+                  <span className="text-neutral-500">Reward style:</span>
+                  <span className="font-medium text-neutral-800">
+                    {accountProfile.preferences?.preferredRewardType || "Cashback"}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleKeepAccountProfile}
+              className="w-full rounded-[6px] border border-neutral-300 bg-white py-2.5 px-4 text-xs font-bold text-black hover:border-black hover:bg-neutral-50 transition-all flex items-center justify-center gap-1.5 shadow-2xs"
+            >
+              Keep Account Profile
+              <ArrowRight className="h-3.5 w-3.5" />
+            </button>
+          </div>
+
+          {/* Option B: Current Guest Profile */}
+          <div className="rounded-xl border-2 border-black bg-white p-5 flex flex-col justify-between shadow-xs">
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-3">
+                <span className="inline-flex items-center gap-1 rounded bg-[#e4f222] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-black">
+                  <Sparkles className="h-3 w-3" />
+                  Current Guest Session
+                </span>
+                <span className="text-[11px] text-neutral-500 font-bold">
+                  {guestCardCount} {guestCardCount === 1 ? "Card" : "Cards"}
+                </span>
+              </div>
+
+              <h3 className="text-base font-bold text-black mb-1">
+                Current Session Profile
+              </h3>
+              <p className="text-xs text-neutral-500 mb-4">
+                Configured during this visit
+              </p>
+
+              <div className="space-y-2 text-xs mb-5">
+                <div className="flex justify-between py-1 border-b border-neutral-100">
+                  <span className="text-neutral-500">Monthly spend:</span>
+                  <span className="font-bold text-black cw-numeric">
+                    ₹{guestTotal.toLocaleString("en-IN")}
+                  </span>
+                </div>
+                <div className="flex justify-between py-1 border-b border-neutral-100">
+                  <span className="text-neutral-500">Annual estimate:</span>
+                  <span className="font-semibold text-neutral-700 cw-numeric">
+                    ₹{(guestTotal * 12).toLocaleString("en-IN")}
+                  </span>
+                </div>
+                <div className="flex justify-between py-1 border-b border-neutral-100">
+                  <span className="text-neutral-500">Reward style:</span>
+                  <span className="font-medium text-neutral-800">
+                    {guestProfile.preferences?.preferredRewardType || "Cashback"}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleUseCurrentSessionProfile}
+              className="w-full rounded-[6px] bg-black py-2.5 px-4 text-xs font-bold text-white hover:bg-neutral-800 transition-all flex items-center justify-center gap-1.5 shadow-sm"
+            >
+              Use Current Session Profile
+              <ArrowRight className="h-3.5 w-3.5 text-[#DDF247]" />
+            </button>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between pt-4 border-t border-neutral-100 text-xs">
+          <button
+            type="button"
+            onClick={handleCancelConflict}
+            className="text-neutral-500 hover:text-black font-semibold transition-colors"
+          >
+            Cancel and continue as guest
+          </button>
+          <span className="text-[11px] text-neutral-400">
+            Neither profile is permanently lost until you choose
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  // ================= STANDARD LOGIN VIEW =================
   return (
     <div className="relative">
       <form
@@ -154,6 +411,19 @@ export default function LoginForm() {
             Enter your email and password to access your personalized card recommendations.
           </p>
         </div>
+
+        {/* Guest Session Continuity Notice */}
+        {hasGuestData && (
+          <div className="mb-5 rounded-xl border border-neutral-200/90 bg-neutral-50/80 p-3.5 text-xs text-neutral-700 flex items-start gap-2.5">
+            <CheckCircle2 className="h-4 w-4 text-black shrink-0 mt-0.5" />
+            <div>
+              <span className="font-bold text-black block">Preserve Current Results</span>
+              <span className="text-[11px] text-neutral-500 block mt-0.5">
+                Signing in will link your guest recommendations to your account, or let you pick between profiles if one already exists.
+              </span>
+            </div>
+          </div>
+        )}
 
         {errors.form && (
           <div
@@ -263,7 +533,19 @@ export default function LoginForm() {
           )}
         </button>
 
-        <p className="mt-5 text-center text-xs text-neutral-500">
+        {/* Cancel Action for Guest */}
+        {hasGuestData && (
+          <div className="mt-3 text-center">
+            <Link
+              href="/results"
+              className="text-xs font-medium text-neutral-500 hover:text-black transition-colors"
+            >
+              Cancel and continue as guest
+            </Link>
+          </div>
+        )}
+
+        <p className="mt-4 text-center text-xs text-neutral-500">
           Don&apos;t have an account?{" "}
           <Link href="/signup" className="font-bold text-black underline underline-offset-2">
             Create account
@@ -285,21 +567,21 @@ export default function LoginForm() {
             onClick={() => fillDemoUser("aarav@example.com")}
             className="rounded-[6px] border border-neutral-200 bg-neutral-50 px-2.5 py-1 text-xs font-medium text-neutral-800 hover:border-black hover:bg-white transition-colors"
           >
-            Aarav Sharma (Cashback Spender)
+            Aarav Sharma (₹35k/mo Cashback)
           </button>
           <button
             type="button"
             onClick={() => fillDemoUser("rohan@example.com")}
             className="rounded-[6px] border border-neutral-200 bg-neutral-50 px-2.5 py-1 text-xs font-medium text-neutral-800 hover:border-black hover:bg-white transition-colors"
           >
-            Rohan Mehta (Travel Optimizer)
+            Rohan Mehta (₹68k/mo Travel)
           </button>
           <button
             type="button"
-            onClick={() => fillDemoUser("kabir@example.com")}
+            onClick={() => fillDemoUser("diya@example.com")}
             className="rounded-[6px] border border-neutral-200 bg-neutral-50 px-2.5 py-1 text-xs font-medium text-neutral-800 hover:border-black hover:bg-white transition-colors"
           >
-            Kabir Singh (Amazon Everyday)
+            Diya Nair (New Account • No Profile)
           </button>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { Search, X, ArrowRight, RotateCcw } from "lucide-react";
 import cards from "../data/cards.json";
 import { searchCards } from "../lib/cardUtils";
+import { handleSecureSignOut } from "../lib/profileStorage";
 
 export default function Navbar() {
   const router = useRouter();
@@ -149,12 +150,10 @@ export default function Navbar() {
   const matchedGlobalCards = searchCards(cards, globalSearchQuery, "all").slice(0, 8);
 
   const handleSignOut = () => {
-    try {
-      window.localStorage.removeItem("cardwise:user");
-    } catch {}
+    handleSecureSignOut();
     setUser(null);
+    setHasGuestProfile(false);
     closeMenuImmediately();
-    window.dispatchEvent(new Event("storage"));
     router.push("/");
   };
 

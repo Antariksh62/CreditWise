@@ -1,394 +1,608 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronUp, ShieldCheck, FileText, Check, ExternalLink, AlertTriangle, Sparkles, TrendingUp, Plane } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  ShieldCheck,
+  Check,
+  AlertTriangle,
+  Sparkles,
+  Plane,
+  Fuel,
+  UtensilsCrossed,
+  ShoppingBag,
+  ExternalLink,
+  Info,
+  Clock,
+  Layers,
+  HelpCircle,
+} from "lucide-react";
+import { CARD_MERCHANT_RULES, resolveMerchant } from "../lib/merchantRewardRules";
 
 export default function CardTechnicalDetails({ card }) {
-  const [isOpen, setIsOpen] = useState(true);
+  // Controlled section expansion states (default open for primary explanations, collapsed for deep technical breakdowns)
+  const [openSections, setOpenSections] = useState({
+    whyChoose: true,
+    howEarn: true,
+    whereWorks: true,
+    whatCosts: true,
+    watchOut: true,
+    additionalPerks: false,
+    deepDiveGotchas: false,
+  });
+
+  function toggleSection(key) {
+    setOpenSections((prev) => ({ ...prev, [key]: !prev[key] }));
+  }
+
+  // Extract merchant partnerships from CARD_MERCHANT_RULES if defined
+  const cardMerchantConfig = CARD_MERCHANT_RULES[card.slug]?.merchants || {};
+  const merchantEntries = Object.entries(cardMerchantConfig).map(([mId, rule]) => {
+    const canonical = resolveMerchant(mId);
+    return {
+      id: mId,
+      name: canonical?.name || mId,
+      category: canonical?.category || "shopping",
+      rate: rule.rate,
+      note: rule.note || "",
+      cap: rule.cap ?? rule.capMonthlyCashback ?? rule.capMonthlyCoins ?? rule.capMonthlyPoints,
+    };
+  });
+
+  // Calculate annual fee numbers
+  const baseFee = card.annualFee ?? 0;
+  const joiningFee = card.joiningFee ?? card.annualFee ?? 0;
+  const gstAmount = Math.round(baseFee * 0.18);
+  const totalAnnualCost = baseFee + gstAmount;
+
+  // Format fee label
+  const feeLabel = baseFee === 0 ? "Lifetime Free (₹0)" : `₹${totalAnnualCost.toLocaleString("en-IN")}/yr`;
 
   return (
-    <div className="mt-10 rounded-2xl border border-neutral-200/80 bg-white overflow-hidden shadow-xs">
-      {/* Header / Toggle Button */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full p-6 sm:p-7 flex items-center justify-between text-left hover:bg-neutral-50/60 transition-colors focus:outline-none"
-        aria-expanded={isOpen}
-      >
-        <div>
-          <span className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400 block mb-1">
-            Progressive Disclosure
-          </span>
-          <h2 className="text-lg sm:text-xl font-bold text-neutral-900 tracking-tight">
-            KEY DETAILS
-          </h2>
-          <p className="text-xs text-neutral-500 mt-1">
-            {isOpen
-              ? "Technical reward rates, monthly caps, spend exclusions, lounge partner criteria, and milestone schedules."
-              : "Expand to review exact reward mechanics, monthly caps, exclusions, lounge criteria, and milestone schedules."}
-          </p>
-        </div>
-
-        <div className="flex items-center gap-2 rounded-lg border border-neutral-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-neutral-700 shrink-0 shadow-2xs">
-          <span>{isOpen ? "Hide key details" : "See key details"}</span>
-          {isOpen ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
-        </div>
-      </button>
-
-      {/* Accordion Body */}
-      {isOpen && (
-        <div className="border-t border-neutral-100 p-6 sm:p-8 bg-[#FAFAFA] space-y-8 animate-in fade-in duration-200">
-          {/* Reward Mechanics */}
+    <div className="mt-10 space-y-6">
+      {/* ==================================================
+          SECTION B.01 — WHY CHOOSE THIS CARD?
+      ================================================== */}
+      <section className="rounded-2xl border border-neutral-200/80 bg-white shadow-xs overflow-hidden">
+        <button
+          type="button"
+          onClick={() => toggleSection("whyChoose")}
+          className="w-full p-5 sm:p-7 flex items-center justify-between text-left hover:bg-neutral-50/60 transition-colors"
+          aria-expanded={openSections.whyChoose}
+        >
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 mb-3 flex items-center gap-2">
-              <FileText className="h-3.5 w-3.5 text-black" />
-              Detailed Reward Mechanics
-            </h3>
-            <div className="rounded-xl border border-neutral-200/80 bg-white p-4 sm:p-5 space-y-3 text-xs leading-relaxed text-neutral-700">
-              <p>
-                <strong className="text-black font-semibold">Reward Structure: </strong>
-                {card.rewardSummary || "Standard reward points program applicable on qualifying merchant categories."}
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                01 · Core Value Proposition
+              </span>
+            </div>
+            <h2 className="text-lg sm:text-xl font-extrabold text-neutral-900 tracking-tight">
+              Why choose this card?
+            </h2>
+            <p className="text-xs text-neutral-500 mt-1">
+              {card.goodFor ? `Best suited for: ${card.goodFor}` : "Who is likely to benefit from this card."}
+            </p>
+          </div>
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-700 bg-neutral-50 border border-neutral-200 rounded-lg px-3 py-1.5 shrink-0">
+            <span>{openSections.whyChoose ? "Hide" : "Show"}</span>
+            {openSections.whyChoose ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+          </div>
+        </button>
+
+        {openSections.whyChoose && (
+          <div className="border-t border-neutral-100 p-5 sm:p-7 pt-4 space-y-4 text-xs sm:text-sm text-neutral-700 leading-relaxed bg-[#FAFAFA]/40 animate-in fade-in duration-150">
+            {/* Plain language summary */}
+            <div className="rounded-xl border border-neutral-200/70 bg-white p-4 sm:p-5">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-1.5">
+                Who It Fits
+              </h3>
+              <p className="text-neutral-800 font-medium leading-relaxed">
+                {card.whoItFits || card.description || card.shortDescription}
               </p>
-              {card.cashbackRate > 0 && (
-                <p>
-                  <strong className="text-black font-semibold">Cashback Rate: </strong>
-                  {card.cashbackRate}% on designated eligible spends.
+            </div>
+
+            {/* Why CreditWise Recommends bullet points */}
+            <div className="rounded-xl border border-neutral-200/70 bg-white p-4 sm:p-5">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-2.5">
+                Strongest Advantages
+              </h3>
+              <ul className="space-y-2">
+                {(card.benefits || []).slice(0, 4).map((b, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5 text-xs text-neutral-700">
+                    <Check className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" strokeWidth={2.5} />
+                    <span className="leading-relaxed">{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* ==================================================
+          SECTION B.02 — HOW DO YOU EARN REWARDS?
+      ================================================== */}
+      <section className="rounded-2xl border border-neutral-200/80 bg-white shadow-xs overflow-hidden">
+        <button
+          type="button"
+          onClick={() => toggleSection("howEarn")}
+          className="w-full p-5 sm:p-7 flex items-center justify-between text-left hover:bg-neutral-50/60 transition-colors"
+          aria-expanded={openSections.howEarn}
+        >
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                02 · Earning Mechanics
+              </span>
+            </div>
+            <h2 className="text-lg sm:text-xl font-extrabold text-neutral-900 tracking-tight">
+              How do you earn rewards?
+            </h2>
+            <p className="text-xs text-neutral-500 mt-1">
+              Reward rates, points valuation, accelerated tiers, and realistic return examples.
+            </p>
+          </div>
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-700 bg-neutral-50 border border-neutral-200 rounded-lg px-3 py-1.5 shrink-0">
+            <span>{openSections.howEarn ? "Hide" : "Show"}</span>
+            {openSections.howEarn ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+          </div>
+        </button>
+
+        {openSections.howEarn && (
+          <div className="border-t border-neutral-100 p-5 sm:p-7 pt-4 space-y-4 text-xs text-neutral-700 bg-[#FAFAFA]/40 animate-in fade-in duration-150">
+            {/* Overview Banner */}
+            <div className="rounded-xl border border-neutral-200/70 bg-white p-4 sm:p-5">
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
+                    Reward Model
+                  </span>
+                  <span className="text-sm font-bold text-neutral-900 capitalize">
+                    {card.category === "cashback" ? "Direct Statement Cashback" : card.category === "travel" ? "Air Miles & Travel Points" : "Reward Points Program"}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
+                    Accelerated Return
+                  </span>
+                  <span className="text-sm font-bold text-emerald-700 font-mono">
+                    {card.cashbackRate > 0 ? `${card.cashbackRate}% Cashback` : card.rewardRate > 0 ? `${card.rewardRate} pts / ₹100` : "Category Multipliers"}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
+                    Redemption Valuation
+                  </span>
+                  <span className="text-sm font-bold text-neutral-900 font-mono">
+                    {card.category === "cashback" ? "1 Point = ₹1.00 Cash" : card.slug.includes("infinia") || card.slug.includes("diners") ? "1 Point = Up to ₹1.00" : "1 Point ≈ ₹0.20 – ₹0.50"}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Categorized Reward Rates */}
+            {card.rewardCategories && (
+              <div className="rounded-xl border border-neutral-200/70 bg-white p-4 sm:p-5">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-3">
+                  Verified Reward Tiers by Category
+                </h3>
+                <dl className="grid gap-2.5 sm:grid-cols-2">
+                  {Object.entries(card.rewardCategories).map(([k, desc]) => (
+                    <div key={k} className="p-3 rounded-lg bg-neutral-50/70 border border-neutral-100">
+                      <dt className="font-semibold text-neutral-900 text-xs capitalize mb-0.5">
+                        {k.replace(/([A-Z])/g, " $1").trim()}
+                      </dt>
+                      <dd className="text-neutral-600 text-[11px] leading-relaxed">
+                        {desc}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            )}
+
+            {/* Practical Example */}
+            <div className="rounded-xl border border-emerald-200/70 bg-emerald-50/40 p-4 sm:p-5">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 block mb-1">
+                Practical Earning Example
+              </span>
+              <p className="text-neutral-800 text-xs leading-relaxed">
+                If you swipe <strong>₹10,000</strong> on qualifying purchases each month, you earn approximately{" "}
+                <strong className="text-emerald-800 font-mono font-bold">
+                  ₹{Math.round(10000 * ((card.cashbackRate || card.rewardRate || 2) / 100)).toLocaleString("en-IN")}/month
+                </strong>{" "}
+                (around{" "}
+                <strong className="text-emerald-800 font-mono font-bold">
+                  ₹{Math.round(120000 * ((card.cashbackRate || card.rewardRate || 2) / 100)).toLocaleString("en-IN")}/year
+                </strong>
+                ) in gross reward value before deducting annual maintenance fees.
+              </p>
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* ==================================================
+          SECTION B.03 — WHERE DOES THIS CARD WORK BEST?
+      ================================================== */}
+      <section className="rounded-2xl border border-neutral-200/80 bg-white shadow-xs overflow-hidden">
+        <button
+          type="button"
+          onClick={() => toggleSection("whereWorks")}
+          className="w-full p-5 sm:p-7 flex items-center justify-between text-left hover:bg-neutral-50/60 transition-colors"
+          aria-expanded={openSections.whereWorks}
+        >
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                03 · Brand & Merchant Partnerships
+              </span>
+            </div>
+            <h2 className="text-lg sm:text-xl font-extrabold text-neutral-900 tracking-tight">
+              Where does this card work best?
+            </h2>
+            <p className="text-xs text-neutral-500 mt-1">
+              Eligible partner merchants, shopping platforms, and food delivery networks.
+            </p>
+          </div>
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-700 bg-neutral-50 border border-neutral-200 rounded-lg px-3 py-1.5 shrink-0">
+            <span>{openSections.whereWorks ? "Hide" : "Show"}</span>
+            {openSections.whereWorks ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+          </div>
+        </button>
+
+        {openSections.whereWorks && (
+          <div className="border-t border-neutral-100 p-5 sm:p-7 pt-4 space-y-4 text-xs text-neutral-700 bg-[#FAFAFA]/40 animate-in fade-in duration-150">
+            {merchantEntries.length > 0 ? (
+              <div className="rounded-xl border border-neutral-200/70 bg-white p-4 sm:p-5">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-3">
+                  Verified Partner Merchant Earning Rates
+                </h3>
+                <div className="grid gap-2.5 sm:grid-cols-2">
+                  {merchantEntries.map((m) => (
+                    <div key={m.id} className="p-3 rounded-lg border border-neutral-200/70 bg-neutral-50/50 flex items-start justify-between gap-3">
+                      <div>
+                        <span className="font-bold text-neutral-900 text-xs block">
+                          {m.name}
+                        </span>
+                        {m.note && (
+                          <span className="text-[11px] text-neutral-500 block mt-0.5">
+                            {m.note}
+                          </span>
+                        )}
+                      </div>
+                      <span className="shrink-0 text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded font-mono font-bold text-xs">
+                        {m.rate}% return
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="rounded-xl border border-neutral-200/70 bg-white p-4 sm:p-5">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-1.5">
+                  General Category Acceptance
+                </h3>
+                <p className="text-xs text-neutral-600 leading-relaxed">
+                  This card earns standard rewards across all eligible retail merchant categories rather than restricting benefits to a single exclusive brand partner.
                 </p>
-              )}
-              {card.rewardRate > 0 && (
-                <p>
-                  <strong className="text-black font-semibold">Reward Points Rate: </strong>
-                  {card.rewardRate} points per ₹100 eligible retail spend.
+              </div>
+            )}
+          </div>
+        )}
+      </section>
+
+      {/* ==================================================
+          SECTION B.04 — WHAT DOES THIS CARD COST?
+      ================================================== */}
+      <section className="rounded-2xl border border-neutral-200/80 bg-white shadow-xs overflow-hidden">
+        <button
+          type="button"
+          onClick={() => toggleSection("whatCosts")}
+          className="w-full p-5 sm:p-7 flex items-center justify-between text-left hover:bg-neutral-50/60 transition-colors"
+          aria-expanded={openSections.whatCosts}
+        >
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                04 · Transparent Fee Schedule
+              </span>
+            </div>
+            <h2 className="text-lg sm:text-xl font-extrabold text-neutral-900 tracking-tight">
+              What does this card cost?
+            </h2>
+            <p className="text-xs text-neutral-500 mt-1">
+              Joining fee, annual fee, mandatory 18% GST, and exact fee-waiver spend conditions.
+            </p>
+          </div>
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-700 bg-neutral-50 border border-neutral-200 rounded-lg px-3 py-1.5 shrink-0">
+            <span>{openSections.whatCosts ? "Hide" : "Show"}</span>
+            {openSections.whatCosts ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+          </div>
+        </button>
+
+        {openSections.whatCosts && (
+          <div className="border-t border-neutral-100 p-5 sm:p-7 pt-4 space-y-4 text-xs text-neutral-700 bg-[#FAFAFA]/40 animate-in fade-in duration-150">
+            <div className="grid gap-3 sm:grid-cols-3">
+              {/* Joining Fee */}
+              <div className="rounded-xl border border-neutral-200/70 bg-white p-4">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
+                  Joining / First Year Fee
+                </span>
+                <span className="text-base font-bold text-neutral-900 font-mono block">
+                  {joiningFee === 0 ? "₹0 (Free)" : `₹${Math.round(joiningFee * 1.18).toLocaleString("en-IN")}`}
+                </span>
+                <span className="text-[10px] text-neutral-400 block mt-0.5">
+                  {joiningFee === 0 ? "Lifetime Free" : `₹${joiningFee.toLocaleString("en-IN")} + 18% GST`}
+                </span>
+              </div>
+
+              {/* Annual Renewal Fee */}
+              <div className="rounded-xl border border-neutral-200/70 bg-white p-4">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
+                  Annual Renewal Fee
+                </span>
+                <span className="text-base font-bold text-neutral-900 font-mono block">
+                  {baseFee === 0 ? "₹0 (Free)" : `₹${totalAnnualCost.toLocaleString("en-IN")}`}
+                </span>
+                <span className="text-[10px] text-neutral-400 block mt-0.5">
+                  {baseFee === 0 ? "Lifetime Free" : `₹${baseFee.toLocaleString("en-IN")} + 18% GST`}
+                </span>
+              </div>
+
+              {/* Interest Rate / APR */}
+              <div className="rounded-xl border border-neutral-200/70 bg-white p-4">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
+                  Interest Rate (APR)
+                </span>
+                <span className="text-base font-bold text-neutral-900 font-mono block">
+                  {card.apr ? `${card.apr}% / yr` : "42.0% – 43.8%"}
+                </span>
+                <span className="text-[10px] text-neutral-400 block mt-0.5">
+                  When rolling statement balances
+                </span>
+              </div>
+            </div>
+
+            {/* Fee Waiver Condition */}
+            <div className="rounded-xl border border-neutral-200/70 bg-white p-4 sm:p-5">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-1.5">
+                How to Avoid the Annual Fee
+              </h3>
+              {card.feeWaiver ? (
+                <p className="text-neutral-800 text-xs font-medium leading-relaxed">
+                  {card.feeWaiver}
+                </p>
+              ) : baseFee === 0 ? (
+                <p className="text-emerald-800 text-xs font-medium leading-relaxed">
+                  This card is Lifetime Free with zero annual maintenance fees and no spend thresholds required.
+                </p>
+              ) : (
+                <p className="text-neutral-600 text-xs leading-relaxed">
+                  The annual renewal fee of ₹{totalAnnualCost.toLocaleString("en-IN")} is standard and not subject to automatic spend-based waivers.
                 </p>
               )}
             </div>
           </div>
+        )}
+      </section>
 
-          {/* Essential Nuances & Policy Insights */}
-          {card.keyInsights && card.keyInsights.length > 0 && (
-            <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 mb-3 flex items-center gap-2">
-                <FileText className="h-3.5 w-3.5 text-black" />
-                Essential Policy Nuances & Operational Rules
-              </h3>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {card.keyInsights.map((insight, idx) => (
-                  <div
-                    key={idx}
-                    className="rounded-xl border border-neutral-200/80 bg-white p-4 sm:p-5 space-y-1.5"
-                  >
-                    <span className="text-xs font-bold text-neutral-900 block">
-                      {idx + 1}. {insight.title}
-                    </span>
-                    <p className="text-xs text-neutral-600 leading-relaxed">
-                      {insight.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
+      {/* ==================================================
+          SECTION B.05 — WHAT SHOULD YOU WATCH OUT FOR?
+      ================================================== */}
+      <section className="rounded-2xl border border-amber-200/70 bg-amber-50/20 shadow-xs overflow-hidden">
+        <button
+          type="button"
+          onClick={() => toggleSection("watchOut")}
+          className="w-full p-5 sm:p-7 flex items-center justify-between text-left hover:bg-amber-50/40 transition-colors"
+          aria-expanded={openSections.watchOut}
+        >
+          <div>
+            <div className="flex items-center gap-1.5 mb-1 text-[10px] font-bold uppercase tracking-widest text-amber-900">
+              <AlertTriangle className="h-3.5 w-3.5 text-amber-700 shrink-0" />
+              <span>05 · Gotchas & Limitations</span>
             </div>
-          )}
+            <h2 className="text-lg sm:text-xl font-extrabold text-amber-950 tracking-tight">
+              What should you watch out for?
+            </h2>
+            <p className="text-xs text-amber-800/80 mt-1">
+              Monthly reward limits, excluded MCC categories, minimum spend rules, and fine print.
+            </p>
+          </div>
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-700 bg-white border border-neutral-200 rounded-lg px-3 py-1.5 shrink-0">
+            <span>{openSections.watchOut ? "Hide" : "Show"}</span>
+            {openSections.watchOut ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+          </div>
+        </button>
 
-          {/* Caps & Exclusions Grid */}
-          <div className="grid gap-4 sm:grid-cols-2">
+        {openSections.watchOut && (
+          <div className="border-t border-amber-200/50 p-5 sm:p-7 pt-4 space-y-4 text-xs text-neutral-700 bg-white animate-in fade-in duration-150">
             {/* Reward Caps */}
-            <div className="rounded-xl border border-neutral-200/80 bg-white p-4 sm:p-5">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1.5">
-                Reward Caps & Monthly Thresholds
-              </span>
-              <p className="text-xs text-neutral-700 leading-relaxed">
+            <div className="rounded-xl border border-neutral-200/70 bg-neutral-50/50 p-4">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-900 mb-1">
+                Maximum Reward Limits
+              </h3>
+              <p className="text-neutral-700 text-xs leading-relaxed">
                 {card.rewardCaps || "No category capping officially specified. General fair usage policy applies."}
               </p>
             </div>
 
-            {/* Exclusions */}
-            <div className="rounded-xl border border-neutral-200/80 bg-white p-4 sm:p-5">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1.5">
-                Standard Excluded Spends
-              </span>
-              <p className="text-xs text-neutral-700 leading-relaxed">
-                {card.exclusions || "Rent payments, fuel, cash withdrawals, wallet load transactions, and government services are excluded from base rewards."}
+            {/* Standard Excluded Categories */}
+            <div className="rounded-xl border border-neutral-200/70 bg-neutral-50/50 p-4">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-900 mb-1">
+                Excluded Spends (Earn 0%)
+              </h3>
+              <p className="text-neutral-700 text-xs leading-relaxed">
+                {card.exclusions || "Fuel, wallet loads, rent payments, government fees, and cash advances are excluded."}
               </p>
             </div>
-          </div>
 
-          {/* Detailed Categorized Exclusions (when available) */}
-          {card.exclusionCategories && card.exclusionCategories.length > 0 && (
-            <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 mb-3 flex items-center gap-2">
-                <AlertTriangle className="h-3.5 w-3.5 text-amber-600" />
-                Official Reward Exclusion Rules by Category
-              </h3>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {card.exclusionCategories.map((group, idx) => (
-                  <div
-                    key={idx}
-                    className="rounded-xl border border-neutral-200/80 bg-white p-4 sm:p-5 space-y-2"
-                  >
-                    <span className="text-xs font-bold uppercase tracking-wider text-neutral-900 block">
-                      {group.category}
-                    </span>
-                    <ul className="space-y-1.5 text-xs text-neutral-600">
-                      {group.items.map((item, i) => (
-                        <li key={i} className="flex items-start gap-1.5 leading-relaxed">
-                          <span className="text-neutral-400 font-bold shrink-0">•</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+            {/* Verified Gotchas bullets */}
+            {card.whatToWatchOutFor && (
+              <div className="rounded-xl border border-amber-200/60 bg-amber-50/30 p-4">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-amber-900 mb-2">
+                  Important Operational Caveats
+                </h3>
+                <ul className="space-y-1.5 text-xs text-neutral-700">
+                  {(Array.isArray(card.whatToWatchOutFor) ? card.whatToWatchOutFor : [card.whatToWatchOutFor]).map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2 leading-relaxed">
+                      <span className="text-amber-600 font-bold">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-          )}
-
-          {/* 18 Karat & 24 Karat Gold Collection Redemption Catalog */}
-          {card.goldCollection && (
-            <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 mb-3 flex items-center gap-2">
-                <Sparkles className="h-3.5 w-3.5 text-amber-600" />
-                18 Karat & 24 Karat Gold Collection Voucher Options
-              </h3>
-              <div className="grid gap-4 md:grid-cols-2">
-                {/* 24K Collection */}
-                <div className="rounded-xl border border-amber-200/90 bg-amber-50/20 p-5 space-y-3">
-                  <div className="flex items-center justify-between border-b border-amber-200/70 pb-2.5">
-                    <span className="text-xs font-bold text-neutral-900 uppercase tracking-wide">
-                      24 Karat Gold Collection
-                    </span>
-                    <span className="text-xs font-bold text-amber-900 bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-300/60 font-mono">
-                      24,000 MR Points
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-neutral-500">
-                    Choose any one verified voucher upon reaching 24,000 points:
-                  </p>
-                  <ul className="space-y-1.5 text-xs text-neutral-700">
-                    {card.goldCollection.collection24k.map((item, idx) => (
-                      <li key={idx} className="flex items-center justify-between py-1 border-b border-neutral-100 last:border-0">
-                        <span className="font-medium text-neutral-800">{item.brand}</span>
-                        <span className="font-bold text-neutral-900 font-mono">{item.value}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* 18K Collection */}
-                <div className="rounded-xl border border-neutral-200/80 bg-white p-5 space-y-3">
-                  <div className="flex items-center justify-between border-b border-neutral-200 pb-2.5">
-                    <span className="text-xs font-bold text-neutral-900 uppercase tracking-wide">
-                      18 Karat Gold Collection
-                    </span>
-                    <span className="text-xs font-bold text-neutral-800 bg-neutral-100 px-2.5 py-0.5 rounded-full border border-neutral-200 font-mono">
-                      18,000 MR Points
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-neutral-500">
-                    Choose any one verified voucher upon reaching 18,000 points:
-                  </p>
-                  <ul className="space-y-1.5 text-xs text-neutral-700">
-                    {card.goldCollection.collection18k.map((item, idx) => (
-                      <li key={idx} className="flex items-center justify-between py-1 border-b border-neutral-100 last:border-0">
-                        <span className="font-medium text-neutral-800">{item.brand}</span>
-                        <span className="font-bold text-neutral-900 font-mono">{item.value}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Boarding Edge Program (Regalia Gold) */}
-          {card.boardingEdgeProgram && (
-            <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 mb-3 flex items-center gap-2">
-                <Plane className="h-3.5 w-3.5 text-neutral-900" />
-                {card.boardingEdgeProgram.title || "The Boarding Edge Program"}
-              </h3>
-              <div className="rounded-xl border border-neutral-200/90 bg-white p-5 sm:p-6 space-y-4">
-                <p className="text-xs text-neutral-700 leading-relaxed font-medium">
-                  {card.boardingEdgeProgram.summary}
-                </p>
-
-                {/* Available Perks */}
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-2">
-                    Available Benefits (Choose Any Combination of Two Per Calendar Quarter)
-                  </span>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {card.boardingEdgeProgram.availableBenefits.map((perk, idx) => (
-                      <div
-                        key={idx}
-                        className="rounded-lg border border-neutral-100 bg-[#F9F9F9] p-3.5 space-y-1"
-                      >
-                        <span className="text-xs font-bold text-neutral-900 block">
-                          {perk.name}
-                        </span>
-                        <p className="text-[11px] text-neutral-600 leading-relaxed">
-                          {perk.details}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* How to Access & Redeem */}
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-2">
-                    How to Access & Redeem
-                  </span>
-                  <ol className="space-y-1.5 text-xs text-neutral-700">
-                    {card.boardingEdgeProgram.howToAccess.map((step, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 leading-relaxed">
-                        <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-[10px] font-bold text-white mt-0.5">
-                          {idx + 1}
-                        </span>
-                        <span>{step}</span>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-
-                {/* Note */}
-                {card.boardingEdgeProgram.note && (
-                  <div className="rounded-lg border border-amber-200/80 bg-amber-50/50 p-3 text-xs text-amber-900 leading-relaxed">
-                    <strong>Note: </strong>
-                    {card.boardingEdgeProgram.note}
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Real-World Redemption Sweet Spots & Case Studies */}
-          {card.redemptionSweetSpots && card.redemptionSweetSpots.length > 0 && (
-            <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 mb-3 flex items-center gap-2">
-                <TrendingUp className="h-3.5 w-3.5 text-emerald-600" />
-                What Can Be Done With Points If Used Properly (Real Case Studies)
-              </h3>
-              <div className="space-y-4">
-                {card.redemptionSweetSpots.map((spot, idx) => (
-                  <div
-                    key={idx}
-                    className="rounded-xl border border-neutral-200/90 bg-white p-5 space-y-3.5"
-                  >
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-neutral-100 pb-3">
-                      <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">
-                          Case Study {idx + 1} · {spot.partner}
-                        </span>
-                        <h4 className="text-sm font-bold text-neutral-900 mt-0.5">
-                          {spot.title}
-                        </h4>
-                      </div>
-                      <div className="flex items-center gap-1.5 self-start sm:self-auto bg-emerald-50 border border-emerald-200 text-emerald-800 px-2.5 py-1 rounded-full text-xs font-bold shrink-0">
-                        <span>Realized Value:</span>
-                        <span className="font-mono">{spot.realizedValuePerPoint}</span>
-                      </div>
-                    </div>
-
-                    <p className="text-xs text-neutral-600 leading-relaxed">
-                      {spot.scenario}
-                    </p>
-
-                    {/* Financial Breakdown Grid */}
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-[#F9F9F9] rounded-lg p-3 text-xs">
-                      <div>
-                        <span className="text-[10px] text-neutral-400 uppercase font-semibold block">Cash Price</span>
-                        <span className="font-bold text-neutral-900 font-mono">{spot.cashPrice}</span>
-                      </div>
-                      <div>
-                        <span className="text-[10px] text-neutral-400 uppercase font-semibold block">Points Used</span>
-                        <span className="font-bold text-neutral-900 font-mono">{spot.pointsRequired}</span>
-                      </div>
-                      <div>
-                        <span className="text-[10px] text-neutral-400 uppercase font-semibold block">Taxes / Cash Outlay</span>
-                        <span className="font-bold text-neutral-700 font-mono">{spot.taxesAndFees}</span>
-                      </div>
-                      <div>
-                        <span className="text-[10px] text-emerald-700 uppercase font-semibold block">Net Cash Saved</span>
-                        <span className="font-bold text-emerald-700 font-mono">{spot.netCashSaved}</span>
-                      </div>
-                    </div>
-
-                    <p className="text-xs text-neutral-700 font-medium bg-neutral-50 p-2.5 rounded border border-neutral-100 leading-relaxed">
-                      <strong className="text-black">The Bottom Line: </strong>
-                      {spot.bottomLine}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Specific Per-Category Details */}
-          <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700 mb-3">
-              Perk Verification & Category Specifics
-            </h3>
-            <dl className="grid gap-px overflow-hidden rounded-xl border border-neutral-200/80 bg-neutral-200 sm:grid-cols-2 lg:grid-cols-4 text-xs">
-              <div className="bg-white p-4">
-                <dt className="font-bold text-neutral-400 uppercase text-[10px] mb-1">Airport Lounges</dt>
-                <dd className="font-semibold text-neutral-900 leading-relaxed">
-                  {card.loungeBenefits || (card.loungeAccess > 0 ? `${card.loungeAccess} visits per year` : "None")}
-                  {(card.loungeBenefits || "").toLowerCase().match(/preceding|previous|spend|quarterly hurdle|crossing/) && (
-                    <span className="mt-2 block text-[10px] font-medium text-amber-800 bg-amber-50 border border-amber-200/80 rounded px-2 py-1">
-                      ⚠️ Spend-Linked: Eligibility requires meeting the issuer&apos;s prior spend threshold.
-                    </span>
-                  )}
-                </dd>
-              </div>
-              <div className="bg-white p-4">
-                <dt className="font-bold text-neutral-400 uppercase text-[10px] mb-1">Fuel Surcharge</dt>
-                <dd className="font-semibold text-neutral-900">{card.fuelBenefits || "1% surcharge waiver applicable"}</dd>
-              </div>
-              <div className="bg-white p-4">
-                <dt className="font-bold text-neutral-400 uppercase text-[10px] mb-1">Forex Markup</dt>
-                <dd className="font-semibold text-neutral-900">{card.forexBenefits || "Standard 3.5% + GST markup"}</dd>
-              </div>
-              <div className="bg-white p-4">
-                <dt className="font-bold text-neutral-400 uppercase text-[10px] mb-1">Dining Discount</dt>
-                <dd className="font-semibold text-neutral-900">{card.diningBenefits || "Standard dining program"}</dd>
-              </div>
-            </dl>
-          </div>
-
-          {/* Milestone Benefits */}
-          {card.milestoneBenefits && (
-            <div className="rounded-xl border border-neutral-200/80 bg-white p-4 sm:p-5 text-xs">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-1">
-                Milestone & Annual Spend Rewards
-              </span>
-              <p className="text-neutral-700 leading-relaxed font-medium">
-                {card.milestoneBenefits}
-              </p>
-            </div>
-          )}
-
-          {/* Direct Bank Verification Metadata */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-neutral-200 text-xs text-neutral-500">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
-              <span>
-                Verified directly from <strong>{card.officialSource || card.issuer}</strong> as of {card.lastVerified || "September 2026"}.
-              </span>
-            </div>
-
-            {card.officialUrl && (
-              <a
-                href={card.officialUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-black hover:underline inline-flex items-center gap-1 shrink-0"
-              >
-                View official issuer terms
-                <ExternalLink className="h-3 w-3" />
-              </a>
             )}
           </div>
-        </div>
+        )}
+      </section>
+
+      {/* ==================================================
+          SECTION B.06 — ADDITIONAL PERKS & LIFESTYLE PRIVILEGES
+      ================================================== */}
+      <section className="rounded-2xl border border-neutral-200/80 bg-white shadow-xs overflow-hidden">
+        <button
+          type="button"
+          onClick={() => toggleSection("additionalPerks")}
+          className="w-full p-5 sm:p-7 flex items-center justify-between text-left hover:bg-neutral-50/60 transition-colors"
+          aria-expanded={openSections.additionalPerks}
+        >
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                06 · Auxiliary Benefits
+              </span>
+            </div>
+            <h2 className="text-lg sm:text-xl font-extrabold text-neutral-900 tracking-tight">
+              Airport lounges, forex markup & lifestyle perks
+            </h2>
+            <p className="text-xs text-neutral-500 mt-1">
+              Airport lounge access conditions, international forex fees, fuel surcharge waivers, and milestone rewards.
+            </p>
+          </div>
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-700 bg-neutral-50 border border-neutral-200 rounded-lg px-3 py-1.5 shrink-0">
+            <span>{openSections.additionalPerks ? "Hide" : "Show"}</span>
+            {openSections.additionalPerks ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+          </div>
+        </button>
+
+        {openSections.additionalPerks && (
+          <div className="border-t border-neutral-100 p-5 sm:p-7 pt-4 space-y-4 text-xs text-neutral-700 bg-[#FAFAFA]/40 animate-in fade-in duration-150">
+            <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {/* Airport Lounges */}
+              <div className="bg-white p-4 rounded-xl border border-neutral-200/70">
+                <dt className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 mb-1 flex items-center gap-1.5">
+                  <Plane className="h-3 w-3 text-neutral-700" />
+                  Airport Lounges
+                </dt>
+                <dd className="font-semibold text-neutral-900 leading-snug">
+                  {card.loungeBenefits || (card.loungeAccess > 0 ? `${card.loungeAccess} visits per year` : "None")}
+                </dd>
+              </div>
+
+              {/* Forex Markup */}
+              <div className="bg-white p-4 rounded-xl border border-neutral-200/70">
+                <dt className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 mb-1">
+                  Extra Charges Abroad (Forex)
+                </dt>
+                <dd className="font-semibold text-neutral-900 leading-snug">
+                  {card.forexBenefits || "3.5% + GST markup fee"}
+                </dd>
+              </div>
+
+              {/* Fuel Waiver */}
+              <div className="bg-white p-4 rounded-xl border border-neutral-200/70">
+                <dt className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 mb-1 flex items-center gap-1.5">
+                  <Fuel className="h-3 w-3 text-neutral-700" />
+                  Fuel Surcharge Waiver
+                </dt>
+                <dd className="font-semibold text-neutral-900 leading-snug">
+                  {card.fuelBenefits || "1% surcharge waiver"}
+                </dd>
+              </div>
+
+              {/* Dining Program */}
+              <div className="bg-white p-4 rounded-xl border border-neutral-200/70">
+                <dt className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 mb-1 flex items-center gap-1.5">
+                  <UtensilsCrossed className="h-3 w-3 text-neutral-700" />
+                  Dining Discounts
+                </dt>
+                <dd className="font-semibold text-neutral-900 leading-snug">
+                  {card.diningBenefits || "Standard bank dining discount"}
+                </dd>
+              </div>
+            </dl>
+
+            {/* Spend-linked Lounge Notice */}
+            {card.loungeBenefits && /(preceding|previous|spend hurdle|crossing|billing cycle)/i.test(card.loungeBenefits) && (
+              <div className="rounded-xl border border-amber-200/80 bg-amber-50/60 p-4 flex items-start gap-2.5 text-xs text-amber-900">
+                <Clock className="h-4 w-4 text-amber-700 shrink-0 mt-0.5" />
+                <div>
+                  <strong className="block font-bold">Important Spend Hurdle for Airport Lounges:</strong>
+                  <p className="mt-0.5 text-amber-800 leading-relaxed">{card.loungeBenefits}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </section>
+
+      {/* ==================================================
+          SECTION B.07 — DEEP-DIVE GOTCHAS & FINE PRINT AUDIT (Optional Disclosure)
+      ================================================== */}
+      {card.realWorldGotchas && card.realWorldGotchas.length > 0 && (
+        <section className="rounded-2xl border border-neutral-200/80 bg-white shadow-xs overflow-hidden">
+          <button
+            type="button"
+            onClick={() => toggleSection("deepDiveGotchas")}
+            className="w-full p-5 sm:p-7 flex items-center justify-between text-left hover:bg-neutral-50/60 transition-colors"
+            aria-expanded={openSections.deepDiveGotchas}
+          >
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+                  07 · Technical Policy Nuances
+                </span>
+                <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-[10px] font-semibold text-neutral-700">
+                  {card.realWorldGotchas.length} Audited Cases
+                </span>
+              </div>
+              <h2 className="text-lg sm:text-xl font-extrabold text-neutral-900 tracking-tight">
+                Deep-dive fine print & MCC rules
+              </h2>
+              <p className="text-xs text-neutral-500 mt-1">
+                Technical gotchas, merchant category codes (MCCs), and refund adjustment rules.
+              </p>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-700 bg-neutral-50 border border-neutral-200 rounded-lg px-3 py-1.5 shrink-0">
+              <span>{openSections.deepDiveGotchas ? "Hide" : "Show"}</span>
+              {openSections.deepDiveGotchas ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+            </div>
+          </button>
+
+          {openSections.deepDiveGotchas && (
+            <div className="border-t border-neutral-100 p-5 sm:p-7 pt-4 space-y-3.5 bg-[#FAFAFA]/40 animate-in fade-in duration-150">
+              {card.realWorldGotchas.map((gotcha, idx) => (
+                <div key={idx} className="rounded-xl border border-neutral-200/80 bg-white p-4 sm:p-5">
+                  <div className="flex items-start justify-between gap-3 mb-1">
+                    <h3 className="text-xs font-bold text-neutral-900">
+                      {gotcha.title}
+                    </h3>
+                    {gotcha.tag && (
+                      <span className="shrink-0 text-[10px] font-medium text-neutral-500 bg-neutral-100 px-2 py-0.5 rounded">
+                        {gotcha.tag}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-neutral-600 leading-relaxed font-normal">
+                    {gotcha.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
       )}
     </div>
   );

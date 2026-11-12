@@ -3,7 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff, AlertCircle, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Eye, EyeOff, AlertCircle, ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
+import {
+  getActiveGuestProfile,
+  migrateGuestToAccount,
+  clearTemporaryGuestData,
+  SELECTED_COUNT_KEY,
+} from "../lib/profileStorage";
 
 export default function SignupForm() {
   const router = useRouter();
@@ -19,9 +25,15 @@ export default function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [hasGuestData, setHasGuestData] = useState(false);
 
   useEffect(() => {
     router.prefetch("/onboarding");
+    router.prefetch("/results");
+    try {
+      const guest = getActiveGuestProfile();
+      setHasGuestData(Boolean(guest));
+    } catch {}
   }, [router]);
 
   function handleChange(field, value) {
@@ -93,6 +105,23 @@ export default function SignupForm() {
 
     setSubmitted(true);
 
+    const emailTrimmed = values.email.trim().toLowerCase();
+
+    // Check duplicate email
+    let usersList = [];
+    try {
+      const rawUsers = window.localStorage.getItem("cardwise:users");
+      if (rawUsers) usersList = JSON.parse(rawUsers);
+    } catch {
+      usersList = [];
+    }
+
+    if (usersList.some((u) => u.email?.toLowerCase() === emailTrimmed)) {
+      setSubmitted(false);
+      setErrors({ email: "An account with this email address already exists. Please sign in instead." });
+      return;
+    }
+
     const newUser = {
       fullName: values.fullName.trim(),
       email: values.email.trim(),
@@ -102,44 +131,25 @@ export default function SignupForm() {
       savedCards: [],
     };
 
-    let hasExistingProfile = false;
     try {
       window.localStorage.setItem("cardwise:user", JSON.stringify(newUser));
-      window.dispatchEvent(new Event("storage"));
-
-      let usersList = [];
-      const rawUsers = window.localStorage.getItem("cardwise:users");
-      if (rawUsers) usersList = JSON.parse(rawUsers);
       usersList.push(newUser);
       window.localStorage.setItem("cardwise:users", JSON.stringify(usersList));
+      window.dispatchEvent(new Event("storage"));
 
-      // Preserve existing recommendation profile and link it to the new account
-      const rawProfile = window.localStorage.getItem("cardwise:profile");
-      if (rawProfile) {
-        try {
-          const profileObj = JSON.parse(rawProfile);
-          if (profileObj && typeof profileObj === "object") {
-            profileObj.account = {
-              fullName: newUser.fullName,
-              email: newUser.email,
-              age: newUser.age,
-              isGuest: false,
-              updatedAt: new Date().toISOString(),
-            };
-            window.localStorage.setItem("cardwise:profile", JSON.stringify(profileObj));
-            hasExistingProfile = true;
-          }
-        } catch {
-          // ignore
-        }
+      // Seamlessly migrate guest spending profile & selected card count
+      const guestProfile = getActiveGuestProfile();
+      const rawCount = window.localStorage.getItem(SELECTED_COUNT_KEY);
+      const cardCount = Math.min(3, Math.max(1, Number(rawCount) || guestProfile?.cardCount || 1));
+
+      if (guestProfile) {
+        migrateGuestToAccount(newUser, guestProfile, cardCount);
+        router.push("/results");
+      } else {
+        clearTemporaryGuestData();
+        router.push("/onboarding");
       }
     } catch {
-      // ignore storage quota issues in demo
-    }
-
-    if (hasExistingProfile) {
-      router.push("/results");
-    } else {
       router.push("/onboarding");
     }
   }
@@ -161,6 +171,19 @@ export default function SignupForm() {
           Initial setup takes less than a minute. No financial details or card numbers required.
         </p>
       </div>
+
+      {/* Guest Session Continuity Notice */}
+      {hasGuestData && (
+        <div className="mb-5 rounded-xl border border-neutral-200/90 bg-neutral-50/80 p-3.5 text-xs text-neutral-700 flex items-start gap-2.5">
+          <CheckCircle2 className="h-4 w-4 text-black shrink-0 mt-0.5" />
+          <div>
+            <span className="font-bold text-black block">Seamless Transition</span>
+            <span className="text-[11px] text-neutral-500 block mt-0.5">
+              Your guest spending profile and recommendation settings will be securely attached to your new account.
+            </span>
+          </div>
+        </div>
+      )}
 
       <div className="space-y-4">
         {/* Full Name */}
@@ -192,7 +215,7 @@ export default function SignupForm() {
           )}
         </div>
 
-        {/* Email */}
+        {/* Email Address */}
         <div>
           <label
             htmlFor="email"
@@ -221,63 +244,59 @@ export default function SignupForm() {
           )}
         </div>
 
-        {/* Age (Number input) */}
-        <div>
-          <label
-            htmlFor="age"
-            className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5"
-          >
-            Age (Years)
-          </label>
-          <input
-            id="age"
-            name="age"
-            type="number"
-            min="18"
-            max="100"
-            placeholder="e.g. 26"
-            value={values.age}
-            onChange={(e) => handleChange("age", e.target.value)}
-            className={`w-full rounded-[6px] border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 transition-colors focus:outline-none focus:ring-2 focus:ring-black ${
-              errors.age ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-white hover:border-neutral-300"
-            }`}
-            aria-invalid={errors.age ? "true" : "false"}
-            aria-describedby={errors.age ? "age-error" : undefined}
-          />
-          {errors.age && (
-            <p id="age-error" role="alert" className="mt-1.5 text-xs font-medium text-red-600">
-              {errors.age}
-            </p>
-          )}
-        </div>
-
-        {/* Age Confirmation Checkbox */}
-        <div className="pt-1">
-          <label className="flex items-start gap-2.5 cursor-pointer">
+        {/* Age and Age Confirmation */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label
+              htmlFor="age"
+              className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5"
+            >
+              Age (Years)
+            </label>
             <input
-              id="ageConfirmed"
-              name="ageConfirmed"
-              type="checkbox"
-              checked={values.ageConfirmed}
-              onChange={(e) => handleChange("ageConfirmed", e.target.checked)}
-              className="mt-1 h-4 w-4 rounded border-neutral-300 text-black focus:ring-black"
-              aria-invalid={errors.ageConfirmed ? "true" : "false"}
-              aria-describedby={errors.ageConfirmed ? "ageConfirmed-error" : undefined}
+              id="age"
+              name="age"
+              type="number"
+              min="18"
+              max="100"
+              placeholder="25"
+              value={values.age}
+              onChange={(e) => handleChange("age", e.target.value)}
+              className={`w-full rounded-[6px] border px-3.5 py-2.5 text-sm text-black placeholder:text-neutral-400 transition-colors focus:outline-none focus:ring-2 focus:ring-black ${
+                errors.age ? "border-red-400 bg-red-50/20" : "border-neutral-200 bg-white hover:border-neutral-300"
+              }`}
+              aria-invalid={errors.age ? "true" : "false"}
+              aria-describedby={errors.age ? "age-error" : undefined}
             />
-            <span className="text-xs text-neutral-600 leading-normal select-none">
-              I confirm that I am at least 18 years of age and eligible for financial products in India.
-            </span>
-          </label>
-          {errors.ageConfirmed && (
-            <p id="ageConfirmed-error" role="alert" className="mt-1.5 text-xs font-medium text-red-600 pl-6.5">
-              {errors.ageConfirmed}
-            </p>
-          )}
+            {errors.age && (
+              <p id="age-error" role="alert" className="mt-1.5 text-xs font-medium text-red-600">
+                {errors.age}
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col justify-end">
+            <label className="flex items-center gap-2 cursor-pointer py-2.5">
+              <input
+                type="checkbox"
+                checked={values.ageConfirmed}
+                onChange={(e) => handleChange("ageConfirmed", e.target.checked)}
+                className="h-4 w-4 rounded border-neutral-300 text-black focus:ring-black accent-black"
+              />
+              <span className="text-xs text-neutral-700 font-medium">
+                I confirm I am 18 or older
+              </span>
+            </label>
+            {errors.ageConfirmed && (
+              <p role="alert" className="mt-0.5 text-xs font-medium text-red-600">
+                {errors.ageConfirmed}
+              </p>
+            )}
+          </div>
         </div>
 
-        {/* Passwords (2 columns on tablet/desktop) */}
-        <div className="grid gap-4 sm:grid-cols-2 pt-1">
-          {/* Password */}
+        {/* Password Fields */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label
               htmlFor="password"
@@ -316,7 +335,6 @@ export default function SignupForm() {
             )}
           </div>
 
-          {/* Confirm Password */}
           <div>
             <label
               htmlFor="confirmPassword"
@@ -365,7 +383,7 @@ export default function SignupForm() {
         {submitted ? (
           <>
             <CheckCircle2 className="h-4 w-4 text-[#DDF247]" />
-            Account created — starting onboarding…
+            Account created — linking profile…
           </>
         ) : (
           <>
@@ -375,7 +393,28 @@ export default function SignupForm() {
         )}
       </button>
 
-      <p className="mt-5 text-center text-xs text-neutral-500">
+      {/* Cancel Signup Action */}
+      {hasGuestData ? (
+        <div className="mt-3 text-center">
+          <Link
+            href="/results"
+            className="text-xs font-medium text-neutral-500 hover:text-black transition-colors"
+          >
+            Cancel and continue as guest
+          </Link>
+        </div>
+      ) : (
+        <div className="mt-3 text-center">
+          <Link
+            href="/"
+            className="text-xs font-medium text-neutral-400 hover:text-black transition-colors"
+          >
+            Cancel
+          </Link>
+        </div>
+      )}
+
+      <p className="mt-4 text-center text-xs text-neutral-500">
         Already have an account?{" "}
         <Link href="/login" className="font-bold text-black underline underline-offset-2">
           Sign in

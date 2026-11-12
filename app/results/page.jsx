@@ -851,70 +851,128 @@ export default function ResultsPage() {
         )}
 
         {/* Spend Routing & Optimization Matrix */}
-        {currentCombo && currentCombo.allocations && (
+        {currentCombo && (currentCombo.merchantAllocations || currentCombo.allocations) && (
           <section className="mb-12 rounded-2xl border border-neutral-200/80 bg-white p-6 sm:p-8 shadow-xs">
             <div className="mb-4">
               <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 block mb-0.5">
                 Zero Double-Counting
               </span>
               <h2 className="text-base sm:text-lg font-bold text-neutral-900">
-                Spend Routing & Category Allocation
+                Spend Routing & Brand Allocation Matrix
               </h2>
               <p className="text-xs text-neutral-500 mt-1 leading-relaxed">
-                To prevent false calculations, every rupee of your monthly spend is routed to exactly one card that provides the highest verified return for that category:
+                Every rupee of your monthly spend is routed to the single card in this setup yielding the highest verified return for that specific merchant or category:
               </p>
             </div>
 
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs border-collapse">
-                <thead>
-                  <tr className="border-b border-neutral-200 text-neutral-400 font-bold uppercase text-[10px] tracking-wider">
-                    <th className="py-2.5 pr-4">Category</th>
-                    <th className="py-2.5 px-4">Your Spend</th>
-                    <th className="py-2.5 px-4">Routed To</th>
-                    <th className="py-2.5 px-4 text-right">Reward Rate</th>
-                    <th className="py-2.5 pl-4 text-right">Est. Earn/Mo</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-neutral-100">
-                  {Object.entries(currentCombo.allocations).map(([catKey, alloc]) => {
-                    const label = formatCategoryLabel(catKey);
-                    const spendVal = alloc.monthlySpend ?? alloc.spend ?? 0;
-                    const rateVal = alloc.effectiveRate ?? alloc.rate ?? 0;
-                    const earnVal = alloc.monthlyRewards ?? alloc.monthlyEarn ?? 0;
-                    const isAccelerated = alloc.rateType === "accelerated" || rateVal >= 2.0;
-
-                    return (
-                      <tr key={catKey} className="hover:bg-neutral-50/50">
-                        <td className="py-3 pr-4 font-semibold text-neutral-900">
-                          {label}
-                        </td>
-                        <td className="py-3 px-4 font-mono text-neutral-600">
-                          ₹{spendVal.toLocaleString("en-IN")}/mo
-                        </td>
-                        <td className="py-3 px-4 text-neutral-800 font-medium">
-                          {alloc.cardName}
-                        </td>
-                        <td className="py-3 px-4 text-right font-mono font-semibold">
-                          <span
-                            className={
-                              isAccelerated
-                                ? "text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px]"
-                                : "text-neutral-600"
-                            }
-                          >
-                            {rateVal > 1 ? `${rateVal.toFixed(1)}%` : `${(rateVal * 100).toFixed(1)}%`}
-                          </span>
-                        </td>
-                        <td className="py-3 pl-4 text-right font-mono font-bold text-neutral-900">
-                          ₹{Math.round(earnVal).toLocaleString("en-IN")}
-                        </td>
+            {/* Merchant Specific Allocations if present */}
+            {currentCombo.merchantAllocations && Object.keys(currentCombo.merchantAllocations).length > 0 && (
+              <div className="mb-6">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-2">
+                  Itemized Brand & Merchant Routing
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead>
+                      <tr className="border-b border-neutral-200 text-neutral-400 font-bold uppercase text-[10px] tracking-wider">
+                        <th className="py-2.5 pr-4">Brand / Merchant</th>
+                        <th className="py-2.5 px-4">Your Monthly Spend</th>
+                        <th className="py-2.5 px-4">Routed To</th>
+                        <th className="py-2.5 px-4 text-right">Verified Rate</th>
+                        <th className="py-2.5 pl-4 text-right">Est. Earn/Mo</th>
                       </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                    </thead>
+                    <tbody className="divide-y divide-neutral-100">
+                      {Object.values(currentCombo.merchantAllocations).map((mAlloc) => (
+                        <tr key={mAlloc.merchantId} className="hover:bg-neutral-50/50">
+                          <td className="py-3 pr-4 font-semibold text-neutral-900">
+                            <div>{mAlloc.merchantName}</div>
+                            {mAlloc.note && (
+                              <div className="text-[10px] font-normal text-neutral-400 mt-0.5 line-clamp-1" title={mAlloc.note}>
+                                {mAlloc.note}
+                              </div>
+                            )}
+                          </td>
+                          <td className="py-3 px-4 font-mono text-neutral-600">
+                            ₹{mAlloc.monthlySpend.toLocaleString("en-IN")}/mo
+                          </td>
+                          <td className="py-3 px-4 text-neutral-800 font-medium">
+                            {mAlloc.cardName}
+                          </td>
+                          <td className="py-3 px-4 text-right font-mono font-semibold">
+                            <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px]">
+                              {mAlloc.effectiveRate}%
+                            </span>
+                          </td>
+                          <td className="py-3 pl-4 text-right font-mono font-bold text-neutral-900">
+                            ₹{Math.round(mAlloc.monthlyRewards).toLocaleString("en-IN")}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {/* General Category Allocations */}
+            {currentCombo.allocations && (
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-700 mb-2">
+                  Category Spending Allocations
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead>
+                      <tr className="border-b border-neutral-200 text-neutral-400 font-bold uppercase text-[10px] tracking-wider">
+                        <th className="py-2.5 pr-4">Category</th>
+                        <th className="py-2.5 px-4">Unallocated Spend</th>
+                        <th className="py-2.5 px-4">Routed To</th>
+                        <th className="py-2.5 px-4 text-right">Reward Rate</th>
+                        <th className="py-2.5 pl-4 text-right">Est. Earn/Mo</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-neutral-100">
+                      {Object.entries(currentCombo.allocations).map(([catKey, alloc]) => {
+                        const label = formatCategoryLabel(catKey);
+                        const spendVal = alloc.monthlySpend ?? alloc.spend ?? 0;
+                        const rateVal = alloc.effectiveRate ?? alloc.rate ?? 0;
+                        const earnVal = alloc.monthlyRewards ?? alloc.monthlyEarn ?? 0;
+                        const isAccelerated = alloc.rateType === "accelerated" || rateVal >= 2.0;
+
+                        return (
+                          <tr key={catKey} className="hover:bg-neutral-50/50">
+                            <td className="py-3 pr-4 font-semibold text-neutral-900">
+                              {label}
+                            </td>
+                            <td className="py-3 px-4 font-mono text-neutral-600">
+                              ₹{spendVal.toLocaleString("en-IN")}/mo
+                            </td>
+                            <td className="py-3 px-4 text-neutral-800 font-medium">
+                              {alloc.cardName}
+                            </td>
+                            <td className="py-3 px-4 text-right font-mono font-semibold">
+                              <span
+                                className={
+                                  isAccelerated
+                                    ? "text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px]"
+                                    : "text-neutral-600"
+                                }
+                              >
+                                {rateVal > 1 ? `${rateVal.toFixed(1)}%` : `${(rateVal * 100).toFixed(1)}%`}
+                              </span>
+                            </td>
+                            <td className="py-3 pl-4 text-right font-mono font-bold text-neutral-900">
+                              ₹{Math.round(earnVal).toLocaleString("en-IN")}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
           </section>
         )}
 

@@ -14,7 +14,13 @@ import {
   Edit3,
   Sparkles,
   Info,
+  Store,
+  Plus,
+  X,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
+import { MAJOR_MERCHANTS, resolveMerchant } from "../lib/merchantRewardRules";
 
 // ================= CONSTANTS & DEFINITIONS =================
 
@@ -115,6 +121,23 @@ const SPEND_CATEGORIES = [
     presets: [0, 2000, 5000, 10000, 15000],
     defaultVal: 3000,
   },
+];
+
+const CURATED_POPULAR_MERCHANTS = [
+  { id: "amazon", name: "Amazon", category: "shopping", badge: "E-Commerce", hint: "5% on Amazon Pay ICICI, 5% on Cashback SBI" },
+  { id: "flipkart", name: "Flipkart", category: "shopping", badge: "E-Commerce", hint: "5% on Flipkart Axis, 5% on Cashback SBI" },
+  { id: "myntra", name: "Myntra", category: "shopping", badge: "Fashion", hint: "Accelerated fashion & festive offers" },
+  { id: "bigbasket", name: "BigBasket / Tata Neu", category: "groceries", badge: "Tata Group", hint: "Up to 10% NeuCoins on Tata Neu Infinity" },
+  { id: "swiggy", name: "Swiggy", category: "dining", badge: "Food & Instamart", hint: "10% cashback on Swiggy HDFC" },
+  { id: "zomato", name: "Zomato", category: "dining", badge: "Food & Dining", hint: "Dining savings & instant food discounts" },
+  { id: "blinkit", name: "Blinkit", category: "groceries", badge: "Quick Commerce", hint: "Quick grocery delivery cashback" },
+  { id: "zepto", name: "Zepto", category: "groceries", badge: "Quick Commerce", hint: "Instant daily delivery rewards" },
+  { id: "croma", name: "Croma", category: "shopping", badge: "Tata Group", hint: "Electronics & appliances NeuCoins rewards" },
+  { id: "ajio", name: "AJIO", category: "shopping", badge: "Reliance Retail", hint: "Online fashion discounts & retail cashback" },
+  { id: "airindia", name: "Air India", category: "travel", badge: "Airlines", hint: "Tata Neu / flight booking points" },
+  { id: "makemytrip", name: "MakeMyTrip", category: "travel", badge: "Travel", hint: "Flights & hotel partner savings" },
+  { id: "bpcl", name: "BPCL Petrol", category: "fuel", badge: "Fuel", hint: "Up to 4.25% valueback on BPCL SBI" },
+  { id: "electricity", name: "Electricity Bills", category: "utilities", badge: "Utilities", hint: "5% cashback on Airtel Axis / Ace" },
 ];
 
 const PRIORITIES = [
@@ -258,6 +281,10 @@ export default function OnboardingFlow() {
   const [nlFeedbackMessage, setNlFeedbackMessage] = useState(null);
   const [finishing, setFinishing] = useState(false);
 
+  // Progressive Disclosure: Frequent Brands & Ecosystems
+  const [showMerchantPicker, setShowMerchantPicker] = useState(false);
+  const [merchantSearchQuery, setMerchantSearchQuery] = useState("");
+
   // Restore saved draft or profile on mount
   useEffect(() => {
     router.prefetch("/results");
@@ -335,6 +362,48 @@ export default function OnboardingFlow() {
       spending: { ...prev.spending, [catKey]: parsed },
     }));
   }
+
+  function handleMerchantSpendChange(merchantId, amount) {
+    const parsed = Math.max(0, parseInt(amount, 10) || 0);
+    setFormData((prev) => {
+      const next = { ...(prev.merchants || {}) };
+      if (parsed <= 0) {
+        delete next[merchantId];
+      } else {
+        next[merchantId] = parsed;
+      }
+      return { ...prev, merchants: next };
+    });
+  }
+
+  function handleAddMerchant(merchantId, initialAmount = 2500) {
+    setFormData((prev) => {
+      const next = { ...(prev.merchants || {}) };
+      if (!next[merchantId]) {
+        next[merchantId] = initialAmount;
+      }
+      return { ...prev, merchants: next };
+    });
+  }
+
+  function handleRemoveMerchant(merchantId) {
+    setFormData((prev) => {
+      const next = { ...(prev.merchants || {}) };
+      delete next[merchantId];
+      return { ...prev, merchants: next };
+    });
+  }
+
+  const availableMerchantsToDisplay = merchantSearchQuery.trim()
+    ? MAJOR_MERCHANTS.filter((m) => {
+        const q = merchantSearchQuery.toLowerCase().trim();
+        return (
+          m.name.toLowerCase().includes(q) ||
+          m.category.toLowerCase().includes(q) ||
+          (m.aliases && m.aliases.some((a) => a.toLowerCase().includes(q)))
+        );
+      })
+    : CURATED_POPULAR_MERCHANTS;
 
   async function handleAutoFillWithAI() {
     if (!naturalLanguageInput.trim()) return;
@@ -916,6 +985,170 @@ export default function OnboardingFlow() {
                 );
               })}
             </div>
+
+            {/* Brand & Platform Accelerators (Progressive Disclosure) */}
+            <div className="mt-8 rounded-xl border border-neutral-200/90 bg-white p-5 shadow-xs">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-neutral-100 pb-4">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <Store className="h-4 w-4 text-neutral-800" />
+                    <h3 className="text-sm font-bold text-neutral-900">
+                      Frequent Brands & Platforms
+                    </h3>
+                    <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-[10px] font-semibold text-neutral-600">
+                      Optional
+                    </span>
+                  </div>
+                  <p className="text-xs text-neutral-500 mt-1 leading-relaxed max-w-xl">
+                    Do you regularly order or shop on specific platforms? Co-branded cards like Amazon Pay ICICI, Swiggy HDFC, Flipkart Axis, Tata Neu, or BPCL give accelerated rewards when matched with your regular brands.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setShowMerchantPicker(!showMerchantPicker)}
+                  className="inline-flex items-center gap-1.5 self-start sm:self-center rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-xs font-bold text-neutral-700 hover:border-neutral-300 hover:bg-neutral-100 transition-colors"
+                >
+                  <span>{showMerchantPicker ? "Hide Brand Selector" : "Choose Regular Brands"}</span>
+                  {showMerchantPicker ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+                </button>
+              </div>
+
+              {/* Active Declared Merchants List */}
+              {Object.keys(formData.merchants || {}).length > 0 && (
+                <div className="mt-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">
+                      Your Selected Brands ({Object.keys(formData.merchants).length})
+                    </span>
+                    <span className="text-[11px] text-neutral-400">
+                      Subtracted automatically from category spend • No double counting
+                    </span>
+                  </div>
+
+                  <div className="grid gap-2.5 sm:grid-cols-2">
+                    {Object.entries(formData.merchants).map(([mId, amt]) => {
+                      const mInfo = resolveMerchant(mId) || { id: mId, name: mId, category: "other" };
+                      return (
+                        <div
+                          key={mId}
+                          className="flex items-center justify-between gap-3 rounded-lg border border-neutral-200/90 bg-neutral-50/60 p-3"
+                        >
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-1.5">
+                              <span className="font-bold text-xs text-neutral-900 truncate">
+                                {mInfo.name}
+                              </span>
+                              <span className="rounded bg-neutral-200/70 px-1.5 py-0.5 text-[9px] font-bold uppercase text-neutral-600">
+                                {mInfo.category}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-1 mt-1.5">
+                              {[1000, 2500, 5000, 10000].map((preset) => (
+                                <button
+                                  key={preset}
+                                  type="button"
+                                  onClick={() => handleMerchantSpendChange(mId, preset)}
+                                  className={`px-1.5 py-0.5 rounded text-[10px] font-semibold transition-all ${
+                                    amt === preset
+                                      ? "bg-black text-white"
+                                      : "border border-neutral-200 bg-white text-neutral-600 hover:border-neutral-400"
+                                  }`}
+                                >
+                                  ₹{preset >= 1000 ? `${preset / 1000}k` : preset}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-2 shrink-0">
+                            <div className="relative w-24">
+                              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[11px] font-semibold text-neutral-400">
+                                ₹
+                              </span>
+                              <input
+                                type="number"
+                                min="0"
+                                step="500"
+                                value={amt || ""}
+                                onChange={(e) => handleMerchantSpendChange(mId, e.target.value)}
+                                placeholder="0"
+                                aria-label={`Monthly spend at ${mInfo.name}`}
+                                className="w-full rounded-md border border-neutral-200 bg-white px-2 py-1 pl-5 text-xs font-bold text-black cw-numeric focus:outline-none focus:ring-2 focus:ring-black"
+                              />
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveMerchant(mId)}
+                              title={`Remove ${mInfo.name}`}
+                              className="rounded p-1 text-neutral-400 hover:bg-neutral-200 hover:text-black transition-colors"
+                            >
+                              <X className="h-3.5 w-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Quick Add Curated Brands or Search */}
+              {showMerchantPicker && (
+                <div className="mt-5 border-t border-neutral-100 pt-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-500">
+                      Tap a brand to add it to your spend breakdown:
+                    </span>
+                    <div className="relative w-full sm:w-64">
+                      <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3 w-3 text-neutral-400" />
+                      <input
+                        type="text"
+                        value={merchantSearchQuery}
+                        onChange={(e) => setMerchantSearchQuery(e.target.value)}
+                        placeholder="Search brands (e.g. Swiggy, BPCL, Air India)..."
+                        className="w-full rounded-md border border-neutral-200 bg-white px-2 py-1 pl-7 text-xs text-black placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {availableMerchantsToDisplay.map((m) => {
+                      const isAdded = Boolean(formData.merchants?.[m.id]);
+                      return (
+                        <button
+                          key={m.id}
+                          type="button"
+                          onClick={() => {
+                            if (isAdded) {
+                              handleRemoveMerchant(m.id);
+                            } else {
+                              handleAddMerchant(m.id, 2500);
+                            }
+                          }}
+                          className={`inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-semibold transition-all ${
+                            isAdded
+                              ? "border-black bg-black text-white shadow-xs"
+                              : "border-neutral-200 bg-neutral-50/60 text-neutral-700 hover:border-neutral-300 hover:bg-white"
+                          }`}
+                        >
+                          <span>{m.name}</span>
+                          {isAdded ? (
+                            <Check className="h-3 w-3 text-[#DDF247]" />
+                          ) : (
+                            <Plus className="h-3 w-3 text-neutral-400" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {availableMerchantsToDisplay.length === 0 && (
+                    <p className="text-xs text-neutral-500 py-2">
+                      No brands match &ldquo;{merchantSearchQuery}&rdquo;. Unlisted merchants are evaluated using standard category reward rates.
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         )}
 
@@ -1397,6 +1630,18 @@ export default function OnboardingFlow() {
                     <p className="text-neutral-500 text-[11px]">
                       Top: Groceries (₹{formData.spending.groceries}), Dining (₹{formData.spending.dining})
                     </p>
+                    {Object.keys(formData.merchants || {}).length > 0 && (
+                      <div className="mt-1.5 flex flex-wrap gap-1">
+                        {Object.entries(formData.merchants).map(([mId, amt]) => {
+                          const mInfo = resolveMerchant(mId);
+                          return (
+                            <span key={mId} className="inline-flex items-center rounded bg-neutral-100 px-1.5 py-0.5 text-[10px] font-medium text-neutral-700">
+                              {mInfo?.name || mId}: ₹{Number(amt).toLocaleString("en-IN")}
+                            </span>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                   <button
                     type="button"
