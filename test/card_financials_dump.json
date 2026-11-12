@@ -1,0 +1,943 @@
+[
+  {
+    "slug": "amazon-pay-icici",
+    "name": "Amazon Pay ICICI Bank Credit Card",
+    "issuer": "ICICI Bank",
+    "annualFee": 0,
+    "joiningFee": 0,
+    "feeWaiverCardsJson": "Lifetime Free with no minimum spend conditions.",
+    "feeWaiverThresholdRule": 0,
+    "rewardType": "cashback",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 0,
+    "rates": {
+      "shopping": 5,
+      "online": 5,
+      "groceries": 2,
+      "dining": 2,
+      "travel": 2,
+      "fuel": 0,
+      "utilities": 2,
+      "international": 1,
+      "other": 1
+    },
+    "caps": {
+      "totalMonthly": null
+    },
+    "merchantCount": 12,
+    "officialUrl": "https://www.icicibank.com/personal-banking/cards/credit-card/amazon-pay-credit-card",
+    "officialSource": "ICICI Bank & Amazon Pay Official Terms",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "amex-mrcc",
+    "name": "American Express Membership Rewards Credit Card",
+    "issuer": "American Express",
+    "annualFee": 4500,
+    "joiningFee": 1000,
+    "feeWaiverCardsJson": "100% renewal fee waiver (₹4,500 + 18% GST = ₹5,310) on annual spends of ₹1,50,000+; 50% waiver (customer pays ₹2,250 + 18% GST = ₹2,655) on annual spends of ₹90,000 to ₹1,49,999.",
+    "feeWaiverThresholdRule": 150000,
+    "rewardType": "points",
+    "pointValue": 0.4,
+    "loungeAccessCardsJson": 0,
+    "rates": {
+      "shopping": 2,
+      "online": 2,
+      "groceries": 2,
+      "dining": 2,
+      "travel": 2,
+      "fuel": 0,
+      "utilities": 0,
+      "insurance": 0,
+      "other": 2
+    },
+    "caps": {
+      "bonusPointsMonthly": 2000
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.americanexpress.com/in/credit-cards/membership-rewards-card/",
+    "officialSource": "American Express India Official Portal",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "axis-horizon",
+    "name": "Axis Bank Horizon Credit Card",
+    "issuer": "Axis Bank",
+    "annualFee": 3000,
+    "joiningFee": 3000,
+    "feeWaiverCardsJson": "No standard milestone or spend-based waiver exists for regular accounts. Annual renewal fee of ₹3,540 (₹3,000 + 18% GST) is only waived (Nil) for customers with an Axis Burgundy Savings Account opened on or after July 1, 2026.",
+    "feeWaiverThresholdRule": null,
+    "rewardType": "miles",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 10,
+    "rates": {
+      "travel": 5,
+      "shopping": 2,
+      "online": 2,
+      "groceries": 2,
+      "dining": 2,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 2
+    },
+    "caps": {
+      "totalMonthly": null
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.axisbank.com/retail/cards/credit-card/horizon-credit-card",
+    "officialSource": "Axis Bank Official Cards Portal",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "axis-magnus",
+    "name": "Axis Bank Magnus Credit Card",
+    "issuer": "Axis Bank",
+    "annualFee": 12500,
+    "joiningFee": 12500,
+    "feeWaiverCardsJson": "Annual fee of ₹14,750 (₹12,500 + 18% GST) is waived on eligible retail spends of ₹25,00,000+ in preceding year. Lifetime Free for Burgundy Private clients (TRV ₹5 Cr+); waived for new standard Burgundy accounts opened in promo windows.",
+    "feeWaiverThresholdRule": 2500000,
+    "rewardType": "points",
+    "pointValue": 0.4,
+    "loungeAccessCardsJson": 99,
+    "rates": {
+      "travel": 7,
+      "shopping": 2.4,
+      "online": 2.4,
+      "groceries": 2.4,
+      "dining": 2.4,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 2.4
+    },
+    "caps": {
+      "travelMonthlySpendCap": 200000,
+      "annualPartnerTransferCap": 500000
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.axisbank.com/retail/cards/credit-card/magnus-card",
+    "officialSource": "Axis Bank Official Portal",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "bob-eterna",
+    "name": "BOBCARD Eterna Credit Card",
+    "issuer": "BOBCARD",
+    "annualFee": 2499,
+    "joiningFee": 0,
+    "feeWaiverCardsJson": "Annual renewal fee of ₹2,949 (₹2,499 + 18% GST) is 100% waived on annual retail spends of ₹2,50,000+ within the card anniversary year.",
+    "feeWaiverThresholdRule": 250000,
+    "rewardType": "points",
+    "pointValue": 0.25,
+    "loungeAccessCardsJson": 99,
+    "rates": {
+      "shopping": 3.75,
+      "online": 3.75,
+      "travel": 3.75,
+      "dining": 3.75,
+      "groceries": 0.75,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 0.75
+    },
+    "caps": {
+      "acceleratedMonthlyPoints": 5000
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.bobcard.co.in/eterna",
+    "officialSource": "BOBCARD Official Website",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "bob-ethiad",
+    "name": "BOBCARD Etihad Guest Credit Card",
+    "issuer": "BOBCARD",
+    "annualFee": 2500,
+    "joiningFee": 2500,
+    "feeWaiverCardsJson": "Annual renewal fee of ₹2,950 (₹2,500 + 18% GST) is 100% waived on eligible retail spends of ₹3,00,000+ within the preceding card anniversary year.",
+    "feeWaiverThresholdRule": 300000,
+    "rewardType": "miles",
+    "pointValue": 0.9,
+    "loungeAccessCardsJson": 12,
+    "rates": {
+      "travel": 3,
+      "shopping": 1,
+      "online": 1,
+      "groceries": 1,
+      "dining": 1,
+      "fuel": 0,
+      "utilities": 1,
+      "other": 1
+    },
+    "caps": {
+      "totalMonthly": null
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.bobcard.co.in/etihad-guest",
+    "officialSource": "BOBCARD Official Portal",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "flipkart-axis-bank",
+    "name": "Flipkart Axis Bank Credit Card",
+    "issuer": "Axis Bank",
+    "annualFee": 500,
+    "joiningFee": 500,
+    "feeWaiverCardsJson": "Annual renewal fee of ₹590 (₹500 + 18% GST) is 100% waived on eligible retail spends of ₹3,50,000+ within the card anniversary year.",
+    "feeWaiverThresholdRule": 350000,
+    "rewardType": "cashback",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 0,
+    "rates": {
+      "shopping": 5,
+      "online": 4,
+      "dining": 4,
+      "travel": 4,
+      "groceries": 1,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 1
+    },
+    "caps": {
+      "totalMonthly": null
+    },
+    "merchantCount": 11,
+    "officialUrl": "https://www.axisbank.com/retail/cards/credit-card/flipkart-axis-bank-credit-card",
+    "officialSource": "Axis Bank Official Website",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "hdfc-biz-black",
+    "name": "HDFC Bank BizBlack Metal Edition Credit Card",
+    "issuer": "HDFC Bank",
+    "annualFee": 10000,
+    "joiningFee": 10000,
+    "feeWaiverCardsJson": "Annual renewal fee of ₹11,800 (₹10,000 + 18% GST) is 100% waived on retail card spends crossing ₹7.5 Lakhs in preceding 12 billing cycles. Upfront joining fee waived on spending ₹1,50,000 within first 90 days.",
+    "feeWaiverThresholdRule": 750000,
+    "rewardType": "points",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 99,
+    "rates": {
+      "travel": 3.33,
+      "shopping": 3.33,
+      "online": 3.33,
+      "groceries": 3.33,
+      "dining": 3.33,
+      "utilities": 16.65,
+      "fuel": 0,
+      "other": 3.33
+    },
+    "caps": {
+      "acceleratedMonthlyPoints": 7500
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/business-credit-cards/biz-black-metal-edition",
+    "officialSource": "HDFC Bank Official Business Cards Portal",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "hdfc-diners-club-metal",
+    "name": "HDFC Bank Diners Club Black Metal Edition Credit Card",
+    "issuer": "HDFC Bank",
+    "annualFee": 10000,
+    "joiningFee": 10000,
+    "feeWaiverCardsJson": "Annual renewal fee of ₹11,800 (₹10,000 + 18% GST) is 100% waived on retail card spending crossing ₹8,00,000 in the anniversary year. First-year welcome memberships triggered on spending ₹1,50,000 in first 90 days.",
+    "feeWaiverThresholdRule": 800000,
+    "rewardType": "points",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 99,
+    "rates": {
+      "travel": 3.33,
+      "shopping": 3.33,
+      "online": 3.33,
+      "groceries": 3.33,
+      "dining": 6.66,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 3.33
+    },
+    "caps": {
+      "totalMonthlyPoints": 75000,
+      "smartbuyMonthlyBonus": 10000
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/diners-club-black-metal-edition",
+    "officialSource": "HDFC Bank Official Credit Cards Page",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "hdfc-diners-club-privilege",
+    "name": "HDFC Bank Diners Club Privilege Credit Card",
+    "issuer": "HDFC Bank",
+    "annualFee": 2500,
+    "joiningFee": 2500,
+    "feeWaiverCardsJson": "Annual renewal fee of ₹2,950 (₹2,500 + 18% GST) is 100% waived on retail card spending crossing ₹3,00,000 in the anniversary year. Welcome bonus of 2,500 Reward Points (worth ₹1,250 in travel) upon payment of joining fee.",
+    "feeWaiverThresholdRule": 300000,
+    "rewardType": "points",
+    "pointValue": 0.5,
+    "loungeAccessCardsJson": 12,
+    "rates": {
+      "travel": 2.6,
+      "shopping": 1.33,
+      "online": 1.33,
+      "dining": 3.33,
+      "groceries": 1.33,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 1.33
+    },
+    "caps": {
+      "smartbuyMonthlyBonus": 5000
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/diners-club-privilege",
+    "officialSource": "HDFC Bank Official Website",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "hdfc-infinia",
+    "name": "HDFC Bank Infinia Credit Card Metal Edition",
+    "issuer": "HDFC Bank",
+    "annualFee": 12500,
+    "joiningFee": 12500,
+    "feeWaiverCardsJson": "Annual renewal fee of ₹14,750 (₹12,500 + 18% GST) is 100% waived on retail card spending crossing ₹10,00,000 in preceding anniversary year. Welcome and renewal benefit of 12,500 Reward Points (worth ₹12,500 in clean travel value) credited upon fee payment, effectively neutralizing the base fee.",
+    "feeWaiverThresholdRule": 1000000,
+    "rewardType": "points",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 99,
+    "rates": {
+      "travel": 3.33,
+      "shopping": 3.33,
+      "online": 3.33,
+      "groceries": 3.33,
+      "dining": 6.66,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 3.33
+    },
+    "caps": {
+      "smartbuyMonthlyBonus": 15000,
+      "smartbuyVouchersBonus": 3000,
+      "groceryMonthlyPoints": 2000,
+      "monthlyRedemptionPoints": 150000
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/infinia-metal-edition",
+    "officialSource": "HDFC Bank Official Infinia Page",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "hdfc-marriott-bonvoy",
+    "name": "Marriott Bonvoy HDFC Bank Credit Card",
+    "issuer": "HDFC Bank",
+    "annualFee": 3000,
+    "joiningFee": 3000,
+    "feeWaiverCardsJson": "Non-waivable fee of ₹3,540 (₹3,000 + 18% GST). No spend-based waiver exists. The fee is completely neutralized every year by 1 Free Night Award (worth up to 15,000 Bonvoy points) valid at participating Marriott properties worldwide.",
+    "feeWaiverThresholdRule": null,
+    "rewardType": "points",
+    "pointValue": 0.65,
+    "loungeAccessCardsJson": 24,
+    "rates": {
+      "travel": 2.6,
+      "dining": 1.3,
+      "shopping": 0.65,
+      "online": 0.65,
+      "groceries": 0.65,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 0.65
+    },
+    "caps": {
+      "marriottMonthlySpend": 1000000
+    },
+    "merchantCount": 4,
+    "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/marriott-bonvoy-hdfc-bank-credit-card",
+    "officialSource": "HDFC Bank Official Cards Directory",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "hdfc-millennia",
+    "name": "HDFC Bank Millennia Credit Card",
+    "issuer": "HDFC Bank",
+    "annualFee": 1000,
+    "joiningFee": 1000,
+    "feeWaiverCardsJson": "Annual renewal fee of ₹1,180 (₹1,000 + 18% GST) is 100% waived on retail card spending crossing ₹1,00,000 in preceding anniversary year. Welcome gift of 1,000 CashPoints (worth ₹1,000 statement credit) credited upon joining fee payment, effectively neutralizing the base fee.",
+    "feeWaiverThresholdRule": 100000,
+    "rewardType": "cashback",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 4,
+    "rates": {
+      "shopping": 5,
+      "online": 5,
+      "dining": 5,
+      "travel": 5,
+      "groceries": 1,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 1
+    },
+    "caps": {
+      "categoryMonthlyCashback": 1000,
+      "generalMonthlyCashback": 1000,
+      "minimumRedemptionPoints": 500
+    },
+    "merchantCount": 12,
+    "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/millennia-cards",
+    "officialSource": "HDFC Bank Official Website",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "hdfc-regalia-gold",
+    "name": "HDFC Bank Regalia Gold Credit Card",
+    "issuer": "HDFC Bank",
+    "annualFee": 2500,
+    "joiningFee": 2500,
+    "feeWaiverCardsJson": "Annual renewal fee of ₹2,950 (₹2,500 + 18% GST) is 100% waived on retail card spending crossing ₹4,00,000 in preceding anniversary year. Welcome voucher worth ₹2,500 upon joining fee payment, effectively neutralizing the base fee.",
+    "feeWaiverThresholdRule": 400000,
+    "rewardType": "points",
+    "pointValue": 0.5,
+    "loungeAccessCardsJson": 18,
+    "rates": {
+      "shopping": 2.6,
+      "online": 2.6,
+      "travel": 2.6,
+      "dining": 2.6,
+      "groceries": 1.33,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 1.33
+    },
+    "caps": {
+      "acceleratedMonthlyPoints": 5000
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/regalia-gold-credit-card",
+    "officialSource": "HDFC Bank Official Cards Page",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "hdfc-swiggy-blck",
+    "name": "Swiggy BLCK HDFC Bank Credit Card",
+    "issuer": "HDFC Bank",
+    "annualFee": 1000,
+    "joiningFee": 1000,
+    "feeWaiverCardsJson": "Joining Fee waived if the user spends ₹75,000 within the first 90 days. Annual renewal fee waived completely if total spends cross ₹2,00,000 in the preceding calendar year.",
+    "feeWaiverThresholdRule": 200000,
+    "rewardType": "cashback",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 0,
+    "rates": {
+      "dining": 10,
+      "groceries": 10,
+      "shopping": 5,
+      "online": 5,
+      "travel": 1,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 1
+    },
+    "caps": {
+      "swiggyMonthlyCashback": 1500,
+      "onlineMonthlyCashback": 1500,
+      "otherMonthlyCashback": 1000
+    },
+    "merchantCount": 17,
+    "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/swiggy-hdfc-bank-credit-card",
+    "officialSource": "HDFC Bank & Swiggy Official Co-Brand Portal",
+    "lastVerified": "2026-10-29"
+  },
+  {
+    "slug": "hdfc-swiggy-orgne",
+    "name": "Swiggy Ornge HDFC Bank Credit Card",
+    "issuer": "HDFC Bank",
+    "annualFee": 500,
+    "joiningFee": 500,
+    "feeWaiverCardsJson": "Annual renewal fee is waived completely if the user spends ₹1,50,000 or more in the preceding calendar year.",
+    "feeWaiverThresholdRule": 150000,
+    "rewardType": "cashback",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 0,
+    "rates": {
+      "dining": 5,
+      "groceries": 5,
+      "shopping": 5,
+      "online": 5,
+      "travel": 1,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 1
+    },
+    "caps": {
+      "acceleratedMonthlyCashback": 1500,
+      "swiggyMonthlyCashback": 1500,
+      "onlineMonthlyCashback": 1500,
+      "otherMonthlyCashback": 1000
+    },
+    "merchantCount": 7,
+    "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/swiggy-hdfc-bank-credit-card",
+    "officialSource": "HDFC Bank & Swiggy Official Portal",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "hdfc-tata-neu-infinity",
+    "name": "Tata Neu Infinity HDFC Bank Credit Card",
+    "issuer": "HDFC Bank",
+    "annualFee": 1499,
+    "joiningFee": 1499,
+    "feeWaiverCardsJson": "Annual renewal fee is waived completely if total retail spends cross ₹3,00,000 in the preceding calendar year.",
+    "feeWaiverThresholdRule": 300000,
+    "rewardType": "cashback",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 12,
+    "rates": {
+      "groceries": 1.5,
+      "shopping": 1.5,
+      "travel": 1.5,
+      "dining": 1.5,
+      "utilities": 1.5,
+      "fuel": 0,
+      "other": 1.5
+    },
+    "caps": {
+      "upiMonthlyCoins": 500,
+      "groceryMonthlyCoins": 2000,
+      "utilitiesMonthlyCoins": 2000,
+      "insuranceMonthlyCoins": 2000,
+      "telecomMonthlyCoins": 2000
+    },
+    "merchantCount": 20,
+    "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/tata-neu-infinity-hdfc-bank-credit-card",
+    "officialSource": "HDFC Bank Official Tata Neu Portal",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "hdfc-tata-neu-plus",
+    "name": "Tata Neu Plus HDFC Bank Credit Card",
+    "issuer": "HDFC Bank",
+    "annualFee": 499,
+    "joiningFee": 499,
+    "feeWaiverCardsJson": "Annual renewal fee is waived completely if total annual retail spends cross ₹1,00,000 in the preceding calendar year.",
+    "feeWaiverThresholdRule": 100000,
+    "rewardType": "cashback",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 4,
+    "rates": {
+      "groceries": 1,
+      "shopping": 1,
+      "travel": 1,
+      "dining": 1,
+      "utilities": 1,
+      "fuel": 0,
+      "other": 1
+    },
+    "caps": {
+      "upiMonthlyCoins": 500,
+      "groceryMonthlyCoins": 1000,
+      "utilitiesMonthlyCoins": 2000,
+      "insuranceMonthlyCoins": 2000,
+      "telecomMonthlyCoins": 2000
+    },
+    "merchantCount": 13,
+    "officialUrl": "https://www.hdfcbank.com/personal/pay/cards/credit-cards/tata-neu-plus-hdfc-bank-credit-card",
+    "officialSource": "HDFC Bank Official Portal",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "hsbc-live-plus",
+    "name": "HSBC Live+ Credit Card",
+    "issuer": "HSBC India",
+    "annualFee": 999,
+    "joiningFee": 999,
+    "feeWaiverCardsJson": "Annual renewal fee is waived completely if the user crosses ₹2,00,000 in total retail spends during the preceding calendar year.",
+    "feeWaiverThresholdRule": 200000,
+    "rewardType": "cashback",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 4,
+    "rates": {
+      "dining": 10,
+      "groceries": 10,
+      "shopping": 1.5,
+      "online": 1.5,
+      "travel": 1.5,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 1.5
+    },
+    "caps": {
+      "acceleratedMonthlyCashback": 1000,
+      "diningGroceryMonthlyCashback": 1000
+    },
+    "merchantCount": 13,
+    "officialUrl": "https://www.hsbc.co.in/credit-cards/products/live-plus/",
+    "officialSource": "HSBC India Official Website",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "hsbc-premier",
+    "name": "HSBC Premier Credit Card",
+    "issuer": "HSBC India",
+    "annualFee": 0,
+    "joiningFee": 0,
+    "feeWaiverCardsJson": "Lifetime Free for active HSBC Premier Banking clients (TRB ₹40 Lakhs or salary credit ₹3,00,000/month or home loan ₹1.15 Crore).",
+    "feeWaiverThresholdRule": 0,
+    "rewardType": "miles",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 99,
+    "rates": {
+      "travel": 6,
+      "shopping": 3,
+      "online": 3,
+      "dining": 3,
+      "groceries": 3,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 3
+    },
+    "caps": {
+      "totalMonthly": null
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.hsbc.co.in/credit-cards/products/premier/",
+    "officialSource": "HSBC India Premier Portal",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "hsbc-rupay-cashback",
+    "name": "HSBC RuPay Cashback Credit Card",
+    "issuer": "HSBC India",
+    "annualFee": 499,
+    "joiningFee": 499,
+    "feeWaiverCardsJson": "Annual renewal fee is waived completely if the user crosses ₹2,00,000 in total retail spends during the preceding calendar year.",
+    "feeWaiverThresholdRule": 200000,
+    "rewardType": "cashback",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 4,
+    "rates": {
+      "groceries": 10,
+      "dining": 10,
+      "other": 1,
+      "shopping": 1,
+      "online": 1,
+      "travel": 1,
+      "fuel": 0,
+      "utilities": 0
+    },
+    "caps": {
+      "sharedMonthlyCashback": 400,
+      "acceleratedMonthlyCashback": 400
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.hsbc.co.in/credit-cards/products/rupay-cashback/",
+    "officialSource": "HSBC India Official Credit Cards Portal",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "hsbc-travel-one",
+    "name": "HSBC TravelOne Credit Card",
+    "issuer": "HSBC India",
+    "annualFee": 4999,
+    "joiningFee": 4999,
+    "feeWaiverCardsJson": "Annual renewal fee of ₹5,899 is waived completely on annual retail spends of ₹8,00,000 in preceding year.",
+    "feeWaiverThresholdRule": 800000,
+    "rewardType": "miles",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 10,
+    "rates": {
+      "travel": 4,
+      "dining": 4,
+      "shopping": 2,
+      "online": 2,
+      "groceries": 2,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 2
+    },
+    "caps": {
+      "totalMonthly": null
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.hsbc.co.in/credit-cards/products/travelone/",
+    "officialSource": "HSBC Official TravelOne Page",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "idfc-first-power-plus",
+    "name": "IDFC FIRST HPCL FIRST Power+ Credit Card",
+    "issuer": "IDFC FIRST Bank",
+    "annualFee": 499,
+    "joiningFee": 499,
+    "feeWaiverCardsJson": "Annual renewal fee is waived completely if the user spends ₹1,50,000 or more in the preceding calendar year.",
+    "feeWaiverThresholdRule": 150000,
+    "rewardType": "points",
+    "pointValue": 0.25,
+    "loungeAccessCardsJson": 4,
+    "rates": {
+      "fuel": 6.5,
+      "groceries": 5,
+      "utilities": 5,
+      "dining": 0.75,
+      "shopping": 0.75,
+      "online": 0.75,
+      "travel": 0.75,
+      "other": 0.75
+    },
+    "caps": {
+      "fuelMonthlySpendCap": 10000,
+      "groceryUtilityMonthlySpendCap": 2000,
+      "fastagMonthlySpendCap": 1000
+    },
+    "merchantCount": 5,
+    "officialUrl": "https://www.idfcfirstbank.com/credit-card/first-power-plus",
+    "officialSource": "IDFC FIRST Bank Official Website",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "indusind-eazydiner",
+    "name": "EazyDiner IndusInd Bank Credit Card (Visa Signature)",
+    "issuer": "IndusInd Bank",
+    "annualFee": 1999,
+    "joiningFee": 1999,
+    "feeWaiverCardsJson": "No spend-based waiver; each annual renewal automatically grants a fresh 1-year EazyDiner Prime membership (₹2,495) plus 2,000 bonus reward points (₹400).",
+    "feeWaiverThresholdRule": null,
+    "rewardType": "points",
+    "pointValue": 0.2,
+    "loungeAccessCardsJson": 8,
+    "rates": {
+      "dining": 10,
+      "shopping": 2,
+      "entertainment": 2,
+      "online": 0.8,
+      "travel": 0.8,
+      "groceries": 0.8,
+      "fuel": 0,
+      "utilities": 0.8,
+      "other": 0.8
+    },
+    "caps": {
+      "diningDiscountCapPerBill": 1000,
+      "payeazyMonthlyDiscountBaselineCap": 2000,
+      "payeazyMonthlyDiscountUnlockedCap": 5000
+    },
+    "merchantCount": 5,
+    "officialUrl": "https://www.indusind.com/in/en/personal/cards/credit-cards/eazydiner-credit-card.html",
+    "officialSource": "IndusInd Bank Official Portal",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "indusind-tiger",
+    "name": "IndusInd Bank Tiger Credit Card",
+    "issuer": "IndusInd Bank",
+    "annualFee": 0,
+    "joiningFee": 0,
+    "feeWaiverCardsJson": "Lifetime Free with no annual fees or minimum spend conditions.",
+    "feeWaiverThresholdRule": 0,
+    "rewardType": "points",
+    "pointValue": 0.4,
+    "loungeAccessCardsJson": 8,
+    "rates": {
+      "travel": 2.4,
+      "dining": 2.4,
+      "shopping": 2.4,
+      "online": 2.4,
+      "groceries": 0.8,
+      "fuel": 0,
+      "utilities": 0.8,
+      "other": 0.8
+    },
+    "caps": {
+      "cashRedemptionMonthlyPointCap": 5000,
+      "cashRedemptionFee": 176,
+      "educationMonthlySpendCap": 25000
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.indusind.com/in/en/personal/cards/credit-cards/tiger-credit-card.html",
+    "officialSource": "IndusInd Bank Official Cards Directory",
+    "lastVerified": "2026-10-23"
+  },
+  {
+    "slug": "kiwi-yes-bank",
+    "name": "Kiwi YES BANK RuPay Credit Card",
+    "issuer": "YES BANK",
+    "annualFee": 0,
+    "joiningFee": 0,
+    "feeWaiverCardsJson": "Lifetime Free with no annual fees or minimum spend conditions.",
+    "feeWaiverThresholdRule": 0,
+    "rewardType": "cashback",
+    "pointValue": 0.25,
+    "loungeAccessCardsJson": 0,
+    "rates": {
+      "other": 1.5,
+      "groceries": 1.5,
+      "dining": 1.5,
+      "shopping": 0.5,
+      "online": 0.5,
+      "travel": 0.5,
+      "fuel": 0,
+      "utilities": 0
+    },
+    "caps": {
+      "monthlyCashbackPercentOfLimit": 1,
+      "minTransactionForPoints": 100,
+      "minRedemptionPoints": 500
+    },
+    "merchantCount": 5,
+    "officialUrl": "https://gokiwi.in/",
+    "officialSource": "Kiwi & YES BANK Official Partnership Portal",
+    "lastVerified": "2026-10-23"
+  },
+  {
+    "slug": "rbl-indianoil-xtra",
+    "name": "IndianOil RBL Bank XTRA Credit Card",
+    "issuer": "RBL Bank",
+    "annualFee": 1500,
+    "joiningFee": 1500,
+    "feeWaiverCardsJson": "Waived on annual retail spends of ₹2,75,000 in preceding year (excludes rent, utilities, insurance, education, and wallet loads).",
+    "feeWaiverThresholdRule": 275000,
+    "rewardType": "points",
+    "pointValue": 0.5,
+    "loungeAccessCardsJson": 0,
+    "rates": {
+      "fuel": 8.5,
+      "groceries": 1,
+      "dining": 1,
+      "shopping": 1,
+      "online": 1,
+      "travel": 1,
+      "utilities": 0,
+      "other": 1
+    },
+    "caps": {
+      "fuelMonthlyPoints": 2000,
+      "surchargeWaiverMonthly": 200,
+      "quarterlyMilestoneSpend": 75000
+    },
+    "merchantCount": 6,
+    "officialUrl": "https://www.rblbank.com/personal-banking/cards/credit-cards/indianoil-rbl-bank-xtra-credit-card",
+    "officialSource": "RBL Bank Official Portal",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "sbi-bpcl-octane",
+    "name": "BPCL SBI Card Octane",
+    "issuer": "SBI Card",
+    "annualFee": 1499,
+    "joiningFee": 1499,
+    "feeWaiverCardsJson": "Waived on annual retail spends of ₹2,00,000 in preceding year.",
+    "feeWaiverThresholdRule": 200000,
+    "rewardType": "points",
+    "pointValue": 0.25,
+    "loungeAccessCardsJson": 4,
+    "rates": {
+      "fuel": 7.25,
+      "groceries": 2.5,
+      "dining": 2.5,
+      "shopping": 0.25,
+      "online": 0.25,
+      "travel": 0.25,
+      "utilities": 0,
+      "other": 0.25
+    },
+    "caps": {
+      "fuelMonthlyPoints": 2500,
+      "bharatgasMonthlyPoints": 500,
+      "accelerated10XMonthlyPoints": 7500,
+      "statementCreditAnnualPoints": 60000,
+      "surchargeWaiverMonthly": 100
+    },
+    "merchantCount": 6,
+    "officialUrl": "https://www.sbicard.com/en/personal/credit-cards/travel/bpcl-sbi-card-octane.page",
+    "officialSource": "SBI Card Official Website",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "sbi-cashback",
+    "name": "Cashback SBI Card",
+    "issuer": "SBI Card",
+    "annualFee": 999,
+    "joiningFee": 999,
+    "feeWaiverCardsJson": "Waived on annual online and offline retail spending of ₹2,00,000 in preceding year.",
+    "feeWaiverThresholdRule": 200000,
+    "rewardType": "cashback",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 0,
+    "rates": {
+      "shopping": 5,
+      "online": 5,
+      "dining": 5,
+      "travel": 5,
+      "groceries": 1,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 1
+    },
+    "caps": {
+      "onlineMonthlyCashback": 2000,
+      "offlineMonthlyCashback": 2000,
+      "totalMonthlyCashback": 4000
+    },
+    "merchantCount": 22,
+    "officialUrl": "https://www.sbicard.com/en/personal/credit-cards/rewards/cashback-sbi-card.page",
+    "officialSource": "SBI Card Official Website",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "sbi-phonepe-black",
+    "name": "PhonePe SBI Card SELECT BLACK",
+    "issuer": "SBI Card",
+    "annualFee": 1499,
+    "joiningFee": 1499,
+    "feeWaiverCardsJson": "Waived on annual retail spends of ₹3,00,000 in preceding year.",
+    "feeWaiverThresholdRule": 300000,
+    "rewardType": "points",
+    "pointValue": 1,
+    "loungeAccessCardsJson": 4,
+    "rates": {
+      "utilities": 10,
+      "shopping": 5,
+      "online": 5,
+      "travel": 5,
+      "dining": 1,
+      "groceries": 1,
+      "fuel": 0,
+      "other": 1
+    },
+    "caps": {
+      "phonePeAppMonthlyPoints": 2000,
+      "insuranceMonthlyPoints": 500,
+      "onlineMonthlyPoints": 1000
+    },
+    "merchantCount": 0,
+    "officialUrl": "https://www.sbicard.com/en/personal/credit-cards/rewards/phonepe-sbi-card-select-black.page",
+    "officialSource": "SBI Card & PhonePe Official Partnership Page",
+    "lastVerified": "2026-09-20"
+  },
+  {
+    "slug": "bobcard-scapia",
+    "name": "BOBCARD Scapia Credit Card",
+    "issuer": "BOBCARD",
+    "annualFee": 0,
+    "joiningFee": 0,
+    "feeWaiverCardsJson": "Lifetime Free with no annual fees or minimum spend conditions.",
+    "feeWaiverThresholdRule": 0,
+    "rewardType": "points",
+    "pointValue": 0.2,
+    "loungeAccessCardsJson": 99,
+    "rates": {
+      "travel": 4,
+      "dining": 2,
+      "groceries": 2,
+      "shopping": 2,
+      "online": 2,
+      "fuel": 0,
+      "utilities": 0,
+      "other": 2
+    },
+    "caps": {
+      "totalMonthly": null,
+      "loungeMonthlySpendHurdle": 20000
+    },
+    "merchantCount": 6,
+    "officialUrl": "https://www.scapia.cards/",
+    "officialSource": "BOBCARD & Scapia Official Portal",
+    "lastVerified": "2026-09-20"
+  }
+]
