@@ -60,6 +60,7 @@ graphify-out/
 scratch/
 scratch_*
 test_results.json
+data/feedback_store.json
 
 .tmp_chrome*
 /*_inspect.png

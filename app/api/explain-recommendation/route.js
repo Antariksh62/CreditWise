@@ -1,8 +1,17 @@
 import { NextResponse } from "next/server";
+import { checkRateLimit } from "../../../lib/rateLimit.js";
 
 export async function POST(request) {
   try {
-    const body = await request.json();
+    const limit = checkRateLimit(request, { endpoint: "explain", windowMs: 60000, maxRequests: 60 });
+    if (limit.limited) {
+      return NextResponse.json(
+        { error: "Rate limit exceeded. Please wait a moment before trying again." },
+        { status: 429, headers: { "Retry-After": "60" } }
+      );
+    }
+
+    const body = await request.json().catch(() => ({}));
     let cards = [];
     let allocations = {};
     let grossRewards = 0;
@@ -104,9 +113,12 @@ export async function POST(request) {
       explanation,
     });
   } catch (err) {
-    console.error("Error in /api/explain-recommendation:", err);
+    console.error("Error in /api/explain-recommendation:", err?.message || err);
     return NextResponse.json(
-      { error: "Failed to generate explanation.", details: err.message },
+      {
+        error: "Failed to generate explanation.",
+        ...(process.env.NODE_ENV !== "production" ? { details: err?.message } : {}),
+      },
       { status: 500 }
     );
   }

@@ -1,41 +1,6 @@
 import { NextResponse } from "next/server";
 import { parseSpendingWithGemini, ERROR_TYPES } from "../../../lib/geminiClient.js";
-
-/**
- * Server-side rate limiter to prevent API abuse.
- * Sliding window: max 15 requests per minute per IP.
- */
-const rateLimitMap = new Map();
-const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
-const MAX_REQUESTS_PER_WINDOW = 15;
-
-function isRateLimited(ip) {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip) || { count: 0, resetTime: now + RATE_LIMIT_WINDOW_MS };
-
-  // Reset window if expired
-  if (now > entry.resetTime) {
-    entry.count = 1;
-    entry.resetTime = now + RATE_LIMIT_WINDOW_MS;
-    rateLimitMap.set(ip, entry);
-    return false;
-  }
-
-  // Increment and check limit
-  entry.count += 1;
-  rateLimitMap.set(ip, entry);
-
-  // Clean up stale entries periodically
-  if (rateLimitMap.size > 2000) {
-    for (const [key, value] of rateLimitMap.entries()) {
-      if (now > value.resetTime) {
-        rateLimitMap.delete(key);
-      }
-    }
-  }
-
-  return entry.count > MAX_REQUESTS_PER_WINDOW;
-}
+import { getClientIp, checkRateLimit } from "../../../lib/rateLimit.js";
 
 function parseNum(rawStr) {
   if (!rawStr) return 0;
@@ -189,13 +154,10 @@ function parseNaturalLanguageSpending(text) {
 
 export async function POST(request) {
   try {
-    // 1. IP extraction and Rate Limiting
-    const forwardedFor = request.headers.get("x-forwarded-for");
-    const clientIp = (forwardedFor ? forwardedFor.split(",")[0].trim() : null) ||
-                     request.headers.get("x-real-ip") ||
-                     "127.0.0.1";
+    // 1. Rate Limiting (scoped to parse-spending endpoint)
+    const limit = checkRateLimit(request, { endpoint: "parse-spending", windowMs: 60000, maxRequests: 20 });
 
-    if (isRateLimited(clientIp)) {
+    if (limit.limited) {
       return NextResponse.json(
         {
           success: false,

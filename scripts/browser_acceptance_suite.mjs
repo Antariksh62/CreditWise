@@ -214,7 +214,11 @@ async function runBrowserAcceptanceSuite() {
     console.log("\n--- JOURNEY 5: Card Count Selection (1, 2, 3 Cards) ---");
     try {
       await page.goto(`${BASE_URL}/results`, { waitUntil: "domcontentloaded" });
-      await sleep(1000);
+      await page.waitForFunction(
+        () => Array.from(document.querySelectorAll("button")).some(b => b.innerText.includes("1 Card")),
+        { timeout: 10000 }
+      );
+      await sleep(500);
 
       const countsTested = [];
       for (const count of [2, 3, 1]) {
@@ -229,7 +233,7 @@ async function runBrowserAcceptanceSuite() {
         }, count);
 
         if (clicked) {
-          await sleep(400);
+          await sleep(500);
           countsTested.push(count);
         }
       }
@@ -246,7 +250,11 @@ async function runBrowserAcceptanceSuite() {
     console.log("\n--- JOURNEY 6: Merchant-Level Reward Allocations & Net Value ---");
     try {
       await page.goto(`${BASE_URL}/results`, { waitUntil: "domcontentloaded" });
-      await sleep(1000);
+      await page.waitForFunction(
+        () => document.body.innerText.includes("₹") && (document.body.innerText.includes("NET") || document.body.innerText.includes("Value") || document.body.innerText.includes("/yr")),
+        { timeout: 10000 }
+      );
+      await sleep(500);
 
       const hasFinancialData = await page.evaluate(() => {
         const text = document.body.innerText.toUpperCase();
